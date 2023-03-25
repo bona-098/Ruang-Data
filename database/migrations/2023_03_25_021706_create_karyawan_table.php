@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('tgl_lahir');
             $table->string('kota_lahir');
             $table->string('agama');
+            $table->string('jenis_kelamin');
+            $table->string('jalan');
+            $table->string('nama_status_nikah');
+            $table->string('lokasi_kerja');
+            $table->string('tgl_mulai_bekerja');
+            $table->string('tgl_pegawai_perusahaan');
+            $table->string('tgl_perkiran_pensiun');
             $table->string('nama_divisi');
             $table->string('tgl_divisi');
             $table->string('kode_loker');
