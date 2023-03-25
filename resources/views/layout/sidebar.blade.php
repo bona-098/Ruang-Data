@@ -13,6 +13,37 @@
                         <li><a href="template/index2.html">Dashboard 3 </a></li>
                     </ul>
                 </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-heart"></i><span class="hide-menu">Costumer</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Karyawan</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Project</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-dropbox"></i><span class="hide-menu">Data Gudang</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan</span></a>
+                </li>
+
+
+                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                </li>
+                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">3</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="template/index.html">Dashboard 1 </a></li>
+                        <li><a href="template/index1.html">Dashboard 2 </a></li>
+                        <li><a href="template/index2.html">Dashboard 3 </a></li>
+                    </ul>
+                </li>
                 <li class="nav-label">Layout</li>
                 <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Layout</span></a>
                     <ul aria-expanded="false" class="collapse">
@@ -62,11 +93,11 @@
                 </li>
                 <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-basic.html">Basic Forms</a></li>
-                        <li><a href="form-layout.html">Form Layout</a></li>
-                        <li><a href="form-validation.html">Form Validation</a></li>
-                        <li><a href="form-editor.html">Editor</a></li>
-                        <li><a href="form-dropzone.html">Dropzone</a></li>
+                        <li><a href="template/form-basic.html">Basic Forms</a></li>
+                        <li><a href="template/form-layout.html">Form Layout</a></li>
+                        <li><a href="template/form-validation.html">Form Validation</a></li>
+                        <li><a href="template/form-editor.html">Editor</a></li>
+                        <li><a href="template/form-dropzone.html">Dropzone</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
@@ -86,18 +117,18 @@
 
                         <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="page-login.html">Login</a></li>
-                                <li><a href="page-register.html">Register</a></li>
-                                <li><a href="page-invoice.html">Invoice</a></li>
+                                <li><a href="template/page-login.html">Login</a></li>
+                                <li><a href="template/page-register.html">Register</a></li>
+                                <li><a href="template/page-invoice.html">Invoice</a></li>
                             </ul>
                         </li>
                         <li><a href="#" class="has-arrow">Error Pages</a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="page-error-400.html">400</a></li>
-                                <li><a href="page-error-403.html">403</a></li>
-                                <li><a href="page-error-404.html">404</a></li>
-                                <li><a href="page-error-500.html">500</a></li>
-                                <li><a href="page-error-503.html">503</a></li>
+                                <li><a href="template/page-error-400.html">400</a></li>
+                                <li><a href="template/page-error-403.html">403</a></li>
+                                <li><a href="template/page-error-404.html">404</a></li>
+                                <li><a href="template/page-error-500.html">500</a></li>
+                                <li><a href="template/page-error-503.html">503</a></li>
                             </ul>
                         </li>
                     </ul>
