@@ -31,7 +31,7 @@
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan</span></a>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan tes satu dua</span></a>
                 </li>
 
 
