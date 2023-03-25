@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/chart', function () {
     return view('chart');
 });
+Route::get('/bsrm', function () {
+    return view('Role.bsrm');
+});
