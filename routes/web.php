@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-Route::get('/chart', function () {
-    return view('chart');
-});
-Route::get('/bsrm', function () {
-    return view('Role.bsrm');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+// Route::get('/chart', function () {
+//     return view('chart');
+// });
+// Route::get('/bsrm', function () {
+//     return view('Role.bsrm');
+// });
+Route::resource('/karyawan', KaryawanController::class);
 
-Route::get('/bsrmcopy', function () {
-    return view('Role.bsrmcopy');
-});
-Route::get('/karyawan', function () {
-    return view('Role.karyawan');
-});
+// Route::get('/bsrmcopy', function () {
+//     return view('Role.bsrmcopy');
+// });
+// Route::get('/karyawan', function () {
+//     return view('Role.karyawan');
+// });

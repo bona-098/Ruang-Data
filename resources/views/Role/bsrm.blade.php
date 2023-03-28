@@ -39,7 +39,7 @@
                             <span><i class="fa fa-users f-s-40 color-warning"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            <h2>25</h2>
+                            <h2>{{ $karyawan->count() }}</h2>
                             <p class="m-b-0">Karyawan</p>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <thead>
                         <tr>
                             <th>Action</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Nik</th>
                             <th>Position</th>
                             <th>Office</th>
@@ -81,136 +81,35 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($karyawan as $k)
+                            
                         <tr>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="fa fa-cog"></i>
-                                        action
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Detail</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Delete</a>
-                                    </div>
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fa fa-cog"></i>
+                                    action
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                    href="#">Detail</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                    href="#">Update</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                    href="#">Delete</a>
                                 </div>
-                            </td>
-                            <td>1Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023asa </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="fa fa-cog"></i>
-                                        action
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Detail</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>2Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="fa fa-cog"></i>
-                                        action
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Detail</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>3Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td> RBOC </td>
-                            <td> 22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="fa fa-cog"></i>
-                                        action
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Detail</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>4Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="fa fa-cog"></i>
-                                        action
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Detail</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                            href="#">Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>5Bona matanri</td>
-                            <td> 1111820111 </td>
-                            <td> Elite </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13dadMaret 2023 </td>
-                        </tr>
+                            </div>
+                        </td>
+                        <td>{{ $k->nama_karyawan }}</td>
+                        <td>{{$k->nik}}</td>
+                        <td>{{$k->jabatan}}</td>
+                        <td>{{$k->unit_kerja }}</td>
+                        <td>{{$k->umur }}</td>
+                        <td> 13 Maret 2023 </td>
+                        <td> 13 Maret 2023asa </td>
+                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
