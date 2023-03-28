@@ -6,19 +6,14 @@
             <ul id="sidebarnav">
                 <li class="nav-devider"></li>
                 <li class="nav-label">Home</li>
-                <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">3</span></span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="template/index.html">Dashboard 1 </a></li>
-                        <li><a href="template/index1.html">Dashboard 2 </a></li>
-                        <li><a href="template/index2.html">Dashboard 3 </a></li>
-                    </ul>
+                <li> <a class="has-arrow" href="/bsrm" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard </span></a>
                 </li>
-                @if (strpos(Request::url(), 'bsrm') !== false)
+                @if (strpos(Request::url(), 'bsrm') !== false || strpos(Request::url(), 'karyawan') !== false)
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-heart"></i><span class="hide-menu">Costumer</span></a>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Costumer</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-circle-o"></i><span class="hide-menu">Karyawan</span></a>
+                <li> <a class="" href="/karyawan" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
                 

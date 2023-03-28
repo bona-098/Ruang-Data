@@ -1,275 +1,391 @@
 @extends('layout.layout')
 @section('content')
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
-            <div class="container-fluid">
-                <!-- Start Page Content -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2>568120</h2>
-                                   <a href="https://www.youtube.com/watch?v=6_UhNE5qVX4"> <p class="m-b-0">Total Revenue</p></a>
-                                </div>
-                            </div>
+    <!-- End Bread crumb -->
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card p-30">
+                    <div class="media">
+                        <div class="media-left meida media-middle">
+                            <span><i class="fa fa-bar-chart-o f-s-40 color-primary"></i></span>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2>1178</h2>
-                                    <p class="m-b-0">Sales</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2>25</h2>
-                                    <p class="m-b-0">Stores</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-30">
-                            <div class="media">
-                                <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-user f-s-40 color-danger"></i></span>
-                                </div>
-                                <div class="media-body media-text-right">
-                                    <h2>847</h2>
-                                    <p class="m-b-0">Customer</p>
-                                </div>
-                            </div>
+                        <div class="media-body media-text-right">
+                            <h2>568120</h2>
+                            <a href="https://www.youtube.com/watch?v=6_UhNE5qVX4">
+                                <p class="m-b-0">Perfomance</p>
+                            </a>
                         </div>
                     </div>
                 </div>
-                {{-- Data tabel costumer Mulai --}}
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Data Export</h4>
-                                {{-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> --}}
-                                <div class="table-responsive m-t-40">
-                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hermione Butler</td>
-                                                <td>Regional Director</td>
-                                                <td>London</td>
-                                                <td>47</td>
-                                                <td>2011/03/21</td>
-                                                <td>$356,250</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lael Greer</td>
-                                                <td>Systems Administrator</td>
-                                                <td>London</td>
-                                                <td>21</td>
-                                                <td>2009/02/27</td>
-                                                <td>$103,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jonas Alexander</td>
-                                                <td>Developer</td>
-                                                <td>San Francisco</td>
-                                                <td>30</td>
-                                                <td>2010/07/14</td>
-                                                <td>$86,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shad Decker</td>
-                                                <td>Regional Director</td>
-                                                <td>Edinburgh</td>
-                                                <td>51</td>
-                                                <td>2008/11/13</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michael Bruce</td>
-                                                <td>Javascript Developer</td>
-                                                <td>Singapore</td>
-                                                <td>29</td>
-                                                <td>2011/06/27</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- Data tabel costumer akhir --}}
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Yearlyssss Sales </h4>
-
-                            </div>
-                            <div class="sales-chart">
-                                <canvas id="sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Team Total Completed </h4>
-
-                            </div>
-                            <div class="sales-chart">
-                                <canvas id="team-chart"></canvas>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                </div>
-                <!-- /# row -->
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Bar chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="barChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Radar Chart -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Rader chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="radarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Line Chart -->
-                    <div class="col-sm-12 col-md-8">
-                        <div class="panel panel-bd lobidrag">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Line chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="lineChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pie Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Pie chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="pieChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Doughnut Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Doughut chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="doughutChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Polar Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Polar chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="polarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Bar Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Single Bar Chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="singelBarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- End PAge Content -->
             </div>
+            <div class="col-md-3">
+                <div class="card p-30">
+                    <div class="media">
+                        <div class="media-left meida media-middle">
+                            <span><i class="fa fa-handshake-o f-s-40 color-success"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2>1178</h2>
+                            <p class="m-b-0">Mitra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-30">
+                    <div class="media">
+                        <div class="media-left meida media-middle">
+                            <span><i class="fa fa-users f-s-40 color-warning"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2>25</h2>
+                            <p class="m-b-0">Karyawan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-30">
+                    <div class="media">
+                        <div class="media-left meida media-middle">
+                            <span><i class="fa fa-users f-s-40 color-danger"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2>847</h2>
+                            <p class="m-b-0">Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Data Tabel mulai baru --}}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data Karyawan</h4>
+            {{-- <h6 class="card-subtitle">Data table example</h6> --}}
+            <div class="table-responsive ">
+                <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Name</th>
+                            <th>Nik</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Start date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-cog"></i>
+                                        action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Detail</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Update</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1Fajriansyah</td>
+                            <td> 111182027 </td>
+                            <td> Myth </td>
+                            <td>RBOC </td>
+                            <td>22 </td>
+                            <td> 13 Maret 2023 </td>
+                            <td> 13 Maret 2023asa </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-cog"></i>
+                                        action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Detail</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Update</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>2Fajriansyah</td>
+                            <td> 111182027 </td>
+                            <td> Myth </td>
+                            <td>RBOC </td>
+                            <td>22 </td>
+                            <td> 13 Maret 2023 </td>
+                            <td> 13 Maret 2023 </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-cog"></i>
+                                        action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Detail</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Update</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>3Fajriansyah</td>
+                            <td> 111182027 </td>
+                            <td> Myth </td>
+                            <td> RBOC </td>
+                            <td> 22 </td>
+                            <td> 13 Maret 2023 </td>
+                            <td> 13 Maret 2023 </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-cog"></i>
+                                        action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Detail</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Update</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>4Fajriansyah</td>
+                            <td> 111182027 </td>
+                            <td> Myth </td>
+                            <td>RBOC </td>
+                            <td>22 </td>
+                            <td> 13 Maret 2023 </td>
+                            <td> 13 Maret 2023 </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="fa fa-cog"></i>
+                                        action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Detail</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Update</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>5Bona matanri</td>
+                            <td> 1111820111 </td>
+                            <td> Elite </td>
+                            <td>RBOC </td>
+                            <td>22 </td>
+                            <td> 13 Maret 2023 </td>
+                            <td> 13dadMaret 2023 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{-- Selesai --}}
+
+    <!-- /# row -->
+    {{-- KONTEN MODAL --}}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Modal content goes here.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{-- KONTEN MODAL --}}
+    {{-- Selesai --}}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Yearlyssss Sales </h4>
+                </div>
+                <div class="sales-chart">
+                    <canvas id="sales-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Team Total Completed </h4>
+                </div>
+                <div class="sales-chart">
+                    <canvas id="team-chart"></canvas>
+                </div>
+            </div>
+            <!-- /# card -->
+        </div>
+        <!-- /# column -->
+    </div>
+    <!-- /# row -->
+    <div class="row">
+        <!-- Bar Chart -->
+        <div class="col-sm-12 col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Bar chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Radar Chart -->
+        <div class="col-sm-12 col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Rader chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Line Chart -->
+        <div class="col-sm-12 col-md-8">
+            <div class="panel panel-bd lobidrag">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Line chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Pie Chart -->
+        <div class="col-sm-6 col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Pie chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Doughnut Chart -->
+        <div class="col-sm-6 col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Doughut chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="doughutChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Polar Chart -->
+        <div class="col-sm-6 col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Polar chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="polarChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Single Bar Chart -->
+        <div class="col-sm-6 col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>Single Bar Chart</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <canvas id="singelBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/XvoPHh0Jo9Lp4+p" crossorigin="anonymous">
+</script>
+
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
