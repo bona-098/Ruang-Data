@@ -14,8 +14,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karya = karyawan::get();
-        return view ('xx.xy');
+        $karyawan = Karyawan::get();
+        return view ('role.bsrm', compact('karyawan'));
     }
 
     /**
