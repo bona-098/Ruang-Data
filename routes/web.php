@@ -19,3 +19,13 @@ Route::get('/', function () {
 Route::get('/chart', function () {
     return view('chart');
 });
+Route::get('/bsrm', function () {
+    return view('Role.bsrm');
+});
+
+Route::get('/bsrmcopy', function () {
+    return view('Role.bsrmcopy');
+});
+Route::get('/karyawan', function () {
+    return view('Role.karyawan');
+});
