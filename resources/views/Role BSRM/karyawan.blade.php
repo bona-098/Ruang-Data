@@ -19,7 +19,7 @@
                     <table text-align: left; id="myTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Action</th>
+                                <th class="text-center" >Action</th>
                                 <th>Name</th>
                                 <th>Nik</th>
                                 <th>Position</th>
@@ -33,7 +33,7 @@
                             @foreach ($karyawan as $k)
                                 <tr>
                                     <td>
-                                        <div class="dropdown">
+                                        <div class="dropdown text-center">
                                             <button class="btn btn-success dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false"><i class="fa fa-cog"></i>
@@ -65,10 +65,9 @@
         </div>
         {{-- Selesai --}}
 
-        <!-- /# row -->
         {{-- KONTEN MODAL DETAIL --}}
         <div class="modal fade" id="ModalDetailKaryawan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel">Detail</h4>
@@ -78,16 +77,16 @@
                     <div class="modal-body">
                         <div class="table-responsive ">
                             <table style="text-align: left;" class="table table-bordered ">
-                                <thead>
+                                {{-- <thead>
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Kolom 1</th>
                                     </tr>
-                                </thead>
+                                </thead> --}}
                                 <tbody>
                                     <tr>
                                         <th scope="row">NIK</th>
-                                        <td>11181027</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Nama Karyawan</th>
@@ -119,7 +118,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Lokasi Kerja</th>
-                                        <td>Data 4</td>
+                                        <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Tanggal Mulai Bekerja</th>
