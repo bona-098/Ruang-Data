@@ -8,7 +8,7 @@
                 <li class="nav-label">Home</li>
                 <li> <a class="has-arrow" href="/bsrm" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard </span></a>
                 </li>
-                @if (strpos(Request::url(), 'bsrm') !== false || strpos(Request::url(), 'karyawan') !== false)
+                {{-- @if (strpos(Request::url(), 'bsrm') !== false || strpos(Request::url(), 'dashboard') !== false) --}}
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Costumer</span></a>
@@ -17,7 +17,7 @@
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
                 
-                @elseif (strpos(Request::url(), 'psd') !== false)
+                {{-- @elseif (strpos(Request::url(), 'psd') !== false) --}}
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Project</span></a>
                 </li>
@@ -31,7 +31,7 @@
                 </li>
                 <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan tes satu dua</span></a>
                 </li>
-                @endif
+                {{-- @endif --}}
 
                 
             </ul>

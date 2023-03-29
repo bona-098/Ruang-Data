@@ -23,11 +23,18 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/bsrm', function () {
 //     return view('Role.bsrm');
 // });
-Route::resource('/karyawan', KaryawanController::class);
+Route::resource('/', KaryawanController::class);
+Route::resource('/bsrm', KaryawanController::class);
 
 // Route::get('/bsrmcopy', function () {
 //     return view('Role.bsrmcopy');
 // });
-// Route::get('/karyawan', function () {
-//     return view('Role.karyawan');
-// });
+Route::get('/karyawan', function () {
+    return view('Role.karyawan');
+});
+Route::get('/lop', function () {
+    return view('psd.lop');
+});
+Route::get('/nlop', function () {
+    return view('psd.nlop');
+});

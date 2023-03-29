@@ -73,7 +73,7 @@
                     <thead>
                         <tr>
                             <th>Action</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Nik</th>
                             <th>Position</th>
                             <th>Office</th>
@@ -83,11 +83,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($karyawan as $k)
+                            
                         <tr>
                             <td>
                                 <div class="dropdown">
                                     <button  class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                         class="fa fa-cog"></i>
                                         action
                                     </button>
@@ -96,7 +98,7 @@
                                             href="#">Detail</a>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
                                             href="#">Update</a>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
                                             href="#">Delete</a>
                                     </div>
                                 </div>
@@ -109,90 +111,7 @@
                             <td> 13 Maret 2023 </td>
                             <td> 13 Maret 2023asa </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><i
-                                            class="fa fa-cog"></i>
-                                        <span class="caret">action</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><button class="btn btn-success btn sweet-prompt">Sweet Prompt</button></li>
-                                        <li><a href="#">Updatsss</a></li>
-                                        <li><a href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>2Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button"
-                                        data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                        <span class="caret">action</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Detail</a></li>
-                                        <li><a href="#">Update</a></li>
-                                        <li><a href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>3Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td> RBOC </td>
-                            <td> 22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button"
-                                        data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                        <span class="caret">action</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Detail</a></li>
-                                        <li><a href="#">Update</a></li>
-                                        <li><a href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>4Fajriansyah</td>
-                            <td> 111182027 </td>
-                            <td> Myth </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13 Maret 2023 </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button"
-                                        data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                        <span class="caret">action</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Detail</a></li>
-                                        <li><a href="#">Update</a></li>
-                                        <li><a href="#">Delete</a></li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>5Bona matanri</td>
-                            <td> 1111820111 </td>
-                            <td> Elite </td>
-                            <td>RBOC </td>
-                            <td>22 </td>
-                            <td> 13 Maret 2023 </td>
-                            <td> 13dadMaret 2023 </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
