@@ -31,6 +31,9 @@
         <svg class="circular" viewBox="25 25 50 50">
 			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
+
+    
+
     <!-- Main wrapper  -->
     <div id="main-wrapper">
         <div class="header">
@@ -264,7 +267,7 @@
 
 
 @yield('content')
-
+</div>
  <!-- End Container fluid  -->
             <!-- footer -->
             <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
@@ -328,7 +331,11 @@ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCm
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
+<script>
+    $(document).ready(function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
 
 </body>
 

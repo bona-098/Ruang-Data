@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\KaryawanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('Role.bsrm');
 // });
 Route::resource('/karyawan', KaryawanController::class);
-
-// Route::get('/bsrmcopy', function () {
-//     return view('Role.bsrmcopy');
-// });
+Route::resource('/dashboard', DashboardController::class);
+Route::get('/mitra', function () {
+    return view('Role BSRM.mitra');
+});
 // Route::get('/karyawan', function () {
 //     return view('Role.karyawan');
 // });
