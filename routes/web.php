@@ -29,6 +29,9 @@ Route::resource('/dashboard', DashboardController::class);
 Route::get('/mitra', function () {
     return view('Role BSRM.mitra');
 });
+Route::get('/costumer', function () {
+    return view('Role BSRM.costumer');
+});
 // Route::get('/karyawan', function () {
 //     return view('Role.karyawan');
 // });
