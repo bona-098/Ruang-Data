@@ -69,7 +69,7 @@
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
-                    <i class="fa fa-user-plus"></i> Tambah Karyawan 
+                    <i class="fa fa-user-plus"></i> Tambah Karyawan
                 </button>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
@@ -89,6 +89,7 @@
                         </thead>
                         <tbody>
                             @foreach ($karyawan as $k)
+<<<<<<< HEAD:resources/views/Role/bsrm.blade.php
                                 
                             <tr>
                                 <td>
@@ -116,6 +117,34 @@
                                 <td>{{ $k->tgl_mulai_bekerja }}</td>
                                 <td>{{ $k->tgl_pegawai_perusahaan }}</td>
                             </tr>
+=======
+                                <tr>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-success dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"><i class="fa fa-cog"></i>
+                                                action
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" data-toggle="modal"
+                                                    data-target="#ModalDetailKaryawan" href="#">Detail</a>
+                                                <a class="dropdown-item" data-toggle="modal"
+                                                    data-target="#ModalUpdateKaryawan" href="#">Update</a>
+                                                <a class="dropdown-item" data-toggle="modal"
+                                                    data-target="#ModalDeleteKaryawan" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ $k->nama_karyawan }}</td>
+                                    <td>{{ $k->nik }}</td>
+                                    <td>{{ $k->jabatan }}</td>
+                                    <td>{{ $k->unit_kerja }}</td>
+                                    <td>{{ $k->umur }}</td>
+                                    <td> 13 Maret 2023 </td>
+                                    <td> 13 Maret 2023asa </td>
+                                </tr>
+>>>>>>> e22a970129b14a9385c8c19c900642b84ee2b2cc:resources/views/Role BSRM/dashboard_bsrm.blade.php
                             @endforeach
                         </tbody>
                     </table>
@@ -125,7 +154,7 @@
         {{-- Selesai --}}
 
         <!-- /# row -->
-        {{-- KONTEN MODAL DETAIL--}}
+        {{-- KONTEN MODAL DETAIL --}}
         <div class="modal fade" id="ModalDetailKaryawan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
@@ -529,14 +558,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Pendidikan Terakhir</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">SMA</option>
                                                     <option value="SMK">SMK</option>
                                                     <option value="D3">D3</option>
                                                     <option value="S1">S1</option>
                                                     <option value="S2">S2</option>
                                                     <option value="S3">S3</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -579,7 +609,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Band Kelas Posisi</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">I</option>
                                                     <option value="SMK">II</option>
                                                     <option value="D3">III</option>
@@ -589,7 +620,7 @@
                                                     <option value="S3">VII</option>
                                                     <option value="S3">VIII</option>
                                                     <option value="S3">IX</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -608,44 +639,45 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Telkomedika</label>
-                                                <input type="number"  class="form-control">
+                                                <input type="number" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor BPJS Kesehatan</label>
-                                                <input type="number"  class="form-control">
+                                                <input type="number" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Jamsostek</label>
-                                                <input type="text"  class="form-control">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email"  class="form-control">
+                                                <input type="email" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Hp</label>
-                                                <input type="text"  class="form-control">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Keterangan Lanjut Pendidikan</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">D1</option>
                                                     <option value="SMK">D2</option>
                                                     <option value="D3">D3</option>
                                                     <option value="S1">D4/S1</option>
                                                     <option value="S2">S2</option>
                                                     <option value="S3">S3</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -670,22 +702,22 @@
                                         Save</button>
                                     <button type="button" class="btn btn-inverse">Cancel</button>
                                 </div> --}}
-                            
+
 
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-<!-- KONTEN MODAL TAMBAH KARYAWAN  -->
+        <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
 
-<!-- KONTEN MODAL UPDATE KARYAWAN  -->
-<div class="modal fade" id="ModalUpdateKaryawan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <!-- KONTEN MODAL UPDATE KARYAWAN  -->
+        <div class="modal fade" id="ModalUpdateKaryawan" tabindex="-1" aria-labelledby="exampleModalLabel"
             data-backdrop="static" data-keyboard="false" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -891,14 +923,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Pendidikan Terakhir</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">SMA</option>
                                                     <option value="SMK">SMK</option>
                                                     <option value="D3">D3</option>
                                                     <option value="S1">S1</option>
                                                     <option value="S2">S2</option>
                                                     <option value="S3">S3</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -941,7 +974,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Band Kelas Posisi</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">I</option>
                                                     <option value="SMK">II</option>
                                                     <option value="D3">III</option>
@@ -951,7 +985,7 @@
                                                     <option value="S3">VII</option>
                                                     <option value="S3">VIII</option>
                                                     <option value="S3">IX</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -970,44 +1004,45 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Telkomedika</label>
-                                                <input type="number"  class="form-control">
+                                                <input type="number" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor BPJS Kesehatan</label>
-                                                <input type="number"  class="form-control">
+                                                <input type="number" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Jamsostek</label>
-                                                <input type="text"  class="form-control">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email"  class="form-control">
+                                                <input type="email" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Nomor Hp</label>
-                                                <input type="text"  class="form-control">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Keterangan Lanjut Pendidikan</label>
-                                                <select class="form-control custom-select" id="pendidikan" name="pendidikan">
+                                                <select class="form-control custom-select" id="pendidikan"
+                                                    name="pendidikan">
                                                     <option value="SMA">D1</option>
                                                     <option value="SMK">D2</option>
                                                     <option value="D3">D3</option>
                                                     <option value="S1">D4/S1</option>
                                                     <option value="S2">S2</option>
                                                     <option value="S3">S3</option>
-                                                  </select>
+                                                </select>
                                                 {{-- <small class="form-control-feedback"> Pilih Pendidikan Terakhir </small> --}}
                                             </div>
                                         </div>
@@ -1039,34 +1074,36 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-<!-- KONTEN MODAL UPDATE KARYAWAN  -->
+        <!-- KONTEN MODAL UPDATE KARYAWAN  -->
 
-{{-- KONTEN MODAL DELETE KARYAWAN --}}
+        {{-- KONTEN MODAL DELETE KARYAWAN --}}
 
-<div class="modal fade" id="ModalDeleteKaryawan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="ModalDeleteKaryawan" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah anda ingin menghapus ....?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Apakah anda ingin menghapus ....?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-{{-- KONTEN MODAL DELETE KARYAWAN --}}
+        {{-- KONTEN MODAL DELETE KARYAWAN --}}
+        
         {{-- Selesai --}}
         <div class="row">
             <div class="col-lg-6">
@@ -1192,215 +1229,4 @@
             </div>
         </div>
     </div>
-
-<<<<<<< HEAD
-    <script>
-        $(document).ready(function() {
-            $('#exampleModal').modal('show');
-        });
-    </script>
-=======
-    {{-- Data Tabel mulai baru --}}
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Data Karyawan</h4>
-            {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-            <div class="table-responsive ">
-                <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Nama</th>
-                            <th>Nik</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Start date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($karyawan as $k)
-                            
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fa fa-cog"></i>
-                                    action
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                    href="#">Detail</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                    href="#">Update</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#myModal"
-                                    href="#">Delete</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>{{ $k->nama_karyawan }}</td>
-                        <td>{{$k->nik}}</td>
-                        <td>{{$k->jabatan}}</td>
-                        <td>{{$k->unit_kerja }}</td>
-                        <td>{{$k->umur }}</td>
-                        <td> 13 Maret 2023 </td>
-                        <td> 13 Maret 2023asa </td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    {{-- Selesai --}}
-
-    <!-- /# row -->
-    {{-- KONTEN MODAL --}}
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    Modal content goes here.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    {{-- KONTEN MODAL --}}
-    {{-- Selesai --}}
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-title">
-                    <h4>Yearlyssss Sales </h4>
-                </div>
-                <div class="sales-chart">
-                    <canvas id="sales-chart"></canvas>
-                </div>
-            </div>
-        </div>
-        <!-- /# column -->
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-title">
-                    <h4>Team Total Completed </h4>
-                </div>
-                <div class="sales-chart">
-                    <canvas id="team-chart"></canvas>
-                </div>
-            </div>
-            <!-- /# card -->
-        </div>
-        <!-- /# column -->
-    </div>
-    <!-- /# row -->
-    <div class="row">
-        <!-- Bar Chart -->
-        <div class="col-sm-12 col-md-6">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Bar chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="barChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <!-- Radar Chart -->
-        <div class="col-sm-12 col-md-6">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Rader chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="radarChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Line Chart -->
-        <div class="col-sm-12 col-md-8">
-            <div class="panel panel-bd lobidrag">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Line chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="lineChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <!-- Pie Chart -->
-        <div class="col-sm-6 col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Pie chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <!-- Doughnut Chart -->
-        <div class="col-sm-6 col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Doughut chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="doughutChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <!-- Polar Chart -->
-        <div class="col-sm-6 col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Polar chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="polarChart"></canvas>
-                </div>
-            </div>
-        </div>
-        <!-- Single Bar Chart -->
-        <div class="col-sm-6 col-md-4">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h4>Single Bar Chart</h4>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <canvas id="singelBarChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
->>>>>>> 2ece42630b7cfd306cccad7c744bdcec7aaa70bc
 @endsection
