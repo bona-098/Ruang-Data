@@ -25,10 +25,10 @@ use App\Http\Controllers\DashboardController;
 //     return view('Role.bsrm');
 // });
 Route::resource('/karyawan', KaryawanController::class);
-Route::resource('/dashboard', DashboardController::class);
-Route::get('/mitra', function () {
-    return view('Role BSRM.mitra');
-});
+
+// Route::get('/bsrmcopy', function () {
+//     return view('Role.bsrmcopy');
+// });
 // Route::get('/karyawan', function () {
 //     return view('Role.karyawan');
 // });

@@ -9,6 +9,33 @@
                 <li> <a href="{{ route('dashboard.index') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span
                             class="hide-menu">Dashboard </span></a>
                 </li>
+<<<<<<< HEAD
+                {{-- @if (strpos(Request::url(), 'bsrm') !== false || strpos(Request::url(), 'dashboard') !== false) --}}
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Costumer</span></a>
+                </li>
+                <li> <a class="" href="/karyawan" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
+                
+                {{-- @elseif (strpos(Request::url(), 'psd') !== false) --}}
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Project</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-dropbox"></i><span class="hide-menu">Data Gudang</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
+                </li>
+                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan tes satu dua</span></a>
+                </li>
+                {{-- @endif --}}
+=======
+>>>>>>> e22a970129b14a9385c8c19c900642b84ee2b2cc
 
                 <li> <a class="" href="/mitra" aria-expanded="false"><i class="fa fa-handshake-o"></i><span
                             class="hide-menu">Mitra</span></a>
