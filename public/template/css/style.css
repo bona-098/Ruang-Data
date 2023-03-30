@@ -5392,24 +5392,24 @@ label {
 thead tr th {
   color: #455a64;
   font-weight: 500;
-  text-align: center;
+  text-align: start;
 }
 thead tr th:last-child {
-  text-align: center;
+  text-align: start;
 }
 tbody tr th {
   color: #455a64;
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
-  text-align: center;
+  text-align: start;
 }
 tbody tr td {
   font-family: 'Poppins', sans-serif;
-  color: #99abb4;
-  text-align: center;
+  color: #000;
+  text-align: start;
 }
 tbody tr td:last-child {
-  text-align: center;
+  text-align: start;
 }
 .table > tbody > tr > td,
 .table > tbody > tr > th,

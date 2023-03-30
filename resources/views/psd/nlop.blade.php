@@ -39,7 +39,7 @@
                             <span><i class="fa fa-users f-s-40 color-warning"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            <h2>{{ $karyawan->count() }}</h2>
+                            {{-- <h2>{{ $karyawan->count() }}</h2> --}}
                             <p class="m-b-0">Karyawan</p>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($karyawan as $k)
+                            {{-- @foreach ($karyawan as $k) --}}
                                 
                             <tr>
                                 <td>
@@ -108,15 +108,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ $k->nama_karyawan }}</td>
+                                {{-- <td>{{ $k->nama_karyawan }}</td>
                                 <td>{{ $k->nik }}</td>
                                 <td>{{ $k->tgl_lahir }}</td>
                                 <td>{{ $k->kota_lahir }}</td>
                                 <td>{{ $k->jenis_kelamin }}</td>
                                 <td>{{ $k->tgl_mulai_bekerja }}</td>
-                                <td>{{ $k->tgl_pegawai_perusahaan }}</td>
+                                <td>{{ $k->tgl_pegawai_perusahaan }}</td> --}}
                             </tr>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>
