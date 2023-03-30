@@ -3,73 +3,15 @@
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-bar-chart-o f-s-40 color-primary"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>568120</h2>
-                            <a href="https://www.youtube.com/watch?v=6_UhNE5qVX4">
-                                <p class="m-b-0">Perfomance</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-handshake-o f-s-40 color-success"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>1178</h2>
-                            <p class="m-b-0">Mitra</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-users f-s-40 color-warning"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>{{ $karyawan->count() }}</h2>
-                            <p class="m-b-0">Karyawan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-users f-s-40 color-danger"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>847</h2>
-                            <p class="m-b-0">Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Data Karyawan</h4>
+                <h4 class="card-title">Data Projek</h4>
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
-                    <i class="fa fa-user-plus"></i> Tambah Karyawan 
+                    <i class="fa fa-user-plus"></i> Tambah Data Projek 
                 </button>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
@@ -77,22 +19,22 @@
                     <table text-align: left; id="myTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Action</th>
-                                <th>Name</th>
-                                <th>Nik</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Start date</th>
+                                <th class="text-center">Aksi</th>
+                                <th>Witel</th>
+                                <th>Fm</th>
+                                <th>Progres ML</th>
+                                <th>Progres MI</th>
+                                <th>Mitra</th>
+                                <th>Jangka waktu</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($karyawan as $k)
+                            {{-- @foreach ($karyawan as $k) --}}
                                 
                             <tr>
                                 <td>
-                                    <div class="dropdown">
+                                    <div class="dropdown text-center" >
                                         <button class="btn btn-success dropdown-toggle" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false"><i class="fa fa-cog"></i>
@@ -108,15 +50,15 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ $k->nama_karyawan }}</td>
+                                {{-- <td>{{ $k->nama_karyawan }}</td>
                                 <td>{{ $k->nik }}</td>
                                 <td>{{ $k->tgl_lahir }}</td>
                                 <td>{{ $k->kota_lahir }}</td>
                                 <td>{{ $k->jenis_kelamin }}</td>
                                 <td>{{ $k->tgl_mulai_bekerja }}</td>
-                                <td>{{ $k->tgl_pegawai_perusahaan }}</td>
+                                <td>{{ $k->tgl_pegawai_perusahaan }}</td> --}}
                             </tr>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -329,7 +271,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Project</h5>
                     </div>
                     <div class="modal-body">
                         <div class="card-body">
@@ -338,18 +280,17 @@
                                     <div class="row p-t-20">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">NIK</label>
-                                                <input type="number" min="0" id="NIK" class="form-control"
-                                                    placeholder="1234">
+                                                <label class="control-label">Deskripsi Pekerjaan</label>
+                                                <input type="text" id="Deskripsi Pekerjaan" class="form-control">
                                                 {{-- <small class="form-control-feedback"> Feedback salah </small> --}}
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group has-danger">
-                                                <label class="control-label">Nama</label>
-                                                <input type="text" id="Nama"
-                                                    class="form-control form-control-danger" placeholder="Pitir Parkir">
+                                                <label class="control-label">Lokasi</label>
+                                                <input type="text" id="lokasi"
+                                                    class="form-control form-control-danger">
                                                 {{-- <small class="form-control-feedback"> This field has error. </small> --}}
                                             </div>
                                         </div>
@@ -1072,7 +1013,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-title">
-                        <h4>Yearlyssss Sales </h4>
+                        <h4>Project terbanyak</h4>
                     </div>
                     <div class="sales-chart">
                         <canvas id="sales-chart"></canvas>

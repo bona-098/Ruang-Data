@@ -36,6 +36,13 @@ Route::get('/mitra', function () {
 Route::get('/costumer', function () {
     return view('Role BSRM.costumer');
 });
+Route::get('/lop', function () {
+    return view('psd.lop');
+});
+Route::get('/nlop', function () {
+    return view('psd.nlop');
+});
+
 // Route::get('/karyawan', function () {
 //     return view('Role.karyawan');
 // });
