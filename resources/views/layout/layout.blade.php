@@ -291,14 +291,14 @@
     <script src="template/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
     <script src="template/js/lib/chart-js/Chart.bundle.js"></script>
-    <script src="template/js/lib/chart-js/chartjs-init.js"></script>
+    {{-- <script src="template/js/lib/chart-js/chartjs-init.js"></script> --}}
     <!--Custom JavaScript -->
     <script src="template/js/custom.min.js"></script>
     <script src="template/js/lib/datatables/datatables.min.js"></script>
     <script src="template/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
     <script src="template/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
     <script src="template/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="template/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    {{-- <script src="template/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script> --}}
     <script src="template/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
     <script src="template/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="template/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
@@ -306,7 +306,7 @@
 
     <script src="template/js/lib/sweetalert/sweetalert.min.js"></script>
     <!-- scripit init-->
-    <script src="template/js/lib/sweetalert/sweetalert.init.js"></script>
+    {{-- <script src="template/js/lib/sweetalert/sweetalert.init.js"></script> --}}
 
 
     <!-- Bootstrap CSS -->
@@ -314,9 +314,9 @@
 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/XvoPHh0Jo9Lp4+p" crossorigin="anonymous">
-</script>
+{{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" --}}
+{{-- integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/XvoPHh0Jo9Lp4+p" crossorigin="anonymous"> --}}
+{{-- </script> --}}
 
 <!-- Popper.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
