@@ -12,10 +12,10 @@ class karyawan extends Model
     protected $fillable = [
     'nik',
     'nama_karyawan',
+    'jenis_kelamin',
     'tgl_lahir',
     'kota_lahir',
     'agama',
-    'jenis_kelamin',
     'jalan',
     'nama_status_nikah',
     'lokasi_kerja',
