@@ -13,7 +13,7 @@
                 <li> <a class="" href="/mitra" aria-expanded="false"><i class="fa fa-handshake-o"></i><span
                             class="hide-menu">Mitra</span></a>
                 </li>
-                <li> <a class="" href="{{ route('exma.index') }}" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Costumer</span></a>
                 </li>
                 <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i

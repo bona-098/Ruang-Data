@@ -1,221 +1,95 @@
 @extends('layout.layout')
 @section('content')
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
-            <div class="container-fluid">
-                <!-- Start Page Content -->
-                {{-- Data tabel costumer Mulai --}}
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Data Export</h4>
-                                {{-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> --}}
-                                <div class="table-responsive m-t-40">
-                                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hermione Butler</td>
-                                                <td>Regional Director</td>
-                                                <td>London</td>
-                                                <td>47</td>
-                                                <td>2011/03/21</td>
-                                                <td>$356,250</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Lael Greer</td>
-                                                <td>Systems Administrator</td>
-                                                <td>London</td>
-                                                <td>21</td>
-                                                <td>2009/02/27</td>
-                                                <td>$103,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jonas Alexander</td>
-                                                <td>Developer</td>
-                                                <td>San Francisco</td>
-                                                <td>30</td>
-                                                <td>2010/07/14</td>
-                                                <td>$86,500</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shad Decker</td>
-                                                <td>Regional Director</td>
-                                                <td>Edinburgh</td>
-                                                <td>51</td>
-                                                <td>2008/11/13</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Michael Bruce</td>
-                                                <td>Javascript Developer</td>
-                                                <td>Singapore</td>
-                                                <td>29</td>
-                                                <td>2011/06/27</td>
-                                                <td>$183,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="container-fluid">
+    <!-- Start Page Content -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-outline-primary">
+                <div class="card-header">
+                    <h4 class="m-b-0 text-white">Edit Data Karyawan Organik</h4>
                 </div>
-                {{-- Data tabel costumer akhir --}}
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Yearlyssss Sales </h4>
-
+                <div class="card-body">
+                    <form action="#">
+                        <div class="form-body">
+                            <h3 class="box-title m-t-15"></h3>
+                            <hr>
+                            <div class="row p-t-20">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Nik</label>
+                                        <input type="text" id="firstName" class="form-control" placeholder="John doe">
+                                        {{-- <small class="form-control-feedback"> This is inline help </small> </div> --}}
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-danger">
+                                        <label class="control-label">Last Name</label>
+                                        <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                        <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-danger">
+                                        <label class="control-label">Last Name</label>
+                                        <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                        <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
+                                <!--/span-->
                             </div>
-                            <div class="sales-chart">
-                                <canvas id="sales-chart"></canvas>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group has-danger">
+                                        <label class="control-label">Last Name</label>
+                                        <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
+                                        <small class="form-control-feedback"> This field has error. </small> </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group has-success">
+                                        <label class="control-label">Gender</label>
+                                        <select class="form-control custom-select">
+                                            <option value="">Male</option>
+                                            <option value="">Female</option>
+                                        </select>
+                                        <small class="form-control-feedback"> Select your gender </small> </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Date of Birth</label>
+                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy">
+                                    </div>
+                                </div>
+                                <!--/span-->
                             </div>
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
+                                            <option value="Category 1">Category 1</option>
+                                            <option value="Category 2">Category 2</option>
+                                            <option value="Category 3">Category 5</option>
+                                            <option value="Category 4">Category 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
                         </div>
-                    </div>
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Team Total Completed </h4>
-
-                            </div>
-                            <div class="sales-chart">
-                                <canvas id="team-chart"></canvas>
-                            </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            <button type="button" class="btn btn-inverse">Cancel</button>
                         </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
+                    </form>
                 </div>
-                <!-- /# row -->
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Bar chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="barChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Radar Chart -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Rader chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="radarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Line Chart -->
-                    <div class="col-sm-12 col-md-8">
-                        <div class="panel panel-bd lobidrag">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Line chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="lineChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pie Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Pie chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="pieChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- Doughnut Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Doughut chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="doughutChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Polar Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Polar chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="polarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Bar Chart -->
-                    <div class="col-sm-6 col-md-4">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Single Bar Chart</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="singelBarChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- End PAge Content -->
             </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <!-- Row -->
+</div>
 @endsection
