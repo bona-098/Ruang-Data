@@ -155,7 +155,7 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        $karyawan = Karyawan::findorfail($id);
+        $karyawan = Karyawan::findOrfail($id);
         return view('bsrm.karyawan.edit', compact('karyawan'));
     }
 
