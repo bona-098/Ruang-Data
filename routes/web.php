@@ -25,7 +25,7 @@ use App\Http\Controllers\DashboardController;
 //     return view('Role.bsrm');
 // });
 Route::resource('/karyawan', KaryawanController::class);
-
+Route::delete('/karyawan/{id}', 'KaryawanController@destroy')->name('karyawan.destroy');
 // Route::get('/bsrmcopy', function () {
 //     return view('Role.bsrmcopy');
 // });
