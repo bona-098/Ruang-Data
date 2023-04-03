@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MitraController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
 
@@ -25,14 +26,13 @@ use App\Http\Controllers\DashboardController;
 //     return view('Role.bsrm');
 // });
 Route::resource('/karyawan', KaryawanController::class);
+Route::resource('/mitra', MitraController::class);
 // Route::delete('/karyawan/{id}', 'KaryawanController@destroy')->name('karyawan.destroy');
 // Route::get('/bsrmcopy', function () {
 //     return view('Role.bsrmcopy');
 // });
 Route::resource('/dashboard', DashboardController::class);
-Route::get('/mitra', function () {
-    return view('Role BSRM.mitra');
-});
+
 Route::get('/costumer', function () {
     return view('Role BSRM.costumer');
 });
