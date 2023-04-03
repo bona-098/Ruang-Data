@@ -33,32 +33,23 @@
                             @foreach ($karyawan as $k)
                                 <tr>
                                     <td>
-                                        <div class="dropdown text-center">
-                                            <button class="btn btn-success dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false"><i class="fa fa-cog"></i>
-                                                action
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-cog">Aksi</i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a href="#" data-id="{{ $k->id }}" data-link="{{ route('karyawan.show', $k->id) }}" class="dropdown-item" data-toggle="modal" data-target="#ModalDetailKaryawan">
-                                                    Detail
-                                                </a>                                                
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalUpdateKaryawan"
-                                                    href="{{ route('karyawan.edit', $k->id) }}">Update</a>
-                                                <form action="{{ route('karyawan.destroy', $k->id) }} method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="dropdown-item" type="submit">hapus</button>
-                                            </form>
-                                                    {{-- <form action="{{ route('karyawan.destroy', $k->id) }}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button class="dropdown-item" type="submit" data-toggle="modal"
-                                                        data-target="#ModalDeleteKaryawan" href="#">Delete</button>
-                                                </form> --}}
-                                                {{-- <a button href="#" data-link="{{route('karyawan.destroy', $k->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</button></a> --}}
+                                                <a class="dropdown-item" href="{{ route('karyawan.edit', $k->id) }}"><i
+                                                        class="fa fa-edit"></i> Edit</a>
+                                                <a class="dropdown-item" href="{{ route('karyawan.show', $k->id) }}"><i
+                                                        class="fa fa-eye"></i> show</a>
+                                                <form action="{{ route('karyawan.destroy', $k->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="dropdown-item" type="submit"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                            class="fa fa-trash"></i> Hapus</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>
@@ -79,7 +70,7 @@
         {{-- Selesai --}}
 
         {{-- KONTEN MODAL DETAIL --}}
-        <div class="modal fade" id="ModalDetailKaryawan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        {{-- <div class="modal fade" id="ModalDetailKaryawan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -96,7 +87,7 @@
                                         <tr>
                                             <th scope="row">NIK</th>
                                             <td>{{ $k->nama_karyawan }}</td>
-                                        </tr>
+                                        </tr> --}}
                                         {{-- <tr>
                                                 <th scope="row">Nama Karyawan</th>
                                                 <td>{{ $a->nama_karyawan }}</td>
@@ -261,15 +252,15 @@
                                                 <th scope="row">Ukuran Baju</th>
                                                 <td>{{ $a->ukuran_baju }}</td>
                                             </tr> --}}
-                                    </tbody>
-                                </table>
-                                {{-- @endforeach --}}
-                            </div>
+                                            {{-- @endforeach --}}
+                                        {{-- </tbody>
+                                        </table>
+                                    </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- KONTEN MODAL DETAIL --}}
 
         <!-- KONTEN MODAL TAMBAH KARYAWAN  -->

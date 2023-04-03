@@ -17,7 +17,7 @@ class KaryawanController extends Controller
     public function index()
     {
         $karyawan = Karyawan::get();
-        return view ('bsrm.karyawan', compact('karyawan'));
+        return view ('bsrm.karyawan.karyawan', compact('karyawan'));
     }
 
     /**
@@ -155,7 +155,8 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $karyawan = Karyawan::findorfail($id);
+        return view('bsrm.karyawan.edit', compact('karyawan'));
     }
 
     /**
