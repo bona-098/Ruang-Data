@@ -17,7 +17,7 @@ class KaryawanController extends Controller
     public function index()
     {
         $karyawan = Karyawan::get();
-        return view ('Role BSRM.karyawan', compact('karyawan'));
+        return view ('bsrm.karyawan', compact('karyawan'));
     }
 
     /**
@@ -142,9 +142,9 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
-        $karyawan = Karyawan::all($id);
+        $karyawan = Karyawan::find($id);
         // dd($karyawan);
-        return view ('Role BSRM.karyawan', compact('karyawan'));
+        return view ('bsrm.karyawan.show', compact('karyawan'));
     }
 
     /**
@@ -223,8 +223,9 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Karyawan $karyawan)
+    public function destroy($id)
     {
+        $karyawan = Karyawan::findorFail($id);
         $karyawan->delete();
         return redirect()->back();
     }

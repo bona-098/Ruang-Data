@@ -40,18 +40,25 @@
                                                 action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a href="#" data-id="{{ $k->id }}" data-link="{{ route('karyawan.show', $k->id) }}" class="dropdown-item" data-toggle="modal" data-target="#ModalDetailKaryawan">
+                                                    Detail
+                                                </a>                                                
                                                 <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalDetailKaryawan" 
-                                                    href="{{ route('karyawan.show', $k->id) }}">Detail</a>
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalUpdateKaryawan" 
+                                                    data-target="#ModalUpdateKaryawan"
                                                     href="{{ route('karyawan.edit', $k->id) }}">Update</a>
-                                                <form action="{{ route('karyawan.destroy', $k->id) }}" method="POST">
+                                                <form action="{{ route('karyawan.destroy', $k->id) }} method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                </form>
-                                                <button class="dropdown-item" type="submit" data-toggle="modal"
-                                                    data-target="#ModalDeleteKaryawan" href="#">Delete</button>
+                                                <button class="dropdown-item" type="submit">hapus</button>
+                                            </form>
+                                                    {{-- <form action="{{ route('karyawan.destroy', $k->id) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button class="dropdown-item" type="submit" data-toggle="modal"
+                                                        data-target="#ModalDeleteKaryawan" href="#">Delete</button>
+                                                </form> --}}
+                                                {{-- <a button href="#" data-link="{{route('karyawan.destroy', $k->id)}}" class="btn-delete" style="text-decoration: none; color: rgba(0, 0, 0, 0.625);">Hapus</button></a> --}}
                                             </div>
                                         </div>
                                     </td>
@@ -59,7 +66,7 @@
                                     <td>{{ $k->nik }}</td>
                                     <td>{{ $k->jabatan }}</td>
                                     <td>{{ $k->unit_kerja }}</td>
-                                    <td>{{ $k->umur }}</td>
+                                    <td>{{ $k->id }}</td>
                                     <td>{{ $k->umur }}</td>
                                     <td>{{ $k->umur }}</td>
                                 </tr>
@@ -84,13 +91,13 @@
                     <form action="{{ route('karyawan.show', $k->id) }}" method="GET">
                         <div class="modal-body">
                             <div class="table-responsive ">
-                                    <table style="text-align: left;" class="table table-bordered ">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">NIK</th>
-                                                <td>{{ $k->nama_karyawan }}</td>
-                                            </tr>
-                                            {{-- <tr>
+                                <table style="text-align: left;" class="table table-bordered ">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">NIK</th>
+                                            <td>{{ $k->nama_karyawan }}</td>
+                                        </tr>
+                                        {{-- <tr>
                                                 <th scope="row">Nama Karyawan</th>
                                                 <td>{{ $a->nama_karyawan }}</td>
                                             </tr>
@@ -254,8 +261,8 @@
                                                 <th scope="row">Ukuran Baju</th>
                                                 <td>{{ $a->ukuran_baju }}</td>
                                             </tr> --}}
-                                        </tbody>
-                                    </table>
+                                    </tbody>
+                                </table>
                                 {{-- @endforeach --}}
                             </div>
                         </div>
@@ -273,352 +280,385 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
                     </div>
-                        <div class="modal-body">
-                            <form method="POST" action="{{ route('karyawan.store') }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
-                                    <div class="form-body">
-                                        <div class="row p-t-20">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">NIK</label>
-                                                    <input type="number" name="nik" min="0" id="NIK"
-                                                        class="form-control" placeholder="12345"
-                                                        @error('nik') is-invalid @enderror" value="{{ old('nik') }}">
-                                                    @error('nik')
-                                                        <div class="alert alert-danger mt-2">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group has-danger">
-                                                    <label for="nama_karyawan" class="control-label">Nama</label>
-                                                    <input type="text" id="nama_karyawan"
-                                                        class="form-control form-control-danger" placeholder="Pitir Parkir"
-                                                        name="nama_karyawan">
-                                                </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('karyawan.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-body">
+                                    <div class="row p-t-20">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">NIK</label>
+                                                <input type="number" name="nik" min="0" id="NIK"
+                                                    class="form-control" placeholder="12345"
+                                                    @error('nik') is-invalid @enderror" value="{{ old('nik') }}">
+                                                @error('nik')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
-                                                    <select class="form-control custom-select" id="jenis_kelamin" name="jenis_kelamin">
-                                                        <option value="laki-laki">Laki-laki</option>
-                                                        <option value="perempuan">Perempuan</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
-                                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control"
-                                                        placeholder="dd/mm/yyyy">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-danger">
+                                                <label for="nama_karyawan" class="control-label">Nama</label>
+                                                <input type="text" id="nama_karyawan"
+                                                    class="form-control form-control-danger" placeholder="Pitir Parkir"
+                                                    name="nama_karyawan">
                                             </div>
                                         </div>
-                                        <div class="row p-t-20">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="kota_lahir" class="control-label">Kota Lahir</label>
-                                                    <input type="text" id="kota_lahir" name="kota_lahir"
-                                                        class="form-control">
-                                                    <small class="form-control-feedback"> </small>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="agama" class="control-label">Agama</label>
-                                                    <select class="form-control custom-select" id="agama" name="agama">
-                                                        <option value="islam">Islam</option>
-                                                        <option value="katolik">Kristen Katolik</option>
-                                                        <option value="kristen protestan">Kristen Protestan</option>
-                                                        <option value="hindu">Hindu</option>
-                                                        <option value="budha">Budha</option>
-                                                        <option value="kong hucuh">Kong hucuh</option>
-                                                    </select>
-                                                </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
+                                                <select class="form-control custom-select" id="jenis_kelamin"
+                                                    name="jenis_kelamin">
+                                                    <option value="laki-laki">Laki-laki</option>
+                                                    <option value="perempuan">Perempuan</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12 ">
-                                                <div class="form-group">
-                                                    <label for="jalan">Alamat</label>
-                                                    <input type="text" class="form-control" id="jalan" name="jalan">
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
+                                                <input type="date" id="tgl_lahir" name="tgl_lahir"
+                                                    class="form-control" placeholder="dd/mm/yyyy">
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nama_status_nikah" class="control-label">Status Menikah</label>
-                                                    <select class="form-control custom-select" id="nama_status_nikah" name="nama_status_nikah">
-                                                        <option value="belum menikah">Belum Menikah</option>
-                                                        <option value="menikah">Menikah</option>
-                                                    </select>
-                                                </div>
+                                    </div>
+                                    <div class="row p-t-20">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="kota_lahir" class="control-label">Kota Lahir</label>
+                                                <input type="text" id="kota_lahir" name="kota_lahir"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> </small>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="lokasi_kerja">Lokasi Kerja</label>
-                                                    <input type="text" class="form-control" id="lokasi_kerja" name="lokasi_kerja">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="agama" class="control-label">Agama</label>
+                                                <select class="form-control custom-select" id="agama" name="agama">
+                                                    <option value="islam">Islam</option>
+                                                    <option value="katolik">Kristen Katolik</option>
+                                                    <option value="kristen protestan">Kristen Protestan</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="budha">Budha</option>
+                                                    <option value="kong hucuh">Kong hucuh</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_mulai_kerja" class="control-label">Tanggal Mulai Bekerja</label>
-                                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_mulai_kerja"
-                                                        name="tgl_mulai_kerja">
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label for="jalan">Alamat</label>
+                                                <input type="text" class="form-control" id="jalan"
+                                                    name="jalan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_pegawai_perusahaan" class="control-label">Tanggal Pegawai Perusahaan</label>
-                                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_pegawai_perusahaan"
-                                                        name="tgl_pegawai_perusahaan">
-                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nama_status_nikah" class="control-label">Status
+                                                    Menikah</label>
+                                                <select class="form-control custom-select" id="nama_status_nikah"
+                                                    name="nama_status_nikah">
+                                                    <option value="belum menikah">Belum Menikah</option>
+                                                    <option value="menikah">Menikah</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_perkiraan_pensiun" class="control-label">Tanggal Perkiraan Pensiun</label>
-                                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_perkiraan_pensiun"
-                                                        name="tgl_perkiraan_pensiun">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="lokasi_kerja">Lokasi Kerja</label>
+                                                <input type="text" class="form-control" id="lokasi_kerja"
+                                                    name="lokasi_kerja">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nama_divisi">Nama Divisi</label>
-                                                    <input type="text" class="form-control" id="nama_divisi" name="nama_divisi">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_mulai_kerja" class="control-label">Tanggal Mulai
+                                                    Bekerja</label>
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="tgl_mulai_kerja" name="tgl_mulai_kerja">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_divisi" class="control-label">Tanggal Divisi</label>
-                                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_divisi"
-                                                        name="tgl_divisi">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_pegawai_perusahaan" class="control-label">Tanggal Pegawai
+                                                    Perusahaan</label>
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="tgl_pegawai_perusahaan" name="tgl_pegawai_perusahaan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="kode_loker">Kode Loker</label>
-                                                    <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control" id="kode_loker"
-                                                        name="kode_loker">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_perkiraan_pensiun" class="control-label">Tanggal Perkiraan
+                                                    Pensiun</label>
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="tgl_perkiraan_pensiun" name="tgl_perkiraan_pensiun">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="unit_kerja">Unit Kerja</label>
-                                                    <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control" id="unit_kerja"
-                                                        name="unit_kerja">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nama_divisi">Nama Divisi</label>
+                                                <input type="text" class="form-control" id="nama_divisi"
+                                                    name="nama_divisi">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="loker">Loker</label>
-                                                    <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control" id="loker"
-                                                        name="loker">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_divisi" class="control-label">Tanggal Divisi</label>
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="tgl_divisi" name="tgl_divisi">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="tgl_loker" class="control-label">Tanggal Loker</label>
-                                                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" id="tgl_loker"
-                                                        name="tgl_loker">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="kode_loker">Kode Loker</label>
+                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                    id="kode_loker" name="kode_loker">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="kode_posisi" class="control-label">Kode Posisi</label>
-                                                    <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="kode_posisi"
-                                                        name="kode_posisi">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="unit_kerja">Unit Kerja</label>
+                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                    id="unit_kerja" name="unit_kerja">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="jabatan">Jabatan</label>
-                                                    <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control" id="jabatan"
-                                                        name="jabatan">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="loker">Loker</label>
+                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                    id="loker" name="loker">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="umur">Umur</label>
-                                                    <input type="number" class="form-control" id="umur" name="umur">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tgl_loker" class="control-label">Tanggal Loker</label>
+                                                <input type="date" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="tgl_loker" name="tgl_loker">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="kelompok_usia">kelompok Umur</label>
-                                                    <input type="number" class="form-control" id="kelompok_usia" name="kelompok_usia">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="kode_posisi" class="control-label">Kode Posisi</label>
+                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                    id="kode_posisi" name="kode_posisi">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="nama_employee_group" class="control-label">Nama Employee Group</label>
-                                                    <select class="form-control custom-select" id="nama_employee_group" name="nama_employee_group">
-                                                        <option value="karyawan tetap">Karyawan Tetap</option>
-                                                        <option value="karyawan tidak tetap">Karyawan Tidak Tetap</option>
-                                                        <option value="tkwt">TKWT</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="jabatan">Jabatan</label>
+                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                    id="jabatan" name="jabatan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="employee_sub_group" class="control-label">Employee Sub Group</label>
-                                                    <select class="form-control custom-select" id="employee_sub_group" name="employee_sub_group">
-                                                        <option value="aktif normal">Aktif Normal</option>
-                                                        <option value="tidak aktif">Tidak Aktif</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="umur">Umur</label>
+                                                <input type="number" class="form-control" id="umur"
+                                                    name="umur">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="level_pendidikan_terakhir" class="control-label">Pendidikan Terakhir</label>
-                                                    <select class="form-control custom-select" id="level_pendidikan_terakhir"
-                                                        name="level_pendidikan_terakhir">
-                                                        <option value="SMA">SMA</option>
-                                                        <option value="SMK">SMK</option>
-                                                        <option value="D3">D3</option>
-                                                        <option value="S1">S1</option>
-                                                        <option value="S2">S2</option>
-                                                        <option value="S3">S3</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="kelompok_usia">kelompok Umur</label>
+                                                <input type="number" class="form-control" id="kelompok_usia"
+                                                    name="kelompok_usia">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="pendidikan">Jurusan/Program Studi</label>
-                                                    <input type="text" class="form-control" id="pendidikan" name="pendidikan">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nama_employee_group" class="control-label">Nama Employee
+                                                    Group</label>
+                                                <select class="form-control custom-select" id="nama_employee_group"
+                                                    name="nama_employee_group">
+                                                    <option value="karyawan tetap">Karyawan Tetap</option>
+                                                    <option value="karyawan tidak tetap">Karyawan Tidak Tetap</option>
+                                                    <option value="tkwt">TKWT</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="penyelenggara">Penyelenggara</label>
-                                                    <input type="text" class="form-control" id="penyelenggara" name="penyelenggara">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="employee_sub_group" class="control-label">Employee Sub
+                                                    Group</label>
+                                                <select class="form-control custom-select" id="employee_sub_group"
+                                                    name="employee_sub_group">
+                                                    <option value="aktif normal">Aktif Normal</option>
+                                                    <option value="tidak aktif">Tidak Aktif</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="jumlah_anak">Jumlah Anak</label>
-                                                    <input type="number" class="form-control" id="jumlah_anak" name="jumlah_anak">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="level_pendidikan_terakhir" class="control-label">Pendidikan
+                                                    Terakhir</label>
+                                                <select class="form-control custom-select" id="level_pendidikan_terakhir"
+                                                    name="level_pendidikan_terakhir">
+                                                    <option value="SMA">SMA</option>
+                                                    <option value="SMK">SMK</option>
+                                                    <option value="D3">D3</option>
+                                                    <option value="S1">S1</option>
+                                                    <option value="S2">S2</option>
+                                                    <option value="S3">S3</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="adt_pajak">Anak Dalam Tanggungan Pajak</label>
-                                                    <input type="number" class="form-control" id="adt_pajak" name="adt_pajak">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pendidikan">Jurusan/Program Studi</label>
+                                                <input type="text" class="form-control" id="pendidikan"
+                                                    name="pendidikan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="adt_kesehatan">Anak Dalam Tanggungan Kesehatan</label>
-                                                    <input type="number" class="form-control" id="adt_kesehatan" name="adt_kesehatan">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="penyelenggara">Penyelenggara</label>
+                                                <input type="text" class="form-control" id="penyelenggara"
+                                                    name="penyelenggara">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="jumlah_pasangan">Jumlah Pasangan</label>
-                                                    <input type="number" class="form-control" id="jumlah_pasangan" name="jumlah_pasangan">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="jumlah_anak">Jumlah Anak</label>
+                                                <input type="number" class="form-control" id="jumlah_anak"
+                                                    name="jumlah_anak">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="band_kelas_posisi" class="control-label">Band Kelas Posisi</label>
-                                                    <select class="form-control custom-select" id="band_kelas_posisi"
-                                                        name="band_kelas_posisi">
-                                                        <option value="I">I</option>
-                                                        <option value="II">II</option>
-                                                        <option value="III">III</option>
-                                                        <option value="IV">IV</option>
-                                                        <option value="V">V</option>
-                                                        <option value="VI">VI</option>
-                                                        <option value="VII">VII</option>
-                                                        <option value="VIII">VIII</option>
-                                                        <option value="IX">IX</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="adt_pajak">Anak Dalam Tanggungan Pajak</label>
+                                                <input type="number" class="form-control" id="adt_pajak"
+                                                    name="adt_pajak">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="kota">Kota</label>
-                                                    <input type="text" class="form-control" id="kota" name="kota">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="adt_kesehatan">Anak Dalam Tanggungan Kesehatan</label>
+                                                <input type="number" class="form-control" id="adt_kesehatan"
+                                                    name="adt_kesehatan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="npwp">NPWP</label>
-                                                    <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control" id="npwp"
-                                                        name="npwp">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="jumlah_pasangan">Jumlah Pasangan</label>
+                                                <input type="number" class="form-control" id="jumlah_pasangan"
+                                                    name="jumlah_pasangan">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="no_telkomedika" >Nomor Telkomedika</label>
-                                                    <input type="number" class="form-control" id="no_telkomedika" name="no_telkomedika">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="band_kelas_posisi" class="control-label">Band Kelas
+                                                    Posisi</label>
+                                                <select class="form-control custom-select" id="band_kelas_posisi"
+                                                    name="band_kelas_posisi">
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <option value="IV">IV</option>
+                                                    <option value="V">V</option>
+                                                    <option value="VI">VI</option>
+                                                    <option value="VII">VII</option>
+                                                    <option value="VIII">VIII</option>
+                                                    <option value="IX">IX</option>
+                                                </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="no_bpjs">Nomor BPJS Kesehatan</label>
-                                                    <input type="number" class="form-control" id="bpjs" name="no_bpjs">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="kota">Kota</label>
+                                                <input type="text" class="form-control" id="kota"
+                                                    name="kota">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="no_jamsostek">Nomor Jamsostek</label>
-                                                    <input type="text" class="form-control" id="no_jamsostek" name="no_jamsostek">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="npwp">NPWP</label>
+                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                    id="npwp" name="npwp">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="no_telkomedika">Nomor Telkomedika</label>
+                                                <input type="number" class="form-control" id="no_telkomedika"
+                                                    name="no_telkomedika">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="no_hp">Nomor Hp</label>
-                                                    <input type="text" class="form-control" id="no_hp" name="no_hp">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="no_bpjs">Nomor BPJS Kesehatan</label>
+                                                <input type="number" class="form-control" id="bpjs"
+                                                    name="no_bpjs">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="keterangan_lanjut_kuliah" class="control-label">Keterangan Lanjut Pendidikan</label>
-                                                    <select class="form-control custom-select" id="keterangan_lanjut_kuliah"
-                                                        name="keterangan_lanjut_kuliah">
-                                                        <option value="D1">D1</option>
-                                                        <option value="D2">D2</option>
-                                                        <option value="D3">D3</option>
-                                                        <option value="D4/S1">D4/S1</option>
-                                                        <option value="S2">S2</option>
-                                                        <option value="S3">S3</option>
-                                                    </select>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="no_jamsostek">Nomor Jamsostek</label>
+                                                <input type="text" class="form-control" id="no_jamsostek"
+                                                    name="no_jamsostek">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="pendidikan_lanjut">Jurusan/Program Studi</label>
-                                                    <input type="text" class="form-control" id="pendidikan_lanjut" name="pendidikan_lanjut">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email"
+                                                    name="email">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="penyelenggara_lanjut">Penyelenggara</label>
-                                                    <input type="text" class="form-control" id="penyelenggara_lanjut" name="penyelenggara_lanjut">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="no_hp">Nomor Hp</label>
+                                                <input type="text" class="form-control" id="no_hp"
+                                                    name="no_hp">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="ukuran_baju">Penyelenggara</label>
-                                                    <input type="text" class="form-control" id="uran_baju" name="ukuran_baju">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="keterangan_lanjut_kuliah" class="control-label">Keterangan
+                                                    Lanjut Pendidikan</label>
+                                                <select class="form-control custom-select" id="keterangan_lanjut_kuliah"
+                                                    name="keterangan_lanjut_kuliah">
+                                                    <option value="D1">D1</option>
+                                                    <option value="D2">D2</option>
+                                                    <option value="D3">D3</option>
+                                                    <option value="D4/S1">D4/S1</option>
+                                                    <option value="S2">S2</option>
+                                                    <option value="S3">S3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pendidikan_lanjut">Jurusan/Program Studi</label>
+                                                <input type="text" class="form-control" id="pendidikan_lanjut"
+                                                    name="pendidikan_lanjut">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="penyelenggara_lanjut">Penyelenggara</label>
+                                                <input type="text" class="form-control" id="penyelenggara_lanjut"
+                                                    name="penyelenggara_lanjut">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ukuran_baju">Penyelenggara</label>
+                                                <input type="text" class="form-control" id="uran_baju"
+                                                    name="ukuran_baju">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -995,7 +1035,7 @@
 
     {{-- KONTEN MODAL DELETE KARYAWAN --}}
 
-    {{-- <div class="modal fade" id="ModalDeleteKaryawan" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="ModalDeleteKaryawan" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1003,16 +1043,52 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    Apakah anda ingin menghapus ....?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Delete</button>
-                </div>
+                <form method="POST" id="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <p>Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah
+                            Anda yakin ingin melanjutkan?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Ya, saya yakin</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- KONTEN MODAL DELETE KARYAWAN --}}
     </div>
+    <div class="modal" tabindex="-1" role="dialog" id="delete-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title font-weight-bold">Hapus Laporan</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form method="POST" id="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <p>Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah
+                            Anda yakin ingin melanjutkan?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Ya, saya yakin</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".btn-delete").on("click", function() {
+            $("#delete-form").attr("action", $(this).data("link"));
+            $("#delete-modal").modal('show');
+        });
+    </script>
 @endsection
