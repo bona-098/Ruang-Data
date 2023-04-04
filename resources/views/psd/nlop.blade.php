@@ -1,5 +1,6 @@
 @extends('layout.layout')
 @section('content')
+<h1>nlop</h1>
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
     <div class="container-fluid">

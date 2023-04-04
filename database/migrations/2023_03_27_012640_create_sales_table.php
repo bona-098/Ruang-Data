@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exma', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('unit_kerja');
             $table->string('status_revenue');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nama_project');
             $table->string('lokasi_gedung');
             $table->string('jenis_pekerjaan');
-            $table->string('postfolio');
+            $table->string('portfolio');
             $table->string('progress_project');
             $table->string('status_project');
             $table->string('proses_pendekatan_customer');
@@ -45,7 +45,7 @@ return new class extends Migration
             $table->string('jabatan_pic_client')->nullable();
             $table->string('no_hp_pic_client')->nullable();
             $table->string('nama_pic_gsd');
-            $table->string('drive_kotrak');
+            $table->string('drive_kontrak');
             $table->string('amandemen')->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();

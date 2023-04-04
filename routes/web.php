@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProjecloptController;
+use App\Http\Controllers\ProjectlopController;
+use App\Http\Controllers\ProjectnlopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +31,9 @@ use App\Http\Controllers\DashboardController;
 // });
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
-// Route::delete('/karyawan/{id}', 'KaryawanController@destroy')->name('karyawan.destroy');
-// Route::get('/bsrmcopy', function () {
-//     return view('Role.bsrmcopy');
-// });
+Route::resource('/sales', SalesController::class);
+Route::resource('/projectlop', ProjectlopController::class);
+Route::resource('/projectnlop', ProjectnlopController::class);
 Route::resource('/dashboard', DashboardController::class);
 
 Route::get('/costumer', function () {
@@ -42,7 +45,3 @@ Route::get('/lop', function () {
 Route::get('/nlop', function () {
     return view('psd.nlop');
 });
-
-// Route::get('/karyawan', function () {
-//     return view('Role.karyawan');
-// });

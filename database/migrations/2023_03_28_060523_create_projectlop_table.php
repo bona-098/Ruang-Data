@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('progres_mi');
             $table->string('nilai_progres');
             $table->string('nilai_progres_mi');
+            $table->string('margin');
             $table->string('rekon_digir');
             $table->string('bakom_laut');
             $table->string('nilai_mitra');
