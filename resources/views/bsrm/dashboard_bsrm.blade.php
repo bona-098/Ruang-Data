@@ -60,6 +60,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD:resources/views/bsrm/dashboard_bsrm.blade.php
 
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -89,7 +90,6 @@
                         </thead>
                         <tbody>
                             @foreach ($karyawan as $k)
-<<<<<<< HEAD:resources/views/Role/bsrm.blade.php
                                 
                             <tr>
                                 <td>
@@ -117,7 +117,6 @@
                                 <td>{{ $k->tgl_mulai_bekerja }}</td>
                                 <td>{{ $k->tgl_pegawai_perusahaan }}</td>
                             </tr>
-=======
                                 <tr>
                                     <td>
                                         <div class="dropdown">
@@ -144,7 +143,6 @@
                                     <td> 13 Maret 2023 </td>
                                     <td> 13 Maret 2023asa </td>
                                 </tr>
->>>>>>> e22a970129b14a9385c8c19c900642b84ee2b2cc:resources/views/Role BSRM/dashboard_bsrm.blade.php
                             @endforeach
                         </tbody>
                     </table>
@@ -1104,9 +1102,11 @@
 
         {{-- KONTEN MODAL DELETE KARYAWAN --}}
         
+=======
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34:resources/views/Role BSRM/dashboard_bsrm.blade.php
         {{-- Selesai --}}
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-sm-12 col-md-7 ">
                 <div class="card">
                     <div class="card-title">
                         <h4>Yearlyssss Sales </h4>
@@ -1117,63 +1117,6 @@
                 </div>
             </div>
             <!-- /# column -->
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-title">
-                        <h4>Team Total Completed </h4>
-                    </div>
-                    <div class="sales-chart">
-                        <canvas id="team-chart"></canvas>
-                    </div>
-                </div>
-                <!-- /# card -->
-            </div>
-            <!-- /# column -->
-        </div>
-        <!-- /# row -->
-        <div class="row">
-            <!-- Bar Chart -->
-            <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Bar chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Radar Chart -->
-            <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Rader chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="radarChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Line Chart -->
-            <div class="col-sm-12 col-md-8">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Line chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Pie Chart -->
             <div class="col-sm-6 col-md-4">
                 <div class="panel">
                     <div class="panel-heading">
@@ -1186,8 +1129,154 @@
                     </div>
                 </div>
             </div>
+            <!-- /# column -->
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Top 5 xxxx</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="singelBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Top 5 xxxx</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="singelBarChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Top 5 xxxx</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="singelBarChart3"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /# row -->
+        <div class="row">
+            <!-- Line Chart -->
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Line chart</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Line Chart -->
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Line chart</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="lineChart1"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Line Chart -->
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-bd lobidrag">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Line chart</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="lineChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Pie Chart -->
+            {{-- <div class="col-sm-6 col-md-4">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Pie chart</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div> --}}
         </div>
         <div class="row">
+            <!-- Bar Chart -->
+            <div class="col-sm-11 col-md-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Bar chart</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="col-sm-11 col-md-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Bar chart</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="barChart1"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Radar Chart -->
+            {{-- <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4>Rader chart</h4>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+        {{-- <div class="row">
             <!-- Doughnut Chart -->
             <div class="col-sm-6 col-md-4">
                 <div class="panel">
@@ -1227,6 +1316,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

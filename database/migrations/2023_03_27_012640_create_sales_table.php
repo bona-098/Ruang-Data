@@ -22,7 +22,11 @@ return new class extends Migration
             $table->string('nama_project');
             $table->string('lokasi_gedung');
             $table->string('jenis_pekerjaan');
+<<<<<<< HEAD:database/migrations/2023_03_27_012640_create_sales_table.php
             $table->string('portfolio');
+=======
+            $table->string('portofolio');
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34:database/migrations/2023_03_27_012640_create_exma_table.php
             $table->string('progress_project');
             $table->string('status_project');
             $table->string('proses_pendekatan_customer');

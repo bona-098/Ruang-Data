@@ -12,11 +12,14 @@
     <link rel="icon" type="{{ asset('template/') }}/image/png" sizes="16x16" href="template/images/favicon.png">
     <title>Projek Telkom</title>
     <!-- Bootstrap Core CSS -->
-    <link href="template/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="template/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- Custom CSS -->
     <link href="{{ asset('template/') }}/css/helper.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/style.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css"  >
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -332,6 +335,171 @@
 
              @yield('content')
         </div>
+<<<<<<< HEAD
+=======
+        <div class="modal fade" id="ModalDetailCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Detail</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive ">
+                            <table style="text-align: left;" class="table table-bordered ">
+                                {{-- <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Kolom 1</th>
+                                    </tr>
+                                </thead> --}}
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">No</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Unit Kerja</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Status Revenue</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Customer</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Segment</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nama Project</th>
+                                        <td>Perjanjian Sewa Menyewa Lahan Untuk Pemasangan Dan Penempatan Menara Telekomunikasi Bersama Dan Fasilitas Penunjangnya Tanah Kosong Untuk H3I
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Lokasi/Gedung</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jenis Pekerjaan</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Portofolio</th>
+                                        <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Progress Project</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Status Project</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Proses Pendekatan Customer</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Visit</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">SPH</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">BAKN</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">SPK/PO/PKS</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Masa Project (Bulan)</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jumlah Man Power/Unit/Luas</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tanggal SP/BA/Kontrak/Nokes/Amandemen</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nomor SP/BA/Kontrak/Nokes/Amandemen</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jenis Kontrak</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tanggal Mulai Project</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tanggal Akhir Project</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sisa Kontrak</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nilai Total Project (Sebelum PPN)</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nilai Project Per Tahun (Sebelum PPN)</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nilai Project Per bulan (Sebelum PPN)</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nama Key Contact Client</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Jabatan PIC Client</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">No HP PIC Client</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nama AM/PIC GSD Handle Project2</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Drive Kontrak</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Amandemen</th>
+                                        <td>Data 4</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Keterangan</th>
+                                        <td>Pembayaran dilakukan per 5 tahun. Tahun Pertama : 10.152.000.000 Tahun Kedua : 8.290.800.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
         <!-- End Container fluid  -->
         <!-- footer -->
         <footer class="footer"> © 2018 All rights reserved. Template designed by <a
@@ -357,7 +525,11 @@
 
     <script src="{{ asset('template/') }}/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init.js"></script>
+<<<<<<< HEAD
     <!--Custom JavaScript -->{{ asset('template/') }}/
+=======
+    <!--Custom JavaScript -->
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
     <script src="{{ asset('template/') }}/js/custom.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
@@ -369,10 +541,20 @@
     <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables-init.js"></script>
 
+<<<<<<< HEAD
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+=======
+    <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.min.js"></script>
+    <!-- scripit init-->
+    <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.init.js"></script>
+
+    <!-- Bootstrap CSS -->
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -392,11 +574,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+<<<<<<< HEAD
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+=======
+>>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
 
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
+   {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
+ {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
 </body>
 
 </html>
