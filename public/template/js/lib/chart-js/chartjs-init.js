@@ -87,7 +87,7 @@
 			defaultFontFamily: 'Montserrat',
 			datasets: [ {
 				label: "Foods",
-				data: [ 0, 30, 10, 20, 50, 30, 10 ],
+				data: [ 100, 30, 10, 20, 50, 30, 10 ],
 				backgroundColor: 'transparent',
 				borderColor: 'rgba(220,53,69,0.75)',
 				borderWidth: 3,
@@ -396,7 +396,7 @@
 		type: 'pie',
 		data: {
 			datasets: [ {
-				data: [ 45, 25, 20, 10 ],
+				data: [ 10, 5, 2, 1 ],
 				backgroundColor: [
                                     "rgba(0, 123, 255,0.9)",
                                     "rgba(0, 123, 255,0.7)",

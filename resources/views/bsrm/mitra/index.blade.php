@@ -53,6 +53,9 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahMitra">
                     <i class="fa fa-user-plus"></i> Tambah Mitra
                 </button>
+                <a button type="button" href="/" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Import Mitra
+                </button> </a>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class="table-responsive ">
@@ -64,17 +67,18 @@
                                 <th>Domisili</th>
                                 <th>Kategori</th>
                                 <th>Nilai Asses</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mitra as $m)
                                 <tr>
-                                    <td>{{ $m->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $m->nama_vendor }}</td>
                                     <td>{{ $m->domisili }}</td>
                                     <td>{{ $m->kategori }}</td>
-                                    <td>{{ $m->nilai_assesment }}</td>
+                                    <td>{{ $m->nilai_asses }}</td>
                                     <td>{{ $m->status }}</td>
                                     <td>
                                         <div class="dropdown">
@@ -86,8 +90,8 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="{{ route('mitra.edit', $m->id) }}"><i
                                                         class="fa fa-edit"></i> Edit</a>
-                                                <a class="dropdown-item" href="{{ route('mitra.show', $m->id) }}"><i
-                                                        class="fa fa-eye"></i> show</a>
+                                                {{-- <a class="dropdown-item" href="{{ route('mitra.show', $m->id) }}"><i
+                                                        class="fa fa-eye"></i> show</a> --}}
                                                 <form action="{{ route('mitra.destroy', $m->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -110,7 +114,7 @@
         <!-- /# row -->
 
     </div>
-    <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
+    <!-- KONTEN MODAL TAMBAH MITRA  -->
     <div class="modal fade" id="ModalTambahMitra" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static"
         data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">

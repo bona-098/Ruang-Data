@@ -15,7 +15,7 @@ class MitraController extends Controller
     public function index()
     {
         $mitra = Mitra::get();
-        return view ('bsrm.mitra.index', compact('mitra'));
+        return view('bsrm.mitra.index', compact('mitra'));
     }
 
     /**
@@ -37,13 +37,21 @@ class MitraController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
+        // $this->validate($request, [
+        //     'kategori' => 'required'
+        // ]);
+
+        
+        if($request->nama_vendor == "" || $request->status == "");
         Mitra::create([
-        'nama_vendor' =>$request->nama_vendor,
-        'domisili' =>$request->domisili,
-        'kategori' =>$request->kategori,
-        'nilai_asses' =>$request->nilai_asses,
-        'status' =>$request->status,
+            'nama_vendor' => $request->nama_vendor,
+            'domisili' => $request->domisili,
+            'kategori' => $request->kategori,
+            'nilai_asses' => $request->nilai_asses,
+            'status' => $request->status,
         ]);
+            // return redirect()->back()->with('error', 'isi semua');
+        
         return redirect()->back();
     }
 
@@ -56,7 +64,7 @@ class MitraController extends Controller
     public function show($id)
     {
         $mitra = Mitra::find($id);
-        return view ('bsrm.mitra.show', compact('mitra'));
+        return view('bsrm.mitra.show', compact('mitra'));
     }
 
     /**
@@ -80,7 +88,37 @@ class MitraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_vendor' => 'required|string',
+            'domisili' => 'required|string',
+            'kategori' => 'required|string',
+            'nilai_asses' => 'required|numeric',
+            'status' => 'required|string',
+        ]);
+        // $mitra = Mitra::find($id);
+        $mitra = Mitra::find($id);
+        if (!$mitra) {
+            return redirect()->back()->with('error', 'Data mitra tidak ditemukan');
+        }
+
+        $mitra->update([
+            'nama_vendor' => $request->nama_vendor,
+            'domisili' => $request->domisili,
+            'kategori' => $request->kategori,
+            'nilai_asses' => $request->nilai_asses,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('mitra.index');
+
+        // $mitra->update([
+        //     'nama_vendor' => $request->nama_vendor,
+        //     'domisili' => $request->domisili,
+        //     'kategori' => $request->kategori,
+        //     'nilai_asses' => $request->nilai_asses,
+        //     'status' => $request->status,
+        // ]);
+        // return redirect()->route('mitra.index');
     }
 
     /**
@@ -89,8 +127,9 @@ class MitraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mitra $mitra)
     {
-        //
+        $mitra->delete();
+        return redirect()->back();
     }
 }

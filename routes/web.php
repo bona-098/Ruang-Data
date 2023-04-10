@@ -1,5 +1,6 @@
 <?php
 
+use App\Imports\MitraImport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\SalesController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjecloptController;
 use App\Http\Controllers\ProjectlopController;
 use App\Http\Controllers\ProjectnlopController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Mitra;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +47,13 @@ Route::get('/lop', function () {
 });
 Route::get('/nlop', function () {
     return view('psd.nlop');
+});
+
+Route::get('/', function () {
+    $mitra = Mitra::all();
+    return view('mitras',['mitra'=>$mitra]);
+});
+Route::post('/', function () {
+    Excel::import(new MitraImport, request()->file('file'));
+    return back();
 });

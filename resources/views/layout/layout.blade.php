@@ -47,10 +47,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="template/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="{{ asset('template/images/logo.png') }}" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="template/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        <span><img src="{{ asset('template/images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -295,7 +295,7 @@
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg"
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset('images/users/5.jpg') }}"
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
@@ -335,8 +335,6 @@
 
              @yield('content')
         </div>
-<<<<<<< HEAD
-=======
         <div class="modal fade" id="ModalDetailCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
                 <div class="modal-content">
@@ -499,7 +497,6 @@
                 </div>
             </div>
         </div>
->>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
         <!-- End Container fluid  -->
         <!-- footer -->
         <footer class="footer"> © 2018 All rights reserved. Template designed by <a
@@ -525,11 +522,7 @@
 
     <script src="{{ asset('template/') }}/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init.js"></script>
-<<<<<<< HEAD
-    <!--Custom JavaScript -->{{ asset('template/') }}/
-=======
     <!--Custom JavaScript -->
->>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
     <script src="{{ asset('template/') }}/js/custom.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
@@ -541,12 +534,6 @@
     <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables-init.js"></script>
 
-<<<<<<< HEAD
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-=======
     <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.min.js"></script>
     <!-- scripit init-->
     <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.init.js"></script>
@@ -554,7 +541,6 @@
     <!-- Bootstrap CSS -->
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
->>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -574,13 +560,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-<<<<<<< HEAD
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-=======
->>>>>>> 2e9d7a2e9e70a029c8818737c282ed560f85ca34
 
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
    {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
