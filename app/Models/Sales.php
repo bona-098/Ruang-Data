@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sales extends Model
 {
     use HasFactory;
-    public $table = "mitra";
+    public $table = "sales";
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'unit_kerja',
+        'unit_kerja', 
         'status_revenue',
         'customer',
         'segment',
@@ -22,8 +23,8 @@ class Sales extends Model
         'status_project',
         'proses_pendekatan_customer',
         'visit',
-        'sph',
-        'bakn',
+        'sph', 
+        'bakn', 
         'spk',
         'masa_project',
         'jumlah_man_power',

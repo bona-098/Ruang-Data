@@ -13,13 +13,13 @@
                 <li> <a class="" href="{{ route('mitra.index') }}" aria-expanded="false"><i class="fa fa-handshake-o"></i><span
                             class="hide-menu">Mitra</span></a>
                 </li>
-                <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Costumer</span></a>
                 </li>
                 <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
 
 
@@ -36,19 +36,19 @@
                     </ul>
                 </li>
 
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
                             class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-dropbox"></i><span class="hide-menu">Data Gudang</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
                 </li>
-                <li> <a class="" href="https://www.youtube.com/watch?v=8zwz2fVgfVM" aria-expanded="false"><i
+                <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan tes satu
                             dua</span></a>
                 </li>

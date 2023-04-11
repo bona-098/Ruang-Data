@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('unit_kerja');
-            $table->string('status_revenue');
+            $table->string('status_revenue')->nullable();
             $table->string('customer');
             $table->string('segment');
             $table->string('nama_project');
             $table->string('lokasi_gedung');
             $table->string('jenis_pekerjaan');
-            $table->string('portofolio');
+            $table->string('portfolio')->nullable();
             $table->string('progress_project');
             $table->string('status_project');
             $table->string('proses_pendekatan_customer');

@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Mitra;
+use App\Models\Sales;
 use App\Imports\MitraImport;
+use App\Imports\SalesImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\SalesController;
@@ -9,8 +13,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjecloptController;
 use App\Http\Controllers\ProjectlopController;
 use App\Http\Controllers\ProjectnlopController;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Mitra;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +57,13 @@ Route::get('/', function () {
 });
 Route::post('/', function () {
     Excel::import(new MitraImport, request()->file('file'));
+    return back();
+});
+Route::get('/sales', function () {
+    $sales = Sales::all();
+    return view('sales',['sales'=>$sales]);
+});
+Route::post('/', function () {
+    Excel::import(new SalesImport, request()->file('file'));
     return back();
 });
