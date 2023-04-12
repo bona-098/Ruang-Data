@@ -55,15 +55,15 @@ Route::get('/', function () {
     $mitra = Mitra::all();
     return view('mitras',['mitra'=>$mitra]);
 });
-Route::post('/', function () {
+Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-// Route::get('/sales', function () {
-//     $sales = Sales::all();
-//     return view('sales',['sales'=>$sales]);
-// });
-// Route::post('/', function () {
-//     Excel::import(new SalesImport, request()->file('file'));
-//     return back();
-// });
+Route::get('/saless ', function () {
+    $sales = Sales::all();
+    return view('sales',['sales'=>$sales]);
+});
+Route::post('/', function () {
+    Excel::import(new SalesImport, request()->file('file'));
+    return back();
+});

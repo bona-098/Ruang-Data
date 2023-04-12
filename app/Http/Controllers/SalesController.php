@@ -12,11 +12,16 @@ class SalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sales = Sales::get();
+        // return $request->all();
+        // $sales = Sales::get();
         // dd($sales);
-        return view ('marshal.sales.index', compact('sales'));
+        $sales = Sales::query();
+        $sales->when($request->unit_kerja, function($query) use ($request) {
+            return $query->whereunit_kerja($request->unit_kerja);
+        });
+        return view ('marshal.sales.index', ['sales' => $sales->paginate(100000)]);
     }
 
     /**
