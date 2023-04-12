@@ -94,16 +94,10 @@
             <div class="card-body">
                 <h4 class="card-title">Data Sales</h4>
                 <br>
-                <!-- Button trigger modal -->
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
                     <i class="fa fa-user-plus"></i> Tambah Sales
                 </button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i class="fa fa-plus"></i>  Import Sales</button>
-                
-                {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-            
-                {{-- <div class="table-responsive"> --}}
                     <table text-align: left; id="myTable" class="table display table-bordered table-striped">
                         <thead>
                             <tr>
@@ -126,20 +120,7 @@
                                 @foreach ($sales as $data)
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <div class=" text-center">
-                                            <button class=" btn-success dropdown-toggle" id="dropdownMenuButton"
-                                                data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                                action
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalDetailCustomer" href="#">Detail</a>
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalUpdateCustomer" href="#">Update</a>
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalDeleteCustomer" href="#">Delete</a>
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-success" href="{{ route('sales.show', $data->id) }}">Detail</a>
                                     </td>
                                     <td>{{ $data->unit_kerja }}</td>
                                     <td>{{ $data->status_revenue }}</td>
@@ -153,8 +134,6 @@
                                     <td>{{ $data->status_project }}</td>
                             </tr>
                             @endforeach
-                            
-
                         </tbody>
                     </table>
                 {{-- </div> --}}
@@ -183,142 +162,143 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">No</th>
-                                    <td></td>
+                                    <td>{{ $data->id }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Unit Kerja</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->unit_kerja }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Status Revenue</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->status_revenue }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Customer</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->customer }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Segment</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->segment }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Project</th>
-                                    <td >Perjanjian Sewa Menyewa Lahan Untuk Pemasangan Dan Penempatan Menara Telekomunikasi
-                                        Bersama Dan Fasilitas Penunjangnya Tanah Kosong Untuk H3I
-                                    </td>
+                                    <td >{{ $data->nama_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Lokasi/Gedung</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->lokasi_gedung }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Jenis Pekerjaan</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->jenis_pekerjaan }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">portfolio</th>
-                                    <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
+                                    <td>{{ $data->portfolio }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Progress Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->progress_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Status Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->status_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Proses Pendekatan Customer</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->proses_pendekatan_customer }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Visit</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->visit }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">SPH</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->sph }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">BAKN</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->bakn }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">SPK/PO/PKS</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->spk }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Masa Project (Bulan)</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->bulan }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Jumlah Man Power/Unit/Luas</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->jumlah_man_power }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Tanggal SP/BA/Kontrak/Nokes/Amandemen</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->tgl_sp }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nomor SP/BA/Kontrak/Nokes/Amandemen</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->no_sp }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Jenis Kontrak</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->jenis_kontrak }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Tanggal Mulai Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->tgl_mulai_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Tanggal Akhir Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->tgl_akhir_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sisa Kontrak</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->sisa_kontrak }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Total Project (Sebelum PPN)</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->nilai_total_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project Per Tahun (Sebelum PPN)</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->nilai_project_pertahun }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project Per bulan (Sebelum PPN)</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->nilai_project_perbulan }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Key Contact Client</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->nama_key_kontak_client }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Jenis Kontrak</th>
+                                    <td>{{ $data->jenis_kontrak }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Jabatan PIC Client</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->jabatan_pic_client }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">No HP PIC Client</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->no_hp_pic_client }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama AM/PIC GSD Handle Project2</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->nama_pic_gsd }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Drive Kontrak</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->drive_kontrak }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Amandemen</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $data->amandemen }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Keterangan</th>
-                                    <td>Pembayaran dilakukan per 5 tahun. Tahun Pertama : 10.152.000.000 Tahun Kedua :
-                                        8.290.800.000</td>
+                                    <td>{{ $data->keterangan }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -434,7 +414,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Jenis Pekerjaan </label>
+                                            <label>Jenis Pekerjaan</label>
                                             <input name="jenis_pekerjaan" required type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_pekerjaan')
@@ -446,7 +426,7 @@
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>portfolio</label>
+                                            <label>Portfolio</label>
                                             <input type="text" required name="portfolio" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('portfolio')
@@ -809,9 +789,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form id="editUserForm">
-                            @csrf
-                            @method('PUT')
+                        <form action="{{ route('sales.update', $data->id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="form-body">
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
@@ -1250,7 +1230,7 @@
                             {{-- <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>
                                 Save</button>
-                            <button type="button" class="btn btn-inverse">Cancel</button>
+                            <button type="button" class="btn btn-inverse">Cancel</button>o
                         </div> --}}
 
 
@@ -1323,9 +1303,9 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
       </div>  
     </div>
   </div>
-
+{{-- 
   $('#editUserForm').submit(function(event) {
-    event.preventDefault();
+    event.preventDefault(); --}}
   
     {{-- $.ajax({
       url: "{{ route('sales.update', $data->id) }}",
@@ -1338,5 +1318,12 @@ aria-labelledby="staticBackdropLabel" aria-hidden="true">
       error: function() {
         alert("Error updating user");
       } --}}
-
+<script>
+    $(document).ready(function() {
+        $(document).on('click', 'edition', function(){
+            var sales_id = $(this).val();
+            alert(sales_id)
+        })
+    })
+</script>
 @endsection

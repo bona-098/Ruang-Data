@@ -59,11 +59,11 @@ Route::post('/', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-Route::get('/sales', function () {
-    $sales = Sales::all();
-    return view('sales',['sales'=>$sales]);
-});
-Route::post('/', function () {
-    Excel::import(new SalesImport, request()->file('file'));
-    return back();
-});
+// Route::get('/sales', function () {
+//     $sales = Sales::all();
+//     return view('sales',['sales'=>$sales]);
+// });
+// Route::post('/', function () {
+//     Excel::import(new SalesImport, request()->file('file'));
+//     return back();
+// });
