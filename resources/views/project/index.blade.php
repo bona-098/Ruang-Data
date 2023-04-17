@@ -71,14 +71,14 @@
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
-                    <i class="fa fa-user-plus"></i> Tambah Data 
+                    <i class="fa fa-user-plus"></i> Tambah Data
                 </button>
                 <a button type="button" href="/" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Import Data
                     </button> </a>
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
 
-                {{-- <div class="table-responsive"> --}}
+                <div class="table-responsive">
                 <table text-align: left; id="myTable" class="table display table-bordered table-striped">
                     <thead>
                         <tr>
@@ -98,45 +98,44 @@
                             <th style="white-space: nowrap;">Start Date</th>
                             <th style="white-space: nowrap;">End Date</th>
                             <th>Keterangan</th>
-                            <th style="white-space: nowrap;">Due Date</th>
                             <th>Tahap</th>
                             <th>Akru</th>
 
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <div class=" text-center">
-                                    <a href="/project_detail" class="btn btn-primary">Detail</a>
-                                </div>
-                            </td>
-                            <td>AMC</td>
-                            <td>nonlop</td>
-                            <td>Balikpapan</td>
-                            <td>Fitting Out PTD Balikpapan</td>
-                            <td>Telkom</td>
-                            <td>DP 15%, Progres 50%-30%, Progres 80%-30%, Progres 100%-25%</td>
-                            <td>4,760,968,300</td>
-                            <td>4,760,968,300</td>
-                            <td></td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td>M-3 Agustus 2021</td>
-                            <td>M-3 Agustus 2021</td>
-                            <td></td>
-                            <td></td>
-                            <td style="white-space: nowrap;">CO - ONHAND</td>
-                            <td>JUNI</td>
-                        </tr>
+                        @foreach ($project as $p)
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class=" text-center">
+                                        <a href="{{ route('project.show', $p->id) }}" class="btn btn-primary">Detail</a>
+                                    </div>
+                                </td>
+                                <td>{{ $p->customer }}</td>
+                                <td>{{ $p->id_crm }}</td>
+                                <td>{{ $p->witel }}</td>
+                                <td>{{ $p->nama_project }}</td>
+                                <td>{{ $p->kategori }}</td>
+                                <td>{{ $p->skema }}</td>
+                                <td>{{ $p->nilai_project }}</td>
+                                <td>{{ $p->sudah_akru }}</td>
+                                <td>{{ $p->sisa_belum_akru }}</td>
+                                <td>{{ $p->progress_ml }}</td>
+                                <td>{{ $p->progress_mi }}</td>
+                                <td>{{ $p->start_date }}</td>
+                                <td>{{ $p->end_date }}</td>
+                                <td>{{ $p->keterangan }}</td>
+                                <td>{{ $p->tahap }}</td>
+                                <td>{{ $p->akru }}</td>
+                            </tr>
+                        @endforeach
 
 
 
                     </tbody>
                 </table>
-                {{-- </div> --}}
+                </div>
             </div>
             <!-- /# column -->
         </div>
@@ -145,106 +144,6 @@
         <!-- /# row -->
 
     </div>
-
-    {{-- KONTEN MODAL DETAIL --}}
-
-    <div class="modal fade" id="ModalDetailCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog  modal-dialog-scrollable modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Detail</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                            {{-- <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Kolom 1</th>
-                                </tr>
-                            </thead> --}}
-                            <tbody>
-                                <tr>
-                                    <th scope="row">No</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Customer</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Kode AMPM</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Witel</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nama Project</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Kategori</th>
-                                    <td>Perjanjian Sewa Menyewa Lahan Untuk Pemasangan Dan Penempatan Menara Telekomunikasi
-                                        Bersama Dan Fasilitas Penunjangnya Tanah Kosong Untuk H3I
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Skem</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nilai Project</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sudah Akru</th>
-                                    <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sisa Belum Akru</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Progres ML</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Progres MI</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Target Deal</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Keterangan</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Due Date</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tahap</th>
-                                    <td>Data 4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Akru</th>
-                                    <td>Data 4</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- KONTEN MODAL DETAIL --}}
 
     <!-- KONTEN MODAL TAMBAH Customer  -->
     <div class="modal fade" id="ModalTambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -256,39 +155,36 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('sales.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
-                                            <input type="text" value="Fajriansyah" name="customer" id="Unit Kerja" class="form-control"
-                                                placeholder="Masukkan Unit Kerja" required>
+                                            <input type="text" name="customer" id="customer" class="form-control"
+                                                placeholder="Customer" required>
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kode AMPM</label>
-                                            <select required name="Kode AMPM" class="form-control" >
+                                            <select required name="id_crm" class="form-control">
                                                 <option value="">Pilih Kode AMPM</option>
-                                                <option value="Non Lop">Non Lop</option>
+                                                <option value="NLop">Non Lop</option>
                                                 <option value="Lop">Lop</option>
                                             </select>
                                             <small class="form-control-feedback">
-                                                @error('Kode AMPM')
+                                                @error('id_crm')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                 </div>
-                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -306,7 +202,6 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
@@ -316,18 +211,17 @@
                                                 <option value="Government">Telkom</option>
                                                 <option value="Subsidiaries">Telkom Group</option>
                                             </select>
-                                            <small class="form-control-feedback"> @error('segment')
+                                            <small class="form-control-feedback"> @error('kategori')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" value="Pengembangan Sistem Informasi Dokumen dan Barang di Pegadaian" required type="text" id="kota_lahir"
+                                            <input name="nama_project" required type="text" id="nama_project"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
@@ -337,16 +231,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
-
-                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Skem</label>
-                                            <input name="skem" value="scammmm" required type="text" class="form-control">
+                                            <input name="skema" required type="text" class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('skem')
+                                                @error('skema')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -357,7 +248,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project</label>
-                                            <input required name="nilai_project" id="nilai_project" min="0" type="number" class="form-control">
+                                            <input required name="nilai_project" id="nilai_project" min="0"
+                                                type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project')
                                                     {{ $message }}
@@ -368,7 +260,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sudah Akru</label>
-                                            <input required name="sudah_akru" id="sudah_akru" min="0" type="number" class="form-control">
+                                            <input required name="sudah_akru" id="sudah_akru" min="0"
+                                                type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sudah_akru')
                                                     {{ $message }}
@@ -379,7 +272,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
-                                            <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0" readonly type="number" class="form-control">
+                                            <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
+                                                type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
                                                     {{ $message }}
@@ -387,11 +281,10 @@
                                             </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input required name="progres_ml" value="21" type="number" class="form-control">
+                                            <input required name="progres_ml" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progres_ml')
                                                     {{ $message }}
@@ -399,11 +292,10 @@
                                             </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input required name="progres_mi" value="12" type="number" class="form-control">
+                                            <input required name="progres_mi" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progres_mi')
                                                     {{ $message }}
@@ -411,12 +303,10 @@
                                             </small>
                                         </div>
                                     </div>
-                    
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
-                                            <input required name="target_deal" value="targetin" type="text"
-                                                class="form-control">
+                                            <input required name="target_deal" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('target_deal')
                                                     {{ $message }}
@@ -427,7 +317,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>keterangan</label>
-                                            <input required name="keterangan" value="keterangan nna" type="text" class="form-control">
+                                            <input required name="keterangan" placeholder="keterangan nna" type="text"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
                                                     {{ $message }}
@@ -437,9 +328,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Due Date</label>
-                                            <input required name="due_date" type="date"
-                                                class="form-control">
+                                            <label>Start Date</label>
+                                            <input required name="start_date" type="date" class="form-control">
+                                            <small class="form-control-feedback">
+                                                @error('due_date')
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>End Date</label>
+                                            <input required name="end_date" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('due_date')
                                                     {{ $message }}
@@ -460,12 +361,10 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Akru</label>
-                                            <input required name="akru" type="date"
-                                                class="form-control">
+                                            <input required name="akru" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('akru')
                                                     {{ $message }}
@@ -473,22 +372,20 @@
                                             </small>
                                         </div>
                                     </div>
-                                    
                                 </div>
-                                <!--/row-->
                             </div>
-                            {{-- <div class="form-actions">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{-- <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>
                                 Save</button>
                             <button type="button" class="btn btn-inverse">Cancel</button>
                         </div> --}}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -497,10 +394,10 @@
         var inputA = document.getElementById("nilai_project");
         var inputB = document.getElementById("sudah_akru");
         var hasil = document.getElementById("sisa_belum_akru");
-    
+
         nilai_project.addEventListener("input", hitungPengurangan);
         sudah_akru.addEventListener("input", hitungPengurangan);
-    
+
         function hitungPengurangan() {
             var a = Number(nilai_project.value);
             var b = Number(sudah_akru.value);
@@ -513,7 +410,7 @@
             }
         }
     </script>
-    
+
     <!-- KONTEN MODAL TAMBAH Customer  -->
 
     <!-- KONTEN MODAL UPDATE Customer  -->

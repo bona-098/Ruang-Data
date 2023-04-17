@@ -1,19 +1,9 @@
 @extends('layout.layout')
 @section('content')
-    <!-- End Bread crumb -->
-    <!-- Container fluid  -->
     <div class="container-fluid">
-
-        {{-- Filter Tabel --}}
-
-        {{-- Akhir Filter Tabel --}}
-        {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Laporan Progress Mingguan Rehab Plasa TELKOM REGIONAL VI 2022</h4>
-                <!-- Button trigger modal -->
-                <!-- Button trigger modal -->
-                {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <button type="button" class=" btn btn-primary " id="dropdownMenuButton" data-toggle="dropdown"><i
                         class="fa fa-cog"></i>
                     action
@@ -24,86 +14,77 @@
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteCustomer"
                         href="#">Delete</a>
                 </div>
-
                 <div style="margin-top: 20px;">
                     <div class="table-responsive">
                         <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                            {{-- <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Kolom 1</th>
-                                </tr>
-                            </thead> --}}
                             <tbody>
                                 <tr>
-                                    <th scope="row">No</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <th scope="row">Customer</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->customer }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Kode AMPM</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->id_crm }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Witel</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->witel }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->nama_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Kategori</th>
-                                    <td>Perjanjian Sewa Menyewa Lahan Untuk Pemasangan Dan Penempatan Menara Telekomunikasi
-                                        Bersama Dan Fasilitas Penunjangnya Tanah Kosong Untuk H3I
-                                    </td>
+                                    <td>{{ $project->kategori }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Skem</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->skema }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->nilai_project }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sudah Akru</th>
-                                    <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
+                                    <td>{{ $project->sudah_akru }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sisa Belum Akru</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->sisa_belum_akru }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Progres ML</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->progres_ml }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Progres MI</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->progres_mi }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Target Deal</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->target_deal }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Keterangan</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->keterangan }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Due Date</th>
-                                    <td>Data 4</td>
+                                    <th scope="row">Start Date</th>
+                                    <td>{{ $project->start_date }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">End Date</th>
+                                    <td>{{ $project->end_date }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Tahap</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->tahap }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Akru</th>
-                                    <td>Data 4</td>
+                                    <td>{{ $project->akru }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -129,7 +110,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('sales.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
                                 <div class="row p-t-20">
@@ -211,9 +192,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
-
-                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
@@ -265,7 +243,6 @@
                                             </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
@@ -278,7 +255,6 @@
                                             </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
@@ -291,7 +267,6 @@
                                             </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
@@ -340,7 +315,6 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Akru</label>
@@ -352,15 +326,8 @@
                                             </small>
                                         </div>
                                     </div>
-
                                 </div>
-                                <!--/row-->
                             </div>
-                            {{-- <div class="form-actions">
-                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>
-                             Save</button>
-                         <button type="button" class="btn btn-inverse">Cancel</button>
-                     </div> --}}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -409,8 +376,12 @@
                     Apakah anda ingin menghapus ....?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
+                    <form action="{{ route('project.destroy', $project->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>

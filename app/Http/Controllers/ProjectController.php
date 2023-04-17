@@ -36,7 +36,26 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Project::create([
+            'customer' =>$request->customer,
+            'id_crm' =>$request->id_crm,
+            'witel' =>$request->witel,
+            'nama_project' =>$request->nama_project,
+            'kategori' =>$request->kategori,
+            'skema' =>$request->skema,
+            'nilai_project' =>$request->nilai_project,
+            'sudah_akru' =>$request->sudah_akru,
+            'sisa_belum_akru' =>$request->sisa_belum_akru,
+            'progress_ml' =>$request->progress_ml,
+            'progress_mi' =>$request->progress_mi,
+            'target_deal' =>$request->target_deal,
+            'keterangan' =>$request->keterangan,
+            'start_date' =>$request->start_date,
+            'end_date' =>$request->end_date,
+            'tahap' =>$request->tahap,
+            'akru' =>$request->akru
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -71,7 +90,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::dinfOrFail($id);
+        $project->update([
+            'customer' =>$request->customer,
+        ]);
     }
 
     /**
@@ -82,6 +104,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->delete();
+        return redirect()->route('project.index');
     }
 }
