@@ -9,6 +9,6 @@ class DashboardController extends Controller
     public function index()
     {
         $karyawan = Karyawan::get();
-        return view ('Role BSRM.dashboard_bsrm', compact('karyawan'));
+        return view ('bsrm.dashboard_bsrm', compact('karyawan'));
     }
 }
