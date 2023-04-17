@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SalesController extends Controller
 {
@@ -21,9 +22,33 @@ class SalesController extends Controller
         $sales->when($request->unit_kerja, function($query) use ($request) {
             return $query->whereunit_kerja($request->unit_kerja);
         });
+        $sales->when($request->status_revenue, function($query) use ($request) {
+            return $query->wherestatus_revenue($request->status_revenue);
+        });
+        $sales->when($request->segment, function($query) use ($request) {
+            return $query->wheresegment($request->segment);
+        });
+        $sales->when($request->portfolio, function($query) use ($request) {
+            return $query->whereportfolio($request->portfolio);
+        });
+        $sales->when($request->progress_project, function($query) use ($request) {
+            return $query->whereprogress_project($request->progress_project);
+        });
+        $sales->when($request->status_project, function($query) use ($request) {
+            return $query->wherestatus_project($request->status_project);
+        });
+        $sales->when($request->jenis_kontrak, function($query) use ($request) {
+            return $query->wherejenis_kontrak($request->jenis_kontrak);
+        });
         return view ('marshal.sales.index', ['sales' => $sales->paginate(100000)]);
+        dd($sales);
     }
 
+    public function resetFilter()
+    {
+        session()->forget('filter');
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,6 +67,13 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'drive_kontrak' => 'required|mimes:pdf|max:100480'
+        ]);
+        $file = $request->file('drive_kontrak');
+        $file_kontrak = time()."_".$file->getClientOriginalName();
+        $file->move(public_path('/drive'), $file_kontrak);
+
         Sales::create([
             'unit_kerja'=>$request->unit_kerja,
             'status_revenue'=>$request->status_revenue,
@@ -73,7 +105,7 @@ class SalesController extends Controller
             'jabatan_pic_client'=>$request->jabatan_pic_client,
             'no_hp_pic_client'=>$request->no_hp_pic_client,
             'nama_pic_gsd'=>$request->nama_pic_gsd,
-            'drive_kontrak'=>$request->drive_kontrak,
+            'drive_kontrak'=>$file_kontrak,
             'amandemen'=>$request->amandemen,
             'keterangan'=>$request->keterangan
         ]);
@@ -120,7 +152,7 @@ class SalesController extends Controller
             'unit_kerja' => 'required',
             'status_revenue' => 'required'
         ]);
-        $id = $sales->id;
+        // $id = $sales->id;
         if (!$sales) {
             return redirect()->back()->with('error', 'data sales salah');
         }

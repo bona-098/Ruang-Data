@@ -40,7 +40,7 @@ Route::resource('/sales', SalesController::class);
 Route::resource('/projectlop', ProjectlopController::class);
 Route::resource('/projectnlop', ProjectnlopController::class);
 Route::resource('/dashboard', DashboardController::class);
-
+Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
 Route::get('/costumer', function () {
     return view('Role BSRM.costumer');
 });

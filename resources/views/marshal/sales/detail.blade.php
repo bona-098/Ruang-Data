@@ -134,7 +134,7 @@
                                     <th scope="row">Jenis Kontrak</th>
                                     <td>{{ $sales->jenis_kontrak }}</td>
                                 </tr>
-                                <tr>
+                                <tr>  
                                     <th scope="row">Jabatan Pic Client</th>
                                     <td>{{ $sales->jabatan_pic_client }}</td>
                                 </tr>
@@ -145,6 +145,10 @@
                                 <tr>
                                     <th scope="row">Nama AM/PIC GSD Handle Project</th>
                                     <td>{{ $sales->nama_pic_gsd }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Drive Kontrak</th>
+                                    <td><a href="{{ asset('drive' .$sales->drive_kontrak) }}">{{ $sales->drive_kontrak }}</a></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Amandemen</th>
