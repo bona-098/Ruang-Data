@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Projectnlop extends Model
+class Project extends Model
 {
     use HasFactory;
-    public $table = "projectnlop";
+    public $table = "project";
     protected $fillable = [
         'customer',
         'id_crm',
@@ -18,13 +18,14 @@ class Projectnlop extends Model
         'skema',
         'nilai_project',
         'sudah_akru',
-        'belum_akru',
-        'progress_ml',
-        'progress_mi',
+        'sisa_belum_akru',
+        'progres_ml',
+        'peogres_mi',
         'target_deal',
         'keterangan',
-        'due_date',
+        'start_date',
+        'end_date',
         'tahap',
-        'akru'
+        'akru',
     ];
 }

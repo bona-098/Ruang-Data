@@ -19,6 +19,9 @@
                 <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
                 </li>
+                <li> <a class="" href="{{ route('project.index') }}"aria-expanded="false"><i
+                            class="fa fa-wpforms"></i><span class="hide-menu">Project</span></a>
+                </li>
                 <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
 
@@ -26,15 +29,14 @@
                 </li>
 
 
-                <li> <a class="has-arrow" data-toggle="collapse" href="#collapseExample" role="button"
+                {{-- <li> <a class="has-arrow" data-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-wpforms"></i><span
                             class="hide-menu">Project<span
                                 class="label label-rouded label-primary pull-right">2</span></span></a>
                     <ul class="collapse" id="collapseExample">
                         <li><a href="{{ route('projectlop.index') }}">LOP </a></li>
-                        <li><a href="{{ route('projectnlop.index') }}">Non LOP</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
                             class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>

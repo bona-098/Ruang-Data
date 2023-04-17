@@ -8,11 +8,9 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProjecloptController;
-use App\Http\Controllers\ProjectlopController;
-use App\Http\Controllers\ProjectnlopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +35,7 @@ use App\Http\Controllers\ProjectnlopController;
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
 Route::resource('/sales', SalesController::class);
-Route::resource('/projectlop', ProjectlopController::class);
-Route::resource('/projectnlop', ProjectnlopController::class);
+Route::resource('/project', ProjectController::class);
 Route::resource('/dashboard', DashboardController::class);
 Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
 Route::get('/costumer', function () {
