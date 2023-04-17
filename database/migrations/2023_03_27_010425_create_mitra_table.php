@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('mitra', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_vendor');
-            $table->string('domisili');
-            $table->string('kategori');
+            $table->string('nama_vendor')->nullable();
+            $table->string('domisili')->nullable();
+            $table->string('kategori')->nullable();
             $table->string('nilai_asses')->nullable();
-            $table->enum('status', ['eksisting','register']);
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

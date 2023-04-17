@@ -143,10 +143,9 @@ class KaryawanController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::find($id);
-        // dd($karyawan);
         return view ('bsrm.karyawan.show', compact('karyawan'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -155,7 +154,8 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        $karyawan = Karyawan::findorfail($id);
+        $karyawan = Karyawan::findOrfail($id);
+        // dd($karyawan);
         return view('bsrm.karyawan.edit', compact('karyawan'));
     }
 
