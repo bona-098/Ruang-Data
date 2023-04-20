@@ -150,12 +150,18 @@ class SalesController extends Controller
         $sales = Sales::findOrFail($id);
         $request->validate([
             'unit_kerja' => 'required',
-            'status_revenue' => 'required'
+            'status_revenue' => 'required',
+            // 'drive_kontrak' => 'required|mimes:pdf|max:100480'
         ]);
         // $id = $sales->id;
-        if (!$sales) {
-            return redirect()->back()->with('error', 'data sales salah');
-        }
+        // if ($drive_kotrak = $request->file('drive_kontrak')){
+        //     File::delete('drive/'. $sales->drive_kontrak);
+        //     $file_name = $request->drive_kontrak->getClientOriginalName();
+        //     $drive_kontrak->move(public_path('drive'), $file_name);
+        //     $sales['media'] = "$file_name";
+        // }else{
+        // unset ($sales['srive_kontrak']);
+        // }
         $sales->update([
             'unit_kerja' =>$request->unit_kerja,
             'status_revenue' =>$request->status_revenue,

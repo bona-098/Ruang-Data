@@ -56,7 +56,7 @@ Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-Route::get('/saless ', function () {
+Route::get('/ ', function () {
     $sales = Sales::all();
     return view('sales',['sales'=>$sales]);
 });
