@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('nilai_project')->nullable();
             $table->string('sudah_akru')->nullable();
             $table->string('sisa_belum_akru')->nullable();
-            $table->string('progres_ml')->nullable();
-            $table->string('peogres_mi')->nullable();
+            $table->string('progress_ml')->nullable();
+            $table->string('progress_mi')->nullable();
             $table->string('target_deal')->nullable();
             $table->string('keterangan')->nullable();
             $table->string('start_date')->nullable();

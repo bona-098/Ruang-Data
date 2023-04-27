@@ -629,5 +629,32 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Import -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-import-label">Import Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="file">Pilih file Excel</label>
+                        <input type="file" class="form-control-file" id="file" name="file">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
     </div>
 @endsection

@@ -56,11 +56,11 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Progres ML</th>
-                                    <td>{{ $project->progres_ml }}</td>
+                                    <td>{{ $project->progress_ml }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Progres MI</th>
-                                    <td>{{ $project->progres_mi }}</td>
+                                    <td>{{ $project->progress_mi }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Target Deal</th>
@@ -110,45 +110,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <form action="{{ route('project.update', $project->id) }}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="form-body">
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
-                                            <input type="text" value="Fajriansyah" name="customer" id="Unit Kerja"
-                                                class="form-control" placeholder="Masukkan Unit Kerja" required>
+                                            <input type="text" name="customer" id="Unit Kerja"
+                                                class="form-control" value="{{ $project->customer }}" required>
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kode AMPM</label>
-                                            <select required name="Kode AMPM" class="form-control">
-                                                <option value="">Pilih Kode AMPM</option>
-                                                <option value="Non Lop">Non Lop</option>
-                                                <option value="Lop">Lop</option>
+                                            <select required name="id_crm" class="form-control">
+                                                <option selected value="">{{ $project->id_crm }}</option>
+                                                <option value="nlop">Non Lop</option>
+                                                <option value="lop">Lop</option>
                                             </select>
                                             <small class="form-control-feedback">
-                                                @error('Kode AMPM')
+                                                @error('id_crm')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                 </div>
-                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
                                             <select required name="witel" class="form-control">
-                                                <option value="">Pilih Witel</option>
+                                                <option selected value="">{{ $project->witel }}</option>
                                                 <option value="Balikpapan">Balikpapan</option>
                                                 <option value="Samarinda">Samarinda</option>
                                                 <option value="Kalsel">Kalsel</option>
@@ -160,30 +158,27 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
                                             <select required name="kategori" class="form-control ">
-                                                <option value="">Pilih Kategori</option>
-                                                <option value="Enterprise">Exma</option>
-                                                <option value="Government">Telkom</option>
-                                                <option value="Subsidiaries">Telkom Group</option>
+                                                <option selected value="">{{ $project->kategori }}</option>
+                                                <option value="Exma">Exma</option>
+                                                <option value="Telkom">Telkom</option>
+                                                <option value="Telkom Group">Telkom Group</option>
                                             </select>
-                                            <small class="form-control-feedback"> @error('segment')
+                                            <small class="form-control-feedback"> @error('kategori')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project"
-                                                value="Pengembangan Sistem Informasi Dokumen dan Barang di Pegadaian"
-                                                required type="text" id="kota_lahir" class="form-control">
+                                            <input name="nama_project" value="{{ $project->nama_project }}"
+                                                required type="text" id="nama_project" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
                                                     {{ $message }}
@@ -196,10 +191,10 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Skem</label>
-                                            <input name="skem" value="scammmm" required type="text"
+                                            <input name="skema" value="{{ $project->skema }}" required type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('skem')
+                                                @error('skema')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -211,7 +206,7 @@
                                         <div class="form-group">
                                             <label>Nilai Project</label>
                                             <input required name="nilai_project" id="nilai_project" min="0"
-                                                type="number" class="form-control">
+                                                type="number" value="{{ $project->nilai_project }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project')
                                                     {{ $message }}
@@ -223,7 +218,7 @@
                                         <div class="form-group">
                                             <label>Sudah Akru</label>
                                             <input required name="sudah_akru" id="sudah_akru" min="0"
-                                                type="number" class="form-control">
+                                                type="number" value="{{ $project->sudah_akru }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sudah_akru')
                                                     {{ $message }}
@@ -235,7 +230,7 @@
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
                                             <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
-                                                readonly type="number" class="form-control">
+                                                readonly type="number" value="sisa_belum_akru" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
                                                     {{ $message }}
@@ -246,7 +241,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input required name="progres_ml" value="21" type="number"
+                                            <input required name="progres_ml" value="{{ $project->progress_ml }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progres_ml')
@@ -258,7 +253,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input required name="progres_mi" value="12" type="number"
+                                            <input required name="progres_mi" value="{{ $project->progress_mi }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progres_mi')
@@ -270,7 +265,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
-                                            <input required name="target_deal" value="targetin" type="text"
+                                            <input required name="target_deal" value="{{ $project->target_deal }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('target_deal')
@@ -282,7 +277,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>keterangan</label>
-                                            <input required name="keterangan" value="keterangan nna" type="text"
+                                            <input required name="keterangan" value="{{ $project->keterangan }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
@@ -293,10 +288,21 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Due Date</label>
-                                            <input required name="due_date" type="date" class="form-control">
+                                            <label>Start Date</label>
+                                            <input required name="start_date" value="{{ $project->start_date }}" type="date" class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('due_date')
+                                                @error('start_date')
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>End Date</label>
+                                            <input required name="end_date" value="{{ $project->end_date }}" type="date" class="form-control">
+                                            <small class="form-control-feedback">
+                                                @error('end_date')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -306,6 +312,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Tahap</label>
                                             <select name="tahap" class="form-control">
+                                                <option selected value="">{{ $project->tahap }}</option>
                                                 <option value="Co-OnHand ">Co-OnHand</option>
                                                 <option value="Komersial">Komersial</option>
                                                 <option value="OnHand">OnHand</option>
@@ -318,7 +325,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Akru</label>
-                                            <input required name="akru" type="date" class="form-control">
+                                            <input required name="akru" value="{{ $project->akru }}" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('akru')
                                                     {{ $message }}

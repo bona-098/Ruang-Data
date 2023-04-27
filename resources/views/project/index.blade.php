@@ -93,8 +93,8 @@
                             <th style="white-space: nowrap;">Nilai Project</th>
                             <th style="white-space: nowrap;">Sudah Akru</th>
                             <th style="white-space: nowrap;">Sisa Belum Akru</th>
-                            <th style="white-space: nowrap;">Progres ML</th>
-                            <th style="white-space: nowrap;">Progres MI</th>
+                            <th style="white-space: nowrap;">progress ML</th>
+                            <th style="white-space: nowrap;">progress MI</th>
                             <th style="white-space: nowrap;">Start Date</th>
                             <th style="white-space: nowrap;">End Date</th>
                             <th>Keterangan</th>
@@ -174,8 +174,8 @@
                                             <label class="control-label">Kode AMPM</label>
                                             <select required name="id_crm" class="form-control">
                                                 <option value="">Pilih Kode AMPM</option>
-                                                <option value="NLop">Non Lop</option>
-                                                <option value="Lop">Lop</option>
+                                                <option value="nlop">Non Lop</option>
+                                                <option value="lop">Lop</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('id_crm')
@@ -283,10 +283,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Progres Minggu Lalu</label>
-                                            <input required name="progres_ml" type="number" class="form-control">
+                                            <label>progress Minggu Lalu</label>
+                                            <input required name="progress_ml" type="number" class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('progres_ml')
+                                                @error('progress_ml')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -294,10 +294,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Progres Minggu Ini</label>
-                                            <input required name="progres_mi" type="number" class="form-control">
+                                            <label>progress Minggu Ini</label>
+                                            <input required name="progress_mi" type="number" class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('progres_mi')
+                                                @error('progress_mi')
                                                     {{ $message }}
                                                 @enderror
                                             </small>

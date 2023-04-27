@@ -9,8 +9,9 @@
                     action
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateCustomer"
-                        href="#">Update</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#Kontrak" href="#">Upload Drive
+                        Kontrak</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateCustomer" href="#">Edit</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteCustomer"
                         href="#">Delete</a>
                 </div>
@@ -134,7 +135,7 @@
                                     <th scope="row">Jenis Kontrak</th>
                                     <td>{{ $sales->jenis_kontrak }}</td>
                                 </tr>
-                                <tr>  
+                                <tr>
                                     <th scope="row">Jabatan Pic Client</th>
                                     <td>{{ $sales->jabatan_pic_client }}</td>
                                 </tr>
@@ -148,7 +149,9 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Drive Kontrak</th>
-                                    <td><a href="{{ asset('drive' .$sales->drive_kontrak) }}">{{ $sales->drive_kontrak }}</a></td>
+                                    <td><a
+                                            href="{{ asset('drive' . $sales->drive_kontrak) }}">{{ $sales->drive_kontrak }}</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Amandemen</th>
@@ -160,6 +163,43 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Kontrak" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Sales</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <form action="{{ route('sales.update', $sales->id) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Drive Kontrak</label>
+                                            <input type="file" value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
+                                                id="drive_kontrak" class="form-control" placeholder="Masukkan Unit Kerja"
+                                                required>
+                                            <small class="form-control-feedback"> @error('drive_kontrak')
+                                                    {{ $message }}
+                                                @enderror </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss>Batal</button>
+                                <button type="submit" class="btn btn-primary">Import</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -429,7 +469,7 @@
                                         <div class="form-group">
                                             <label>No SP/BA/Kontrak/Nokes/Amandemen</label>
                                             <input required name="no_sp" value="{{ $sales->no_sp }}" type="text"
-                                                pattern="[a-zA-Z0-9\-@]+" class="form-control">
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_sp')
                                                     {{ $message }}
@@ -651,12 +691,12 @@
                     Apakah anda ingin menghapus ....?
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="{{ route('sales.destroy', $sales->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <form action="{{ route('sales.destroy', $sales->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>
