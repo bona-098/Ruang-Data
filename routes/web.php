@@ -26,7 +26,7 @@ use App\Http\Controllers\DashboardController;
 // Route::get('/', function () {
 //     return view('dashboard');
 // });
-// Route::get('/chart', function () {
+// Route::get('/chart', function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 //     return view('chart');
 // });
 // Route::get('/bsrm', function () {
@@ -56,11 +56,11 @@ Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-Route::get('/ ', function () {
-    $sales = Sales::all();
-    return view('sales',['sales'=>$sales]);
-});
-Route::post('/', function () {
-    Excel::import(new SalesImport, request()->file('file'));
-    return back();
-});
+// Route::get('/ ', function () {
+//     $sales = Sales::all();
+//     return view('sales',['sales'=>$sales]);
+// });
+// Route::post('/', function () {
+//     Excel::import(new SalesImport, request()->file('file'));
+//     return back();
+// });

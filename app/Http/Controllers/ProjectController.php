@@ -17,7 +17,7 @@ class ProjectController extends Controller
         $project = Project::get();
         return view('project.index', compact('project'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -67,9 +67,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);  
+        // dd($project);
         return view ('project.detail', compact('project'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -90,7 +91,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project = Project::dinfOrFail($id);
+        $project = Project::findOrFail($id);
         $project->update([
             'customer' =>$request->customer,
             'id_crm' =>$request->id_crm,

@@ -129,7 +129,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Kode AMPM</label>
                                             <select required name="id_crm" class="form-control">
-                                                <option selected value="">{{ $project->id_crm }}</option>
+                                                <option selected value="{{ $project->id_crm }}">{{ $project->id_crm }}</option>
                                                 <option value="nlop">Non Lop</option>
                                                 <option value="lop">Lop</option>
                                             </select>
@@ -146,7 +146,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
                                             <select required name="witel" class="form-control">
-                                                <option selected value="">{{ $project->witel }}</option>
+                                                <option selected value="{{ $project->witel }}">{{ $project->witel }}</option>
                                                 <option value="Balikpapan">Balikpapan</option>
                                                 <option value="Samarinda">Samarinda</option>
                                                 <option value="Kalsel">Kalsel</option>
@@ -162,7 +162,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
                                             <select required name="kategori" class="form-control ">
-                                                <option selected value="">{{ $project->kategori }}</option>
+                                                <option selected value="{{ $project->kategori }}">{{ $project->kategori }}</option>
                                                 <option value="Exma">Exma</option>
                                                 <option value="Telkom">Telkom</option>
                                                 <option value="Telkom Group">Telkom Group</option>
@@ -230,7 +230,7 @@
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
                                             <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
-                                                readonly type="number" value="sisa_belum_akru" class="form-control">
+                                                readonly type="number" value="{{ $project->sisa_belum_akru }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
                                                     {{ $message }}
@@ -241,10 +241,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input required name="progres_ml" value="{{ $project->progress_ml }}" type="number"
+                                            <input required name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('progres_ml')
+                                                @error('progress_ml')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -253,10 +253,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input required name="progres_mi" value="{{ $project->progress_mi }}" type="number"
+                                            <input required name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
-                                                @error('progres_mi')
+                                                @error('progress_mi')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -312,7 +312,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Tahap</label>
                                             <select name="tahap" class="form-control">
-                                                <option selected value="">{{ $project->tahap }}</option>
+                                                <option selected value="{{ $project->tahap }}">{{ $project->tahap }}</option>
                                                 <option value="Co-OnHand ">Co-OnHand</option>
                                                 <option value="Komersial">Komersial</option>
                                                 <option value="OnHand">OnHand</option>
