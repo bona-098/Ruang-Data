@@ -36,9 +36,6 @@
                 stroke-miterlimit="10" />
         </svg>
     </div>
-
-
-
     <!-- Main wrapper  -->
     <div id="main-wrapper">
         <div class="header">
@@ -47,10 +44,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('template/images/logo.png') }}" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="{{ asset('template/images/bon.jpg') }}" height="50" width="40" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="{{ asset('template/images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
+                        <span>Ruang Data</span>
                     </a>
                 </div>
                 <!-- End Logo -->

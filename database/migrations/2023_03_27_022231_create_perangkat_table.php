@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('perangkat', function (Blueprint $table) {
             $table->id();
-            $table->string('no');
             $table->string('id_group');
             $table->string('id_area');
             $table->string('id_unit');
             $table->string('nama_unit');
             $table->string('id_witel');
             $table->string('nama_witel');
-            $table->string('id_location');
+            $table->string('id_lokasi');
             $table->string('nama_lokasi');
             $table->string('id_gedung');
             $table->string('nama_gedung');

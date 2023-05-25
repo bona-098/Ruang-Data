@@ -11,6 +11,8 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PerangkatController;
+use App\Http\Controllers\PerformanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,14 @@ use App\Http\Controllers\DashboardController;
 // Route::get('/', function () {
 //     return view('dashboard');
 // });
-// Route::get('/chart', function () {
+// Route::get('/chart', function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 //     return view('chart');
 // });
 // Route::get('/bsrm', function () {
 //     return view('Role.bsrm');
 // });
+Route::resource('/perangkat', PerangkatController::class);
+Route::resource('/performance', PerformanceController::class);
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
 Route::resource('/sales', SalesController::class);
@@ -56,11 +60,11 @@ Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-Route::get('/ ', function () {
-    $sales = Sales::all();
-    return view('sales',['sales'=>$sales]);
-});
-Route::post('/', function () {
-    Excel::import(new SalesImport, request()->file('file'));
-    return back();
-});
+// Route::get('/ ', function () {
+//     $sales = Sales::all();
+//     return view('sales',['sales'=>$sales]);
+// });
+// Route::post('/', function () {
+//     Excel::import(new SalesImport, request()->file('file'));
+//     return back();
+// });

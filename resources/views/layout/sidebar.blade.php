@@ -22,7 +22,7 @@
                 <li> <a class="" href="{{ route('project.index') }}"aria-expanded="false"><i
                             class="fa fa-wpforms"></i><span class="hide-menu">Project</span></a>
                 </li>
-                <li> <a class="" href="#" aria-expanded="false"><i
+                <li> <a class="" href="{{route('performance.index')}}" aria-expanded="false"><i
                             class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
 
 
@@ -47,7 +47,7 @@
                 <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
                 </li>
-                <li> <a class="" href="#" aria-expanded="false"><i
+                <li> <a class="" href="{{ route('perangkat.index') }}" aria-expanded="false"><i
                             class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
                 </li>
                 <li> <a class="" href="#" aria-expanded="false"><i

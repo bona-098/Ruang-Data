@@ -28,9 +28,6 @@
                                 {{-- <small class="form-control-feedback"> Select your gender </small> --}}
                             </div>
                         </div>
-                        <!--/span-->
-
-                        <!--/span-->
                         <div class="col-md-2">
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
@@ -41,7 +38,6 @@
                 </form>
             </div>
         </div>
-
         {{-- MEMFILTER DATA --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -55,7 +51,7 @@
                 </button>
                 <a button type="button" href="/" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Import Mitra
-                </button> </a>
+                    </button> </a>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class="table-responsive ">
@@ -80,12 +76,12 @@
                                     <td>{{ $m->kategori }}</td>
                                     <td>{{ $m->nilai_asses }}</td>
                                     <td>{{ $m->status }}</td>
-                                    <td>
-                                        <div class="dropdown">
+                                    <div class="dropdown">
+                                        <td>
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                <i class="fa fa-cog">Aksi</i>
+                                                <i class="fa fa-cog"> Aksi</i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="{{ route('mitra.edit', $m->id) }}"><i
@@ -100,8 +96,8 @@
                                                             class="fa fa-trash"></i> Hapus</button>
                                                 </form>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    </div>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -141,7 +137,7 @@
                                         <div class="form-group has-danger">
                                             <label class="control-label">domisili</label>
                                             <input type="text" id="domisili" name="domisili"
-                                                class="form-control form-control-danger" placeholder="Pitir Parkir">
+                                                class="form-control form-control-danger">
                                             {{-- <small class="form-control-feedback"> This field has error. </small> --}}
                                         </div>
                                     </div>
@@ -152,14 +148,14 @@
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">kategori</label>
-                                            <input type="text" id="kategori" name="kategori" class="form-control">
-                                            <small class="form-control-feedback"> </small>
+                                            <label for="status" class="control-label">Kategori</label>
+                                            <select class="form-control custom-select" id="status" name="status">
+                                                <option value="EKSISTING">EKSISTING</option>
+                                                <option value="Baru">Baru (BARU REGISTERED)</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <!--/span-->
 
-                                    <!--/row-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nilai Asses</label>
@@ -168,18 +164,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="status" class="control-label">Status</label>
-                                            <select class="form-control custom-select" id="status"
-                                                name="status">
-                                                <option value="belum menikah">Belum Menikah</option>
-                                                <option value="menikah">Menikah</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                               
 
                             </div>
                             <!--/row-->
@@ -194,7 +179,7 @@
         </div>
     </div>
 
-    <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
+    <!-- KONTEN MODAL TAMBAH MITRA  -->
 
     <!-- KONTEN MODAL UPDATE KARYAWAN  -->
     <div class="modal fade" id="ModalUpdateMitra" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -221,8 +206,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group has-danger">
                                             <label class="control-label">Domisili</label>
-                                            <input type="text" id="Domisili" class="form-control form-control-danger"
-                                                placeholder="Pitir Parkir">
+                                            <input type="text" id="Domisili"
+                                                class="form-control form-control-danger">
                                             {{-- <small class="form-control-feedback"> This field has error. </small> --}}
                                         </div>
                                     </div>
