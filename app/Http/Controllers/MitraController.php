@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mitra;
+use App\Models\Performance;
 use Illuminate\Http\Request;
 
 class MitraController extends Controller
