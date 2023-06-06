@@ -89,6 +89,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- @if (count($gedung)>0) --}}
+                            
                         @foreach ($gedung as $g)
                         <tr>
                             <td>1</td>
@@ -103,6 +105,9 @@
                             <td>4</td>
                         </tr>       
                         @endforeach
+                        {{-- @else --}}
+                        {{-- <p>gada data</p> --}}
+                        {{-- @endif --}}
                     </tbody>
                 </table>
             </div>

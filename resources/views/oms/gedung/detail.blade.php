@@ -53,7 +53,7 @@
                                     <th>Action</th>
                                 </tr>
  
-                                @foreach ($personil->where('gedung_id', '1') as $pe)                                    
+                                @foreach ($personil as $pe)                                    
                                 <tr>
                                     <td>{{ $pe->id }}</td>
                                     <td>{{ $pe->nama }}</td>
@@ -97,8 +97,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('gedung.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <form action="" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <div class="form-body">
                                 <!--/row-->
                                 <div class="row">
@@ -106,8 +107,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Area</label>
-                                            <select required name="area" class="form-control custom-select">
-                                                <option value="">Pilih Area</option>
+                                            <select required name="nama_area" class="form-control custom-select">
+                                                <option value="{{ $gedung->nama_area }}">{{ $gedung->nama_area }}</option>
                                                 <option value="Balikpapan">Balikpapan</option>
                                                 <option value="Kalimatan Timur">Kalimantan Timur</option>
                                                 <option value="Kalimatan Selatan">Kalimantan Selatan</option>
@@ -125,8 +126,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
-                                            <select required name="area" class="form-control custom-select">
-                                                <option value="">Pilih Witel</option>
+                                            <select required name="nama_witel" class="form-control custom-select">
+                                                <option value="{{ $gedung->nama_witel }}">{{ $gedung->nama_witel }}</option>
                                                 <option value="Witel Balikpapan">Witel Balikpapan</option>
                                                 <option value="Witel Samarinda">Witel Samarinda</option>
                                                 <option value="Witel Kaltara">Witel Kaltara</option>
@@ -146,7 +147,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nama Gedung</label>
-                                            <input required type="text" required name="nama_gedung"
+                                            <input required type="text" value="{{ $gedung->nama_gedung }}" name="nama_gedung"
                                                 class="form-control">
                                             <small class="form-control-feedback"> @error('nama_gedung')
                                                     {{ $message }}
@@ -158,7 +159,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Alamat</label>
-                                            <input required type="text" required name="alamat" class="form-control">
+                                            <input required type="text" value="{{ $gedung->alamat }}" name="alamat" class="form-control">
                                             <small class="form-control-feedback"> @error('alamat')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -169,7 +170,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Koordinat</label>
-                                            <input required type="text" required name="koordinat"
+                                            <input required type="text" value="{{ $gedung->koordinat }}" required name="koordinat"
                                                 class="form-control">
                                             <small class="form-control-feedback"> @error('koordinat')
                                                     {{ $message }}
@@ -260,8 +261,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">id gedung</label>
-                                            <input required type="text" required name="gedung_id" class="form-control">
+                                            {{-- <label class="control-label">...</label> --}}
+                                            <input required type="hidden" value="{{ $gedung->id }}" required name="gedung_id" class="form-control">
                                             <small class="form-control-feedback"> @error('gedung_id')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -383,7 +384,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form method="POST" id="delete-form">
+                    <form action="{{ route('gedung.destroy', $gedung->id) }}" method="POST" id="delete-form">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>

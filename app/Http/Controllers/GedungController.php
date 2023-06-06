@@ -15,7 +15,7 @@ class GedungController extends Controller
      */
     public function index()
     {
-        $gedung = Gedung::get();        
+        $gedung = Gedung::get();
         return view('oms.gedung.index', compact('gedung'));
     }
 
@@ -66,7 +66,7 @@ class GedungController extends Controller
     public function show($id)
     {
         $gedung = Gedung::findOrfail($id);
-        $personil = Personil::where('gedung_id', $selectedgedung_id)->get();
+        $personil = Personil::where('gedung_id', $id)->get();
         return view('oms.gedung.detail', compact('gedung', 'personil'));
     }
 
@@ -90,7 +90,29 @@ class GedungController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_area' => 'required',
+            'nama_witel' => 'required',
+            'alamat' => 'required',
+            'nama_gedung' => 'required',
+            'koordinat' => 'required',
+            // 'total_petugas' => 'required',
+        ]);
+        $gedung = Gedung::find($id);
+        if (!$gedung) {
+            return redirect()->back()->with('error', 'data salah');
+        }
+        // $gedung = Gedung::find($id);
+        $gedung->update([
+            'nama_area' => $request->nama_area,
+            'nama_witel' => $request->nama_witel,
+            'alamat' => $request->alamat,
+            'nama_gedung' => $request->nama_gedung,
+            'koordinat' => $request->koordinat,
+            // 'total_petugas' => $request->total_petugas,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -101,6 +123,8 @@ class GedungController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gedung = Gedung::findOrfail($id);
+        $gedung->delete();
+        return redirect()->route('gedung.index');
     }
 }

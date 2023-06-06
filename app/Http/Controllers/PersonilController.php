@@ -87,7 +87,7 @@ class PersonilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
