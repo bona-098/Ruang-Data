@@ -41,7 +41,7 @@
                 <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
                             class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
                 </li>
-                <li> <a class="" href="#" aria-expanded="false"><i
+                <li> <a class="" href="{{ route('gedung.index') }}" aria-expanded="false"><i
                             class="fa fa-dropbox"></i><span class="hide-menu">Data Gudang</span></a>
                 </li>
                 <li> <a class="" href="#" aria-expanded="false"><i

@@ -374,6 +374,8 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -387,8 +389,7 @@
                             <button type="button" class="btn btn-inverse">Cancel</button>
                         </div> --}}
             </div>
-        </div>
-    </div>
+       
 
     <script>
         var inputA = document.getElementById("nilai_project");

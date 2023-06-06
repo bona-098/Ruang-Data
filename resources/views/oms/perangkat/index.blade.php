@@ -536,12 +536,12 @@
                                                 <small class="form-control-feedback"> @error('id_perangkat')
                                                         {{ $message }}
                                                     @enderror </small>
+                                                </div>
                                             </div>
                                         </div>
-                                        <!--/span-->
-
                                     </div>
                                 </div>
+                            </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -552,7 +552,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+       
         <!-- Modal Import -->
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
             aria-hidden="true">

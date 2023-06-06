@@ -59,8 +59,8 @@
                         <i class="fa fa-user-plus"></i> Tambah Data 
                     </button>
                     <table  id="example23" class="table table-responsive table-bordered">
-                        <thead>
-                            <tr>
+                        <thead> 
+                            <tr> 
                                 <th>Action</th>
                                 <th>Kategori</th>
                                 <th>Bulan/Tahun</th>
@@ -74,7 +74,7 @@
                                         {{-- <div class=" text-center"> --}}
                                             <button type="button" class=" btn btn-primary " id="dropdownMenuButton"
                                             data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                            Action
+                                             Action
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('performance.edit', $p->id) }}"><i
