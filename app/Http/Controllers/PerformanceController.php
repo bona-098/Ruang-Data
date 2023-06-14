@@ -127,8 +127,9 @@ class PerformanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Performance $performance)
+    public function destroy($id)
     {
+        $performance = Performance::findOrFail($id);
         $performance->delete();
         return redirect()->back();
     }

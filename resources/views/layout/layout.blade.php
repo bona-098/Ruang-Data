@@ -19,7 +19,12 @@
     <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css"  >
-    
+    <style>
+        .left-align {
+          text-align: left;
+          white-space: pre-line;
+        }
+      </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -44,10 +49,11 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('template/images/bon.jpg') }}" height="50" width="40" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="/template/images/logo.png" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span>Ruang Data</span>
+                        {{-- <span><img src="/template/images/logo-telkomproperty.png" height="13" width="72" alt="homepage" class="dark-logo" /></span> --}}
+                        <span>Regional 6</span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -60,15 +66,15 @@
                         <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  "
                                 href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                         <!-- Search -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  "
+                        {{-- <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  "
                                 href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
                                 <input type="text" class="form-control" placeholder="Search here"> <a
                                     class="srh-btn"><i class="ti-close"></i></a>
                             </form>
-                        </li>
+                        </li> --}}
                         <!-- Language -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
                             <div class="dropdown-menu animated zoomIn">
@@ -79,9 +85,9 @@
                                 <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a>
                                 <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- Messages -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  "
+                        {{-- <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  "
                                 href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fa fa-th-large"></i></a>
                             <div class="dropdown-menu animated zoomIn">
@@ -155,7 +161,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- End Messages -->
                     </ul>
                     <!-- User profile and search -->
@@ -292,7 +298,7 @@
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ asset('images/users/5.jpg') }}"
+                                aria-haspopup="true" aria-expanded="false"><img src="template/images/users/5.jpg "
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
@@ -509,7 +515,8 @@
     <script src="{{ asset('template/') }}/js/lib/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('template/') }}/js/lib/bootstrap/js/popper.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script> --}}
+    {{-- Bisa Klik Modal Tapi tidak bisa nutup modal --}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{ asset('template/') }}/js/jquery.slimscroll.js"></script>
     <!--Menu sidebar -->
@@ -545,18 +552,20 @@
     </script>
 
     <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script> 
+    </script>  --}}
 
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+     {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
+    </script> --}}
 
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+    </script> 
+
+{{-- Gak bisa klik modal dropdown tapi bisa nutup modal --}}
 
 {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
    {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}

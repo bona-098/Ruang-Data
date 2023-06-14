@@ -295,41 +295,34 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Petugas</h5>
-
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('gedung.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                        <form action="" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }} 
                             <div class="form-body">
-                                <!--/row-->
                                 <div class="row">
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nama Petugas</label>
-                                            <input required type="text" required name="nama_petugas"
+                                            <input required type="text" value="{{ $gedung->nama }}" name="nama"
                                                 class="form-control">
-                                            <small class="form-control-feedback"> @error('nama_petugas')
+                                            <small class="form-control-feedback"> @error('nama')
                                                     {{ $message }}
-                                                @enderror </small>
+                                                @enderror </small> 
                                         </div>
                                     </div>
-                                    <!--/span-->
-
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nomor Telepon</label>
-                                            <input required type="text" required name="nomor_telpon"
+                                            <input required type="text" required name="telepon"
                                                 class="form-control">
-                                            <small class="form-control-feedback"> @error('nama_telpon')
+                                            <small class="form-control-feedback"> @error('telepon')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nik</label>
@@ -339,8 +332,6 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Email</label>
@@ -350,17 +341,11 @@
                                                 @enderror </small>
                                         </div>
                                     </div>
-                                    <!--/span-->
-
-                                    <!--/span-->
-
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-
                             </div>
                         </form>
                     </div>

@@ -1,5 +1,8 @@
 @extends('layout.layout')
 @section('content')
+    @php
+        use App\Http\Cotrollers\PerformanceController;
+    @endphp
     <section class="content">
         <div class="container-fluid">
             {{-- Filter Tabel --}}
@@ -56,11 +59,11 @@
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPerformance"
                         style="margin-bottom: 10px">
-                        <i class="fa fa-user-plus"></i> Tambah Data 
+                        <i class="fa fa-user-plus"></i> Tambah Data
                     </button>
-                    <table  id="example23" class="table table-responsive table-bordered">
-                        <thead> 
-                            <tr> 
+                    <table id="example23" class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
                                 <th>Action</th>
                                 <th>Kategori</th>
                                 <th>Bulan/Tahun</th>
@@ -72,27 +75,30 @@
                                 <tr>
                                     <td style="vertical-align: middle; padding-top: 10px;">
                                         {{-- <div class=" text-center"> --}}
-                                            <button type="button" class=" btn btn-primary " id="dropdownMenuButton"
+                                        <button type="button" class=" btn btn-primary " id="dropdownMenuButton"
                                             data-toggle="dropdown"><i class="fa fa-cog"></i>
-                                             Action
+                                            Action
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('performance.edit', $p->id) }}"><i
-                                                class="fa fa-edit"></i> Update</a>
-                                            <form action="{{ route('performance.destroy', $p->id) }}" method="POST">
+                                                    class="fa fa-edit"></i> Update</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#ModalDelete{{ $p->id }}"
+                                                    href="#">Delete</a>
+                                            {{-- <form action="{{ route('performance.destroy', $p->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="dropdown-item" type="submit"
                                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                         class="fa fa-trash"></i> Hapus</button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                         {{-- </div> --}}
                                     </td>
                                     <td style="vertical-align: middle; padding-top: 10px;">{{ $p->kategori }}</td>
-                                    <td style="vertical-align: middle; padding-top: 10px;">{{ $p->bulan }} / {{ $p->tahun }} </td>
-                                    <td><a href="{{ asset('images/performance/'. $p->foto) }}" target="_blank">
-                                    <img src="{{ asset('images/performance/'. $p->foto) }}" alt=""></a></td>
+                                    <td style="vertical-align: middle; padding-top: 10px;">{{ $p->bulan }} /
+                                        {{ $p->tahun }} </td>
+                                    <td><a href="{{ asset('images/performance/' . $p->foto) }}" target="_blank">
+                                            <img src="{{ asset('images/performance/' . $p->foto) }}" alt=""></a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -111,7 +117,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Data Performance</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                                aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="card-body">
@@ -137,7 +143,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Tahun</label>
-                                                <input name="tahun" id="tahun" required type="number" class="form-control" min="1900" max="{{ date('Y') }}">
+                                                <input name="tahun" id="tahun" required type="number"
+                                                    class="form-control" min="1900" max="{{ date('Y') }}">
                                                 <small class="form-control-feedback">
                                                     @error('tahun')
                                                         {{ $message }}
@@ -177,8 +184,8 @@
                                             <div class="foto">Gambar</div>
                                             <div class="value">
                                                 <input type="file" name="foto">
-                                                <div class="label--desc">pilih gambar</div>   
-                                            </div>                                            
+                                                <div class="label--desc">pilih gambar</div>
+                                            </div>
                                         </div>
                                         <!--/span-->
                                     </div>
@@ -194,27 +201,31 @@
             </div>
         </div>
 
-         
-      {{-- KONTEN MODAL DELETE Customer --}}
 
-    <div class="modal fade" id="ModalDeletePerformance" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Apakah anda ingin menghapus ....?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+        {{-- KONTEN MODAL DELETE Customer --}}
+        @foreach ($performance as $p)            
+        <div class="modal fade" id="ModalDelete{{ $p->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah anda ingin menghapus ....?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
+                        <form action="{{ route('performance.destroy', $p->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+        @endforeach
     </section>
-@endsection
+    @endsection

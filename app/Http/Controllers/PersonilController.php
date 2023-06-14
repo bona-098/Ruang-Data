@@ -87,7 +87,25 @@ class PersonilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $request->validate([
+            'nama' => 'required',
+            'telepon' => 'required',
+            'nik' => 'required',
+            'email' => 'required',
+            // 'gedung_id' => 'required',
+        ]);
+        $personil = Personil::find($id);
+        if(!$personil) {
+            return redirect()->back()->with('error', 'datasalah');
+        }
+        $personil->update([
+            'nama' => $request->nama,
+            'telepon' => $request->telepon,
+            'nik' => $request->nik,
+            'email' => $request->email,
+            // 'gedung_id' => $request->gedung_id,
+        ]);
+        return redirect()->back();
     }
 
     /**
