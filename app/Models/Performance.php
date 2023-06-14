@@ -13,6 +13,7 @@ class Performance extends Model
     'kategori',
     'tahun',
     'bulan',
+    'area',
     'foto'
     ];
 }
