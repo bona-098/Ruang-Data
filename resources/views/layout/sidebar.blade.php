@@ -50,6 +50,9 @@
                 <li> <a class="" href="{{ route('perangkat.index') }}" aria-expanded="false"><i
                             class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
                 </li>
+                <li> <a class="" href="{{ route('tambah-user.index') }}" aria-expanded="false"><i
+                            class="fa fa-tv"></i><span class="hide-menu">Data Pengguna</span></a>
+                </li>
                 {{-- <li> <a class="" href="#" aria-expanded="false"><i
                             class="fa fa-user-secret"></i><span class="hide-menu">Kategori karyawan tes satu
                             dua</span></a>

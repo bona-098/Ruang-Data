@@ -307,8 +307,14 @@
                                     <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li role="separator" class="divider"></li> 
+                                    <li>
+                                        <form action="{{route('logout')}}" method="post">
+                                            @csrf
+                                            {{-- <a>logout</a> --}}
+                                            <button type="submit" class="btn btn-transparent">logout<i class="bi bi-arrow-right-square-fill"></i></button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -573,3 +579,4 @@
 </body>
 
 </html>
+@include('layout.grafik')

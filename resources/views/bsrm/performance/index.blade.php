@@ -22,6 +22,16 @@
                             <select id="filter3" class="form-control">
                                 <option value="Pilih Tahub">Pilih Tahun</option>
                             </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="filter1">Area:</label>
+                            <select id="filter1" class="form-control">
+                                <option value="">Pilih Area</option>
+                                <option value="Balikpapan">Balikpapan</option>
+                                <option value="Kalimantan Timur">kalimantan Timur</option>
+                                <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                <option value="Kalimantan Barat">Kalimantan Barat</option>
+                            </select>
                         </div>                       
                         <div class="col-md-2">
                             <label for="bulan">Bulan:</label>
@@ -85,14 +95,8 @@
                                                 href="{{ route('performance.edit', $p->id) }}"><i
                                                 class="fa fa-edit"></i> Update</a>
                                             <a class="dropdown-item" data-toggle="modal" data-target="#ModalDelete{{ $p->id }}"
-                                                    href="#">Delete</a>
-                                            {{-- <form action="{{ route('performance.destroy', $p->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="dropdown-item" type="submit"
-                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                        class="fa fa-trash"></i> Hapus</button>
-                                            </form> --}}
+                                                    href="#"><i
+                                                    class="fa fa-trash"></i> Delete</a>
                                         </div>
                                         {{-- </div> --}}
                                     </td>
@@ -134,7 +138,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Pilih Kategori</label>
                                                 <select required name="kategori" id="kategori" class="form-control">
-                                                    <option value="">{{ $p->kategori }}</option>
+                                                    <option value="">Pilih Kategori</option>
                                                     <option value="Financial">Financial</option>
                                                     <option value="Outlook Q2">Outlook Q2</option>
                                                 </select>
@@ -148,8 +152,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Pilih Area</label>
-                                                <select id="filter1" class="form-control">
-                                                    <option value="">{{ $p->area }}</option>
+                                                <select id="area" name="area" class="form-control">
+                                                    <option value="">Pilih Area</option>
                                                     <option value="Balikpapan">Balikpapan</option>
                                                     <option value="Kalimantan Timur">kalimantan Timur</option>
                                                     <option value="Kalimantan Selatan">Kalimantan Selatan</option>
@@ -166,7 +170,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tahun</label>
                                                 <input name="tahun" id="tahun" required type="number"
-                                                    class="form-control" min="1900" placeholder="{{ $p->tahun }}" max="{{ date('Y') }}">
+                                                    class="form-control" min="1900" max="{{ date('Y') }}">
                                                 <small class="form-control-feedback">
                                                     @error('tahun')
                                                         {{ $message }}
@@ -179,7 +183,7 @@
                                             <div class="form-group">
                                                 <label for="bulan">Bulan:</label>
                                                 <select id="bulan" name="bulan" class="form-control">
-                                                    <option value="">{{ $p->bulan }}</option>
+                                                    <option value="">Pilih Bulan</option>
                                                     <option value="januari">Januari</option>
                                                     <option value="februari">Februari</option>
                                                     <option value="maret">Maret</option>
@@ -197,31 +201,19 @@
                                                         {{ $message }}
                                                     @enderror </small>
                                             </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="filter1">Area:</label>
-                                            <select id="filter1" class="form-control">
-                                                <option value="">Pilih Area</option>
-                                                <option value="Balikpapan">Balikpapan</option>
-                                                <option value="Kalimantan Timur">kalimantan Timur</option>
-                                                <option value="Kalimantan Selatan">Kalimantan Selatan</option>
-                                                <option value="Kalimantan Barat">Kalimantan Barat</option>
-                                            </select>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <!--/row-->
                                     <div class="row">
-                                        <!--/span-->
                                         <div class="col-md-6">
-                                            {{-- <div class="foto">Gambar</div>
+                                            <div class="foto">Gambar</div>
                                             <div class="value">
                                                 <input type="file" name="foto">
                                                 <div class="label--desc">pilih gambar</div>
-                                            </div> --}}
-                                            <label for="foto">Gambar</label>
-                                            <input type="file" class="form-control-file" id="foto" name="foto">
+                                            </div>
+                                            {{-- <label for="foto">Gambar</label>
+                                            <input type="file" class="form-control-file" id="foto" name="foto"> --}}
                                         </div>
-                                        <!--/span-->
                                     </div>
                                 </div>
                                 <div class="modal-footer">

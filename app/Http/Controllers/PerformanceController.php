@@ -40,8 +40,8 @@ class PerformanceController extends Controller
     {
         $this->validate($request, [
             'kategori' =>'required',
-            'bulan' =>'required',
             'tahun' =>'required',
+            'bulan' =>'required',
             'area' =>'required',
             'foto' =>'required|file|image|mimes:jpg,img,pjeg,png,gif|max:50000'
         ]);
@@ -49,8 +49,8 @@ class PerformanceController extends Controller
         $request->file('foto')->move(public_path('images/performance'), $newnamefoto);
         Performance::create([
             'kategori' =>$request->kategori,
-            'bulan' =>$request->bulan,
             'tahun' =>$request->tahun,
+            'bulan' =>$request->bulan,
             'area' =>$request->area,
             'foto' => $newnamefoto
         ]);
@@ -96,9 +96,9 @@ class PerformanceController extends Controller
             'tahun' => 'required',
             'bulan' => 'required',
             'area' => 'required',
-            'foto' => 'file|mimes:jpg,img,pjeg,png,gif|max:50000'
+            'foto' => 'file|mimes:jpg,img,jpeg,png,gif|max:50000'
         ]);       
-        $performance = Performance::find($id);
+        $performance = Performance::findOrFail($id);
         $performance->kategori = $request->kategori;
         $performance->tahun = $request->tahun;
         $performance->bulan = $request->bulan;
