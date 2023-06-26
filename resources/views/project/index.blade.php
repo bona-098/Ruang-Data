@@ -50,12 +50,21 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2" style="padding-top: 5px;">
+                    <div class="col-md-2">
+                        <label for="filter4">Akru:</label>
+                        <select id="filter4" class="form-control">
+                            <option value="All">All</option>
+                            <option value="Sudah Akru">Sudah Akru</option>
+                            <option value="Belum AKru">Sisa Akru</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-1" style="padding-top: 5px;">
                         <label for="filter5"> </label>
                         <button type="submit" class=" form-control btn-success"> <i class="fa fa-filter"></i>
                             Filter</button>
                     </div>
-                    <div class="col-md-2" style="padding-top: 5px;">
+                    <div class="col-md-1" style="padding-top: 5px;">
                         <label for="filter5"> </label>
                         <button type="button" class=" form-control btn-success">Reset</button>
                     </div>
@@ -73,13 +82,13 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
                     <i class="fa fa-user-plus"></i> Tambah Data
                 </button>
-                <a button type="button" href="/" class="btn btn-primary">
+                <a button type="button" href="/projek" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Import Data
                     </button> </a>
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
 
-                <div class="table-responsive">
-                <table text-align: left; id="myTable" class="table display table-bordered table-striped">
+                {{-- <div class="table-responsive"> --}}
+                <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -106,7 +115,7 @@
                     <tbody>
                         @foreach ($project as $p)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
                                     <div class=" text-center">
                                         <a href="{{ route('project.show', $p->id) }}" class="btn btn-primary">Detail</a>
@@ -135,7 +144,7 @@
 
                     </tbody>
                 </table>
-                </div>
+                {{-- </div> --}}
             </div>
             <!-- /# column -->
         </div>

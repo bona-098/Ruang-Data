@@ -19,12 +19,7 @@
     <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css"  >
-    <style>
-        .left-align {
-          text-align: left;
-          white-space: pre-line;
-        }
-      </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -302,19 +297,13 @@
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="/profile"><i class="ti-user"></i> Profile</a></li>
                                     <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
                                     <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
-                                    <li role="separator" class="divider"></li> 
-                                    <li>
-                                        <form action="{{route('logout')}}" method="post">
-                                            @csrf
-                                            {{-- <a>logout</a> --}}
-                                            <button type="submit" class="btn btn-transparent">logout<i class="bi bi-arrow-right-square-fill"></i></button>
-                                        </form>
-                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -344,168 +333,7 @@
 
              @yield('content')
         </div>
-        <div class="modal fade" id="ModalDetailCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Detail</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive ">
-                            <table style="text-align: left;" class="table table-bordered ">
-                                {{-- <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Kolom 1</th>
-                                    </tr>
-                                </thead> --}}
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">No</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Unit Kerja</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Status Revenue</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Customer</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Segment</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nama Project</th>
-                                        <td>Perjanjian Sewa Menyewa Lahan Untuk Pemasangan Dan Penempatan Menara Telekomunikasi Bersama Dan Fasilitas Penunjangnya Tanah Kosong Untuk H3I
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Lokasi/Gedung</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Jenis Pekerjaan</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Portofolio</th>
-                                        <td>BUSINESS SUPPORT & RISK MANAGEMENT REGIONAL VI ( Balikpapan )</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Progress Project</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Status Project</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Proses Pendekatan Customer</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Visit</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">SPH</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">BAKN</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">SPK/PO/PKS</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Masa Project (Bulan)</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Jumlah Man Power/Unit/Luas</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tanggal SP/BA/Kontrak/Nokes/Amandemen</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nomor SP/BA/Kontrak/Nokes/Amandemen</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Jenis Kontrak</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tanggal Mulai Project</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Tanggal Akhir Project</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Sisa Kontrak</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nilai Total Project (Sebelum PPN)</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nilai Project Per Tahun (Sebelum PPN)</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nilai Project Per bulan (Sebelum PPN)</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nama Key Contact Client</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Jabatan PIC Client</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">No HP PIC Client</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nama AM/PIC GSD Handle Project2</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Drive Kontrak</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Amandemen</th>
-                                        <td>Data 4</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Keterangan</th>
-                                        <td>Pembayaran dilakukan per 5 tahun. Tahun Pertama : 10.152.000.000 Tahun Kedua : 8.290.800.000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <!-- End Container fluid  -->
         <!-- footer -->
         <footer class="footer"> © 2018 All rights reserved. Template designed by <a
@@ -518,7 +346,8 @@
 
     <!-- End Wrapper -->
     <!-- All Jquery -->
-    <script src="{{ asset('template/') }}/js/lib/jquery/jquery.min.js"></script>
+    {{-- <script src="{{ asset('template/') }}/js/lib/jquery/jquery.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('template/') }}/js/lib/bootstrap/js/popper.min.js"></script>
     {{-- <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script> --}}
@@ -531,7 +360,7 @@
     <script src="{{ asset('template/') }}/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
     <script src="{{ asset('template/') }}/js/lib/chart-js/Chart.bundle.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init.js"></script>
+    <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init-demo.js"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('template/') }}/js/custom.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables.min.js"></script>
@@ -577,6 +406,5 @@
    {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
  {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
 </body>
-
-</html>
 @include('layout.grafik')
+</html>

@@ -55,7 +55,7 @@
     <title>Login</title>
     <style>
         body {
-            background: url("{{ asset('template/images/login.jpeg') }}") no-repeat center center fixed;
+            background: url("{{ asset('template/images/bg-login.jpg') }}") no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
             display: flex;
@@ -87,7 +87,7 @@
     <div class="container">
         <div class="glass-login-container mx-auto">
             <img class="logo" src="https://source.unsplash.com/random" alt="Logo">
-            <h2 class="text-center">Sistem Informasi<br>Telkom Property</h2>
+            <h2 class="text-center">Ruang Data<br>Telkom Property</h2>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @method('POST')

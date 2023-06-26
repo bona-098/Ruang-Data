@@ -93,7 +93,7 @@
     <div class="container">
         <div class="glass-login-container mx-auto">
             <img class="logo" src="https://source.unsplash.com/random" alt="Logo">
-            <h2 class="text-center">Sistem Informasi<br>Telkom Property</h2>
+            <h2 class="text-center">Ruang Data<br>Telkom Property</h2>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">

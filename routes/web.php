@@ -2,8 +2,10 @@
 
 use App\Models\Mitra;
 use App\Models\Sales;
+use App\Models\Project;
 use App\Imports\MitraImport;
 use App\Imports\SalesImport;
+use App\Imports\ProjectImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
@@ -13,18 +15,18 @@ use App\Http\Controllers\MitraController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\ProjectController;
+
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PersonilController;
-
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PerangkatController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
@@ -113,6 +115,7 @@ Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
 Route::resource('/sales', SalesController::class);
 Route::resource('/project', ProjectController::class);
+// Route::get('/project', [ProjectController::class], 'grafik');
 Route::resource('/dashboard', DashboardController::class);
 Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
 Route::get('/costumer', function () {
@@ -125,21 +128,38 @@ Route::get('/nlop', function () {
     return view('psd.nlop');
 });
 
+// Route::get('/detail_grafik', function () {
+//     return view('project.detail_grafik');
+// });
+//import mitra
 Route::get('/import-mitra', function () {
     $mitra = Mitra::all();
     return view('mitras',['mitra'=>$mitra]);
 });
 Route::post('/mitras', function () {
+    Excel::import(new MitraImport, request()->file('file'));
+    return back();
+});
+
+//import sales
+Route::get('/salees', function () {
+    $sales = Sales::all();
+    return view('salees',['sales'=>$sales]);
+});
+Route::post('/salees', function () {
     Excel::import(new SalesImport, request()->file('file'));
     return back();
 });
 
-Route::get('/sales-import', function () {
-    $sales = Sales::all();
-    return view('sales',['sales'=>$sales]);
+Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
+
+//import project
+Route::get('/projek', function () {
+    $project = Project::all();
+    return view('projek',['project'=>$project]);
 });
-Route::post('/sales-import', function () {
-    Excel::import(new SalesImport, request()->file('file'));
+Route::post('/projek', function () {
+    Excel::import(new ProjectImport, request()->file('file'));
     return back();
 });
 // Auth::routes();

@@ -123,8 +123,10 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
                     <i class="fa fa-user-plus"></i> Tambah Sales
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i
-                        class="fa fa-plus"></i> Import Sales</button>
+                <a button type="button" href="/salees" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Import Sales</button> </a>
+                <a button type="button" href="{{ route('sales.export') }}" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Export</button> </a>
                 <table text-align: left; id="myTable" class="table display table-bordered table-striped">
                     <thead>
                         <tr>
