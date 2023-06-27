@@ -7,7 +7,7 @@
                 <h3 class="card-title">Detail Data Perangkat Id : </h3>
                 <button type="button" class=" btn btn-primary" id="dropdownMenuButton"
                     data-toggle="dropdown"><i class="fa fa-cog"></i>
-                    action
+                    Action
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdatePerangkat" href="#">Edit</a>

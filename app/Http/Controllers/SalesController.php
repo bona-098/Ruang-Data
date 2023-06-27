@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Exports\CollectionExport;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -48,6 +51,48 @@ class SalesController extends Controller
     {
         session()->forget('filter');
         return redirect()->back();
+    }
+
+    public function export()
+    {
+        try {
+            $sales = Sales::all();
+
+            if ($sales->isEmpty()) {
+                return redirect()->back()->with('error', 'Tidak ada data yang diekspor.');
+            }
+
+            $exportSales = [];
+
+            foreach ($sales as $item) {
+                $exportSales[] = [
+                    'unit_kerja' => $item->unit_kerja ?? '',
+                    // 'Unit Kerja' => $item->unit_kerja ?? '',
+                    // tambahkan properti lainnya sesuai kebutuhan
+                ];
+            }
+
+            $fileName = 'sales_export.xlsx';
+
+            $excel = new Excel();
+            $excel->store(new class($exportSales) implements FromCollection {
+                private $sales;
+
+                public function __construct($sales)
+                {
+                    $this->sales = $sales;
+                }
+
+                public function collection()
+                {
+                    return collect($this->sales);
+                }
+            }, $fileName, 'public');
+
+            return $excel->download($fileName, \Maatwebsite\Excel\Excel::XLSX);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengexport data: ' . $e->getMessage());
+        }
     }
     /**
      * Show the form for creating a new resource.

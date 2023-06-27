@@ -5570,9 +5570,9 @@ tbody tr td:last-child {
 .cpu-load-data li:last-child {
   border-right: 0px;
 }
-#barChart {
-  height: 400px!important;
-}
+/* #barChart {
+  height: 600px!important;
+} */
 .nestable-cart {
   overflow: hidden;
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kategori')->nullable();
             $table->string('tahun')->nullable();
             $table->string('bulan')->nullable();
+            $table->string('area')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });

@@ -1,7 +1,5 @@
 @extends('layout.layout')
 @section('content')
-    <!-- End Bread crumb -->
-    <!-- Container fluid  -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
@@ -39,7 +37,7 @@
                             <span><i class="fa fa-users f-s-40 color-warning"></i></span>
                         </div>
                         <div class="media-body media-text-right">
-                            <h2>{{ $karyawan->count() }}</h2>
+                            <h2>1231</h2>
                             <p class="m-b-0">Karyawan</p>
                         </div>
                     </div>
@@ -59,33 +57,82 @@
                 </div>
             </div>
         </div>
-
         {{-- Selesai --}}
-        <div class="row">
-            <div class="col-sm-12 col-md-7 ">
-                <div class="card">
-                    <div class="card-title">
-                        <h4>Yearlyssss Sales </h4>
-                    </div>
-                    <div class="sales-chart">
-                        <canvas id="sales-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- /# column -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Pie chart</h4>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Project</h1>
+                <div class="row">
+                    <!-- Bar Chart -->
+                    <div class="col-lg-12 col-md-5">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4>Target VS Realisasi</h4>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="barChart"></canvas>
+                            </div>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <canvas id="pieChart"></canvas>
+                </div>
+                <!-- /# column -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Project</h1>
+                <div class="row">
+                    <!-- Bar Chart -->
+                    <div class="col-lg-12 col-md-5">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4>Jumlah VS Sudah VS Belum</h4>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="barChart2"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Total Nilai Project</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="pieChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Belum Akru</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="pieChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
+        <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="card">
                     <div class="panel">
@@ -172,22 +219,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Pie Chart -->
-            {{-- <div class="col-sm-6 col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Pie chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="pieChart"></canvas>
-                    </div>
-                </div>
-            </div> --}}
         </div>
         <div class="row">
-            <!-- Bar Chart -->
+            <!-- Bar Chart 3 batang -->
             <div class="col-sm-11 col-md-6">
                 <div class="card">
                     <div class="panel">
@@ -202,7 +236,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Bar Chart -->
             <div class="col-sm-11 col-md-6">
                 <div class="card">
@@ -218,60 +251,116 @@
                     </div>
                 </div>
             </div>
-            <!-- Radar Chart -->
-            {{-- <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Rader chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="radarChart"></canvas>
-                    </div>
-                </div>
-            </div> --}}
         </div>
-        {{-- <div class="row">
-            <!-- Doughnut Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Doughut chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="doughutChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Polar Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Polar chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="polarChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Bar Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Single Bar Chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="singelBarChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
+    <script type="text/javascript">
+        // bar chart
+        var ctx = document.getElementById("barChart");
+        //    ctx.height = 200;
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July", "Agustus", "September",
+                    "Oktober", "November", "Desember"
+                ],
+                datasets: [{
+                        label: "Target",
+                        data: [200, 2368, 6903, 13754, 19187, 25746, 35271, 42273, 49091, 62615, 80553, 110512],
+                        borderColor: "rgba(0, 123, 255, 0.9)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0, 123, 255, 0.5)"
+                    },
+                    {
+                        label: "Realisasi",
+                        data: [710, 15115, 14856, 20572, 28117, 0, 0, 0, 0, 0, 0, 0],
+                        borderColor: "rgba(64, 64, 64, 1.0)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0,0,0,0.07)"
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                onClick: function(event, elements) {
+                    if (elements.length > 0) {
+                        var index = elements[0].index;
+                        var data = myChart.data.datasets[1].data[index];
+                        // Misalnya, mengambil data dari dataset pertama
+                        // Tampilkan data di dalam modal
+                        document.getElementById("modalData").innerHTML = "Data: " + data;
+                        $('#dataModal').modal('show');
+                    }
+                }
+            }
+        });
+        //Barchart2
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("barChart2");
+            var telkomAkru = {!! json_encode($telkomAkru) !!};
+            var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            var exmaAkru = {!! json_encode($exmaAkru) !!};
+            var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Telkom", "Telkom Group", "Enterprise"],
+                    datasets: [{
+                            label: "Nilai Project",
+                            data: [telkomAkru, telkomGroupAkru, enterpriseAkru],
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                        },
+                        {
+                            label: "Sudah Akru",
+                            data: [telkomSudahAkru, telkomGroupSudahAkru,
+                                enterpriseSudahAkru
+                            ],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {   
+                            label: "Sisa Belum Akru",
+                            data: [telkomBelumAkru, telkomGroupBelumAkru,
+                                enterpriseBelumAkru
+                            ],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+    </script>
 @endsection

@@ -40,16 +40,18 @@ class PerformanceController extends Controller
     {
         $this->validate($request, [
             'kategori' =>'required',
-            'bulan' =>'required',
             'tahun' =>'required',
+            'bulan' =>'required',
+            'area' =>'required',
             'foto' =>'required|file|image|mimes:jpg,img,pjeg,png,gif|max:50000'
         ]);
         $newnamefoto = $request->kategori . '-' . date('His'). '-' .$request->foto->extension();
         $request->file('foto')->move(public_path('images/performance'), $newnamefoto);
         Performance::create([
             'kategori' =>$request->kategori,
-            'bulan' =>$request->bulan,
             'tahun' =>$request->tahun,
+            'bulan' =>$request->bulan,
+            'area' =>$request->area,
             'foto' => $newnamefoto
         ]);
         return redirect()->route('performance.index');
@@ -75,9 +77,9 @@ class PerformanceController extends Controller
      */
     public function edit($id)
     {
-        $performance = Performance::findOrFail($id);
+        // $performance = Performance::findOrFail($id);
         // dd($performance);
-        return view('bsrm.performance.edit', compact('performance'));
+        // return view('bsrm.performance.edit', compact('performance'));
     }
 
     /**
@@ -93,24 +95,39 @@ class PerformanceController extends Controller
             'kategori' =>'required',
             'tahun' => 'required',
             'bulan' => 'required',
-            'foto' => 'file|mimes:jpg,img,pjeg,png,gif|max:50000'
-        ]);
-        $performancis = $request->only(['kategori','tahun','bulan']);
-        $performance = Performance::find($id);
-        $performance->update($performancis);
-        if ($foto=$request->file('foto')){
-            Storage::delete('images/performance'.$performance->foto);
-
-            $imagename = time() . '-' . $foto->getClientOriginalExtension();
-            $foto->storeAs('images', $imagename);
-
-            $performance->foto = $imagename;
-            $performance->save;
+            'area' => 'required',
+            'foto' => 'file|mimes:jpg,img,jpeg,png,gif|max:50000'
+        ]);       
+        $performance = Performance::findOrFail($id);
+        $performance->kategori = $request->kategori;
+        $performance->tahun = $request->tahun;
+        $performance->bulan = $request->bulan;
+        $performance->area = $request->area;
+    
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $destinationPath = public_path('images/performance');
+    
+            // Generate unique file name
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+    
+            // Move the uploaded file to the destination path
+            $file->move($destinationPath, $fileName);
+    
+            // Delete old media file if exists
+            if ($performance->foto) {
+                $oldFilePath = $destinationPath . '/' . $performance->foto;
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
+                }
+            }
+    
+            $performance->foto = $fileName;
         }
-        // $performancis = $request->all();
-        // $performance = Performance::find($id);
+        $performance->save();
+        return redirect()->route('performance.index');
         // if ($foto = $request->file('foto')) {
-        //     File::delete('images/performance/' .$performance->foto);
+        //     File::delete('images/performance/'.$performance->foto);
         //     $file_name = $request->foto->getClientOriginalExtension();
         //     $foto->move(public_path('images/performance'), $file_name);
         //     $performancis['foto'] = "file_name";
@@ -118,7 +135,25 @@ class PerformanceController extends Controller
         //     unset($performancis['foto']);
         // }
         // $performance->update($performancis);
-        return redirect()->route('performance.index');
+
+
+        // $performance->update($performancis);
+        // if ($foto=$request->file('foto')){
+        //     Storage::delete('images/performance'.$performance->foto);
+
+        //     $imagename = time() . '-' . $foto->getClientOriginalExtension();
+        //     $foto->storeAs('images', $imagename);
+
+        //     $performance->foto = $imagename;
+        //     $performance->save; 
+        // }
+        // if ($request->hasFile('foto')){
+        //     Storage::delete($performance->foto);
+        //     $imagePath = $request->file('foto')->store('foto');
+        //     $performance->foto = $imagePath;
+        // }
+        // $performance->save();
+        // $performancis = $request->all();
     }
 
     /**
@@ -127,8 +162,9 @@ class PerformanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Performance $performance)
+    public function destroy($id)
     {
+        $performance = Performance::findOrFail($id);
         $performance->delete();
         return redirect()->back();
     }
