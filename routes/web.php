@@ -102,7 +102,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->name('password.update');
 
 // Rute untuk halaman beranda
-Route::get('/', [HomeController::class, 'index'])
+Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 

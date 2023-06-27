@@ -14,10 +14,10 @@ class DashboardController extends Controller
     $karyawan = Karyawan::get();
     $projects = Project::get();
 
-    $telkomAkru = Project::where('kategori', 'Telkom')->sum('akru');
-    $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('akru');
-    $exmaAkru = Project::where('kategori', 'Exma')->sum('akru');
-    $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('akru');
+    $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
+    $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('nilai_project');
+    $exmaAkru = Project::where('kategori', 'Exma')->sum('nilai_project');
+    $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('nilai_project');
 
     $telkomsudahakru = Project::where('kategori', 'Telkom')->sum('sudah_akru');
     $telkomGroupsudahkru = Project::where('kategori', 'Telkom Group')->sum('sudah_akru');
@@ -35,23 +35,5 @@ class DashboardController extends Controller
         'telkombelumakru', 'telkomGroupbelumakru', 'exmabelumakru', 'enterprisebelumakru'
     ));
 }
-
-// dd($telkombelumakru);
-// var ctx = document.getElementById("barChart2");
-//         var telkomAkru = {!! json_encode($telkomAkru) !!};
-//         var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
-//         var exmaAkru = {!! json_encode($exmaAkru) !!};
-//         var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
-
-//         var telkomsudahakru = {!! json_encode($telkomsudahakru) !!};
-//         var telkomGroupsudahkru = {!! json_encode($telkomGroupsudahkru) !!};
-//         var exmasudahakru = {!! json_encode($exmasudahakru) !!};
-//         var enterprisesudahakru = {!! json_encode($enterprisesudahakru) !!};
-
-//         var telkombelumakru = {!! json_encode($telkombelumakru) !!};
-//         var telkomGroupbelumakru = {!! json_encode($telkomGroupbelumakru) !!};
-//         var exmabelumakru = {!! json_encode($exmabelumakru) !!};
-//         var enterprisebelumakru = {!! json_encode($enterprisebelumakru) !!};
-
     
 }

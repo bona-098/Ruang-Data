@@ -253,116 +253,114 @@
             </div>
         </div>
     </div>
-@endsection
-<script type="text/javascript">
-    //Barchart2
-    document.addEventListener("DOMContentLoaded", function() {
-        var ctx = document.getElementById("barChart2");
-        var telkomAkru = {!! json_encode($telkomAkru) !!};
-        var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
-        var exmaAkru = {!! json_encode($exmaAkru) !!};
-        var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
-
-        var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
-        var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
-        var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
-        var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
-
-        var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
-        var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
-        var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
-        var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+    <script type="text/javascript">
+        // bar chart
+        var ctx = document.getElementById("barChart");
+        //    ctx.height = 200;
         var myChart = new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
-                labels: ["Telkom", "Telkom Group", "Exma", "Enterprise"],
-                datasets: [{
-                        label: "Sudah Akru",
-                        data: [telkomSudahAkru, telkomGroupSudahAkru, exmaSudahAkru,
-                            enterpriseSudahAkru
-                        ],
-                        backgroundColor: "rgba(54, 162, 235, 0.5)",
-                    },
-                    {
-                        label: "Sisa Belum Akru",
-                        data: [telkomBelumAkru, telkomGroupBelumAkru, exmaBelumAkru,
-                            enterpriseBelumAkru
-                        ],
-                        backgroundColor: "rgba(255, 99, 132, 0.5)",
-                    },
-                    {
-                        label: "Akru",
-                        data: [telkomAkru, telkomGroupAkru, exmaAkru, enterpriseAkru],
-                        backgroundColor: "rgba(75, 192, 192, 0.5)",
-                    },
+                labels: ["January", "February", "March", "April", "May", "June", "July", "Agustus", "September",
+                    "Oktober", "November", "Desember"
                 ],
+                datasets: [{
+                        label: "Target",
+                        data: [200, 2368, 6903, 13754, 19187, 25746, 35271, 42273, 49091, 62615, 80553, 110512],
+                        borderColor: "rgba(0, 123, 255, 0.9)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0, 123, 255, 0.5)"
+                    },
+                    {
+                        label: "Realisasi",
+                        data: [710, 15115, 14856, 20572, 28117, 0, 0, 0, 0, 0, 0, 0],
+                        borderColor: "rgba(64, 64, 64, 1.0)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0,0,0,0.07)"
+                    },
+                ]
             },
             options: {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true,
-                        },
-                    }],
+                            beginAtZero: true
+                        }
+                    }]
                 },
-            },
-        });
-
-        myChart.options.onClick = function(event, elements) {
-            if (elements.length > 0) {
-                var dataIndex = elements[0]._index;
-                var label = myChart.data.labels[dataIndex];
-
-                // Open new page with the label as a parameter
-                window.open("/project");
-            }
-        };
-    });
-
-
-    // bar chart
-    var ctx = document.getElementById("barChart");
-    //    ctx.height = 200;
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "Agustus", "September",
-                "Oktober", "November", "Desember"
-            ],
-            datasets: [{
-                    label: "Target",
-                    data: [65, 59, 80, 81, 56, 55, 40, 90, 15, 56, 43, 56],
-                    borderColor: "rgba(0, 123, 255, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(0, 123, 255, 0.5)"
-                },
-                {
-                    label: "Realisasi",
-                    data: [28, 48, 40, 19, 86, 27, 90, 15, 52, 53, 95, 57],
-                    borderColor: "rgba(64, 64, 64, 1.0)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(0,0,0,0.07)"
-                },
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                onClick: function(event, elements) {
+                    if (elements.length > 0) {
+                        var index = elements[0].index;
+                        var data = myChart.data.datasets[1].data[index];
+                        // Misalnya, mengambil data dari dataset pertama
+                        // Tampilkan data di dalam modal
+                        document.getElementById("modalData").innerHTML = "Data: " + data;
+                        $('#dataModal').modal('show');
                     }
-                }]
-            },
-            onClick: function(event, elements) {
-                if (elements.length > 0) {
-                    var index = elements[0].index;
-                    var data = myChart.data.datasets[1].data[index];
-                    // Misalnya, mengambil data dari dataset pertama
-                    // Tampilkan data di dalam modal
-                    document.getElementById("modalData").innerHTML = "Data: " + data;
-                    $('#dataModal').modal('show');
                 }
             }
-        }
-    });
-</script>
+        });
+        //Barchart2
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("barChart2");
+            var telkomAkru = {!! json_encode($telkomAkru) !!};
+            var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            var exmaAkru = {!! json_encode($exmaAkru) !!};
+            var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Telkom", "Telkom Group", "Enterprise"],
+                    datasets: [{
+                            label: "Nilai Project",
+                            data: [telkomAkru, telkomGroupAkru, enterpriseAkru],
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                        },
+                        {
+                            label: "Sudah Akru",
+                            data: [telkomSudahAkru, telkomGroupSudahAkru,
+                                enterpriseSudahAkru
+                            ],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {   
+                            label: "Sisa Belum Akru",
+                            data: [telkomBelumAkru, telkomGroupBelumAkru,
+                                enterpriseBelumAkru
+                            ],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+    </script>
+@endsection
