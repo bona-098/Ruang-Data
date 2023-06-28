@@ -92,7 +92,7 @@
                 @csrf
                 @method('POST')
                 <div class="form-group">
-                    <label for="email">Username:</label>
+                    <label for="email">Email:</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
                 </div>
                 <div class="form-group">
