@@ -61,7 +61,7 @@
     <title>Register</title>
     <style>
         body {
-            background: url("{{ asset('template/images/login.jpeg') }}") no-repeat center center fixed;
+            background: url("{{ asset('template/images/bg-login.jpg') }}") no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
             display: flex;
