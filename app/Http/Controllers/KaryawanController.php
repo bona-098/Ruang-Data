@@ -228,6 +228,6 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::findorFail($id);
         $karyawan->delete();
-        return redirect()->back();
+        return redirect()->route('karyawan.index');
     }
 }

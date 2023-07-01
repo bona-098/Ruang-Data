@@ -6,330 +6,248 @@
                 <h4 class="card-title">Data Karyawan : {{ $karyawan->nama_karyawan }}</h4>
                 <button type="button" class=" btn btn-primary " id="dropdownMenuButton" data-toggle="dropdown"><i
                         class="fa fa-cog"></i>
-                    action
+                    Action
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateCustomer"
+                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateKaryawan"
                         href="#">Update</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteCustomer"
+                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteKaryawan"
                         href="#">Delete</a>
                 </div>
                 <div style="margin-top: 20px;">
-                    <div class="table-responsive">
-                        <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                            <tbody>
-                                <tr>
-                                     <th scope="row">Nama Karyawan</th>
-                                    <td>{{ $karyawan->nama_karyawan }}</td>
-                                </tr>
-                                <tr>
-                                     <th scope="row"> Nama Karyawan</th>
-                                    <td>{{ $karyawan->nama_karyawan }}</td>
-                                </tr>
-                                <tr>
-                                     <th scope="row">Nama Karyawan</th>
-                                    <td>{{ $kabmkgryawan->nama_karyawan }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row">NIK Telpro</th>
+                                <td>{{ $karyawan->nik }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">NIK Telkom Grup</th>
+                                <td>{{ $karyawan->nik  }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nama Karyawan</th>
+                                <td>{{ $karyawan->nama_karyawan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tanggal Lahir</th>
+                                <td>{{ $karyawan->tgl_lahir }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kota Lahir</th>
+                                <td>{{ $karyawan->kota_lahir }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Agama</th>
+                                <td>{{ $karyawan->agama }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Jenis Kelamin</th>
+                                <td>{{ $karyawan->jenis_kelamin }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Alamat</th>
+                                <td>{{ $karyawan->jalan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Unit Kerja</th>
+                                <td>{{ $karyawan->unit_kerja }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Loker</th>
+                                <td>{{ $karyawan->loker }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Jabatan</th>
+                                <td>{{ $karyawan->jabatan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Band Kelas Posisi</th>
+                                <td>{{ $karyawan->band_kelas_posisi }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
-    </div>
-    <!-- KONTEN MODAL UPDATE Customer  -->
-    {{-- <div class="modal fade" id="ModalUpdateCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <!-- KONTEN MODAL UPDATE KARYAWAN  -->
+        <div class="modal fade" id="ModalUpdateKaryawan" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Data</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Karyawan</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body">
-                        <form action="{{ route('project.update', $project->id) }}" method="POST" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                    <form method="POST" action="{{ route('karyawan.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
                             <div class="form-body">
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Customer</label>
-                                            <input type="text" name="customer" id="Unit Kerja"
-                                                class="form-control" value="{{ $project->customer }}" required>
-                                            <small class="form-control-feedback"> @error('customer')
+                                            <label class="control-label">NIK Telpro</label>
+                                            <input type="number" name="nik_telpro" min="0" class="form-control"
+                                                placeholder="12345" @error('nik_telpro') is-invalid @enderror
+                                                value="{{ old('nik_telpro') }}">
+                                            @error('nik_telpro')
+                                                <div class="alert alert-danger mt-2">
                                                     {{ $message }}
-                                                @enderror </small>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Kode AMPM</label>
-                                            <select required name="id_crm" class="form-control">
-                                                <option selected value="{{ $project->id_crm }}">{{ $project->id_crm }}</option>
-                                                <option value="nlop">Non Lop</option>
-                                                <option value="lop">Lop</option>
-                                            </select>
-                                            <small class="form-control-feedback">
-                                                @error('id_crm')
+                                            <label class="control-label">NIK Telkom Grup</label>
+                                            <input type="number" name="nik_telkom_grup" min="0"
+                                                class="form-control" placeholder="12345"
+                                                @error('nik_telkom_grup') is-invalid @enderror
+                                                value="{{ old('nik_telkom_grup') }}">
+                                            @error('nik_telkom_grup')
+                                                <div class="alert alert-danger mt-2">
                                                     {{ $message }}
-                                                @enderror
-                                            </small>
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Witel</label>
-                                            <select required name="witel" class="form-control">
-                                                <option selected value="{{ $project->witel }}">{{ $project->witel }}</option>
-                                                <option value="Balikpapan">Balikpapan</option>
-                                                <option value="Samarinda">Samarinda</option>
-                                                <option value="Kalsel">Kalsel</option>
-                                                <option value="Kalbar">Kalbar</option>
-                                                <option value="Treg">Treg</option>
-                                            </select>
-                                            <small class="form-control-feedback"> @error('witel')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                        <div class="form-group has-danger">
+                                            <label for="nama_karyawan" class="control-label">Nama Karyawan</label>
+                                            <input type="text" id="nama_karyawan"
+                                                class="form-control form-control-danger" name="nama_karyawan">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Kategori</label>
-                                            <select required name="kategori" class="form-control ">
-                                                <option selected value="{{ $project->kategori }}">{{ $project->kategori }}</option>
-                                                <option value="Exma">Exma</option>
-                                                <option value="Telkom">Telkom</option>
-                                                <option value="Telkom Group">Telkom Group</option>
+                                            <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
+                                            <select class="form-control custom-select" id="jenis_kelamin"
+                                                name="jenis_kelamin">
+                                                <option value="">Pilih Jenis Kelamin</option>
+                                                <option value="laki-laki">Laki-laki</option>
+                                                <option value="perempuan">Perempuan</option>
                                             </select>
-                                            <small class="form-control-feedback"> @error('kategori')
-                                                    {{ $message }}
-                                                @enderror </small>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" value="{{ $project->nama_project }}"
-                                                required type="text" id="nama_project" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('nama_project')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
+                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
+                                            <input type="date" id="tgl_lahir" name="tgl_lahir"
+                                                class="form-control" placeholder="dd/mm/yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Kota Lahir</label>
+                                            <input type="text" id="kota_lahir" name="kota_lahir"
+                                                class="form-control">
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="agama" class="control-label">Agama</label>
+                                            <select class="form-control custom-select" id="agama" name="agama">
+                                                <option value="">Pilih Agama</option>
+                                                <option value="islam">Islam</option>
+                                                <option value="katolik">Kristen Katolik</option>
+                                                <option value="kristen protestan">Kristen Protestan</option>
+                                                <option value="hindu">Hindu</option>
+                                                <option value="budha">Budha</option>
+                                                <option value="kong hucuh">Kong hucuh</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="unit_kerja">Unit Kerja</label>
+                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                id="unit_kerja" name="unit_kerja">
                                         </div>
                                     </div>
                                 </div>
+   
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
-                                            <label>Skem</label>
-                                            <input name="skema" value="{{ $project->skema }}" required type="text"
-                                                class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('skema')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
+                                            <label for="jalan">Alamat</label>
+                                            <input type="text" class="form-control" name="alamat">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+   
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nilai Project</label>
-                                            <input required name="nilai_project" id="nilai_project" min="0"
-                                                type="number" value="{{ $project->nilai_project }}" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('nilai_project')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
+                                            <label for="loker">Loker</label>
+                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                id="loker" name="loker">
                                         </div>
                                     </div>
+   
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Sudah Akru</label>
-                                            <input required name="sudah_akru" id="sudah_akru" min="0"
-                                                type="number" value="{{ $project->sudah_akru }}" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('sudah_akru')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
+                                            <label for="jabatan">Jabatan</label>
+                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                id="jabatan" name="jabatan">
                                         </div>
                                     </div>
+   
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Sisa Belum Akru</label>
-                                            <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
-                                                readonly type="number" value="{{ $project->sisa_belum_akru }}" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('sisa_belum_akru')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Progres Minggu Lalu</label>
-                                            <input required name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="number"
-                                                class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('progress_ml')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Progres Minggu Ini</label>
-                                            <input required name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="number"
-                                                class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('progress_mi')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Target Deal</label>
-                                            <input required name="target_deal" value="{{ $project->target_deal }}" type="text"
-                                                class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('target_deal')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>keterangan</label>
-                                            <input required name="keterangan" value="{{ $project->keterangan }}" type="text"
-                                                class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('keterangan')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Start Date</label>
-                                            <input required name="start_date" value="{{ $project->start_date }}" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('start_date')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>End Date</label>
-                                            <input required name="end_date" value="{{ $project->end_date }}" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('end_date')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Tahap</label>
-                                            <select name="tahap" class="form-control">
-                                                <option selected value="{{ $project->tahap }}">{{ $project->tahap }}</option>
-                                                <option value="Co-OnHand ">Co-OnHand</option>
-                                                <option value="Komersial">Komersial</option>
-                                                <option value="OnHand">OnHand</option>
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band_kelas_posisi">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I">I</option>
+                                                <option value="II">II</option>
+                                                <option value="III">III</option>
+                                                <option value="IV">IV</option>
+                                                <option value="V">V</option>
+                                                <option value="VI">VI</option>
+                                                <option value="VII">VII</option>
                                             </select>
-                                            <small class="form-control-feedback"> @error('tahap')
-                                                    {{ $message }}
-                                                @enderror </small>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Akru</label>
-                                            <input required name="akru" value="{{ $project->akru }}" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('akru')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
+   
                                 </div>
                             </div>
-                    </div>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+    <!-- KONTEN MODAL UPDATE KARYAWAN  -->
+   
+     {{-- KONTEN MODAL DELETE KARYAWAN --}}
+   
+     <div class="modal fade" id="ModalDeleteKaryawan" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
+             </div>
+             <div class="modal-body">
+                 Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah
+                 anda
+                 yakin ingin melanjutkan ?
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                 <form method="POST" id="delete-form">
+                     @csrf
+                     @method('DELETE')
+                     <button type="submit" class="btn btn-danger">Hapus</button>
+                 </form>
+             </div>
+         </div>
+     </div>
+   </div>
+   {{-- KONTEN MODAL DELETE KARYAWAN --}}
+    </div>
 
-    <script>
-        var inputA = document.getElementById("nilai_project");
-        var inputB = document.getElementById("sudah_akru");
-        var hasil = document.getElementById("sisa_belum_akru");
-
-        nilai_project.addEventListener("input", hitungPengurangan);
-        sudah_akru.addEventListener("input", hitungPengurangan);
-
-        function hitungPengurangan() {
-            var a = Number(nilai_project.value);
-            var b = Number(sudah_akru.value);
-            var c = a - b;
-            if (c < 0) {
-                hasil.value = "";
-                alert("Hasil pengurangan tidak boleh negatif!");
-            } else {
-                hasil.value = c;
-            }
-        }
-    </script> --}}
-
-    <!-- KONTEN MODAL UPDATE Customer  -->
-
-    {{-- KONTEN MODAL DELETE Customer --}}
-
-    {{-- <div class="modal fade" id="ModalDeleteCustomer" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Apakah anda ingin menghapus ....?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
-                    <form action="{{ route('project.destroy', $project->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- KONTEN MODAL DELETE KARYAWAN --}}
 @endsection
