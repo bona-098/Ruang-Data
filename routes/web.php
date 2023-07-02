@@ -106,7 +106,7 @@ Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
-Route::resource('/tambah-user', UserController::class)->middleware('auth');
+Route::resource('/pengguna', UserController::class)->middleware('auth');
 Route::resource('/personil', PersonilController::class);
 Route::resource('/gedung', GedungController::class);
 Route::resource('/perangkat', PerangkatController::class);
