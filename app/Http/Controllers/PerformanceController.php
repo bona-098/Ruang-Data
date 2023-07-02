@@ -66,7 +66,7 @@ class PerformanceController extends Controller
     public function show($id)
     {
         $performance = Performance::find($id);
-        // return view('bsrm.performance.detail', compact('performance'));
+         return view('bsrm.performance.detail', compact('performance'));
     }
 
     /**

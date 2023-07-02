@@ -101,6 +101,28 @@
                 <!-- /# column -->
             </div>
         </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Project</h1>
+                <div class="row">
+                    <!-- Bar Chart -->
+                    <div class="col-lg-12 col-md-5">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <h4>Jumlah VS Sudah VS Belum</h4>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="barChart3"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -336,6 +358,68 @@
                             label: "Sisa Belum Akru",
                             data: [telkomBelumAkru, telkomGroupBelumAkru,
                                 enterpriseBelumAkru
+                            ],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+
+         //Barchart3
+         document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("barChart3");
+            // var telkomAkru = {!! json_encode($telkomAkru) !!};
+            // var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            // var exmaAkru = {!! json_encode($exmaAkru) !!};
+            // var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            // var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            // var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            // var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            // var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            // var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            // var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            // var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            // var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Done", "Progress", "Belum Mulai"],
+                    datasets: [{
+                            label: "Telkom",
+                            data: [10000,8000,5000],
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                        },
+                        {
+                            label: "Telkom Group",
+                            data: [9000,5000,2450
+                            ],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {   
+                            label: "Enterprise",
+                            data: [15000,10000,1000
                             ],
                             backgroundColor: "rgba(255, 99, 132, 0.5)",
                         },
