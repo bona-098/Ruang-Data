@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Auth\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
-
-use Illuminate\Support\Facades\Password;
-use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\UserRegistrationRequest;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 
 // use App\Http\Controllers\Controller;
 // use App\Models\User;
 use App\Providers\RouteServiceProvider;
 // use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Password;
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\UserRegistrationRequest;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 
 class UserController extends Controller
@@ -55,7 +56,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     // public function store(UserRegistrationRequest $request) : RedirectResponse
     // {
     //     $this->validate($request, [
@@ -76,29 +77,25 @@ class UserController extends Controller
     //     Auth::login($user);
     //     return redirect()->route('tambah-user.index');
     // }
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'role'=> 'required',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'role' => ['required', Rule::in(['bsrm', 'project', 'sales', 'admin', 'oms'])],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role'=> $request->role,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
         $user->save();
 
-        // event(new Registered($user));
-
-        // Auth::login($user);
-
-        return redirect()->route('tambah-user.index');
+        return redirect()->route('pengguna.index');
     }
     /**
      * Display the specified resource.
@@ -142,6 +139,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back();
     }
 }

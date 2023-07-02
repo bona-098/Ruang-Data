@@ -60,7 +60,7 @@
                                     <td>{{ $u->name }}</td>
                                     <td>{{ $u->email }}</td>
                                     <td>{{ $u->role }}</td>
-                                    <td>*******</td>
+                                    <td>{{ $u->password }}</td>
                                     <div class="dropdown">
                                         <td>
                                             <button class="btn btn-primary dropdown-toggle" type="button"
@@ -69,11 +69,9 @@
                                                 <i class="fa fa-cog"> Aksi</i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href=""><i
+                                                <a class="dropdown-item" href="{{ route('pengguna.edit', $u->id) }}"><i
                                                         class="fa fa-edit"></i> Edit</a>
-                                                {{-- <a class="dropdown-item" href="{{ route('mitra.show', $m->id) }}"><i
-                                                        class="fa fa-eye"></i> show</a> --}}
-                                                <form action="" method="POST">
+                                                <form action="{{ route('pengguna.destroy', $u->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="dropdown-item" type="submit"
@@ -106,7 +104,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('tambah-user.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('pengguna.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
                                 <div class="row p-t-20">
