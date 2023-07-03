@@ -7,33 +7,49 @@
         {{-- MEMFILTER DATA --}}
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Filter Mitra</h4>
-                <form action="">
+                <form action="" method="GET" id="form_1">
+                    @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <select class="form-control custom-select" id="filter-type">
-                                    <option value="eksisting">EKSISTING</option>
-                                    <option value="register">BARU (BARU REGISTERED)</option>
-                                </select>
-                                {{-- <small class="form-control-feedback"> Select your gender </small> --}}
-                            </div>
+                            <label for="filter1">Kategori</label>
+                            <select name="kategori" class="form-control">
+                                <option value="">Pilih</option>
+                                <option value="EKSISTING"
+                                    value="{{ isset($_GET['kategori']) && $_GET['kategori'] == 'EKSISTING' }}">
+                                    EKSISTING</option>
+                                <option value="REGISTERED"
+                                    value="{{ isset($_GET['kategori']) && $_GET['kategori'] == 'REGISTERED' }}">
+                                    REGISTERED</option>
+                            </select>
                         </div>
-                        <!--/span-->
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <input type="text" name="" placeholder="Domisili" class="form-control"
-                                    id="filter-location">
-                                {{-- <small class="form-control-feedback"> Select your gender </small> --}}
-                            </div>
+                            <label for="filter2">Domisili:</label>
+                            <select name="domisili" class="form-control">
+                                <option value="">Pilih</option>
+                                <option value="Balikpapan"
+                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' }}">
+                                    Area Balikpapan</option>
+                                <option value="Kaltim"
+                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' }}">
+                                    Kalimantan Timur</option>
+                                <option value="Kalsel"
+                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' }}">
+                                    Kalimantan Selatan</option>
+                                <option value="Kalbar"
+                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' }}">
+                                    Kalimantan Barat</option>
+                            </select>
                         </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="form-control btn-success" onclick="filterTable()"> <i
-                                    class="fa fa-filter"></i> Filter</button>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label for="filter5"> </label>
+                            <button type="submit" class="form-control btn-success"> <i class="fa fa-filter"></i> Filter</button>
                         </div>
-                        <div class="col-md-2">
-                            <button type="button" class="form-control btn-success" onclick="resetFilter()">Reset</button>
-                        </div>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label for="filter5"> </label>
+                            <a href="{{ route('resetFilter') }}" class="form-control btn-success">
+                                Reset
+                            </a>
+                        </div>                        
                     </div>
                 </form>
             </div>

@@ -16,10 +16,24 @@ class MitraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mitra = Mitra::get();
+        $mitra = Mitra::query();
+        $mitra->when($request->kategori, function($query) use ($request) {
+            return $query->where('kategori', $request->kategori);
+        });
+        $mitra->when($request->domisili, function($query) use ($request) {
+            return $query->where('domisili', $request->domisili);
+        });
+        $mitra = $mitra->get();
         return view('bsrm.mitra.index', compact('mitra'));
+    }
+    
+
+    public function resetFilter()
+    {
+        session()->forget('filter');
+        return redirect()->back();
     }
 
     /**
