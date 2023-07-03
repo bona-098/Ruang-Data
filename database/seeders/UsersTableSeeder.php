@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Admins',
+                'name' => 'Admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('password'),
                 'role' => 'admin',
