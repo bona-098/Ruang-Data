@@ -3,72 +3,99 @@
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
     <div class="container-fluid">
-
         {{-- Filter Tabel --}}
         <div class="card">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="filter1">Kode AMPM:</label>
-                        <select id="filter1" class="form-control">
-                            <option value="All">All</option>
-                            <option value="Non Lop">Non Lop</option>
-                            <option value="Lop">Lop</option>
+                <form action="{{ route('project.index') }}" method="GET" id="form_1">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="filter2">Kode AMPM</label>
+                            <select name="id_crm" class="form-control" onchange="submitForm1()">
+                                <option value="">Pilih</option>
+                                <option value="lop"
+                                    {{ isset($_GET['id_crm']) && $_GET['id_crm'] == 'lop' ? 'selected' : '' }}>
+                                    lop</option>
+                                <option value="nlop"
+                                    {{ isset($_GET['id_crm']) && $_GET['id_crm'] == 'nlop' ? 'selected' : '' }}>
+                                    nlop</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="filter1">Witel</label>
+                            <select name="witel" class="form-control" onchange="submitForm2()">
+                                <option value="">Pilih</option>
+                                <option value="Balikpapan"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Balikpapan' ? 'selected' : '' }}>
+                                    Balikpapan</option>
+                                <option value="Samarinda"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Samarinda' ? 'selected' : '' }}>
+                                    Samarinda</option>
+                                <option value="Kalsel"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Kalsel' ? 'selected' : '' }}>
+                                    Kalsel</option>
+                                <option value="Kalbar"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Kalbar' ? 'selected' : '' }}>
+                                    Kalbar</option>
+                                <option value="Treg"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Treg' ? 'selected' : '' }}>
+                                    Treg</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="filter2">Kategori</label>
+                            <select name="kategori" class="form-control" onchange="submitForm3()">
+                                <option value="">Pilih</option>
+                                <option value="Subsidiaries"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Exma' ? 'selected' : '' }}>
+                                    Exma</option>
+                                <option value="Government"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Telkom Grup' ? 'selected' : '' }}>
+                                    Telkom Grup</option>
+                                <option value="Telkom"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Telkom' ? 'selected' : '' }}>
+                                    Telkom</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="filter3">Tahap</label>
+                            <select name="tahap" class="form-control" onchange="submitForm4()">
+                                <option value="">Pilih</option>
+                                <option value="Co-OnHand"
+                                    {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Co-OnHand' ? 'selected' : '' }}>
+                                    Co-OnHand</option>
+                                <option value="Komersial"
+                                    {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Komersial' ? 'selected' : '' }}>
+                                    Komersial</option>
+                                <option value="On hand"
+                                    {{ isset($_GET['tahap']) && $_GET['tahap'] == 'OnHand' ? 'selected' : '' }}>
+                                    OnHand</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label for="filter5"> </label>
+                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
+                                Search</button>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    function submitForm1() {
+                        document.getElementById('form_1').submit();
+                    }
 
-                        </select>
-                    </div>
+                    function submitForm2() {
+                        document.getElementById('form_1').submit();
+                    }
 
-                    <div class="col-md-2">
-                        <label for="filter2">Witel:</label>
-                        <select id="filter2" class="form-control">
-                            <option value="All">All</option>
-                            <option value="Balikpapan">Balikpapan</option>
-                            <option value="Samarinda">Samarinda</option>
-                            <option value="Kalsel">Kalsel</option>
-                            <option value="Kalbar">Kalbar</option>
-                            <option value="Treg">Treg</option>
-                        </select>
-                    </div>
+                    function submitForm3() {
+                        document.getElementById('form_1').submit();
+                    }
 
-                    <div class="col-md-2">
-                        <label for="filter3">Kategori:</label>
-                        <select id="filter3" class="form-control">
-                            <option value="All">All</option>
-                            <option value="Enterprise">Exma</option>
-                            <option value="Government">Telkom</option>
-                            <option value="Subsidiaries">Telkom Group</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="filter4">Tahap:</label>
-                        <select id="filter4" class="form-control">
-                            <option value="All">All</option>
-                            <option value="Komersial">Komersial</option>
-                            <option value="On Hand">On Hand</option>
-                            <option value="Potensial">Potensial</option>
-                            <option value="Prospek">Prospek</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="filter4">Akru:</label>
-                        <select id="filter4" class="form-control">
-                            <option value="All">All</option>
-                            <option value="Sudah Akru">Sudah Akru</option>
-                            <option value="Belum AKru">Sisa Akru</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-1" style="padding-top: 5px;">
-                        <label for="filter5"> </label>
-                        <button type="submit" class=" form-control btn-success"> <i class="fa fa-filter"></i>
-                            Filter</button>
-                    </div>
-                    <div class="col-md-1" style="padding-top: 5px;">
-                        <label for="filter5"> </label>
-                        <button type="button" class=" form-control btn-success">Reset</button>
-                    </div>
-                </div>
+                    function submitForm4() {
+                        document.getElementById('form_1').submit();
+                    }
+                </script>
             </div>
         </div>
         {{-- Akhir Filter Tabel --}}
@@ -139,9 +166,6 @@
                                 <td>{{ $p->akru }}</td>
                             </tr>
                         @endforeach
-
-
-
                     </tbody>
                 </table>
                 {{-- </div> --}}
@@ -216,9 +240,9 @@
                                             <label class="control-label">Kategori</label>
                                             <select required name="kategori" class="form-control ">
                                                 <option value="">Pilih Kategori</option>
-                                                <option value="Enterprise">Exma</option>
-                                                <option value="Government">Telkom</option>
-                                                <option value="Subsidiaries">Telkom Group</option>
+                                                <option value="Exma">Exma</option>
+                                                <option value="Telkom">Telkom</option>
+                                                <option value="Telkom Grup">Telkom Group</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('kategori')
                                                     {{ $message }}
@@ -361,7 +385,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Tahap</label>
                                             <select name="tahap" class="form-control">
-                                                <option value="Co-OnHand ">Co-OnHand</option>
+                                                <option value="Co-OnHand">Co-OnHand</option>
                                                 <option value="Komersial">Komersial</option>
                                                 <option value="OnHand">OnHand</option>
                                             </select>
@@ -383,22 +407,22 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-                {{-- <div class="form-actions">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        {{-- <div class="form-actions">
                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>
                                 Save</button>
                             <button type="button" class="btn btn-inverse">Cancel</button>
                         </div> --}}
-            </div>
-       
+    </div>
+
 
     <script>
         var inputA = document.getElementById("nilai_project");
