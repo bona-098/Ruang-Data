@@ -156,7 +156,7 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::findOrfail($id);
         // dd($karyawan);
-        return view('bsrm.karyawan.edit', compact('karyawan'));
+        return view('bsrm.karyawan.show', compact('karyawan'));
     }
 
     /**
@@ -172,48 +172,17 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::find($id);
         $karyawan->update([
             'nik'=>$request->nik,
+            'no_hp'=>$request->no_hp,            
             'nama_karyawan'=>$request->nama_karyawan,
+            'jenis_kelamin'=>$request->jenis_kelamin,
             'tgl_lahir'=>$request->tgl_lahir,
             'kota_lahir'=>$request->kota_lahir,
             'agama'=>$request->agama,
-            'jenis_kelamin'=>$request->jenis_kelamin,
             'jalan'=>$request->jalan,
-            'nama_status_nikah'=>$request->nama_status_nikah,
-            'lokasi_kerja'=>$request->lokasi_kerja,
-            'tgl_mulai_bekerja'=>$request->tgl_mulai_bekerja,
-            'tgl_pegawai_perusahaan'=>$request->tgl_pegawai_perusahaan,
-            'tgl_perkiraan_pensiun'=>$request->tgl_perkiraan_pensiun,
-            'nama_divisi'=>$request->nama_divisi,
-            'tgl_divisi'=>$request->tgl_divisi,
-            'kode_loker'=>$request->kode_loker,
             'unit_kerja'=>$request->unit_kerja,
-            'loker'=>$request->loker,
-            'tgl_loker'=>$request->tgl_loker,
-            'kode_posisi'=>$request->kode_posisi,
-            'jabatan'=>$request->jabatan,
-            'umur'=>$request->umur,
-            'kelompok_usia'=>$request->kelompok_usia,
-            'nama_employee_group'=>$request->nama_employee_group,
-            'employee_sub_group'=>$request->employee_sub_group,
-            'level_pendidikan_terakhir'=>$request->level_pendidikan_terakhir,
-            'pendidikan'=>$request->pendidikan,
-            'penyelenggara'=>$request->penyelenggara,
-            'jumlah_anak'=>$request->jumlah_anak,
-            'adt_pajak'=>$request->adt_pajak,
-            'adt_kesehatan'=>$request->adt_kesehatan,
-            'jumlah_pasangan'=>$request->jumlah_pasangan,
-            'band_kelas_posisi'=>$request->band_kelas_posisi,
-            'kota'=>$request->kota,
-            'npwp'=>$request->npwp,
-            'no_telkomedika'=>$request->no_telkomedika,
-            'no_bpjs'=>$request->no_bpjs,
-            'no_jamsostek'=>$request->no_jamsostek,
-            'email'=>$request->email,
-            'no_hp'=>$request->no_hp,
-            'keterangan_lanjut_kuliah'=>$request->keterangan_lanjut_kuliah,
-            'pendidikan_lanjut'=>$request->pendidikan_lanjut,
-            'penyelenggara_lanjut'=>$request->penyelenggara_lanjut,
-            'ukuran_baju'=>$request->ukuran_baju
+            'loker'=>$request->loker,            
+            'jabatan'=>$request->jabatan,            
+            'band_kelas_posisi'=>$request->band_kelas_posisi,            
         ]);
         return redirect()->back();
     }

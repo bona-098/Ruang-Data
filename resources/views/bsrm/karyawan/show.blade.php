@@ -80,8 +80,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">Update Karyawan</h5>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.store') }}" enctype="multipart/form-data">
+                    <form action="{{ route('karyawan.update', $karyawan->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="card-body">
                             <div class="form-body">
                                 <div class="row p-t-20">
