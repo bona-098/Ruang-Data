@@ -33,24 +33,6 @@ class MitraController extends Controller
     return view('bsrm.mitra.index', compact('mitra'));
 }
 
-
-
-
-
-
-
-
-
-
-    // public function resetFilter(Request $request)
-    // {
-    //     $request->session()->forget('kategori');
-    //     $request->session()->forget('domisili');
-    //     return view('bsrm.mitra.index');
-
-    // }
-
-
     /**
      * Show the form for creating a new resource.
      *
