@@ -89,17 +89,6 @@
                                     Prospek</option>
                             </select>
                         </div>
-                        {{-- <div class="col-md-2">
-                            <label for="filter5">Jenis Kontrak:</label>
-                            <select id="filter5" name="jenis_kontrak" class="form-control">
-                                <option value="All">All</option>
-                                <option value="Area" value="{{ isset($_GET['jenis_kontrak']) && $_GET['jenis_kontrak'] == 'Area' }}">Area</option>
-                                <option value="Pusat" value="{{ isset($_GET['jenis_kontrak']) && $_GET['jenis_kontrak'] == 'Pusat' }}">Pusat</option>
-                                <option value="Regional" value="{{ isset($_GET['jenis_kontrak']) && $_GET['jenis_kontrak'] == 'Regional' }}">Regional</option>
-                                <option value="Tarakan" value="{{ isset($_GET['jenis_kontrak']) && $_GET['jenis_kontrak'] == 'Tarakan' }}">Tarakan</option>
-                                <option value="blanks" value="{{ isset($_GET['jenis_kontrak']) && $_GET['jenis_kontrak'] == 'blanks' }}">blanks</option>
-                            </select>
-                        </div> --}}
                         <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class=" form-control btn-success"> <i class="fa fa-filter"></i>

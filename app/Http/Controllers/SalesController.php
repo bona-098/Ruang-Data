@@ -44,7 +44,7 @@ class SalesController extends Controller
             return $query->wherejenis_kontrak($request->jenis_kontrak);
         });
         return view ('marshal.sales.index', ['sales' => $sales->paginate(100000)]);
-        dd($sales);
+        // dd($sales);
     }
 
     public function resetFilter()
