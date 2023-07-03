@@ -266,10 +266,15 @@
                                         <div class="form-group">
                                             <label class="control-label">Import File</label>
                                             <input type="file" class="form-control" name="file">
+                                            {{-- <small class="form-control-feedback"> Feedback salah </small> --}}
                                         </div>
                                     </div>
+                                    <!--/span-->
                                 </div>
+                                <!--/row-->
+                                <!--/row-->
                             </div>
+                            <!--/row-->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
