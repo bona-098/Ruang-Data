@@ -418,5 +418,5 @@
    {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
  {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
 </body>
-@include('layout.grafik')
+{{-- @include('layout.grafik') --}}
 </html>

@@ -307,9 +307,136 @@
     <script type="text/javascript">
         //BARCHART TESTING
         const ctx1 = document.getElementById('myChart1').getContext('2d');
+
         const ctx2 = document.getElementById('myChart2').getContext('2d');
+        console.log(ctx2);
+        const chart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Telkom', 'Telkom Group', 'Enterprise'],
+                datasets: [{
+                        label: 'Nilai Project',
+                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}],
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Sudah Akru',
+                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }}],
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Sisa Belum Akru',
+                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }}],
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 0.5)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            plugins: [ChartDataLabels],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value) {
+                            return value;
+                        }
+                    }
+                }
+            }
+        });
+        document.getElementById('myChart2').addEventListener('click', function(event) {
+            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+                intersect: true
+            }, true);
+
+            if (activePoints.length > 0) {
+                const firstPoint = activePoints[0];
+                const label = chart2.data.labels[firstPoint.index];
+                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Label: " + label + ", Category: " + category);
+                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+            }
+        });
         const ctx3 = document.getElementById('myChart3').getContext('2d');
         const ctx4 = document.getElementById('ManarBpp').getContext('2d');
+        const chart4 = new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
+                datasets: [{
+                        label: 'Prospek',
+                        data: [100, 29, 12, 21],
+                        backgroundColor: 'rgba(0, 128, 0, 0.5)',
+                        borderColor: 'rgba(0, 128, 0, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Potensi',
+                        data: [28, 25, 14, 32],
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Onhand',
+                        data: [28, 25, 14, 23],
+                        backgroundColor: 'rgba(255, 255, 0, 0.5)',
+                        borderColor: 'rgba(255, 255, 0, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Out',
+                        data: [28, 25, 14, 21],
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 0.5)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            plugins: [ChartDataLabels],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value) {
+                            return value;
+                        }
+                    }
+                }
+            }
+        });
+        document.getElementById('ManarBpp').addEventListener('click', function(event) {
+            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+                intersect: true
+            }, true);
+
+            if (activePoints.length > 0) {
+                const firstPoint = activePoints[0];
+                const label = chart2.data.labels[firstPoint.index];
+                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Label: " + label + ", Category: " + category);
+                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
+                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
+                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+            }
+        });
         const ctx5 = document.getElementById('ManarKaltim').getContext('2d');
         const ctx6 = document.getElementById('ManarKalselteng').getContext('2d');
         const ctx7 = document.getElementById('ManarKalbar').getContext('2d');
@@ -353,52 +480,7 @@
                 }
             }
         });
-
-        const chart2 = new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Telkom', 'Telkom Group', 'Enterprise'],
-                datasets: [{
-                        label: 'Nilai Project',
-                        data: [32, 29, 12],
-                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                        borderColor: 'rgba(75, 192, 192, 0.5)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Sudah Akru',
-                        data: [28, 25, 14],
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 0.5)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Sisa Belum Akru',
-                        data: [28, 25, 14],
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        borderColor: 'rgba(255, 99, 132, 0.5)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            plugins: [ChartDataLabels],
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        formatter: function(value) {
-                            return value;
-                        }
-                    }
-                }
-            }
-        });
+        
 
         const chart3 = new Chart(ctx3, {
             type: 'bar',
@@ -446,87 +528,36 @@
             }
         });
 
-        const chart4 = new Chart(ctx4, {
-            type: 'bar',
-            data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries','Telkom'],
-                datasets: [{
-                        label: 'Prospek',
-                        data: [32, 29, 12,21],
-                        backgroundColor: 'rgba(0, 128, 0, 0.5)',
-                        borderColor: 'rgba(0, 128, 0, 0.5)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Potensi',
-                        data: [28, 25, 14,32],
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        borderColor: 'rgba(54, 162, 235, 0.5)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Onhand',
-                        data: [28, 25, 14,23],
-                        backgroundColor: 'rgba(255, 255, 0, 0.5)',
-                        borderColor: 'rgba(255, 255, 0, 0.5)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Out',
-                        data: [28, 25, 14,21],
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        borderColor: 'rgba(255, 99, 132, 0.5)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            plugins: [ChartDataLabels],
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        formatter: function(value) {
-                            return value;
-                        }
-                    }
-                }
-            }
-        });
+        
 
         const chart5 = new Chart(ctx5, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries','Telkom'],
+                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
                 datasets: [{
                         label: 'Prospek',
-                        data: [32, 29, 12,21],
+                        data: [32, 29, 12, 21],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Potensi',
-                        data: [28, 25, 14,32],
+                        data: [28, 25, 14, 32],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Onhand',
-                        data: [28, 25, 14,23],
+                        data: [28, 25, 14, 23],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Out',
-                        data: [28, 25, 14,21],
+                        data: [28, 25, 14, 21],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
@@ -555,31 +586,31 @@
         const chart6 = new Chart(ctx6, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries','Telkom'],
+                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
                 datasets: [{
                         label: 'Prospek',
-                        data: [32, 29, 12,21],
+                        data: [32, 29, 12, 21],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Potensi',
-                        data: [28, 25, 14,32],
+                        data: [28, 25, 14, 32],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Onhand',
-                        data: [28, 25, 14,23],
+                        data: [28, 25, 14, 23],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Out',
-                        data: [28, 25, 14,21],
+                        data: [28, 25, 14, 21],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
@@ -608,31 +639,31 @@
         const chart7 = new Chart(ctx7, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries','Telkom'],
+                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
                 datasets: [{
                         label: 'Prospek',
-                        data: [32, 29, 12,21],
+                        data: [32, 29, 12, 21],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Potensi',
-                        data: [28, 25, 14,32],
+                        data: [28, 25, 14, 32],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Onhand',
-                        data: [28, 25, 14,23],
+                        data: [28, 25, 14, 23],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Out',
-                        data: [28, 25, 14,21],
+                        data: [28, 25, 14, 21],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
@@ -674,21 +705,7 @@
             }
         });
 
-        document.getElementById('myChart2').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
-                intersect: true
-            }, true);
-
-            if (activePoints.length > 0) {
-                const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
-            }
-        });
+        
 
         document.getElementById('myChart3').addEventListener('click', function(event) {
             const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
@@ -706,22 +723,8 @@
             }
         });
 
-        document.getElementById('ManarBpp').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
-                intersect: true
-            }, true);
+        
 
-            if (activePoints.length > 0) {
-                const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
-            }
-        });
-     
         document.getElementById('ManarKaltim').addEventListener('click', function(event) {
             const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
@@ -769,7 +772,6 @@
                 window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
             }
         });
-        
     </script>
 
     {{-- <script type="text/javascript">

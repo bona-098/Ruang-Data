@@ -220,7 +220,7 @@
                                                 <label class="control-label">Segment</label>
                                                 <select name="segment" required class="form-control custom-select">
                                                     <option value="Subsidiaries">Subsidiaries</option>
-                                                    <option value="Enterprise">Enterprise</option>
+                                                    <option value="Government">Government</option>
                                                     <option value="Telkom">Telkom</option>
                                                     <option value="Enterprise">Enterprise</option>
                                                 </select>
