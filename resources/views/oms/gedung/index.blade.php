@@ -83,17 +83,15 @@
                             <th style="white-space: nowrap;">Nama Area</th>
                             <th style="white-space: nowrap;">Nama Witel</th>
                             <th style="white-space: nowrap;">Alamat</th>
-                            <th style="white-space: nowrap;">Nama Gedung</th>
                             <th>Koordinat</th>
+                            {{-- <th style="white-space: nowrap;">Nama Gedung</th> --}}
                             <th style="white-space: nowrap;">Total Petugas</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {{-- @if (count($gedung)>0) --}}
-                            
+                    <tbody>                            
                         @foreach ($gedung as $g)
                         <tr>
-                            <td>1</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
                             </td>
@@ -102,12 +100,8 @@
                             <td style="white-space: nowrap;">{{ $g->alamat }}</td>
                             <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
                             <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
-                            <td>4</td>
                         </tr>       
                         @endforeach
-                        {{-- @else --}}
-                        {{-- <p>gada data</p> --}}
-                        {{-- @endif --}}
                     </tbody>
                 </table>
             </div>

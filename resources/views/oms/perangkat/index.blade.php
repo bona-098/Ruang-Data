@@ -115,24 +115,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($perangkat as $pr)
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ route('perangkat.show', $pr->id) }}">Detail</a>
-                            </td>
-                            <td>{{ $pr->nama_unit }}</td>
-                            <td>{{ $pr->nama_witel }}</td>
-                            <td>{{ $pr->nama_lokasi }}</td>
-                            <td>{{ $pr->nama_gedung }}</td>
-                            <td style="white-space: nowrap;">{{ $pr->nama_jenis }}</td>
-                            <td>{{ $pr->kategori }}</td>
-                            <td>{{ $pr->sub_kategori }}</td>
-                            <td>{{ $pr->nama_perangkat }}</td>
-                            <td>{{ $pr->merk }}</td>
-                            <td>{{ $pr->milik }}</td>
-                        </tr>
-                        @endforeach                        
+                        @if ($perangkat->count() > 0)
+                            @foreach ($perangkat as $pr)
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('perangkat.show', $pr->id) }}">Detail</a>
+                                    </td>
+                                    <td>{{ $pr->nama_unit }}</td>
+                                    <td>{{ $pr->nama_witel }}</td>
+                                    <td>{{ $pr->nama_lokasi }}</td>
+                                    <td>{{ $pr->nama_gedung }}</td>
+                                    <td style="white-space: nowrap;">{{ $pr->nama_jenis }}</td>
+                                    <td>{{ $pr->kategori }}</td>
+                                    <td>{{ $pr->sub_kategori }}</td>
+                                    <td>{{ $pr->nama_perangkat }}</td>
+                                    <td>{{ $pr->merk }}</td>
+                                    <td>{{ $pr->milik }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <p>Tidak ada data perangkat yang tersedia.</p>
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -536,50 +540,50 @@
                                                 <small class="form-control-feedback"> @error('id_perangkat')
                                                         {{ $message }}
                                                     @enderror </small>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-            
-                                </div>
-                            </form>
                         </div>
                     </div>
-                </div>
-            </div>
-       
-        <!-- Modal Import -->
-        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form action="/" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-import-label">Import Data</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="file">Pilih file </label>
-                                <input type="file" class="form-control-file" id="file" name="file">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Import</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+
+                    </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal Import -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-import-label">Import Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="file">Pilih file </label>
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     </div>
 @endsection

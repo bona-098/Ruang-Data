@@ -95,11 +95,11 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4">
-                                        <a href="{{ route('performance.show', $p->id) }}" target="_blank">
-                                            <img src="{{ asset('images/performance/' . $p->foto) }}"
-                                                style="width: 100%; max-width: 100%;" alt="gambar">
+                                        <a href="{{ asset('images/performance/' . $p->foto) }}" target="_blank">
+                                            <img src="{{ asset('images/performance/' . $p->foto) }}" style="width: 100%; max-width: 100%;" alt="gambar">
                                         </a>
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

@@ -187,9 +187,10 @@ class PerangkatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perangkat $perangkat)
+    public function destroy($id)
     {
+        $perangkat = Perangkat::findOrFail($id);
         $perangkat->delete();
-        return redirect()->back();
+        return redirect()->route('perangkat.index');
     }
 }
