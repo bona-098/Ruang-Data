@@ -113,6 +113,9 @@ Route::resource('/perangkat', PerangkatController::class);
 Route::resource('/performance', PerformanceController::class);
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
+// Route::get('/mitra/reset-filter', [MitraController::class, 'resetFilter'])->name('mitra.resetFilter');
+// Route::get('/mitra/reset-filter', 'MitraController@resetFilter')->name('mitra.resetFilter');
+
 Route::resource('/sales', SalesController::class);
 Route::resource('/project', ProjectController::class);
 // Route::get('/project', [ProjectController::class], 'grafik');

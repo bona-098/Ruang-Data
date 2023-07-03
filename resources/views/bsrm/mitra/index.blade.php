@@ -7,51 +7,48 @@
         {{-- MEMFILTER DATA --}}
         <div class="card">
             <div class="card-body">
-                <form action="" method="GET" id="form_1">
+                <form action="{{ route('mitra.index') }}" method="GET" id="form_1">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <label for="filter1">Kategori</label>
-                            <select name="kategori" class="form-control">
+                            <select name="kategori" class="form-control" onchange="submitForm()">
                                 <option value="">Pilih</option>
-                                <option value="EKSISTING"
-                                    value="{{ isset($_GET['kategori']) && $_GET['kategori'] == 'EKSISTING' }}">
+                                <option value="EKSISTING" {{ isset($_GET['kategori']) && $_GET['kategori'] == 'EKSISTING' ? 'selected' : '' }}>
                                     EKSISTING</option>
-                                <option value="REGISTERED"
-                                    value="{{ isset($_GET['kategori']) && $_GET['kategori'] == 'REGISTERED' }}">
+                                <option value="REGISTERED" {{ isset($_GET['kategori']) && $_GET['kategori'] == 'REGISTERED' ? 'selected' : '' }}>
                                     REGISTERED</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Domisili:</label>
-                            <select name="domisili" class="form-control">
+                            <select name="domisili" class="form-control" onchange="submitForm2()">
                                 <option value="">Pilih</option>
-                                <option value="Balikpapan"
-                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' }}">
+                                <option value="Balikpapan" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' ? 'selected' : '' }}>
                                     Area Balikpapan</option>
-                                <option value="Kaltim"
-                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' }}">
+                                <option value="Kaltim" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' ? 'selected' : '' }}>
                                     Kalimantan Timur</option>
-                                <option value="Kalsel"
-                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' }}">
+                                <option value="Kalsel" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' ? 'selected' : '' }}>
                                     Kalimantan Selatan</option>
-                                <option value="Kalbar"
-                                    value="{{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' }}">
+                                <option value="Kalbar" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' ? 'selected' : '' }}>
                                     Kalimantan Barat</option>
                             </select>
                         </div>
                         <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
-                            <button type="submit" class="form-control btn-success"> <i class="fa fa-filter"></i> Filter</button>
+                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
+                                Search</button>
                         </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <a href="{{ route('resetFilter') }}" class="form-control btn-success">
-                                Reset
-                            </a>
-                        </div>                        
                     </div>
-                </form>
+                </form>                
+                <script>
+                    function submitForm() {
+                        document.getElementById('form_1').submit();
+                    }
+                    function submitForm2() {
+                        document.getElementById('form_1').submit();
+                    }
+                </script>
             </div>
         </div>
         {{-- MEMFILTER DATA --}}
