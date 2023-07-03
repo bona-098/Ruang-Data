@@ -13,12 +13,16 @@ class PersonilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $personil = Personil::get();
-        $gedung = Gedung::findOrfail($id);
-        return view('oms.gedung.detail', compact('personil', 'gedung'));
+        $personil = Personil::all();
+        $gedungOptions = Gedung::all();
+
+        return view('oms.personil.index', compact('personil', 'gedungOptions'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -78,6 +82,8 @@ class PersonilController extends Controller
         //
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -92,20 +98,30 @@ class PersonilController extends Controller
             'telepon' => 'required',
             'nik' => 'required',
             'email' => 'required',
-            // 'gedung_id' => 'required',
+            'gedung_id' => 'required',
         ]);
+
         $personil = Personil::find($id);
-        if(!$personil) {
-            return redirect()->back()->with('error', 'datasalah');
+        if (!$personil) {
+            return redirect()->back()->with('error', 'Data personil tidak ditemukan');
         }
-        $personil->update([
-            'nama' => $request->nama,
-            'telepon' => $request->telepon,
-            'nik' => $request->nik,
-            'email' => $request->email,
-            // 'gedung_id' => $request->gedung_id,
-        ]);
-        return redirect()->back();
+
+        $personil->nama = $request->nama;
+        $personil->telepon = $request->telepon;
+        $personil->nik = $request->nik;
+        $personil->email = $request->email;
+
+        // Cek apakah gedung_id yang baru valid dan ada dalam tabel gedung
+        $gedung = Gedung::find($request->gedung_id);
+        if (!$gedung) {
+            return redirect()->back()->with('error', 'Gedung tidak ditemukan');
+        }
+
+        $personil->gedung_id = $gedung->id;
+
+        $personil->save();
+
+        return redirect()->back()->with('success', 'Data personil berhasil diperbarui');
     }
 
     /**
@@ -116,6 +132,8 @@ class PersonilController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $personil = Personil::findOrFail($id);
+        $personil->delete();
+        return redirect()->back();
     }
 }
