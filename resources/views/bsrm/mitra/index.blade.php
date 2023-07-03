@@ -22,12 +22,14 @@
                         <!--/span-->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" name="" placeholder="Domisili" class="form-control" id="filter-location">
+                                <input type="text" name="" placeholder="Domisili" class="form-control"
+                                    id="filter-location">
                                 {{-- <small class="form-control-feedback"> Select your gender </small> --}}
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="form-control btn-success" onclick="filterTable()"> <i class="fa fa-filter"></i> Filter</button>
+                            <button type="submit" class="form-control btn-success" onclick="filterTable()"> <i
+                                    class="fa fa-filter"></i> Filter</button>
                         </div>
                         <div class="col-md-2">
                             <button type="button" class="form-control btn-success" onclick="resetFilter()">Reset</button>
@@ -74,28 +76,87 @@
                                     <td>{{ $m->kategori }}</td>
                                     <td>{{ $m->nilai_asses }}</td>
                                     <td>{{ $m->status }}</td>
-                                    <div class="dropdown">
-                                        <td>
+                                    <td>
+                                        <div class="dropdown">
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                <i class="fa fa-cog"> Aksi</i>
+                                                <i class="fa fa-cog"></i> Aksi
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahMitra">
+                                                <a class="dropdown-item" data-toggle="modal"
+                                                    data-target="#ModalUpdateMitra{{ $m->id }}">
                                                     <i class="fa fa-edit"></i> Edit
-                                                </button> --}}
+                                                </a>
                                                 <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalUpdateMitra"><i class="fa fa-edit"></i> Edit</a>
-                                                {{-- <a class="dropdown-item" href="{{ route('mitra.show', $m->id) }}"><i
-                                                        class="fa fa-eye"></i> show</a> --}}
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalDeleteMitra"><i class="fa fa-trash"></i> Delete</a>
+                                                    data-target="#ModalDeleteMitra{{ $m->id }}">
+                                                    <i class="fa fa-trash"></i> Hapus
+                                                </a>
                                             </div>
-                                        </td>
-                                    </div>
+                                        </div>
+                                    </td>
                                 </tr>
+
+                                <!-- Modal Update Mitra -->
+                                <div class="modal fade" id="ModalUpdateMitra{{ $m->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Update Mitra</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Form Update Mitra -->
+                                                <form action="{{ route('mitra.update', $m->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <!-- Tambahkan input lainnya sesuai kebutuhan -->
+                                                    <div class="form-group">
+                                                        <label for="namaMitra">Nama Mitra</label>
+                                                        <input type="text" class="form-control" id="namaMitra"
+                                                            name="nama_vendor" placeholder="Masukkan nama mitra"
+                                                            value="{{ $m->nama_vendor }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="domisiliMitra">Domisili</label>
+                                                        <input type="text" class="form-control" id="domisiliMitra"
+                                                            name="domisili" placeholder="Masukkan domisili"
+                                                            value="{{ $m->domisili }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="kategoriMitra">Kategori</label>
+                                                        <input type="text" class="form-control" id="kategoriMitra"
+                                                            name="kategori" placeholder="Masukkan kategori"
+                                                            value="{{ $m->kategori }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nilaiAssesMitra">Nilai Asses</label>
+                                                        <input type="text" class="form-control" id="nilaiAssesMitra"
+                                                            name="nilai_asses" placeholder="Masukkan nilai asses"
+                                                            value="{{ $m->nilai_asses }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="status">Status</label>
+                                                        <input type="text" class="form-control" id="status"
+                                                            name="status" placeholder="Masukkan status"
+                                                            value="{{ $m->status }}">
+                                                    </div>
+                                                    <!-- Tambahkan input lainnya sesuai kebutuhan -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </form>
+                                                <!-- Form Update Mitra -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -107,8 +168,8 @@
 
     </div>
     <!-- KONTEN MODAL TAMBAH MITRA  -->
-    <div class="modal fade" id="ModalTambahMitra" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static"
-        data-keyboard="false" aria-hidden="true">
+    <div class="modal fade" id="ModalTambahMitra" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -124,7 +185,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nama Vendor</label>
-                                            <input type="text" id="nama_vendor" class="form-control" name="nama_vendor">
+                                            <input type="text" id="nama_vendor" class="form-control"
+                                                name="nama_vendor">
                                             {{-- <small class="form-control-feedback"> Feedback salah </small> --}}
                                         </div>
                                     </div>
@@ -145,7 +207,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="status" class="control-label">Kategori</label>
-                                            <select class="form-control custom-select" id="status" name="status">
+                                            <select class="form-control custom-select" id="status" name="kategori">
                                                 <option value="EKSISTING">EKSISTING</option>
                                                 <option value="Baru">Baru (BARU REGISTERED)</option>
                                             </select>
@@ -185,107 +247,32 @@
     <!-- KONTEN MODAL TAMBAH MITRA  -->
 
 
-     <!-- KONTEN MODAL Import MITRA  -->
-     <div class="modal fade" id="ModalImportMitra" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static"
-     data-keyboard="false" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Import Mitra</h5>
-                 <br>
-             </div>
-             <div class="modal-body">
-                 <div class="card-body">
-                     <form method="POST" action="{{ route('mitra.store') }}" enctype="multipart/form-data">
-                         @csrf
-                         <div class="form-body">
-                             <div class="row ">
-                                 <div class="col-md-6">
-                                     <div class="form-group">
-                                         <label class="control-label">Import File</label>
-                                         <input type="file" class="form-control" name="file">
-                                         {{-- <small class="form-control-feedback"> Feedback salah </small> --}}
-                                     </div>
-                                 </div>
-                                 <!--/span-->
-                             </div>
-                             <!--/row-->
-                             <!--/row-->
-                         </div>
-                         <!--/row-->
-                         <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                             <button type="submit" class="btn btn-primary">Simpan</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- <!-- KONTEN MODAL TAMBAH MITRA  -->
-
-    <!-- KONTEN MODAL UPDATE MITRA  -->
-    <div class="modal fade" id="ModalUpdateMitra" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <!-- KONTEN MODAL Import MITRA  -->
+    <div class="modal fade" id="ModalImportMitra" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Mitra</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Import Mitra</h5>
+                    <br>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="#">
+                        <form method="POST" action="{{ route('mitra.store') }}" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-body">
-                                <div class="row p-t-20">
+                                <div class="row ">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nama</label>
-                                            <input type="text" id="NIK" class="form-control">
+                                            <label class="control-label">Import File</label>
+                                            <input type="file" class="form-control" name="file">
                                             {{-- <small class="form-control-feedback"> Feedback salah </small> --}}
                                         </div>
                                     </div>
                                     <!--/span-->
-                                    <div class="col-md-6">
-                                        <div class="form-group has-danger">
-                                            <label class="control-label">Domisili</label>
-                                            <input type="text" id="Domisili"
-                                                class="form-control form-control-danger">
-                                            {{-- <small class="form-control-feedback"> This field has error. </small> --}}
-                                        </div>
-                                    </div>
-                                    <!--/span-->
                                 </div>
                                 <!--/row-->
                                 <!--/row-->
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kategori</label>
-                                            <input type="text" id="kategori" class="form-control">
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-                                    <!--/span-->
-
-                                    <!--/row-->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nilai Asses</label>
-                                            <input type="number" min="0" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <!--/row-->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Status</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                </div>
-
                             </div>
                             <!--/row-->
                             <div class="modal-footer">
@@ -298,33 +285,41 @@
             </div>
         </div>
     </div>
+    <!-- KONTEN MODAL TAMBAH MITRA  -->
+    {{-- @foreach ($mitra as $m) --}}
 
-    <!-- KONTEN MODAL UPDATE MITRA  -->
 
-    {{-- KONTEN MODAL DELETE MITRA --}}
+    {{-- @endforeach --}}
 
-    <div class="modal fade" id="ModalDeleteMitra" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-                </div>
-                <div class="modal-body">
-                    Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah anda
-                    yakin ingin melanjutkan ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form method="POST" id="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
+
+    <!-- Modal Delete Mitra -->
+    @foreach ($mitra as $m)
+        @if (isset($m))
+            <div class="modal fade" id="ModalDeleteMitra{{ $m->id }}" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
+                        </div>
+                        <div class="modal-body">
+                            Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan. Apakah
+                            Anda yakin ingin melanjutkan?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <form method="POST" action="{{ route('mitra.destroy', $m->id) }}" id="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        @endif
+    @endforeach
+
 
 
     {{-- KONTEN MODAL DELETE MITRA --}}

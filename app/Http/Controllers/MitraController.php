@@ -45,8 +45,8 @@ class MitraController extends Controller
         //     'kategori' => 'required'
         // ]);
 
-        
-        if($request->nama_vendor == "" || $request->status == "");
+
+        if ($request->nama_vendor == "" || $request->status == "");
         Mitra::create([
             'nama_vendor' => $request->nama_vendor,
             'domisili' => $request->domisili,
@@ -54,8 +54,8 @@ class MitraController extends Controller
             'nilai_asses' => $request->nilai_asses,
             'status' => $request->status,
         ]);
-            // return redirect()->back()->with('error', 'isi semua');
-        
+        // return redirect()->back()->with('error', 'isi semua');
+
         return redirect()->back();
     }
 
@@ -99,30 +99,21 @@ class MitraController extends Controller
             'nilai_asses' => 'required|numeric',
             'status' => 'required|string',
         ]);
-        // $mitra = Mitra::find($id);
+
         $mitra = Mitra::find($id);
         if (!$mitra) {
             return redirect()->back()->with('error', 'Data mitra tidak ditemukan');
         }
 
-        $mitra->update([
-            'nama_vendor' => $request->nama_vendor,
-            'domisili' => $request->domisili,
-            'kategori' => $request->kategori,
-            'nilai_asses' => $request->nilai_asses,
-            'status' => $request->status,
-        ]);
+        $mitra->nama_vendor = $request->nama_vendor;
+        $mitra->domisili = $request->domisili;
+        $mitra->kategori = $request->kategori;
+        $mitra->nilai_asses = $request->nilai_asses;
+        $mitra->status = $request->status;
+
+        $mitra->save();
 
         return redirect()->route('mitra.index');
-
-        // $mitra->update([
-        //     'nama_vendor' => $request->nama_vendor,
-        //     'domisili' => $request->domisili,
-        //     'kategori' => $request->kategori,
-        //     'nilai_asses' => $request->nilai_asses,
-        //     'status' => $request->status,
-        // ]);
-        // return redirect()->route('mitra.index');
     }
 
     /**
@@ -131,8 +122,9 @@ class MitraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mitra $mitra)
+    public function destroy($id)
     {
+        $mitra = Mitra::findOrFail($id);
         $mitra->delete();
         return redirect()->back();
     }
