@@ -650,7 +650,7 @@
                         labels: ['Telkom', 'Telkom Group', 'Enterprise'],
                         datasets: [{
                                 label: 'Nilai Project',
-                                data: [32, 29, 12],
+                                data: [100, 100, 100],
                                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
                                 borderColor: 'rgba(75, 192, 192, 0.5)',
                                 borderWidth: 1
