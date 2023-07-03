@@ -172,3 +172,7 @@ Route::post('/projek', function () {
 //     return back();
 // });
 // require __DIR__.'/auth.php';
+
+Route::get('/testing', function () {
+    return view('testing');
+});
