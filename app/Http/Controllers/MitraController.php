@@ -17,24 +17,39 @@ class MitraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $mitra = Mitra::query();
-        $mitra->when($request->kategori, function($query) use ($request) {
-            return $query->where('kategori', $request->kategori);
-        });
-        $mitra->when($request->domisili, function($query) use ($request) {
-            return $query->where('domisili', $request->domisili);
-        });
-        $mitra = $mitra->get();
-        return view('bsrm.mitra.index', compact('mitra'));
-    }
-    
+{
+    $mitra = Mitra::query();
 
-    public function resetFilter()
-    {
-        session()->forget('filter');
-        return redirect()->back();
+    if ($request->kategori && $request->kategori != 'Pilih') {
+        $mitra->where('kategori', $request->kategori);
     }
+
+    if ($request->domisili && $request->domisili != 'Pilih') {
+        $mitra->where('domisili', $request->domisili);
+    }
+
+    $mitra = $mitra->get(); // Mengambil data dari query
+
+    return view('bsrm.mitra.index', compact('mitra'));
+}
+
+
+
+
+
+
+
+
+
+
+    // public function resetFilter(Request $request)
+    // {
+    //     $request->session()->forget('kategori');
+    //     $request->session()->forget('domisili');
+    //     return view('bsrm.mitra.index');
+
+    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -81,8 +96,8 @@ class MitraController extends Controller
      */
     public function show($id)
     {
-        $mitra = Mitra::find($id);
-        return view('bsrm.mitra.show', compact('mitra'));
+        // $mitra = Mitra::find($id);
+        // return view('bsrm.mitra.show', compact('mitra'));
     }
 
     /**
