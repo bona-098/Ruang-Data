@@ -10,7 +10,7 @@ class Performance extends Model
     use HasFactory;
     public $table = 'performance';
     protected $fillable = [
-    'kategori',
+    // 'kategori',
     'tahun',
     'bulan',
     'area',
