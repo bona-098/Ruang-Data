@@ -76,7 +76,7 @@
         .logo {
             display: block;
             margin: 0 auto;
-            max-width: 150px;
+            max-width: 250px;
             margin-bottom: 20px;
         }
     </style>
@@ -84,10 +84,12 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <div class="container">
         <div class="glass-login-container mx-auto">
-            <img class="logo" src="https://source.unsplash.com/random" alt="Logo">
-            <h2 class="text-center">Ruang Data<br>Telkom Property</h2>
+            {{-- <img class="logo" src="https://source.unsplash.com/random" alt="Logo"> --}}
+            <img class="logo" src="{{ asset('template/images/logo_reborn.png') }}" alt="Logo">
+            <h2 class="text-center mt-4">Ruang Data<br>Telkom Property</h2>        
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @method('POST')

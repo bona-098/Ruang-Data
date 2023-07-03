@@ -129,11 +129,11 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Total Nilai Project</h4>
+                                <h4>Manar Balikpapan</h4>
                             </div>
                         </div>
                         <div class="panel-body">
-                            <canvas id="pieChart"></canvas>
+                            <canvas id="ChartManarBpp"></canvas>
                         </div>
                     </div>
                 </div>
@@ -143,11 +143,39 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Belum Akru</h4>
+                                <h4>Manar Kalimantan Timur</h4>
                             </div>
                         </div>
                         <div class="panel-body">
-                            <canvas id="pieChart2"></canvas>
+                            <canvas id="ChartManarKaltim"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Manar Kalimantan Selatan dan Tengah</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="ChartManarKalselteng"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Manar Kalimantan Barat</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="ChartManarKalbar"></canvas>
                         </div>
                     </div>
                 </div>
@@ -354,7 +382,7 @@
                             ],
                             backgroundColor: "rgba(54, 162, 235, 0.5)",
                         },
-                        {   
+                        {
                             label: "Sisa Belum Akru",
                             data: [telkomBelumAkru, telkomGroupBelumAkru,
                                 enterpriseBelumAkru
@@ -385,9 +413,69 @@
             };
         });
 
-         //Barchart3
-         document.addEventListener("DOMContentLoaded", function() {
+        //Barchart3
+        document.addEventListener("DOMContentLoaded", function() {
             var ctx = document.getElementById("barChart3");
+            var telkomAkru = {!! json_encode($telkomAkru) !!};
+            var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            var exmaAkru = {!! json_encode($exmaAkru) !!};
+            var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Done", "Progress", "Belum Mulai"],
+                    datasets: [{
+                            label: "Telkom",
+                            data: [10000, 8000, 5000],
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                        },
+                        {
+                            label: "Telkom Group",
+                            data: [9000, 5000, 2450],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {
+                            label: "Enterprise",
+                            data: [15000, 10000, 1000],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+
+        //Barchart4
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("ChartManarBpp");
             // var telkomAkru = {!! json_encode($telkomAkru) !!};
             // var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
             // var exmaAkru = {!! json_encode($exmaAkru) !!};
@@ -405,22 +493,220 @@
             var myChart = new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: ["Done", "Progress", "Belum Mulai"],
+                    labels: ["Enterpries", "Government", "Subsidiaries", "Telkom"],
                     datasets: [{
-                            label: "Telkom",
-                            data: [10000,8000,5000],
-                            backgroundColor: "rgba(75, 192, 192, 0.5)",
+                            label: "Prospek",
+                            data: [100, 80, 50, 25],
+                            backgroundColor: "rgba(0, 128, 0, 0.5)",
                         },
                         {
-                            label: "Telkom Group",
-                            data: [9000,5000,2450
-                            ],
+                            label: "Potensi",
+                            data: [90, 50, 40, 60],
                             backgroundColor: "rgba(54, 162, 235, 0.5)",
                         },
-                        {   
-                            label: "Enterprise",
-                            data: [15000,10000,1000
-                            ],
+                        {
+                            label: "Onhand",
+                            data: [15, 10, 10, 10],
+                            backgroundColor: "rgba(255, 255, 0, 0.5)",
+                        },
+                        {
+                            label: "Out",
+                            data: [15, 10, 10, 53],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+
+        //Barchart5
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("ChartManarKaltim");
+            // var telkomAkru = {!! json_encode($telkomAkru) !!};
+            // var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            // var exmaAkru = {!! json_encode($exmaAkru) !!};
+            // var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            // var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            // var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            // var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            // var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            // var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            // var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            // var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            // var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Enterpries", "Government", "Subsidiaries", "Telkom"],
+                    datasets: [{
+                            label: "Prospek",
+                            data: [10000, 8000, 5000, 2500],
+                            backgroundColor: "rgba(0, 128, 0, 0.5)",
+                        },
+                        {
+                            label: "Potensi",
+                            data: [9000, 5000, 2450, 6000],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {
+                            label: "Onhand",
+                            data: [15000, 10000, 1000, 1000],
+                            backgroundColor: "rgba(255, 255, 0, 0.5)",
+                        },
+                        {
+                            label: "Out",
+                            data: [15000, 10000, 1000, 5310],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+
+        //Barchart6
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("ChartManarKalselteng");
+            // var telkomAkru = {!! json_encode($telkomAkru) !!};
+            // var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            // var exmaAkru = {!! json_encode($exmaAkru) !!};
+            // var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            // var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            // var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            // var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            // var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            // var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            // var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            // var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            // var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Enterpries", "Government", "Subsidiaries", "Telkom"],
+                    datasets: [{
+                            label: "Prospek",
+                            data: [10000, 8000, 5000, 2500],
+                            backgroundColor: "rgba(0, 128, 0, 0.5)",
+                        },
+                        {
+                            label: "Potensi",
+                            data: [9000, 5000, 2450, 6000],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {
+                            label: "Onhand",
+                            data: [15000, 10000, 1000, 1000],
+                            backgroundColor: "rgba(255, 255, 0, 0.5)",
+                        },
+                        {
+                            label: "Out",
+                            data: [15000, 10000, 1000, 5310],
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            myChart.options.onClick = function(event, elements) {
+                if (elements.length > 0) {
+                    var dataIndex = elements[0]._index;
+                    var label = myChart.data.labels[dataIndex];
+
+                    // Open new page with the label as a parameter
+                    window.open("/project");
+                }
+            };
+        });
+
+        //Barchart7
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("ChartManarKalbar");
+            // var telkomAkru = {!! json_encode($telkomAkru) !!};
+            // var telkomGroupAkru = {!! json_encode($telkomGroupAkru) !!};
+            // var exmaAkru = {!! json_encode($exmaAkru) !!};
+            // var enterpriseAkru = {!! json_encode($enterpriseAkru) !!};
+
+            // var telkomSudahAkru = {!! json_encode($telkomsudahakru) !!};
+            // var telkomGroupSudahAkru = {!! json_encode($telkomGroupsudahkru) !!};
+            // var exmaSudahAkru = {!! json_encode($exmasudahakru) !!};
+            // var enterpriseSudahAkru = {!! json_encode($enterprisesudahakru) !!};
+
+            // var telkomBelumAkru = {!! json_encode($telkombelumakru) !!};
+            // var telkomGroupBelumAkru = {!! json_encode($telkomGroupbelumakru) !!};
+            // var exmaBelumAkru = {!! json_encode($exmabelumakru) !!};
+            // var enterpriseBelumAkru = {!! json_encode($enterprisebelumakru) !!};
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Enterpries", "Government", "Subsidiaries", "Telkom"],
+                    datasets: [{
+                            label: "Prospek",
+                            data: [10000, 8000, 5000, 2500],
+                            backgroundColor: "rgba(0, 128, 0, 0.5)",
+                        },
+                        {
+                            label: "Potensi",
+                            data: [9000, 5000, 2450, 6000],
+                            backgroundColor: "rgba(54, 162, 235, 0.5)",
+                        },
+                        {
+                            label: "Onhand",
+                            data: [15000, 10000, 1000, 1000],
+                            backgroundColor: "rgba(255, 255, 0, 0.5)",
+                        },
+                        {
+                            label: "Out",
+                            data: [15000, 10000, 1000, 5310],
                             backgroundColor: "rgba(255, 99, 132, 0.5)",
                         },
                     ],
