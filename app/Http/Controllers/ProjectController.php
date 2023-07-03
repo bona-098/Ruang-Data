@@ -13,14 +13,25 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $project = Project::get();
-        // dd($project);
+        $project = Project::query();
+        if ($request->id_crm && $request->id_crm != 'Pilih') {
+            $project->where('id_crm', $request->id_crm);
+        }    
+        if ($request->witel && $request->witel != 'Pilih') {
+            $project->where('witel', $request->witel);
+        }    
+        if ($request->kategori && $request->kategori != 'Pilih') {
+            $project->where('kategori', $request->kategori);
+        }    
+        if ($request->tahap && $request->tahap != 'Pilih') {
+            $project->where('tahap', $request->tahap);
+        }
+        // dd($request);
+        $project = $project->get();
         return view('project.index', compact('project'));
-    }
-
-    
+    }    
 
     /**
      * Show the form for creating a new resource.

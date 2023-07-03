@@ -18,41 +18,28 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
-        // return $request->all();
-        // $sales = Sales::get();
-        // dd($sales);
-        $sales = Sales::query();
-        $sales->when($request->unit_kerja, function($query) use ($request) {
-            return $query->whereunit_kerja($request->unit_kerja);
-        });
-        $sales->when($request->status_revenue, function($query) use ($request) {
-            return $query->wherestatus_revenue($request->status_revenue);
-        });
-        $sales->when($request->segment, function($query) use ($request) {
-            return $query->wheresegment($request->segment);
-        });
-        $sales->when($request->portfolio, function($query) use ($request) {
-            return $query->whereportfolio($request->portfolio);
-        });
-        $sales->when($request->progress_project, function($query) use ($request) {
-            return $query->whereprogress_project($request->progress_project);
-        });
-        $sales->when($request->status_project, function($query) use ($request) {
-            return $query->wherestatus_project($request->status_project);
-        });
-        $sales->when($request->jenis_kontrak, function($query) use ($request) {
-            return $query->wherejenis_kontrak($request->jenis_kontrak);
-        });
-        return view ('marshal.sales.index', ['sales' => $sales->paginate(100000)]);
-        // dd($sales);
+    $sales = Sales::query();
+
+    if ($request->unit_kerja && $request->unit_kerja != 'Pilih') {
+        $sales->where('unit_kerja', $request->unit_kerja);
     }
 
-    public function resetFilter()
-    {
-        session()->forget('filter');
-        return redirect()->back();
+    if ($request->status_revenue && $request->status_revenue != 'Pilih') {
+        $sales->where('status_revenue', $request->status_revenue);
     }
 
+    if ($request->segment && $request->segment != 'Pilih') {
+        $sales->where('segment', $request->segment);
+    }
+
+    if ($request->status_project && $request->status_project != 'Pilih') {
+        $sales->where('status_project', $request->status_project);
+    }
+
+    $sales = $sales->get(); // Mengambil data dari query
+
+    return view('marshal.sales.index', compact('sales'));
+    }
     public function export()
     {
         try {
