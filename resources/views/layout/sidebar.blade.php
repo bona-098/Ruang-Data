@@ -40,7 +40,7 @@
                 </li>
                 @endcanany
                 @canany(['oms', 'admin'])
-                <li> <a class="" href="{{route('perangkat.index')}}" aria-expanded="false"><i
+                <li> <a class="" href="{{route('personil.index')}}" aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
                 </li>
                 @endcanany
