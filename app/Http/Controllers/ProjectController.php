@@ -150,7 +150,7 @@ class ProjectController extends Controller
         // Mencari project berdasarkan nilai dari kolom 'label' dan nama kolom
         $project = Project::where('kategori', $labelValue)
                           ->whereNotNull($columnName)
-                          ->first();
+                          ->get();
         
         // Jika project tidak ditemukan, bisa melakukan penanganan sesuai kebutuhan Anda, misalnya menampilkan pesan error atau mengarahkan pengguna ke halaman lain.
         if (!$project) {

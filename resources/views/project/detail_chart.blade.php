@@ -79,28 +79,28 @@
                     <tbody>
                         @foreach ($project as $p)
                             <tr>
-                                <td></td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
                                     <div class=" text-center">
                                         <a href="{{ route('project.show',$p->customer) }}" class="btn btn-primary">Detail</a>
                                     </div>
                                 </td>
-                                <td> $p->customer </td>
-                                <td> $p->id_crm </td>
-                                <td> $p->witel </td>
-                                <td> $p->nama_project </td>
-                                <td> $p->kategori </td>
-                                <td> $p->skema </td>
-                                <td> $p->nilai_project </td>
-                                <td> $p->sudah_akru </td>
-                                <td> $p->sisa_belum_akru </td>
-                                <td> $p->progress_ml </td>
-                                <td> $p->progress_mi </td>
-                                <td> $p->start_date </td>
-                                <td> $p->end_date </td>
-                                <td> $p->keterangan </td>
-                                <td> $p->tahap </td>
-                                <td> $p->akru </td>
+                                <td>{{ $p->customer }}</td>
+                                <td>{{ $p->id_crm }}</td>
+                                <td>{{ $p->witel }}</td>
+                                <td>{{ $p->nama_project }}</td>
+                                <td>{{ $p->kategori }}</td>
+                                <td>{{ $p->skema }}</td>
+                                <td>{{ $p->nilai_project }}</td>
+                                <td>{{ $p->sudah_akru }}</td>
+                                <td>{{ $p->sisa_belum_akru }}</td>
+                                <td>{{ $p->progress_ml }}</td>
+                                <td>{{ $p->progress_mi }}</td>
+                                <td>{{ $p->start_date }}</td>
+                                <td>{{ $p->end_date }}</td>
+                                <td>{{ $p->keterangan }}</td>
+                                <td>{{ $p->tahap }}</td>
+                                <td>{{ $p->akru }}</td>
                             </tr>
                         @endforeach
                     </tbody>
