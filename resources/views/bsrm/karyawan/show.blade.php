@@ -116,19 +116,18 @@
                                     <div class="col-md-6">
                                         <div class="form-group has-danger">
                                             <label for="nama_karyawan" class="control-label">Nama Karyawan</label>
-                                            <input type="text" id="nama_karyawan"
+                                            <input type="text" id="nama_karyawan" value="{{ $karyawan->nama_karyawan }}"
                                                 class="form-control form-control-danger" name="nama_karyawan">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
-                                            <select class="form-control custom-select" id="jenis_kelamin"
-                                                name="jenis_kelamin">
-                                                <option value="">Pilih Jenis Kelamin</option>
-                                                <option value="laki-laki">Laki-laki</option>
-                                                <option value="perempuan">Perempuan</option>
+                                            <select class="form-control custom-select" id="jenis_kelamin" name="jenis_kelamin">
+                                                <option value="laki-laki" {{ $karyawan->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                <option value="perempuan" {{ $karyawan->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                                             </select>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -141,7 +140,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="kota_lahir" class="control-label">Kota Lahir</label>
-                                            <input type="text" id="kota_lahir" name="kota_lahir"
+                                            <input type="text" id="kota_lahir" value="{{ $karyawan->kota_lahir}}" name="kota_lahir"
                                                 class="form-control">
                                             <small class="form-control-feedback"> </small>
                                         </div>
@@ -150,20 +149,20 @@
                                         <div class="form-group">
                                             <label for="agama" class="control-label">Agama</label>
                                             <select class="form-control custom-select" id="agama" name="agama">
-                                                <option value="">Pilih Agama</option>
-                                                <option value="islam">Islam</option>
-                                                <option value="katolik">Kristen Katolik</option>
-                                                <option value="kristen protestan">Kristen Protestan</option>
-                                                <option value="hindu">Hindu</option>
-                                                <option value="budha">Budha</option>
-                                                <option value="kong hucuh">Kong hucuh</option>
+                                                <option value="islam" {{ $karyawan->agama == 'islam' ? 'selected' : '' }}>Islam</option>
+                                                <option value="katolik" {{ $karyawan->agama == 'katolik' ? 'selected' : '' }}>Kristen Katolik</option>
+                                                <option value="kristen protestan" {{ $karyawan->agama == 'kristen protestan' ? 'selected' : '' }}>Kristen Protestan</option>
+                                                <option value="hindu" {{ $karyawan->agama == 'hindu' ? 'selected' : '' }}>Hindu</option>
+                                                <option value="budha" {{ $karyawan->agama == 'budha' ? 'selected' : '' }}>Budha</option>
+                                                <option value="kong hucuh" {{ $karyawan->agama == 'kong hucuh' ? 'selected' : '' }}>Kong hucuh</option>
                                             </select>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="unit_kerja">Unit Kerja</label>
-                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                            <input type="text" value="{{ $karyawan->unit_kerja }}" class="form-control"
                                                 id="unit_kerja" name="unit_kerja">
                                         </div>
                                     </div>
@@ -173,14 +172,14 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label for="jalan">Alamat</label>
-                                            <input type="text" class="form-control" name="alamat">
+                                            <input type="text" value="{{ $karyawan->jalan}}" class="form-control" name="alamat">
                                         </div>
                                     </div>
    
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="loker">Loker</label>
-                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                            <input type="text" value="{{ $karyawan->loker}}" class="form-control"
                                                 id="loker" name="loker">
                                         </div>
                                     </div>
@@ -188,7 +187,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="jabatan">Jabatan</label>
-                                            <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                            <input type="text" value="{{ $karyawan->jabatan }}" class="form-control"
                                                 id="jabatan" name="jabatan">
                                         </div>
                                     </div>
@@ -198,14 +197,15 @@
                                             <label class="control-label">Kelas Band Posisi</label>
                                             <select class="form-control custom-select" name="band_kelas_posisi">
                                                 <option value="">Pilih Kelas Band Posisi</option>
-                                                <option value="I">I</option>
-                                                <option value="II">II</option>
-                                                <option value="III">III</option>
-                                                <option value="IV">IV</option>
-                                                <option value="V">V</option>
-                                                <option value="VI">VI</option>
-                                                <option value="VII">VII</option>
+                                                <option value="I" {{ $karyawan->band_kelas_posisi == 'I' ? 'selected' : '' }}>I</option>
+                                                <option value="II" {{ $karyawan->band_kelas_posisi == 'II' ? 'selected' : '' }}>II</option>
+                                                <option value="III" {{ $karyawan->band_kelas_posisi == 'III' ? 'selected' : '' }}>III</option>
+                                                <option value="IV" {{ $karyawan->band_kelas_posisi == 'IV' ? 'selected' : '' }}>IV</option>
+                                                <option value="V" {{ $karyawan->band_kelas_posisi == 'V' ? 'selected' : '' }}>V</option>
+                                                <option value="VI" {{ $karyawan->band_kelas_posisi == 'VI' ? 'selected' : '' }}>VI</option>
+                                                <option value="VII" {{ $karyawan->band_kelas_posisi == 'VII' ? 'selected' : '' }}>VII</option>
                                             </select>
+                                            
                                         </div>
                                     </div>
    

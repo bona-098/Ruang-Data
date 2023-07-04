@@ -11,40 +11,47 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="filter1">Kategori</label>
+                            <label for="filter1">Kategori :</label>
                             <select name="kategori" class="form-control" onchange="submitForm()">
-                                <option value="">Pilih</option>
-                                <option value="EKSISTING" {{ isset($_GET['kategori']) && $_GET['kategori'] == 'EKSISTING' ? 'selected' : '' }}>
+                                <option value="">Semua Kategori</option>
+                                <option value="Eksisting"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Eksisting' ? 'selected' : '' }}>
                                     EKSISTING</option>
-                                <option value="REGISTERED" {{ isset($_GET['kategori']) && $_GET['kategori'] == 'REGISTERED' ? 'selected' : '' }}>
+                                <option value="Baru"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Baru' ? 'selected' : '' }}>
                                     REGISTERED</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="filter2">Domisili:</label>
+                            <label for="filter2">Domisili :</label>
                             <select name="domisili" class="form-control" onchange="submitForm2()">
-                                <option value="">Pilih</option>
-                                <option value="Balikpapan" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' ? 'selected' : '' }}>
+                                <option value="">Semua Domisili</option>
+                                <option value="Balikpapan"
+                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' ? 'selected' : '' }}>
                                     Area Balikpapan</option>
-                                <option value="Kaltim" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' ? 'selected' : '' }}>
+                                <option value="Kaltim"
+                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' ? 'selected' : '' }}>
                                     Kalimantan Timur</option>
-                                <option value="Kalsel" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' ? 'selected' : '' }}>
+                                <option value="Kalsel"
+                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' ? 'selected' : '' }}>
                                     Kalimantan Selatan</option>
-                                <option value="Kalbar" {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' ? 'selected' : '' }}>
+                                <option value="Kalbar"
+                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' ? 'selected' : '' }}>
                                     Kalimantan Barat</option>
                             </select>
                         </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
+                        {{-- <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div>
+                        </div> --}}
                     </div>
-                </form>                
+                </form>
                 <script>
                     function submitForm() {
                         document.getElementById('form_1').submit();
                     }
+
                     function submitForm2() {
                         document.getElementById('form_1').submit();
                     }
@@ -112,7 +119,7 @@
 
                                 <!-- Modal Update Mitra -->
                                 <div class="modal fade" id="ModalUpdateMitra{{ $m->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -141,14 +148,26 @@
                                                             value="{{ $m->domisili }}">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="status" class="control-label">Kategori</label>
+                                                        <select class="form-control custom-select" id="status"
+                                                            name="kategori">
+                                                            <option value="Eksisting"
+                                                                {{ $m->kategori == 'Eksisting' ? 'selected' : '' }}>
+                                                                Eksisting</option>
+                                                            <option value="Baru"
+                                                                {{ $m->kategori == 'Baru' ? 'selected' : '' }}>Baru (BARU
+                                                                REGISTERED)</option>
+                                                        </select>
+                                                    </div>
+                                                    {{-- <div class="form-group">
                                                         <label for="kategoriMitra">Kategori</label>
                                                         <input type="text" class="form-control" id="kategoriMitra"
                                                             name="kategori" placeholder="Masukkan kategori"
                                                             value="{{ $m->kategori }}">
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="form-group">
                                                         <label for="nilaiAssesMitra">Nilai Asses</label>
-                                                        <input type="text" class="form-control" id="nilaiAssesMitra"
+                                                        <input type="number" class="form-control" id="nilaiAssesMitra"
                                                             name="nilai_asses" placeholder="Masukkan nilai asses"
                                                             value="{{ $m->nilai_asses }}">
                                                     </div>
@@ -159,9 +178,10 @@
                                                             value="{{ $m->status }}">
                                                     </div>
                                                     <!-- Tambahkan input lainnya sesuai kebutuhan -->
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
                                                 </form>
                                                 <!-- Form Update Mitra -->
                                             </div>
@@ -206,7 +226,7 @@
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group has-danger">
-                                            <label class="control-label">domisili</label>
+                                            <label class="control-label">Domisili</label>
                                             <input type="text" id="domisili" name="domisili"
                                                 class="form-control form-control-danger">
                                             {{-- <small class="form-control-feedback"> This field has error. </small> --}}
@@ -221,7 +241,7 @@
                                         <div class="form-group">
                                             <label for="status" class="control-label">Kategori</label>
                                             <select class="form-control custom-select" id="status" name="kategori">
-                                                <option value="EKSISTING">EKSISTING</option>
+                                                <option value="Eksisting">EKSISTING</option>
                                                 <option value="Baru">Baru (BARU REGISTERED)</option>
                                             </select>
                                         </div>
@@ -349,7 +369,7 @@
                 var typeCell = rows[i].getElementsByTagName("td")[0];
                 var locationCell = rows[i].getElementsByTagName("td")[1];
 
-                if (type === "eksisting" && typeCell.innerHTML !== "EKSISTING") {
+                if (type === "eksisting" && typeCell.innerHTML !== "eksisting") {
                     rows[i].style.display = "none";
                 } else if (type === "register" && typeCell.innerHTML !== "BARU (BARU REGISTERED)") {
                     rows[i].style.display = "none";

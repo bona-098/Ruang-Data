@@ -3,241 +3,176 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">Detail Data Sales Unit Kerja : {{ $sales->unit_kerja }}</h3>
-                <button type="button" class=" btn btn-primary dropdown-toggle" id="dropdownMenuButton"
-                    data-toggle="dropdown"><i class="fa fa-cog"></i>
-                    Action
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#Kontrak" href="#">Upload Drive
-                        Kontrak</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateSales" href="#">Edit</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteSales"
-                        href="#">Delete</a>
-                </div>
-                <div style="margin-top: 20px;">
-                    <div class="table-responsive">
-                        <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Unit Kerja</th>
-                                    <td>{{ $sales->unit_kerja }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Status Revenue</th>
-                                    <td>{{ $sales->status_revenue }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Customer</th>
-                                    <td>{{ $sales->customer }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Segment</th>
-                                    <td>{{ $sales->segment }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nama Project</th>
-                                    <td>{{ $sales->nama_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Lokasi Gedung</th>
-                                    <td>{{ $sales->lokasi_gedung }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jenis Pekerjaan</th>
-                                    <td>{{ $sales->jenis_pekerjaan }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Portfolio</th>
-                                    <td>{{ $sales->portfolio }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Progress Project</th>
-                                    <td>{{ $sales->progress_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Status Project</th>
-                                    <td>{{ $sales->status_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Proses Pendekatan Customer</th>
-                                    <td>{{ $sales->proses_pendekatan_customer }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Visit</th>
-                                    <td>{{ $sales->visit }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">SPH</th>
-                                    <td>{{ $sales->sph }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">BAKN</th>
-                                    <td>{{ $sales->bakn }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">SPK/PO/PKS</th>
-                                    <td>{{ $sales->spk }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Masa Project (Bulan)</th>
-                                    <td>{{ $sales->masa_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jumlah Man Power/Unit/Luas</th>
-                                    <td>{{ $sales->jumlah_man_power }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tanggal SP/BA/Kontrak/Nokes/Amandemen</th>
-                                    <td>{{ $sales->tgl_sp }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">No SP/BA/Kontrak/Nokes/Amandemen</th>
-                                    <td>{{ $sales->no_sp }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jenis Kontrak</th>
-                                    <td>{{ $sales->jenis_kontrak }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tanggal Mulai Project</th>
-                                    <td>{{ $sales->tgl_mulai_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jumlah Man Power/Unit/Luas</th>
-                                    <td>{{ $sales->jumlah_man_power }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tanggal Akhir Project</th>
-                                    <td>{{ $sales->tgl_akhir_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Sisa Kontrak</th>
-                                    <td>{{ $sales->sisa_kontrak }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nilai Total Project (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_total_project }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nilai Project Per Tahun (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_project_pertahun }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nilai Project Per Bulan (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_project_perbulan }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nama Key Contact Client</th>
-                                    <td>{{ $sales->nama_key_kontak_client }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jenis Kontrak</th>
-                                    <td>{{ $sales->jenis_kontrak }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Jabatan Pic Client</th>
-                                    <td>{{ $sales->jabatan_pic_client }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">No HP PIC Client</th>
-                                    <td>{{ $sales->no_hp_pic_client }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nama AM/PIC GSD Handle Project</th>
-                                    <td>{{ $sales->nama_pic_gsd }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Drive Kontrak</th>
-                                    <td><a
-                                            href="{{ asset('drive' . $sales->drive_kontrak) }}">{{ $sales->drive_kontrak }}</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Amandemen</th>
-                                    <td>{{ $sales->amandemen }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Keterangan</th>
-                                    <td>{{ $sales->keterangan }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <form action="{{ route('sales.index') }}" method="GET" id="form_1">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="filter2">Unit Kerja:</label>
+                            <select name="unit_kerja" class="form-control" onchange="submitForm1()">
+                                <option value="">Pilih</option>
+                                <option value="Area Balikpapan"
+                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Balikpapan' ? 'selected' : '' }}>
+                                    Area Balikpapan</option>
+                                <option value="Kaltim"
+                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kaltim' ? 'selected' : '' }}>
+                                    Kaltim</option>
+                                <option value="Kalsel"
+                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kalsel' ? 'selected' : '' }}>
+                                    Kalsel</option>
+                                <option value="Kalbar"
+                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kalbar' ? 'selected' : '' }}>
+                                    Kalbar</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="filter1">Status Revenue</label>
+                            <select name="status_revenue" class="form-control" onchange="submitForm2()">
+                                <option value="">Pilih</option>
+                                <option value="Recurring"
+                                    {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Recurring' ? 'selected' : '' }}>
+                                    Recurring</option>
+                                <option value="Scalling"
+                                    {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Scalling' ? 'selected' : '' }}>
+                                    Scalling</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="filter2">Segment</label>
+                            <select name="segment" class="form-control" onchange="submitForm3()">
+                                <option value="">Pilih</option>
+                                <option value="Subsidiaries"
+                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Subsidiaries' ? 'selected' : '' }}>
+                                    Subsidiaries</option>
+                                <option value="Government"
+                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Government' ? 'selected' : '' }}>
+                                    Government</option>
+                                <option value="Telkom"
+                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Telkom' ? 'selected' : '' }}>
+                                    Telkom</option>
+                                <option value="Enterprise"
+                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Enterprise' ? 'selected' : '' }}>
+                                    Enterprise</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="filter3">Status Project</label>
+                            <select name="status_project" class="form-control" onchange="submitForm4()">
+                                <option value="">Pilih</option>
+                                <option value="Potensi"
+                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Potensi' ? 'selected' : '' }}>
+                                    Potensi</option>
+                                <option value="Prospek"
+                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Prospek' ? 'selected' : '' }}>
+                                    Prospek</option>
+                                <option value="On hand"
+                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'On hand' ? 'selected' : '' }}>
+                                    On hand</option>
+                                <option value="Out"
+                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Out' ? 'selected' : '' }}>
+                                    Out</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 5px;">
+                            <label for="filter5"> </label>
+                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
+                                Search</button>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <script>
+                    function submitForm1() {
+                        document.getElementById('form_1').submit();
+                    }
+
+                    function submitForm2() {
+                        document.getElementById('form_1').submit();
+                    }
+
+                    function submitForm3() {
+                        document.getElementById('form_1').submit();
+                    }
+
+                    function submitForm4() {
+                        document.getElementById('form_1').submit();
+                    }
+                </script>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Kontrak" tabindex="-1" aria-labelledby="exampleModalLabel"
+    {{-- Akhir Filter Tabel --}}
+    {{-- Data Tabel mulai baru --}}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data Sales</h4>
+            <br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
+                <i class="fa fa-user-plus"></i> Tambah Sales
+            </button>
+            <a button type="button" href="/salees" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Import Sales</button> </a>
+            <a button type="button" href="{{ route('sales.export') }}" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Export</button> </a>
+            <table text-align: left; id="myTable" class="table display table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Action</th>
+                        <th>Unit Kerja</th>
+                        <th>Status Revenue</th>
+                        <th>Customer</th>
+                        <th>Segment</th>
+                        <th>Nama Project</th>
+                        <th>Lokasi/Gedung</th>
+                        <th>Jenis Pekerjaan</th>
+                        <th>Portfolio</th>
+                        <th>Progress Project</th>
+                        <th>Status Project</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sales as $data)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ route('sales.show', $data->id) }}">Detail</a>
+                            </td>
+                            <td>{{ $data->unit_kerja }}</td>
+                            <td>{{ $data->status_revenue }}</td>
+                            <td>{{ $data->customer }}</td>
+                            <td>{{ $data->segment }}</td>
+                            <td>{{ $data->nama_project }}</td>
+                            <td>{{ $data->lokasi_gedung }}</td>
+                            <td>{{ $data->jenis_pekerjaan }}</td>
+                            <td>{{ $data->portfolio }}</td>
+                            <td>{{ $data->progress_project }}</td>
+                            <td>{{ $data->status_project }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalTambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Sales</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Sales</h5>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('sales.update', $sales->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
-                            <div class="form-body">
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Drive Kontrak</label>
-                                            <input type="file" value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
-                                                id="drive_kontrak" class="form-control" placeholder="Masukkan Unit Kerja"
-                                                required>
-                                            <small class="form-control-feedback"> @error('drive_kontrak')
-                                                    {{ $message }}
-                                                @enderror </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Import</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- KONTEN MODAL UPDATE Sales  -->
-    <div class="modal fade" id="ModalUpdateSales" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Sales</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <form action="{{ route('sales.update', $sales->id) }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
+                        <form action="{{ route('sales.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-body">
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Unit Kerja</label>
-                                            <input type="text" value="{{ $sales->unit_kerja }}" name="unit_kerja"
-                                                id="Unit Kerja" class="form-control" placeholder="Masukkan Unit Kerja"
-                                                required>
-                                            <small class="form-control-feedback"> @error('unit_kerja')
-                                                    {{ $message }}
-                                                @enderror </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Status Revenue</label>
-                                            <select name="status_revenue" value="{{ $sales->status_revenue }}"
-                                                class="form-control custom-select">
-                                                <option value="Recurring">Recurring</option>
-                                                <option value="Scalling">Scalling</option>
+                                            <select name="unit_kerja" class="form-control custom-select">
+                                                <option value="Area Balikpapan">Area Balikpapan</option>
+                                                <option value="Area Kaltim">Area Kaltim</option>
+                                                <option value="Area Kalsel">Area Kalsel</option>
+                                                <option value="Area Kalbar">Area Kalbar</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('status_revenue')
@@ -246,40 +181,58 @@
                                             </small>
                                         </div>
                                     </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Status Revenue</label>
+                                            <select name="status_revenue" class="form-control custom-select">
+                                                <option value="Recurring">Recurring</option>
+                                                <option value="">Scalling</option>
+                                            </select>
+                                            <small class="form-control-feedback">
+                                                @error('status_revenue')
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
                                 </div>
+                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
                                             <input type="text" required name="customer" id=""
-                                                value="{{ $sales->customer }}" class="form-control"
-                                                placeholder="Masukkan Customer">
+                                                class="form-control" placeholder="Masukkan Customer">
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
+                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Segment</label>
                                             <select name="segment" required class="form-control custom-select">
-                                                <option value="Enterprise" {{ $sales->segment == 'Enterprise' ? 'selected' : '' }}>Enterprise</option>
-                                                <option value="Government" {{ $sales->segment == 'Government' ? 'selected' : '' }}>Government</option>
-                                                <option value="Subsidiaries" {{ $sales->segment == 'Subsidiaries' ? 'selected' : '' }}>Subsidiaries</option>
-                                                <option value="Telkom" {{ $sales->segment == 'Telkom' ? 'selected' : '' }}>Telkom</option>
+                                                <option value="Subsidiaries">Subsidiaries</option>
+                                                <option value="Government">Government</option>
+                                                <option value="Telkom">Telkom</option>
+                                                <option value="Enterprise">Enterprise</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('segment')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
                                     </div>
+                                    <!--/span-->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" value="{{ $sales->nama_project }}" required
-                                                type="text" id="kota_lahir" class="form-control">
+                                            <input name="nama_project" required type="text" id="kota_lahir"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
                                                     {{ $message }}
@@ -288,12 +241,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--/span-->
+
+                                <!--/row-->
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Lokasi Gedung</label>
-                                            <input name="lokasi_gedung" value="{{ $sales->lokasi_gedung }}" required
-                                                type="text" class="form-control">
+                                            <input name="lokasi_gedung" required type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('lokasi_gedung')
                                                     {{ $message }}
@@ -305,9 +260,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Jenis Pekerjaan </label>
-                                            <input name="jenis_pekerjaan" value="{{ $sales->jenis_pekerjaan }}" required
-                                                type="text" class="form-control">
+                                            <label>Jenis Pekerjaan</label>
+                                            <input name="jenis_pekerjaan" required type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_pekerjaan')
                                                     {{ $message }}
@@ -315,11 +269,11 @@
                                             </small>
                                         </div>
                                     </div>
+                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Portfolio</label>
-                                            <input type="text" required value="{{ $sales->portfolio }}"
-                                                name="portfolio" class="form-control">
+                                            <input type="text" required name="portfolio" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('portfolio')
                                                     {{ $message }}
@@ -331,11 +285,11 @@
                                         <div class="form-group">
                                             <label class="control-label">Progress Project</label>
                                             <select name="progress_project" class="form-control custom-select">
-                                                <option value="Delivery" {{ $sales->progress_project == 'Delivery' ? 'selected' : '' }}>Delivery</option>
-                                                <option value="BAKN" {{ $sales->progress_project == 'BAKN' ? 'selected' : '' }}>BAKN</option>
-                                                <option value="Komersil" {{ $sales->progress_project == 'Komersil' ? 'selected' : '' }}>Komersil</option>
-                                                <option value="PKS Sign" {{ $sales->progress_project == 'PKS Sign' ? 'selected' : '' }}>PKS Sign</option>
-                                                <option value="Win" {{ $sales->progress_project == 'Win' ? 'selected' : '' }}>Win</option>
+                                                <option value="Delivery">Delivery</option>
+                                                <option value="BAKN">BAKN</option>
+                                                <option value="Komersil">Komersil</option>
+                                                <option value="PKS Sign">PKS Sign</option>
+                                                <option value="Win">Win</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('progress_project')
@@ -348,10 +302,10 @@
                                         <div class="form-group">
                                             <label class="control-label">Status Project</label>
                                             <select name="status_project" class="form-control custom-select">
-                                                <option value="On Hand" {{ $sales->status_project == 'On Hand' ? 'selected' : '' }}>On Hand</option>
-                                                <option value="Out" {{ $sales->status_project == 'Out' ? 'selected' : '' }}>Out</option>
-                                                <option value="Potensi" {{ $sales->status_project == 'Potensi' ? 'selected' : '' }}>Potensi</option>
-                                                <option value="Prospek" {{ $sales->status_project == 'Prospek' ? 'selected' : '' }}>Prospek</option>
+                                                <option value="On Hand">On Hand</option>
+                                                <option value="Out">Out</option>
+                                                <option value="Potensi">Potensi</option>
+                                                <option value="Prospek">Prospek</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('status_project')
@@ -363,10 +317,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Proses Pendekatan Customer</label>
-                                            <select name="proses_pendekatan_customer" class="form-control custom-select" id="pendidikan">
-                                                <option value="PL" {{ $sales->proses_pendekatan_customer == 'PL' ? 'selected' : '' }}>PL</option>
-                                                <option value="Tender" {{ $sales->proses_pendekatan_customer == 'Tender' ? 'selected' : '' }}>Tender</option>
-                                                <option value="Visit" {{ $sales->proses_pendekatan_customer == 'Visit' ? 'selected' : '' }}>Visit</option>
+                                            <select name="proses_pendekatan_customer" class="form-control custom-select"
+                                                id="pendidikan" name="pendidikan">
+                                                <option value="PL">PL</option>
+                                                <option value="Tender">Tender</option>
+                                                <option value="Visit">Visit</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('proses_pendekatan_customer')
@@ -378,8 +333,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Visit</label>
-                                            <input required name="visit" type="date" value="{{ $sales->visit }}"
-                                                class="form-control">
+                                            <input required name="visit" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('visit')
                                                     {{ $message }}
@@ -390,8 +344,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>SPH</label>
-                                            <input required name="sph" value="{{ $sales->sph }}" type="date"
-                                                class="form-control">
+                                            <input required name="sph" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sph')
                                                     {{ $message }}
@@ -402,8 +355,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BAKN</label>
-                                            <input required name="bakn" value="{{ $sales->bakn }}" type="date"
-                                                class="form-control" placeholder="dd/mm/yyyy">
+                                            <input required name="bakn" type="date" class="form-control"
+                                                placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('bakn')
                                                     {{ $message }}
@@ -414,8 +367,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPK/PO/PKS</label>
-                                            <input required name="spk" value="{{ $sales->spk }}" type="date"
-                                                class="form-control" placeholder="dd/mm/yyyy">
+                                            <input required name="spk" type="date" class="form-control"
+                                                placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('spk')
                                                     {{ $message }}
@@ -426,8 +379,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Masa Project (Bulan)</label>
-                                            <input required name="masa_project" value="{{ $sales->masa_project }}"
-                                                type="number" class="form-control">
+                                            <input required name="masa_project" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('masa_project')
                                                     {{ $message }}
@@ -438,9 +390,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jumlah Man Power/Unit/Luas</label>
-                                            <input required name="jumlah_man_power"
-                                                value="{{ $sales->jumlah_man_power }}" type="number"
-                                                class="form-control">
+                                            <input required name="jumlah_man_power" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jumlah_man_power')
                                                     {{ $message }}
@@ -451,8 +401,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="tgl_sp" value="{{ $sales->tgl_sp }}" type="date"
-                                                class="form-control" placeholder="dd/mm/yyyy">
+                                            <input required name="tgl_sp" type="date" class="form-control"
+                                                placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_sp')
                                                     {{ $message }}
@@ -463,7 +413,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="no_sp" value="{{ $sales->no_sp }}" type="text"
+                                            <input required name="no_sp" type="text" pattern="[a-zA-Z0-9\-@]+"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_sp')
@@ -475,13 +425,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Jenis Kontrak</label>
-                                            <select name="jenis_kontrak" class="form-control custom-select" id="pendidikan">
-                                                <option value="Area" {{ $sales->jenis_kontrak == 'Area' ? 'selected' : '' }}>Area</option>
-                                                <option value="Pusat" {{ $sales->jenis_kontrak == 'Pusat' ? 'selected' : '' }}>Pusat</option>
-                                                <option value="Regional" {{ $sales->jenis_kontrak == 'Regional' ? 'selected' : '' }}>Regional</option>
-                                                <option value="Tarakan" {{ $sales->jenis_kontrak == 'Tarakan' ? 'selected' : '' }}>Tarakan</option>
+                                            <select name="jenis_kontrak" class="form-control custom-select"
+                                                id="pendidikan" name="pendidikan">
+                                                <option value="SMA">Area</option>
+                                                <option value="SMK">Pusat</option>
+                                                <option value="D3">Regional</option>
+                                                <option value="S1">Tarakan</option>
                                             </select>
-                                            
                                             <small class="form-control-feedback">
                                                 @error('jenis_kontrak')
                                                     {{ $message }}
@@ -492,8 +442,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Mulai Project</label>
-                                            <input required value="{{ $sales->tgl_mulai_project }}"
-                                                name="tgl_mulai_project" type="date" class="form-control"
+                                            <input required name="tgl_mulai_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_mulai_project')
@@ -505,8 +454,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Akhir Project</label>
-                                            <input required value="{{ $sales->tgl_akhir_project }}"
-                                                name="tgl_akhir_project" type="date" class="form-control"
+                                            <input required name="tgl_akhir_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_akhir_project')
@@ -518,8 +466,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Kontrak</label>
-                                            <input required value="{{ $sales->sisa_kontrak }}" name="sisa_kontrak"
-                                                type="number" class="form-control">
+                                            <input required name="sisa_kontrak" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_kontrak')
                                                     {{ $message }}
@@ -530,8 +477,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Total Project (Sebelum PPN)</label>
-                                            <input required name="nilai_total_project"
-                                                value="{{ $sales->nilai_total_project }}" type="number"
+                                            <input required name="nilai_total_project" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_total_project')
@@ -543,8 +489,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Tahun (Sebelum PPN)</label>
-                                            <input required value="{{ $sales->nilai_project_pertahun }}"
-                                                name="nilai_project_pertahun" type="text" class="form-control">
+                                            <input required name="nilai_project_pertahun" type="text"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_pertahun')
                                                     {{ $message }}
@@ -555,8 +501,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Bulan (Sebelum PPN)</label>
-                                            <input required value="{{ $sales->nilai_project_perbulan }}"
-                                                name="nilai_project_perbulan" type="text" class="form-control">
+                                            <input required name="nilai_project_perbulan" type="text"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_perbulan')
                                                     {{ $message }}
@@ -567,8 +513,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama Key Contact Client</label>
-                                            <input required value="{{ $sales->nama_key_kontak_client }}"
-                                                name="nama_key_kontak_client" type="text" class="form-control">
+                                            <input required name="nama_key_kontak_client" type="text"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_key_kontak_client')
                                                     {{ $message }}
@@ -579,8 +525,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jenis Kontrak</label>
-                                            <input required value="{{ $sales->jenis_kontrak }}" name="jenis_kontrak"
-                                                type="text" class="form-control">
+                                            <input required name="jenis_kontrak" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_kontrak')
                                                     {{ $message }}
@@ -591,8 +536,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jabatan Pic Client</label>
-                                            <input required value="{{ $sales->jabatan_pic_client }}"
-                                                name="jabatan_pic_client" type="text" class="form-control">
+                                            <input required name="jabatan_pic_client" type="text"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jabatan_pic_client')
                                                     {{ $message }}
@@ -603,8 +548,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No HP PIC Client</label>
-                                            <input required value="{{ $sales->no_hp_pic_client }}"
-                                                name="no_hp_pic_client" type="text" class="form-control">
+                                            <input required name="no_hp_pic_client" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_hp_pic_client')
                                                     {{ $message }}
@@ -612,11 +556,11 @@
                                             </small>
                                         </div>
                                     </div>
+                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama AM/PIC GSD Handle Project</label>
-                                            <input required value="{{ $sales->nama_pic_gsd }}" name="nama_pic_gsd"
-                                                type="text" class="form-control">
+                                            <input required name="nama_pic_gsd" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_pic_gsd')
                                                     {{ $message }}
@@ -627,8 +571,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Drive Kontrak</label>
-                                            <input required value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
-                                                type="text" class="form-control">
+                                            <input name="drive_kontrak" type="file">
                                             <small class="form-control-feedback">
                                                 @error('drive_kontrak')
                                                     {{ $message }}
@@ -639,8 +582,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Amandemen</label>
-                                            <input required name="amandemen" value="{{ $sales->amandemen }}"
-                                                type="text" class="form-control">
+                                            <input required name="amandemen" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('amandemen')
                                                     {{ $message }}
@@ -651,8 +593,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input required name="keterangan" value="{{ $sales->keterangan }}"
-                                                type="text" class="form-control">
+                                            <input required name="keterangan" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
                                                     {{ $message }}
@@ -672,30 +613,33 @@
             </div>
         </div>
     </div>
-    <!-- KONTEN MODAL UPDATE Customer  -->
-    {{-- KONTEN MODAL DELETE Customer --}}
-    <div class="modal fade" id="ModalDeleteSales" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal Import -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-                </div>
-                <div class="modal-body">
-                    Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan.
-                    Apakah
-                    Anda yakin ingin melanjutkan?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form action="{{ route('sales.destroy', $sales->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
+                <form action="/sales-import" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-import-label">Import Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="file">Pilih file Excel</label>
+                            <input type="file" class="form-control-file" id="file" name="file">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    {{-- KONTEN MODAL DELETE KARYAWAN --}}
+
+    </div>
 @endsection

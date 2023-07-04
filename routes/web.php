@@ -179,3 +179,14 @@ Route::post('/projek', function () {
 Route::get('/testing', function () {
     return view('testing');
 });
+
+
+Route::get('/detail_chart_projek', [ProjectController::class, 'detailchart']);
+
+// Route::get('/detail_chart_projek', function () {
+//     return view('project.detail_chart');
+// });
+
+Route::get('/detail_chart_sales', function () {
+    return view('sales.detail_chart');
+});

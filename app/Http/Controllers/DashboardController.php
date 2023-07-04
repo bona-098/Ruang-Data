@@ -17,16 +17,64 @@ class DashboardController extends Controller
 
         // $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
         $telkomAkru = Project::where('kategori', 'Telkom')->get()->sum('nilai_project');
+        // dd($telkomAkru);
         $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('nilai_project');
         $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('nilai_project');
+        $governanceAkru = Project::where('kategori', 'Governance')->sum('nilai_project');
 
         $telkomSudahAkru = Project::where('kategori', 'Telkom')->sum('sudah_akru');
         $telkomGroupSudahAkru = Project::where('kategori', 'Telkom Group')->sum('sudah_akru');
         $enterpriseSudahAkru = Project::where('kategori', 'Enterprise')->sum('sudah_akru');
+        $governanceSudahAkru = Project::where('kategori', 'Governance')->sum('sudah_akru');
 
         $telkomBelumAkru = Project::where('kategori', 'Telkom')->sum('sisa_belum_akru');
         $telkomGroupBelumAkru = Project::where('kategori', 'Telkom Group')->sum('sisa_belum_akru');
         $enterpriseBelumAkru = Project::where('kategori', 'Enterprise')->sum('sisa_belum_akru');
+        $governanceBelumAkru = Project::where('kategori', 'Governance')->sum('sisa_belum_akru');
+
+
+        $telkomDone = Project::where('kategori', 'Telkom')
+            ->where('tahap', 'Komersial')
+            ->count();
+        // dd($telkomAkru);
+        $telkomGroupDone = Project::where('kategori', 'Telkom Group')
+            ->where('tahap', 'Komersial')
+            ->count();
+        $enterpriseDone = Project::where('kategori', 'Enterprise')
+            ->where('tahap', 'Komersial')
+            ->count();
+        $governanceDone =  Project::where('kategori', 'Governance')
+        ->where('tahap', 'Komersial')
+        ->count();
+
+        $telkomProgress = Project::where('kategori', 'Telkom')
+        ->where('tahap', 'OnHand')
+        ->count();
+        $telkomGroupProgress = Project::where('kategori', 'Telkom Group')
+        ->where('tahap', 'OnHand')
+        ->count();
+        $enterpriseProgress = Project::where('kategori', 'Enterprise')
+        ->where('tahap', 'OnHand')
+        ->count();
+        $governanceProgress = Project::where('kategori', 'Governance')
+        ->where('tahap', 'OnHand')
+        ->count();
+
+        $telkomBelumMulai = Project::where('kategori', 'Telkom')
+        ->where('tahap', 'Co-OnHand')
+        ->count();
+        $telkomGroupBelumMulai = Project::where('kategori', 'Telkom Group')
+        ->where('tahap', 'Co-OnHand')
+        ->count();
+        $enterpriseBelumMulai = Project::where('kategori', 'Enterprise')
+        ->where('tahap', 'Co-OnHand')
+        ->count();
+        $governanceBelumMulai =  Project::where('kategori', 'Governance')
+        ->where('tahap', 'Co-OnHand')
+        ->count();
+
+
+
 
         // salesbpp
         // Menghitung jumlah data untuk masing-masing status_project dan segment pada unit_kerja "Area Balikpapan"
@@ -462,12 +510,28 @@ class DashboardController extends Controller
             'telkomAkru' => $telkomAkru,
             'telkomGroupAkru' => $telkomGroupAkru,
             'enterpriseAkru' => $enterpriseAkru,
+            'governanceAkru' => $governanceAkru,
             'telkomSudahAkru' => $telkomSudahAkru,
             'telkomGroupSudahAkru' => $telkomGroupSudahAkru,
             'enterpriseSudahAkru' => $enterpriseSudahAkru,
+            'governanceSudahAkru' => $governanceSudahAkru,
             'telkomBelumAkru' => $telkomBelumAkru,
             'telkomGroupBelumAkru' => $telkomGroupBelumAkru,
-            'enterpriseBelumAkru' => $enterpriseBelumAkru
+            'enterpriseBelumAkru' => $enterpriseBelumAkru,
+            'governanceBelumAkru' => $governanceBelumAkru,
+            'telkomDone' => $telkomDone,
+            'telkomGroupDone' => $telkomGroupDone,
+            'enterpriseDone' => $enterpriseDone,
+            'governanceDone' => $governanceDone,
+            'telkomProgress' => $telkomProgress,
+            'telkomGroupProgress' => $telkomGroupProgress,
+            'enterpriseProgress' => $enterpriseProgress,
+            'governanceProgress' => $governanceProgress,
+            'telkomBelumMulai' => $telkomBelumMulai,
+            'telkomGroupBelumMulai' => $telkomGroupBelumMulai,
+            'enterpriseBelumMulai' => $enterpriseBelumMulai,
+            'governanceBelumMulai' => $governanceBelumMulai,
+
         ];
         return view('bsrm.dashboard_bsrm', $data);
     }

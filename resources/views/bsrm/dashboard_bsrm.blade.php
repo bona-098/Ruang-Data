@@ -1,7 +1,7 @@
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
@@ -56,18 +56,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- Selesai --}}
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Project</h1>
                 <div class="row">
                     <!-- Bar Chart -->
                     <div class="col-lg-12 col-md-5">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    <h4>Target VS Realisasi</h4>
+                                    <h4>Performansi Project Solution</h4>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -81,14 +80,13 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Project</h1>
                 <div class="row">
                     <!-- Bar Chart -->
                     <div class="col-lg-12 col-md-5">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    <h4>Jumlah VS Sudah VS Belum</h4>
+                                    <h4>Perbandingan Jumlah Nilai</h4>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -103,14 +101,13 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Project</h1>
                 <div class="row">
                     <!-- Bar Chart -->
                     <div class="col-lg-12 col-md-5">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                    <h4>Jumlah VS Sudah VS Belum</h4>
+                                    <h4>Perbandingan Jumlah Proyek</h4>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -181,127 +178,6 @@
                 </div>
             </div>
         </div>
-        <!-- /# column -->
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="card">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Top 5 xxxx</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="singelBarChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /# column -->
-            <div class="col-sm-6 col-md-4">
-                <div class="card">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Top 5 xxxx</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="singelBarChart2"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4">
-                <div class="card">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Top 5 xxxx</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="singelBarChart3"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /# row -->
-        <div class="row">
-            <!-- Line Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Line chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Line Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Line chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="lineChart1"></canvas>
-                    </div>
-                </div>
-            </div>
-            <!-- Line Chart -->
-            <div class="col-sm-6 col-md-4">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Line chart</h4>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <canvas id="lineChart2"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Bar Chart 3 batang -->
-            <div class="col-sm-11 col-md-6">
-                <div class="card">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Bar chart</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="barChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Bar Chart -->
-            <div class="col-sm-11 col-md-6">
-                <div class="card">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Bar chart</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <canvas id="barChart1"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script type="text/javascript">
@@ -367,24 +243,24 @@
         const chart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['Telkom', 'Telkom Group', 'Enterprise', 'Government'],
+                labels: ['Telkom', 'Telkom Group', 'Enterprise', 'Governance', 'Government'],
                 datasets: [{
-                        label: 'Nilai Project',
-                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}, {{ $enterpriseAkru }}],
+                        label: 'nilai_project',
+                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}, {{ $enterpriseAkru }}, {{ $governanceAkru }}],
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Sudah Akru',
-                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }}],
+                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }},{{ $governanceSudahAkru }}],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Sisa Belum Akru',
-                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }}],
+                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }},{{ $governanceBelumAkru }}],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
@@ -419,7 +295,8 @@
                 const label = chart2.data.labels[firstPoint.index];
                 const category = chart2.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_projek?label=" + label + "&category=" + category;
+                window.open(url, "_blank");
             }
         });
         const ctx3 = document.getElementById('myChart3').getContext('2d');
@@ -429,23 +306,30 @@
                 labels: ['Done', 'Progress', 'Belum Mulai'],
                 datasets: [{
                         label: 'Telkom',
-                        data: [32, 29, 12],
+                        data: [{{ $telkomDone }},{{ $telkomProgress }} , {{ $telkomBelumMulai }}  ],
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Telkom Group',
-                        data: [28, 25, 14],
+                        data: [ {{ $telkomGroupDone }} , {{ $telkomGroupProgress }},{{ $telkomGroupBelumMulai }}],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Enterprise',
-                        data: [28, 25, 14],
+                        data: [ {{ $enterpriseDone }},  {{ $enterpriseProgress }} , {{ $enterpriseBelumMulai }} ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Governance',
+                        data:[ {{ $governanceDone }},  {{ $governanceProgress }} ,{{ $governanceBelumMulai }}],
+                        backgroundColor: 'rgba(255, 255, 0, 0.5)',
+                        borderColor: 'rgba(255, 255, 0, 0.5)',
                         borderWidth: 1
                     }
                 ]

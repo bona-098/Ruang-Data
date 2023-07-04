@@ -9,7 +9,7 @@
                         <div class="col-md-3">
                             <label for="filter2">Unit Kerja:</label>
                             <select name="unit_kerja" class="form-control" onchange="submitForm1()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Unit Kerja</option>
                                 <option value="Area Balikpapan"
                                     {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Balikpapan' ? 'selected' : '' }}>
                                     Area Balikpapan</option>
@@ -27,7 +27,7 @@
                         <div class="col-md-3">
                             <label for="filter1">Status Revenue</label>
                             <select name="status_revenue" class="form-control" onchange="submitForm2()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Status Revenue</option>
                                 <option value="Recurring"
                                     {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Recurring' ? 'selected' : '' }}>
                                     Recurring</option>
@@ -36,10 +36,10 @@
                                     Scalling</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="filter2">Segment</label>
                             <select name="segment" class="form-control" onchange="submitForm3()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Segment</option>
                                 <option value="Subsidiaries"
                                     {{ isset($_GET['segment']) && $_GET['segment'] == 'Subsidiaries' ? 'selected' : '' }}>
                                     Subsidiaries</option>
@@ -54,10 +54,10 @@
                                     Enterprise</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="filter3">Status Project</label>
                             <select name="status_project" class="form-control" onchange="submitForm4()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Status</option>
                                 <option value="Potensi"
                                     {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Potensi' ? 'selected' : '' }}>
                                     Potensi</option>
@@ -72,11 +72,11 @@
                                     Out</option>
                             </select>
                         </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
+                        {{-- <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
                 <script>
@@ -112,21 +112,21 @@
                 <i class="fa fa-plus"></i> Import Sales</button> </a>
             <a button type="button" href="{{ route('sales.export') }}" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Export</button> </a>
-            <table text-align: left; id="myTable" class="table display table-bordered table-striped">
+            <table text-align: left; id="myTable" class="table table-responsive  display table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Action</th>
-                        <th>Unit Kerja</th>
-                        <th>Status Revenue</th>
-                        <th>Customer</th>
+                        <th style="white-space: nowrap;">Unit Kerja</th>
+                        <th style="white-space: nowrap;">Status Revenue</th>
+                        <th style="white-space: nowrap;">Customer</th>
                         <th>Segment</th>
-                        <th>Nama Project</th>
-                        <th>Lokasi/Gedung</th>
-                        <th>Jenis Pekerjaan</th>
+                        <th style="white-space: nowrap;">Nama Project</th>
+                        <th style="white-space: nowrap;">Lokasi/Gedung</th>
+                        <th style="white-space: nowrap;">Jenis Pekerjaan</th>
                         <th>Portfolio</th>
-                        <th>Progress Project</th>
-                        <th>Status Project</th>
+                        <th style="white-space: nowrap;">Progress Project</th>
+                        <th style="white-space: nowrap;">Status Project</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,7 +134,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <a class="btn btn-success" href="{{ route('sales.show', $data->id) }}">Detail</a>
+                                <a class="btn btn-primary" href="{{ route('sales.show', $data->id) }}">Detail</a>
                             </td>
                             <td>{{ $data->unit_kerja }}</td>
                             <td>{{ $data->status_revenue }}</td>
@@ -187,7 +187,7 @@
                                             <label class="control-label">Status Revenue</label>
                                             <select name="status_revenue" class="form-control custom-select">
                                                 <option value="Recurring">Recurring</option>
-                                                <option value="">Scalling</option>
+                                                <option value="Scalling">Scalling</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('status_revenue')

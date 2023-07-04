@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        Alert::toast('Semoga Hari mu Menyenangkan', 'success');
+        // Alert::toast('Semoga Hari mu Menyenangkan', 'success');
         return view('auth.login');
     }
 

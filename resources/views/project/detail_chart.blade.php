@@ -3,9 +3,8 @@
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
     <div class="container-fluid">
-
         {{-- Filter Tabel --}}
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-body">
                 <div class="row">
 
@@ -39,7 +38,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- Akhir Filter Tabel --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -54,8 +53,6 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ImportData"><i
                     class="fa fa-plus"></i> Import Sales</button> --}}
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-
-
                 <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
                     <thead>
                         <tr>
@@ -77,7 +74,6 @@
                             <th>Keterangan</th>
                             <th>Tahap</th>
                             <th>Akru</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +82,7 @@
                                 <td></td>
                                 <td>
                                     <div class=" text-center">
-                                        <a href="{{ route('project.show',2) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('project.show',$p->customer) }}" class="btn btn-primary">Detail</a>
                                     </div>
                                 </td>
                                 <td> $p->customer </td>
