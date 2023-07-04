@@ -263,6 +263,18 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="gedung_id">Gedung</label>
+                                        <select class="form-control" id="gedung_id" name="gedung_id">
+                                            @foreach($gedungOptions as $gedung)
+                                                <option value="{{ $gedung->id }}" {{ $p->gedung_id == $gedung->id ? 'selected' : '' }}>
+                                                    {{ $gedung->nama_gedung }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    </div>
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">ID Gedung</label>
                                             <input required type="number" required name="gedung_id"
@@ -271,7 +283,7 @@
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="modal-footer">
