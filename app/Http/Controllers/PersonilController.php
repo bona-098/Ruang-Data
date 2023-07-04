@@ -42,22 +42,24 @@ class PersonilController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'nama' => 'required',
-            'telepon' => 'required',
             'nik' => 'required',
-            'email' => 'required',
+            'lokasi_kerja' => 'required',
+            'kontrak' => 'required',
+            'telepon' => 'required',
             'gedung_id' => 'required',
         ]);
+    
+        try {
+            Personil::create($validatedData);
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Handle the exception here, e.g. log the error
+            return redirect()->back()->withErrors(['error' => 'Failed to store data.']);
+        }
 
-        Personil::create([
-            'nama' => $request->nama,
-            'telepon' => $request->telepon,
-            'nik' => $request->nik,
-            'email' => $request->email,
-            'gedung_id' => $request->gedung_id,
-        ]);
-        return redirect()->back();
+        
     }
 
     /**
@@ -95,9 +97,10 @@ class PersonilController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'telepon' => 'required',
             'nik' => 'required',
-            'email' => 'required',
+            'lokasi_kerja' => 'required',
+            'kontrak' => 'required',
+            'telepon' => 'required',
             'gedung_id' => 'required',
         ]);
 
@@ -107,9 +110,11 @@ class PersonilController extends Controller
         }
 
         $personil->nama = $request->nama;
-        $personil->telepon = $request->telepon;
         $personil->nik = $request->nik;
-        $personil->email = $request->email;
+        $personil->lokasi_kerja = $request->lokasi_kerja;
+        $personil->kotrak = $request->kotrak;
+        $personil->telepon = $request->telepon;
+        // $personil->gedung_id = $request->gedung_id;
 
         // Cek apakah gedung_id yang baru valid dan ada dalam tabel gedung
         $gedung = Gedung::find($request->gedung_id);

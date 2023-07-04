@@ -11,11 +11,12 @@ class Gedung extends Model
     public $table = 'gedung';
 
     protected $fillable = [
+        'nama_gedung',
         'nama_area',
         'nama_witel',
         'alamat',
-        'nama_gedung',
         'koordinat',
-        'total_petugas'
+        'total_petugas',
+        'luasan'
         ];
 }
