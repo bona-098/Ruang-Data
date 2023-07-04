@@ -55,7 +55,7 @@
  
                                 @foreach ($personil as $pe)                                    
                                 <tr>
-                                    <td>{{ $pe->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pe->nama }}</td>
                                     <td>{{ $pe->telepon }}</td>
                                     <td>{{ $pe->nik }}</td>
