@@ -236,15 +236,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Luasan</label>
-                                                <input required type="text" required name="koordinat"
+                                                <input required type="text" required name="luasan"
                                                     class="form-control">
-                                                <small class="form-control-feedback"> @error('koordinat')
+                                                <small class="form-control-feedback"> @error('luasan')
                                                         {{ $message }}
                                                     @enderror </small>
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Total Petugas</label>

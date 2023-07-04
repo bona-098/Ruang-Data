@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('gedung', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_gedung')->nullable();
             $table->string('nama_area')->nullable();
             $table->string('nama_witel')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('nama_gedung')->nullable();
             $table->string('koordinat')->nullable();
             $table->string('total_petugas')->nullable();
+            $table->string('luasan')->nullable();
             $table->timestamps();
         });
     }

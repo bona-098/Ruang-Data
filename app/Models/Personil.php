@@ -12,9 +12,10 @@ class personil extends Model
 
     protected $fillable = [
         'nama',
-        'telepon',
         'nik',
-        'email',
+        'lokasi_kerja',
+        'kontrak',
+        'telepon',
         'gedung_id'
         ];
     

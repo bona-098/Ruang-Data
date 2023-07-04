@@ -38,21 +38,23 @@ class GedungController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'nama_gedung' => 'required',
             'nama_area' => 'required',
             'nama_witel' => 'required',
             'alamat' => 'required',
-            'nama_gedung' => 'required',
             'koordinat' => 'required',
             'total_petugas' => 'required',
+            'luasan' => 'required',
         ]);
 
         Gedung::create([
+            'nama_gedung' => $request->nama_gedung,
             'nama_area' => $request->nama_area,
             'nama_witel' => $request->nama_witel,
             'alamat' => $request->alamat,
-            'nama_gedung' => $request->nama_gedung,
             'koordinat' => $request->koordinat,
             'total_petugas' => $request->total_petugas,
+            'luasan' => $request->luasan,
         ]);
         return redirect()->back();
     }
@@ -91,12 +93,13 @@ class GedungController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nama_gedung' => 'required',
             'nama_area' => 'required',
             'nama_witel' => 'required',
             'alamat' => 'required',
-            'nama_gedung' => 'required',
             'koordinat' => 'required',
             // 'total_petugas' => 'required',
+            'luasan' => 'required',
         ]);
         $gedung = Gedung::find($id);
         if (!$gedung) {
@@ -104,12 +107,13 @@ class GedungController extends Controller
         }
         // $gedung = Gedung::find($id);
         $gedung->update([
+            'nama_gedung' => $request->nama_gedung,
             'nama_area' => $request->nama_area,
             'nama_witel' => $request->nama_witel,
             'alamat' => $request->alamat,
-            'nama_gedung' => $request->nama_gedung,
             'koordinat' => $request->koordinat,
             // 'total_petugas' => $request->total_petugas,
+            'luasan' => $request->luasan,
         ]);
 
         return redirect()->back();

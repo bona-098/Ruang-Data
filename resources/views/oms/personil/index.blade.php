@@ -110,8 +110,8 @@
                                 </td>
                                 <td style="white-space: nowrap;">{{ $p->nama }}</td>
                                 <td style="white-space: nowrap;">{{ $p->nik }}</td>
-                                <td style="white-space: nowrap;">$p->lokasikerja</td>
-                                <td style="white-space: nowrap;">$p->kontrak</td>
+                                <td style="white-space: nowrap;">{{ $p->lokasi_kerja }}</td>
+                                <td style="white-space: nowrap;">{{ $p->kontrak }}</td>
                                 <td style="white-space: nowrap;">{{ $p->telepon }}</td>
                             </tr>
                             <div class="modal fade" id="ModalUpdatepetugas{{ $p->id }}" tabindex="-1"
@@ -225,65 +225,53 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nama Petugas</label>
-                                            <input required type="text" required name="nama" class="form-control">
-                                            <small class="form-control-feedback"> @error('nama')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <input required type="text" name="nama" class="form-control">
+                                            <small class="form-control-feedback">@error('nama') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nomor Telepon</label>
-                                            <input required type="text" required name="telepon" class="form-control">
-                                            <small class="form-control-feedback"> @error('telepon')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <input required type="text" name="telepon" class="form-control">
+                                            <small class="form-control-feedback">@error('telepon') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nik</label>
-                                            <input required type="text" required name="nik" class="form-control">
-                                            <small class="form-control-feedback"> @error('nik')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <input required type="text" name="nik" class="form-control">
+                                            <small class="form-control-feedback">@error('nik') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Loker Kerja</label>
-                                            <input required type="text" required name="loker_kerja" class="form-control">
-                                            <small class="form-control-feedback"> @error('loker_kerja')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <input required type="text" name="lokasi_kerja" class="form-control">
+                                            <small class="form-control-feedback">@error('lokasi_kerja') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="gedung_id">Gedung</label>
-                                        <select class="form-control" id="gedung_id" name="gedung_id">
-                                            @foreach($gedungOptions as $gedung)
-                                                <option value="{{ $gedung->id }}" {{ $p->gedung_id == $gedung->id ? 'selected' : '' }}>
-                                                    {{ $gedung->nama_gedung }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    </div>
-                                    {{-- <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">ID Gedung</label>
-                                            <input required type="number" required name="gedung_id"
-                                                class="form-control">
-                                            <small class="form-control-feedback"> @error('gedung_id')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <label class="control-label">Kontrak</label>
+                                            <input required type="text" name="kontrak" class="form-control">
+                                            <small class="form-control-feedback">@error('kontrak') {{ $message }} @enderror</small>
                                         </div>
-                                    </div> --}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gedung_id">Gedung</label>
+                                            <select required class="form-control" id="gedung_id" name="gedung_id">
+                                                @foreach($gedungOptions as $gedung)
+                                                    <option value="{{ $gedung->id }}" {{ $gedung->gedung_id == $gedung->id ? 'selected' : '' }}>
+                                                        {{ $gedung->nama_gedung }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <small class="form-control-feedback">@error('gedung_id') {{ $message }} @enderror</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -291,6 +279,7 @@
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
