@@ -12,7 +12,7 @@
                         <div class="col-md-3">
                             <label for="filter2">Kode AMPM</label>
                             <select name="id_crm" class="form-control" onchange="submitForm1()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Kode Ampm</option>
                                 <option value="lop"
                                     {{ isset($_GET['id_crm']) && $_GET['id_crm'] == 'lop' ? 'selected' : '' }}>
                                     lop</option>
@@ -24,7 +24,7 @@
                         <div class="col-md-3">
                             <label for="filter1">Witel</label>
                             <select name="witel" class="form-control" onchange="submitForm2()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Witel</option>
                                 <option value="Balikpapan"
                                     {{ isset($_GET['witel']) && $_GET['witel'] == 'Balikpapan' ? 'selected' : '' }}>
                                     Balikpapan</option>
@@ -42,10 +42,10 @@
                                     Treg</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="filter2">Kategori</label>
                             <select name="kategori" class="form-control" onchange="submitForm3()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Kategori</option>
                                 <option value="Subsidiaries"
                                     {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Exma' ? 'selected' : '' }}>
                                     Exma</option>
@@ -57,10 +57,10 @@
                                     Telkom</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="filter3">Tahap</label>
                             <select name="tahap" class="form-control" onchange="submitForm4()">
-                                <option value="">Pilih</option>
+                                <option value="">Semua Tahap</option>
                                 <option value="Co-OnHand"
                                     {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Co-OnHand' ? 'selected' : '' }}>
                                     Co-OnHand</option>
@@ -72,11 +72,11 @@
                                     OnHand</option>
                             </select>
                         </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
+                        {{-- <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
                 <script>
@@ -106,7 +106,7 @@
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahProject">
                     <i class="fa fa-user-plus"></i> Tambah Data
                 </button>
                 <a button type="button" href="/projek" class="btn btn-primary">
@@ -179,7 +179,7 @@
     </div>
 
     <!-- KONTEN MODAL TAMBAH Customer  -->
-    <div class="modal fade" id="ModalTambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="ModalTambahProject" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
@@ -240,9 +240,10 @@
                                             <label class="control-label">Kategori</label>
                                             <select required name="kategori" class="form-control ">
                                                 <option value="">Pilih Kategori</option>
-                                                <option value="Exma">Exma</option>
+                                                <option value="Enterprise">Enterprise</option>
+                                                <option value="Governance">Governance</option>
                                                 <option value="Telkom">Telkom</option>
-                                                <option value="Telkom Grup">Telkom Group</option>
+                                                <option value="Telkom Group">Telkom Group</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('kategori')
                                                     {{ $message }}
@@ -316,7 +317,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>progress Minggu Lalu</label>
+                                            <label>Progress Minggu Lalu</label>
                                             <input required name="progress_ml" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
@@ -327,7 +328,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>progress Minggu Ini</label>
+                                            <label>Progress Minggu Ini</label>
                                             <input required name="progress_mi" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
@@ -349,8 +350,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>keterangan</label>
-                                            <input required name="keterangan" placeholder="keterangan nna" type="text"
+                                            <label>Keterangan</label>
+                                            <input required name="keterangan" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')

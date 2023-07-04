@@ -141,4 +141,23 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('project.index');
     }
+
+    public function detailchart(Request $request)
+    {
+        $labelValue = $request->query('label');
+        $columnName = $request->query('category');
+        
+        // Mencari project berdasarkan nilai dari kolom 'label' dan nama kolom
+        $project = Project::where('kategori', $labelValue)
+                          ->whereNotNull($columnName)
+                          ->first();
+        
+        // Jika project tidak ditemukan, bisa melakukan penanganan sesuai kebutuhan Anda, misalnya menampilkan pesan error atau mengarahkan pengguna ke halaman lain.
+        if (!$project) {
+            abort(404); // Contoh: Menampilkan halaman error 404
+        }
+        
+        return view('project.detail_chart', compact('project'));
+    }
+
 }

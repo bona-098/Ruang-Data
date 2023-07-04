@@ -6,12 +6,12 @@
                 <h4 class="card-title">Laporan Progress Mingguan Rehab Plasa TELKOM REGIONAL VI 2022</h4>
                 <button type="button" class=" btn btn-primary " id="dropdownMenuButton" data-toggle="dropdown"><i
                         class="fa fa-cog"></i>
-                    action
+                    Action
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateCustomer"
+                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateProject"
                         href="#">Update</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteCustomer"
+                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteProject"
                         href="#">Delete</a>
                 </div>
                 <div style="margin-top: 20px;">
@@ -101,7 +101,7 @@
     <!-- KONTEN MODAL UPDATE Customer  -->
 
 
-    <div class="modal fade" id="ModalUpdateCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="ModalUpdateProject" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
@@ -129,9 +129,8 @@
                                         <div class="form-group">
                                             <label class="control-label">Kode AMPM</label>
                                             <select required name="id_crm" class="form-control">
-                                                <option selected value="{{ $project->id_crm }}">{{ $project->id_crm }}</option>
-                                                <option value="nlop">Non Lop</option>
-                                                <option value="lop">Lop</option>
+                                                <option value="nlop" {{ $project->id_crm == 'nlop' ? 'selected' : '' }}>Non Lop</option>
+                                                <option value="lop" {{ $project->id_crm == 'lop' ? 'selected' : '' }}>Lop</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('id_crm')
@@ -146,12 +145,11 @@
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
                                             <select required name="witel" class="form-control">
-                                                <option selected value="{{ $project->witel }}">{{ $project->witel }}</option>
-                                                <option value="Balikpapan">Balikpapan</option>
-                                                <option value="Samarinda">Samarinda</option>
-                                                <option value="Kalsel">Kalsel</option>
-                                                <option value="Kalbar">Kalbar</option>
-                                                <option value="Treg">Treg</option>
+                                                <option value="Balikpapan" {{ $project->witel == 'Balikpapan' ? 'selected' : '' }}>Balikpapan</option>
+                                                <option value="Samarinda" {{ $project->witel == 'Samarinda' ? 'selected' : '' }}>Samarinda</option>
+                                                <option value="Kalsel" {{ $project->witel == 'Kalsel' ? 'selected' : '' }}>Kalsel</option>
+                                                <option value="Kalbar" {{ $project->witel == 'Kalbar' ? 'selected' : '' }}>Kalbar</option>
+                                                <option value="Treg" {{ $project->witel == 'Treg' ? 'selected' : '' }}>Treg</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('witel')
                                                     {{ $message }}
@@ -161,11 +159,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
-                                            <select required name="kategori" class="form-control ">
-                                                <option selected value="{{ $project->kategori }}">{{ $project->kategori }}</option>
-                                                <option value="Exma">Exma</option>
-                                                <option value="Telkom">Telkom</option>
-                                                <option value="Telkom Group">Telkom Group</option>
+                                            <select required name="kategori" class="form-control">
+                                                <option value="Enterprise" {{ $project->kategori == 'Enterprise' ? 'selected' : '' }}>Enterprise</option>
+                                                <option value="Governance" {{ $project->kategori == 'Governance' ? 'selected' : '' }}>Governance</option>
+                                                <option value="Telkom" {{ $project->kategori == 'Telkom' ? 'selected' : '' }}>Telkom</option>
+                                                <option value="Telkom Group" {{ $project->kategori == 'Telkom Group' ? 'selected' : '' }}>Telkom Group</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('kategori')
                                                     {{ $message }}
@@ -276,7 +274,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>keterangan</label>
+                                            <label>Keterangan</label>
                                             <input required name="keterangan" value="{{ $project->keterangan }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
@@ -371,16 +369,17 @@
 
     {{-- KONTEN MODAL DELETE Customer --}}
 
-    <div class="modal fade" id="ModalDeleteCustomer" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="ModalDeleteProject" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
                 </div>
                 <div class="modal-body">
-                    Apakah anda ingin menghapus ....?
+                    Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan.
+                    Apakah
+                    Anda yakin ingin melanjutkan?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>

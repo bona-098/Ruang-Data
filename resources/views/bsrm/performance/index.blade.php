@@ -16,13 +16,13 @@
                         <div class="col-md-2">
                             <label for="filter1">Area:</label>
                             <select id="filter1" class="form-control">
-                                <option value="">Pilih Area</option>
-                                <option value="Balikpapan">Regional Konsolidasi</option>
-                                <option value="Balikpapan">Regional Only</option>
-                                <option value="Balikpapan">Area Balikpapan</option>
-                                <option value="Kalimantan Timur">Area Kalimantan Timur</option>
-                                <option value="Kalimantan Selatan">Area Kalsel Kalteng</option>
-                                <option value="Kalimantan Barat">Area Kalbar</option>
+                                <option value="">Semua Area</option>
+                                <option value="regional konsolidasi">Regional Konsolidasi</option>
+                                <option value="regional only">Regional Only</option>
+                                <option value="balikpapan">Area Balikpapan</option>
+                                <option value="kalimantan timur">Area Kalimantan Timur</option>
+                                <option value="kalimantan selatan">Area Kalsel Kalteng</option>
+                                <option value="kalimantan barat">Area Kalbar</option>
                             </select>
                         </div>
                         <div class="col-md-2">
@@ -95,7 +95,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="4">
-                                        <a href="{{ asset('images/performance/' . $p->foto) }}" target="_blank">
+                                        <a href="{{ route('performance.show', $p->id) }}" target="_blank">
                                             <img src="{{ asset('images/performance/' . $p->foto) }}" style="width: 100%; max-width: 100%;" alt="gambar">
                                         </a>
                                     </td>

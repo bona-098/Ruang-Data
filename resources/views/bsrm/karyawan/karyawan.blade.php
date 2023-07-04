@@ -151,7 +151,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="unit_kerja">Unit Kerja</label>
-                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                <input type="text" class="form-control"
                                                     id="unit_kerja" name="unit_kerja">
                                             </div>
                                         </div>
@@ -168,7 +168,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="loker">Loker</label>
-                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                <input type="text"  class="form-control"
                                                     id="loker" name="loker">
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="jabatan">Jabatan</label>
-                                                <input type="text" pattern="[a-zA-Z0-9\-@]+" class="form-control"
+                                                <input type="text"  class="form-control"
                                                     id="jabatan" name="jabatan">
                                             </div>
                                         </div>
