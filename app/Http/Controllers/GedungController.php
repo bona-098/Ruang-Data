@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gedung;
-use App\Models\personil;
+use App\Models\Personil;
 use Illuminate\Http\Request;
 
 class GedungController extends Controller
