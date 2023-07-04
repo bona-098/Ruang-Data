@@ -367,10 +367,10 @@
         const chart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['Telkom', 'Telkom Group', 'Enterprise'],
+                labels: ['Telkom', 'Telkom Group', 'Enterprise', 'Government'],
                 datasets: [{
                         label: 'Nilai Project',
-                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}],
+                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}, {{ $enterpriseAkru }}],
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 0.5)',
                         borderWidth: 1

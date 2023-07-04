@@ -17,8 +17,6 @@ class DashboardController extends Controller
 
         // $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
         $telkomAkru = Project::where('kategori', 'Telkom')->get()->sum('nilai_project');
-        // dd($telkomAkru);
-
         $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('nilai_project');
         $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('nilai_project');
 
