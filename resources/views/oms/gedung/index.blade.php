@@ -42,12 +42,12 @@
                                 <option value=" ">Witel Kalimantan Barat</option>
                             </select>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <label for="filter5">Nama Gedung:</label>
                             <select id="filter5" name="nama_gedung" class="form-control">
                                 <option value="">Semua Gedung</option>
-                                
+
                             </select>
                         </div>
                         <div class="col-md-2" style="padding-top: 5px;">
@@ -74,36 +74,42 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i
                         class="fa fa-plus"></i> Import Data Gedung</button>
-                <table text-align: left; id="myTable"
-                    class=" table table-responsive display table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Action</th>
-                            <th style="white-space: nowrap;">Nama Area</th>
-                            <th style="white-space: nowrap;">Nama Witel</th>
-                            <th style="white-space: nowrap;">Alamat</th>
-                            <th>Koordinat</th>
-                            {{-- <th style="white-space: nowrap;">Nama Gedung</th> --}}
-                            <th style="white-space: nowrap;">Total Petugas</th>
-                        </tr>
-                    </thead>
-                    <tbody>                            
-                        @foreach ($gedung as $g)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
-                            </td>
-                            <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
-                            <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
-                            <td style="white-space: nowrap;">{{ $g->alamat }}</td>
-                            <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
-                            <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
-                        </tr>       
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table text-align: left; id="myTable" class=" table  display table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Id Gedung</th>
+                                <th style="white-space: nowrap;">Nama Gedung</th>
+                                <th style="white-space: nowrap;">Nama Area</th>
+                                <th style="white-space: nowrap;">Nama Witel</th>
+                                <th style="white-space: nowrap;">Alamat</th>
+                                <th>Koordinat</th>
+                                <th>Luas</th>
+                                <th style="white-space: nowrap;">Total Petugas</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($gedung as $g)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td style="white-space: nowrap;">IDgedung{{ $g->nama_area }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->nama_gedung }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->alamat }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
+                                    <td style="white-space: nowrap;">Luasan{{ $g->total_petugas }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -122,16 +128,17 @@
                                 <div class="form-body">
                                     <!--/row-->
                                     <div class="row">
-                    
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Area</label>
-                                                <select required name="nama_area" class="form-control custom-select">
+                                                <select required name="nama_area" class="form-control custom-select"
+                                                    id="nama_area">
                                                     <option value="">Pilih Area</option>
                                                     <option value="Balikpapan">Balikpapan</option>
-                                                    <option value="Kalimatan Timur">Kalimantan Timur</option>
-                                                    <option value="Kalimatan Selatan">Kalimantan Selatan</option>
-                                                    <option value="Kalimatan Barat">Kalimantan Barat</option>
+                                                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                                    <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                                    <option value="Kalimantan Barat">Kalimantan Barat</option>
                                                 </select>
                                                 <small class="form-control-feedback">
                                                     @error('area')
@@ -141,18 +148,14 @@
                                             </div>
                                         </div>
                                         <!--/span-->
-                                        
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Witel</label>
-                                                <select required name="nama_witel" class="form-control custom-select">
+                                                <select required name="nama_witel" class="form-control custom-select"
+                                                    id="nama_witel">
                                                     <option value="">Pilih Witel</option>
-                                                    <option value="Witel Balikpapan">Witel Balikpapan</option>
-                                                    <option value="Witel Samarinda">Witel Samarinda</option>
-                                                    <option value="Witel Kaltara">Witel Kaltara</option>
-                                                    <option value="Witel Kalsel">Witel Kalsel</option>
-                                                    <option value="Witel Kalteng">Witel Kalteng</option>
-                                                    <option value="Witel Kalber">Witel Kalbar</option>
+                                                    <!-- Opsi witel akan ditambahkan melalui JavaScript -->
                                                 </select>
                                                 <small class="form-control-feedback">
                                                     @error('witel')
@@ -161,6 +164,38 @@
                                                 </small>
                                             </div>
                                         </div>
+
+                                        <script>
+                                            // Mendengarkan perubahan pada dropdown "Area"
+                                            document.getElementById('nama_area').addEventListener('change', function() {
+                                                var witelDropdown = document.getElementById('nama_witel');
+                                                witelDropdown.innerHTML = ''; // Menghapus opsi witel sebelumnya
+
+                                                var selectedArea = this.value;
+
+                                                // Menambahkan opsi witel berdasarkan area yang dipilih
+                                                if (selectedArea === 'Balikpapan') {
+                                                    addOption(witelDropdown, 'Witel Balikpapan', 'Witel Balikpapan');
+                                                } else if (selectedArea === 'Kalimantan Timur') {
+                                                    addOption(witelDropdown, 'Witel Samarinda', 'Witel Samarinda');
+                                                    addOption(witelDropdown, 'Witel Kaltara', 'Witel Kaltara');
+                                                } else if (selectedArea === 'Kalimantan Selatan') {
+                                                    addOption(witelDropdown, 'Witel Kalsel', 'Witel Kalsel');
+                                                    addOption(witelDropdown, 'Witel Kalteng', 'Witel Kalteng');
+                                                } else if (selectedArea === 'Kalimantan Barat') {
+                                                    addOption(witelDropdown, 'Witel Kalbar', 'Witel Kalbar');
+                                                }
+                                            });
+
+                                            // Fungsi untuk menambahkan opsi ke dalam dropdown
+                                            function addOption(select, text, value) {
+                                                var option = document.createElement('option');
+                                                option.text = text;
+                                                option.value = value;
+                                                select.add(option);
+                                            }
+                                        </script>
+
                                         <!--/span-->
 
                                         <div class="col-md-6">
@@ -197,9 +232,22 @@
                                                     @enderror </small>
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label">total petugas</label>
+                                                <label class="control-label">Luasan</label>
+                                                <input required type="text" required name="koordinat"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('koordinat')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Total Petugas</label>
                                                 <input required type="text" required name="total_petugas"
                                                     class="form-control">
                                                 <small class="form-control-feedback"> @error('total_petugas')
@@ -208,7 +256,7 @@
                                             </div>
                                         </div>
                                         <!--/span-->
-                                        
+
                                         <!--/span-->
 
                                     </div>
@@ -216,7 +264,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-            
+
                                 </div>
                             </form>
                         </div>
