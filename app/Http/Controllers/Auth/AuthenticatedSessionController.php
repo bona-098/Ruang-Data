@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
          $request->authenticate();
          $request->session()->regenerate();
     
-         Alert::toast('Semoga Hari mu Menyenanjytgrfdsgkan', 'success');
+         Alert::toast('Berhasil Login', 'success');
     
          return redirect()->intended(RouteServiceProvider::HOME);
     }
