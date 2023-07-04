@@ -79,10 +79,10 @@
                             <th>No</th>
                             <th>Action</th>
                             <th style="white-space: nowrap;">Nama</th>
-                            <th style="white-space: nowrap;">Telepon</th>
                             <th style="white-space: nowrap;">NIK</th>
-                            <th style="white-space: nowrap;">Email</th>
-                            <th style="white-space: nowrap;">ID Gedung</th>
+                            <th style="white-space: nowrap;">Lokasi Kerja</th>
+                            <th style="white-space: nowrap;">Kontrak</th>
+                            <th style="white-space: nowrap;">Telepon</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,10 +109,10 @@
                                     </div>
                                 </td>
                                 <td style="white-space: nowrap;">{{ $p->nama }}</td>
-                                <td style="white-space: nowrap;">{{ $p->telepon }}</td>
                                 <td style="white-space: nowrap;">{{ $p->nik }}</td>
-                                <td style="white-space: nowrap;">{{ $p->email }}</td>
-                                <td style="white-space: nowrap;">{{ $p->gedung_id }}</td>
+                                <td style="white-space: nowrap;">$p->lokasikerja</td>
+                                <td style="white-space: nowrap;">$p->kontrak</td>
+                                <td style="white-space: nowrap;">{{ $p->telepon }}</td>
                             </tr>
                             <div class="modal fade" id="ModalUpdatepetugas{{ $p->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,10 +149,10 @@
                                                         value="{{ $p->nik }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="text" class="form-control" id="email"
-                                                        name="email" placeholder="Masukkan email"
-                                                        value="{{ $p->email }}">
+                                                    <label for="lokasi_kerja">Lokasi Kerja</label>
+                                                    <input type="text" class="form-control" id="lokasi_kerja"
+                                                        name="lokasi_kerja" 
+                                                        value=" $p->email">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="gedung_id">Gedung</label>
@@ -255,9 +255,9 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Email</label>
-                                            <input required type="text" required name="email" class="form-control">
-                                            <small class="form-control-feedback"> @error('email')
+                                            <label class="control-label">Loker Kerja</label>
+                                            <input required type="text" required name="loker_kerja" class="form-control">
+                                            <small class="form-control-feedback"> @error('loker_kerja')
                                                     {{ $message }}
                                                 @enderror </small>
                                         </div>
