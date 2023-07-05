@@ -273,12 +273,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Portfolio</label>
-                                            <input type="text" required name="portfolio" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('portfolio')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
+                                            <select name="portfolio" class="form-control custom-select">
+                                                <option value="PROPERTY DEVELOPMENT">PROPERTY DEVELOPMENT</option>
+                                                <option value="PROJECT SOLUTION">PROJECT SOLUTION</option>
+                                                <option value="PROPERTY MANAGEMENT">PROPERTY MANAGEMENT</option>
+                                                <option value="TRANSPORT MANAGEMENT SERVICES">TRANSPORT MANAGEMENT SERVICES</option>
+                                                <option value="Win">Win</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
