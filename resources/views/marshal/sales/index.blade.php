@@ -391,7 +391,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jumlah Man Power/Unit/Luas</label>
-                                            <input required name="jumlah_man_power" type="number" class="form-control">
+                                            <input required name="jumlah_man_power" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jumlah_man_power')
                                                     {{ $message }}
@@ -428,10 +428,8 @@
                                             <label class="control-label">Jenis Kontrak</label>
                                             <select name="jenis_kontrak" class="form-control custom-select"
                                                 id="pendidikan" name="pendidikan">
-                                                <option value="SMA">Area</option>
-                                                <option value="SMK">Pusat</option>
-                                                <option value="D3">Regional</option>
-                                                <option value="S1">Tarakan</option>
+                                                <option value="REGIONAL">REGIONAL</option>
+                                                <option value="PUSAT">PUSAT</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('jenis_kontrak')

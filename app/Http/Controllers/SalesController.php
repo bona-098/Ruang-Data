@@ -99,14 +99,26 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'drive_kontrak' => 'required|mimes:pdf|max:100480'
+        $validatedData = $request->validate([
+            'drive_kontrak' => 'nullable|mimes:pdf|max:100480'
         ]);
-        $file = $request->file('drive_kontrak');
-        $file_kontrak = time()."_".$file->getClientOriginalName();
-        $file->move(public_path('/drive'), $file_kontrak);
+        // $file = $request->file('drive_kontrak');
+        // $file_kontrak = time()."_".$file->getClientOriginalName();
+        // $file->move(public_path('/drive'), $file_kontrak);
 
-        Sales::create([
+        // $file_kontrak = null;
+        // if ($request->hasFile('drive_kontrak')) {
+        // $file = $request->file('drive_kontrak');
+        // $file_kontrak = time()."_".$file->getClientOriginalName();
+        // $file->move(public_path('/drive'), $file_kontrak);
+        // }
+        if ($request->hasFile('drive_kontrak')) {
+            $file = $request->file('drive_kontrak');
+            $file_kontrak = time()."_".$file->getClientOriginalName();
+            $file->move(public_path('/drive'), $file_kontrak);
+            $validatedData['drive_kontrak'] = $file_kontrak;
+        }
+        Sales::create(array_merge($validatedData, [
             'unit_kerja'=>$request->unit_kerja,
             'status_revenue'=>$request->status_revenue,
             'customer'=>$request->customer,
@@ -137,10 +149,10 @@ class SalesController extends Controller
             'jabatan_pic_client'=>$request->jabatan_pic_client,
             'no_hp_pic_client'=>$request->no_hp_pic_client,
             'nama_pic_gsd'=>$request->nama_pic_gsd,
-            'drive_kontrak'=>$file_kontrak,
+            // 'drive_kontrak'=>$file_kontrak,
             'amandemen'=>$request->amandemen,
             'keterangan'=>$request->keterangan
-        ]);
+        ]));
         return redirect()->back();
     }
 
