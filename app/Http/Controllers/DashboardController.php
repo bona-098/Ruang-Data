@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sales;
 use App\Models\Project;
-use App\Models\karyawan;
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
