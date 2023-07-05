@@ -22,7 +22,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Id</th>
-                                    <td colspan="6">{{ $gedung->id }}</td>
+                                    <td colspan="6">{{ $gedung->Id_gedung}}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Area</th>
@@ -57,7 +57,7 @@
                                     <th>Nama</th>
                                     <th>Telpon</th>
                                     <th>NIK</th>
-                                    <th>Email</th>
+                                    {{-- <th>Email</th> --}}
                                     <th>Action</th>
                                 </tr>
 
@@ -67,7 +67,6 @@
                                         <td>{{ $pe->nama }}</td>
                                         <td>{{ $pe->telepon }}</td>
                                         <td>{{ $pe->nik }}</td>
-                                        <td>{{ $pe->email }}</td>
                                         <div class="dropdown">
                                             <td>
                                                 <button class="btn btn-primary dropdown-toggle" type="button"

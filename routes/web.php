@@ -2,12 +2,14 @@
 
 use App\Models\Mitra;
 use App\Models\Sales;
-use App\Models\Project;
 use App\Models\Gedung;
+use App\Models\Project;
+use App\Models\Karyawan;
 use App\Imports\MitraImport;
 use App\Imports\SalesImport;
-use App\Imports\ProjectImport;
 use App\Imports\GedungImport;
+use App\Imports\ProjectImport;
+use App\Imports\KaryawanImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
@@ -15,18 +17,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\SalesController;
+
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\ProjectController;
-
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PerangkatController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\Auth\NewPasswordController;
+
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -143,6 +145,15 @@ Route::get('/import-mitra', function () {
 });
 Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
+    return back();
+});
+
+Route::get('/import-karyawan', function () {
+    $karyawan = Karyawan::all();
+    return view('karyawans',['karyawan'=>$karyawan]);
+});
+Route::post('/karyawans', function () {
+    Excel::import(new KaryawanImport, request()->file('file'));
     return back();
 });
 

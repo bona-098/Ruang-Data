@@ -55,6 +55,7 @@ class GedungController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'Id_gedung' => 'required',
             'nama_gedung' => 'required',
             'nama_area' => 'required',
             'nama_witel' => 'required',
@@ -66,6 +67,7 @@ class GedungController extends Controller
 
         Gedung::create([
             'nama_gedung' => $request->nama_gedung,
+            'Id_gedung' => $request->Id_gedung,
             'nama_area' => $request->nama_area,
             'nama_witel' => $request->nama_witel,
             'alamat' => $request->alamat,
@@ -110,6 +112,7 @@ class GedungController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'Id_gedung' => 'required',
             'nama_gedung' => 'required',
             'nama_area' => 'required',
             'nama_witel' => 'required',
@@ -124,6 +127,7 @@ class GedungController extends Controller
         }
         // $gedung = Gedung::find($id);
         $gedung->update([
+            'Id_gedung' => $request->Id_gedung,
             'nama_gedung' => $request->nama_gedung,
             'nama_area' => $request->nama_area,
             'nama_witel' => $request->nama_witel,

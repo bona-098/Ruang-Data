@@ -11,6 +11,7 @@ class Gedung extends Model
     public $table = 'gedung';
 
     protected $fillable = [
+        'Id_gedung',
         'nama_gedung',
         'nama_area',
         'nama_witel',
