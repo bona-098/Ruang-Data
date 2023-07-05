@@ -400,43 +400,40 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
         <div class="container">
             <div class="row">
-                <form action="/gedung_import" method="post" enctype="multipart/form-data">
+                <form action="/karyawans" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="input-group mb-3">
                         <input type="file" name="file" class="form-control" placeholder="Recipient's username"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
-                        <a href="/gedung" class="btn btn-primary">Back</a>
                     </div>
                 </form>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             {{-- <th scope="col">#</th> --}}
-                            <th scope="col">Nama Gedung</th>
-                            <th scope="col">Nama Area</th>
-                            <th scope="col">Nama Witel</th>
+                            <th scope="col">NIK Telpro</th>
+                            <th scope="col">NIK Telkom Group</th>
+                            <th scope="col">Nama Karyawan</th>
+                            <th scope="col">Agama</th>
                             <th scope="col">Alamat</th>
-                            <th scope="col">Koordinat</th>
-                            <th scope="col">Total Petugas</th>
-                            <th scope="col">Luasan</th>
+                            <th scope="col">Jabatan</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{-- @php
                             $no = 0;
                             @endphp --}}
-                        @forelse ($gedung as $s)
+                        @forelse ($karyawan as $user)
                             <tr>
                                 {{-- <th scope="row">{{ ++$no }}</th> --}}
-                                <td>{{ $s->nama_gedung }}</td>
-                                <td>{{ $s->nama_area}}</td>
-                                <td>{{ $s->nama_witel }}</td>
-                                <td>{{ $s->alamat }}</td>
-                                <td>{{ $s->koordinat }}</td>
-                                <td>{{ $s->total_petugas }}</td>
-                                <td>{{ $s->total_luasan }}</td>
+                                <td>{{ $user->nik }}</td>
+                                <td>{{ $user->no_hp }}</td>
+                                <td>{{ $user->nama_karyawan }}</td>
+                                <td>{{ $user->agama }}</td>
+                                <td>{{ $user->alamat }}</td>
+                                <td>{{ $user->jabatan }}</td>
                             </tr>
                         @empty
                             <td colspan="4" class="table-active text-center">Tidak Ada Data</td>

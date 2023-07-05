@@ -141,14 +141,14 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahGedung">
                     <i class="fa fa-user-plus"></i> Tambah Gedung
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i
-                        class="fa fa-plus"></i> Import Data Gedung</button>
+                <a button type="button" class="btn btn-primary" href="/gedung_import"><i
+                        class="fa fa-plus"></i> Import Data Gedung</button> </a>
                 {{-- <div class="table-responsive"> --}}
                     <table text-align: left; id="myTable" class=" table table-responsive  display table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Id Gedung</th>
+                                <th style="white-space: nowrap;">ID Gedung</th>
                                 <th style="white-space: nowrap;">Nama Gedung</th>
                                 <th style="white-space: nowrap;">Nama Area</th>
                                 <th style="white-space: nowrap;">Nama Witel</th>
@@ -163,14 +163,14 @@
                             @foreach ($gedung as $g)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td style="white-space: nowrap;">IDgedung{{ $g->nama_area }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->Id_gedung }}</td>
                                     <td style="white-space: nowrap;">{{ $g->nama_gedung }}</td>
                                     <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
                                     <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
                                     <td style="white-space: nowrap;">{{ $g->alamat }}</td>
                                     <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
-                                    <td style="white-space: nowrap;">Luasan{{ $g->total_petugas }}</td>
                                     <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->luasan }}</td>
                                     <td>
                                         <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
                                     </td>
@@ -322,6 +322,16 @@
                                                     @enderror </small>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Id Gedung</label>
+                                                <input required type="text" required name="Id_gedung"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('Id_gedung')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
                                         <!--/span-->
 
                                         <!--/span-->
@@ -339,7 +349,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Import -->
+        {{-- <!-- Modal Import -->
         <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -365,7 +375,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 @endsection

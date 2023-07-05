@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('gedung', function (Blueprint $table) {
             $table->id();
+            $table->string('Id_gedung')->nullable();
             $table->string('nama_gedung')->nullable();
             $table->string('nama_area')->nullable();
             $table->string('nama_witel')->nullable();
