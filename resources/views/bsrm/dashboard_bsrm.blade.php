@@ -223,21 +223,22 @@
                 }
             }
         });
-        document.getElementById('myChart1').addEventListener('click', function(event) {
-            const activePoints = chart1.getElementsAtEventForMode(event, 'nearest', {
-                intersect: true
-            }, true);
+        // document.getElementById('myChart1').addEventListener('click', function(event) {
+        //     const activePoints = chart1.getElementsAtEventForMode(event, 'nearest', {
+        //         intersect: true
+        //     }, true);
 
-            if (activePoints.length > 0) {
-                const firstPoint = activePoints[0];
-                const label = chart1.data.labels[firstPoint.index];
-                const category = chart1.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "label=" + label + "&category=" + category;
-            }
-        });
+        //     if (activePoints.length > 0) {
+        //         const firstPoint = activePoints[0];
+        //         const label = chart1.data.labels[firstPoint.index];
+        //         const category = chart1.data.datasets[firstPoint.datasetIndex].label;
+        //         console.log("Label: " + label + ", Category: " + category);
+        //         // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
+        //         // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
+        //         const url = "?label=" + label + "&category=" + category;
+        //         window.open(url, "_blank");
+        //     }
+        // });
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         console.log(ctx2);
         const chart2 = new Chart(ctx2, {

@@ -14,9 +14,22 @@ class PerformanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $performance = Performance::get();
+        $performance = Performance::query();
+        if ($request->area && $request->area != 'Pilih') {
+            $performance->where('area', $request->area);
+        }
+        if ($request->tahun && $request->tahun != 'Pilih') {
+            $performance->where('tahun', $request->tahun);
+        }
+        if ($request->bulan && $request->bulan != 'Pilih') {
+            $performance->where('bulan', $request->bulan);
+        }
+        // if ($request->tahap && $request->tahap != 'Pilih') {
+        //     $project->where('tahap', $request->tahap);
+        // }
+        $performance = $performance->get();
         return view('bsrm.performance.index', compact('performance'));
     }
 
@@ -43,6 +56,9 @@ class PerformanceController extends Controller
             'tahun' => 'required',
             'bulan' => 'required',
             'area' => 'required',
+            'target_rkap' => 'required',
+            'target_rkm' => 'required',
+            'ach' => 'required',
             'foto' => 'required|file|image|mimes:jpg,img,pjeg,png,gif|max:50000'
         ]);
         $newnamefoto = $request->kategori . '-' . date('His') . '-' . $request->foto->extension();
@@ -52,6 +68,9 @@ class PerformanceController extends Controller
             'tahun' => $request->tahun,
             'bulan' => $request->bulan,
             'area' => $request->area,
+            'target_rkap' => $request->target_rkap,
+            'target_rkm' => $request->target_rkm,
+            'ach' => $request->ach,
             'foto' => $newnamefoto
         ]);
         return redirect()->route('performance.index');
@@ -66,8 +85,27 @@ class PerformanceController extends Controller
     public function show($id)
     {
         $performance = Performance::find($id);
-        return view('bsrm.performance.detail', compact('performance'));
+        $performance_chart = Performance::where('id', $id)->get();
+
+        $target_rkap_data = Performance::where('tahun', $performance->tahun)
+            ->where('area', $performance->area)
+            ->pluck('target_rkap')
+            ->toArray();
+
+        $target_rkm_data = Performance::where('tahun', $performance->tahun)
+            ->where('area', $performance->area)
+            ->pluck('target_rkm')
+            ->toArray();
+
+        $target_ach_data = Performance::where('tahun', $performance->tahun)
+            ->where('area', $performance->area)
+            ->pluck('ach')
+            ->toArray();
+
+        return view('bsrm.performance.detail', compact('performance', 'performance_chart', 'target_rkap_data', 'target_rkm_data', 'target_ach_data'));
     }
+
+    // tolong bantu saya ingin menampilkan chart berdasarkan id
 
     /**
      * Show the form for editing the specified resource.
@@ -91,17 +129,23 @@ class PerformanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tahun' => 'required',
-            'bulan' => 'required',
-            'area' => 'required',
-            'foto' => 'file|mimes:jpg,img,jpeg,png,gif|max:50000'
-        ]);
-
+        // $this->validate($request, [
+        //     'tahun' => 'required',
+        //     'bulan' => 'required',
+        //     'area' => 'required',
+        //     'target_rkap' => 'required',
+        //     'target_rkm' => 'required',
+        //     'ach' => 'required',
+        //     'foto' => 'required|file|image|mimes:jpg,img,pjeg,png,gif|max:50000'
+        // ]);
+        // dd($request->all());
         $performance = Performance::findOrFail($id);
         $performance->tahun = $request->tahun;
         $performance->bulan = $request->bulan;
         $performance->area = $request->area;
+        $performance->target_rkap = $request->target_rkap;
+        $performance->target_rkm = $request->target_rkm;
+        $performance->ach = $request->ach;
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Gedung;
 use App\Models\Personil;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class GedungController extends Controller
 {
@@ -13,9 +15,24 @@ class GedungController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $gedung = Gedung::get();
+        $gedung = Gedung::query();
+        if ($request->nama_area && $request->nama_area != 'Pilih') {
+            $gedung->where('nama_area', $request->nama_area);
+        }    
+        if ($request->witel && $request->witel != 'Pilih') {
+            $gedung->where('witel', $request->witel);
+        }    
+        // if ($request->kategori && $request->kategori != 'Pilih') {
+        //     $gedung->where('kategori', $request->kategori);
+        // }    
+        // if ($request->tahap && $request->tahap != 'Pilih') {
+        //     $gedung->where('tahap', $request->tahap);
+        // }
+        // dd($request);
+        $gedung = $gedung->get();
+        // $gedung = Gedung->get();
         return view('oms.gedung.index', compact('gedung'));
     }
 
@@ -130,5 +147,47 @@ class GedungController extends Controller
         $gedung = Gedung::findOrfail($id);
         $gedung->delete();
         return redirect()->route('gedung.index');
+    }
+
+    public function export()
+    {
+        try {
+            $gedung = Gedung::all();
+
+            if ($gedung->isEmpty()) {
+                return redirect()->back()->with('error', 'Tidak ada data yang diekspor.');
+            }
+
+            $exportSales = [];
+
+            foreach ($gedung as $item) {
+                $exportGedung[] = [
+                    'unit_kerja' => $item->unit_kerja ?? '',
+                    // 'Unit Kerja' => $item->unit_kerja ?? '',
+                    // tambahkan properti lainnya sesuai kebutuhan
+                ];
+            }
+
+            $fileName = 'gedung_export.xlsx';
+
+            $excel = new Excel();
+            $excel->store(new class($exportGedung) implements FromCollection {
+                private $gedung;
+
+                public function __construct($gedung)
+                {
+                    $this->gedung = $gedung;
+                }
+
+                public function collection()
+                {
+                    return collect($this->gedung);
+                }
+            }, $fileName, 'public');
+
+            return $excel->download($fileName, \Maatwebsite\Excel\Excel::XLSX);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengexport data: ' . $e->getMessage());
+        }
     }
 }

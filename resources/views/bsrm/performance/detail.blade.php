@@ -6,8 +6,8 @@
                 <div class="col-sm-12 col-md-70">
                     <div class="card  ">
                         <div class="card-body ">
-                            <a href="{{ asset('images/performance/halaman1.jpg') }}" target="_blank">
-                                <img src="{{ asset('images/performance/halaman1.jpg') }}"
+                            <a href="{{ asset('images/performance/' . $performance_chart) }}" target="_blank">
+                                <img src="{{ asset('images/performance/' . $performance->foto) }}"
                                     style="width: 100%; max-width: 100%;" alt="gambar"></a>
                             <br>
                         </div>
@@ -44,7 +44,7 @@
                     defaultFontFamily: 'Montserrat',
                     datasets: [{
                             label: "Target RKAP",
-                            data: [0, 30, 10, 120, 50, 63, 10, 80, 20, 90, 40, 70],
+                            data: {!! json_encode($target_rkap_data) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(220, 53, 69, 0.75)',
                             borderWidth: 3,
@@ -55,7 +55,7 @@
                         },
                         {
                             label: "Target RKM",
-                            data: [0, 30, 10, 120, 50, 63, 10, 70, 90, 40, 20, 80],
+                            data: {!! json_encode($target_rkm_data) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(0, 123, 255, 0.75)',
                             borderWidth: 3,
@@ -66,7 +66,7 @@
                         },
                         {
                             label: "ACH",
-                            data: [0, 50, 40, 80, 40, 79, 120, 30, 60, 70, 90, 20],
+                            data: {!! json_encode($target_ach_data) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(40, 167, 69, 0.75)',
                             borderWidth: 3,

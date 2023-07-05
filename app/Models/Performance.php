@@ -14,6 +14,9 @@ class Performance extends Model
     'tahun',
     'bulan',
     'area',
-    'foto'
+    'foto',
+    'target_rkap',
+    'target_rkm',
+    'ach'
     ];
 }

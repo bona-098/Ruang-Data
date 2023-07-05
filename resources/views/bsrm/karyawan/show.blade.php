@@ -23,7 +23,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">NIK Telkom Grup</th>
-                                <td>{{ $karyawan->nik  }}</td>
+                                <td>{{ $karyawan->no_hp  }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Nama Karyawan</th>
@@ -102,7 +102,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">NIK Telkom Grup</label>
-                                            <input type="number" name="nik_telkom_grup" min="0"
+                                            <input type="number" value={{ $karyawan->no_hp  }} name="nik_telkom_grup" min="0"
                                                 class="form-control" placeholder="12345"
                                                 @error('nik_telkom_grup') is-invalid @enderror
                                                 value="{{ old('nik_telkom_grup') }}">
@@ -133,7 +133,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
-                                            <input type="date" id="tgl_lahir" name="tgl_lahir"
+                                            <input type="date" value= {{ $karyawan->tgl_lahir }} id="tgl_lahir" name="tgl_lahir"
                                                 class="form-control" placeholder="dd/mm/yyyy">
                                         </div>
                                     </div>

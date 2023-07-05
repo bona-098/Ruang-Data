@@ -3,9 +3,11 @@
 use App\Models\Mitra;
 use App\Models\Sales;
 use App\Models\Project;
+use App\Models\Gedung;
 use App\Imports\MitraImport;
 use App\Imports\SalesImport;
 use App\Imports\ProjectImport;
+use App\Imports\GedungImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
@@ -165,6 +167,20 @@ Route::post('/projek', function () {
     Excel::import(new ProjectImport, request()->file('file'));
     return back();
 });
+
+//import gedung
+Route::get('/gedung_import', function () {
+    $gedung = Gedung::all();
+    return view('gedung',['gedung'=>$gedung]);
+});
+Route::post('/gedung_import', function () {
+    Excel::import(new GedungImport, request()->file('file'));
+    return back();
+});
+
+Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
+
+
 // Auth::routes();
 // Route::get('/ ', function () {
 //     $sales = Sales::all();

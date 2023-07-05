@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('tahun')->nullable();
             $table->string('bulan')->nullable();
             $table->string('area')->nullable();
+            $table->string('target_rkap')->nullable();
+            $table->string('target_rkm')->nullable();
+            $table->string('ach')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });

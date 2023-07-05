@@ -15,8 +15,8 @@
                 </button>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-                <div class=" table-responsive">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                {{-- <div class=" table-responsive"> --}}
+                    <table text-align: left; id="myTable" class="table table-responsive table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th class="text-center">Action</th>
@@ -57,7 +57,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
         {{-- Selesai --}}
@@ -79,7 +79,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">NIK Telpro</label>
                                                 <input type="number" name="nik" min="0" class="form-control"
-                                                    placeholder="12345" @error('nik') is-invalid @enderror
+                                                     @error('nik') is-invalid @enderror
                                                     value="{{ old('nik') }}">
                                                 @error('nik_telpro')
                                                     <div class="alert alert-danger mt-2">
@@ -92,7 +92,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">NIK Telkom Grup</label>
                                                 <input type="number" name="no_hp" min="0" class="form-control"
-                                                    placeholder="12345" @error('no_hp') is-invalid @enderror
+                                                    @error('no_hp') is-invalid @enderror
                                                     value="{{ old('nik_telkom_grup') }}">
                                                 @error('nik_telkom_grup')
                                                     <div class="alert alert-danger mt-2">

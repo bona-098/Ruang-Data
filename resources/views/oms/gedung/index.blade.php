@@ -2,7 +2,76 @@
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
+
+           {{-- MEMFILTER DATA --}}
+           <div class="card">
+            <div class="card-body">
+                <form action="{{ route('gedung.index') }}" method="GET" id="form_1">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="filter2">Nama Witel :</label>
+                            <select name="nama_witel" class="form-control" onchange="submitForm1()">
+                                <option value="">Semua Witel</option>
+                                <option value="Witel Balikpapan"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Balikpapan' ? 'selected' : '' }}>
+                                    Area Balikpapan</option>
+                                <option value="Witel Samarinda"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Samarinda' ? 'selected' : '' }}>
+                                    Kalimantan Timur</option>
+                                <option value="Witel Kaltara"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kaltara' ? 'selected' : '' }}>
+                                    Kalimantan Selatan</option>
+                                <option value="Witel Kalteng"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalteng' ? 'selected' : '' }}>
+                                    Kalimantan Barat</option>
+                                    <option value="Witel Kalsel"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalsel' ? 'selected' : '' }}>
+                                    Kalimantan Timur</option>
+                                <option value="Witel Kalbar"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalbar' ? 'selected' : '' }}>
+                                    Kalimantan Barat</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="filter2">Nama Area :</label>
+                            <select name="nama_area" class="form-control" onchange="submitForm2()">
+                                <option value="">Semua Domisili</option>
+                                <option value="Balikpapan"
+                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'Balikpapan' ? 'selected' : '' }}>
+                                    Area Balikpapan</option>
+                                <option value="Kaltim"
+                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'Kaltim' ? 'selected' : '' }}>
+                                    Kalimantan Timur</option>
+                                <option value="Kalsel"
+                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'Kalsel' ? 'selected' : '' }}>
+                                    Kalimantan Selatan</option>
+                                <option value="Kalbar"
+                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'Kalbar' ? 'selected' : '' }}>
+                                    Kalimantan Barat</option>
+                            </select>
+                        </div>
+                        {{-- <div class="col-md-2" style="padding-top: 5px;">
+                            <label for="filter5"> </label>
+                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
+                                Search</button>
+                        </div> --}}
+                    </div>
+                </form>
+                <script>
+                    function submitForm() {
+                        document.getElementById('form_1').submit();
+                    }
+
+                    function submitForm2() {
+                        document.getElementById('form_1').submit();
+                    }
+                </script>
+            </div>
+        </div>
+        {{-- MEMFILTER DATA --}}
+
+        {{-- <div class="card">
             <div class="card-body">
                 <form action="" method="GET" id="form_1">
                     @csrf
@@ -24,11 +93,11 @@
                                     value="{{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Kalbar' }}">Area
                                     Kalimantan Barat</option>
                             </select>
-                            {{-- <script>
+                            <script>
                                 document.getElementById('unit_kerja').value = "<?php if (isset($_GET['unit_kerja']) && $_GET['unit_kerja']) {
                                     echo $_GET['unit_kerja'];
                                 } ?>";
-                            </script> --}}
+                            </script>
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Nama Witel:</label>
@@ -64,7 +133,7 @@
             </div>
         </div>
         {{-- Akhir Filter Tabel --}}
-        {{-- Data Tabel mulai baru --}}
+        {{-- Data Tabel mulai baru --}} 
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Gedung</h4>
@@ -74,8 +143,8 @@
                 </button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i
                         class="fa fa-plus"></i> Import Data Gedung</button>
-                <div class="table-responsive">
-                    <table text-align: left; id="myTable" class=" table  display table-bordered table-striped">
+                {{-- <div class="table-responsive"> --}}
+                    <table text-align: left; id="myTable" class=" table table-responsive  display table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -109,7 +178,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                {{-- </div> --}}
             </div>
         </div>
 
@@ -275,7 +344,7 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="/" method="post" enctype="multipart/form-data">
+                    <form action="/gedung_import" method="get" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="modal-import-label">Import Data</h5>
