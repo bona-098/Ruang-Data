@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\mitra;
+use App\Models\Mitra;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class MitraImport implements ToModel
