@@ -11,15 +11,15 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="filter1">Kategori :</label>
+                            <label for="filter1">Status :</label>
                             <select name="kategori" class="form-control" onchange="submitForm()">
                                 <option value="">Semua Kategori</option>
                                 <option value="Eksisting"
-                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Eksisting' ? 'selected' : '' }}>
-                                    EKSISTING</option>
-                                <option value="Baru"
-                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Baru' ? 'selected' : '' }}>
-                                    REGISTERED</option>
+                                    {{ isset($_GET['status']) && $_GET['status'] == 'Eksisting' ? 'selected' : '' }}>
+                                    Eksisting</option>
+                                <option value="Registered"
+                                    {{ isset($_GET['status']) && $_GET['status'] == 'Registered' ? 'selected' : '' }}>
+                                    Registered</option>
                             </select>
                         </div>
                         <div class="col-md-4">

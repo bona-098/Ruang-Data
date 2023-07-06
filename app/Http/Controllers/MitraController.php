@@ -21,7 +21,7 @@ class MitraController extends Controller
     $mitra = Mitra::query();
 
     if ($request->kategori && $request->kategori != 'Pilih') {
-        $mitra->where('kategori', $request->kategori);
+        $mitra->where('status', $request->kategori);
     }
 
     if ($request->domisili && $request->domisili != 'Pilih') {

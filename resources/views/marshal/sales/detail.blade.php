@@ -331,11 +331,13 @@
                                         <div class="form-group">
                                             <label class="control-label">Progress Project</label>
                                             <select name="progress_project" class="form-control custom-select">
-                                                <option value="Delivery" {{ $sales->progress_project == 'Delivery' ? 'selected' : '' }}>Delivery</option>
+                                                <option value="Inisiasi" {{ $sales->progress_project == 'Inisiasi' ? 'selected' : '' }}>Inisiasi</option>
+                                                <option value="Sph" {{ $sales->progress_project == 'Sph' ? 'selected' : '' }}>Sph</option>
                                                 <option value="BAKN" {{ $sales->progress_project == 'BAKN' ? 'selected' : '' }}>BAKN</option>
-                                                <option value="Komersil" {{ $sales->progress_project == 'Komersil' ? 'selected' : '' }}>Komersil</option>
-                                                <option value="PKS Sign" {{ $sales->progress_project == 'PKS Sign' ? 'selected' : '' }}>PKS Sign</option>
                                                 <option value="Win" {{ $sales->progress_project == 'Win' ? 'selected' : '' }}>Win</option>
+                                                <option value="PKS Sign" {{ $sales->progress_project == 'PKS Sign' ? 'selected' : '' }}>PKS Sign</option>
+                                                <option value="Delivery" {{ $sales->progress_project == 'Delivery' ? 'selected' : '' }}>Delivery</option>
+                                                <option value="Komersil" {{ $sales->progress_project == 'Komersil' ? 'selected' : '' }}>Komersil</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('progress_project')

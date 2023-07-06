@@ -414,6 +414,7 @@
                     <thead>
                         <tr>
                             {{-- <th scope="col">#</th> --}}
+                            <th scope="col">ID Gedung</th>
                             <th scope="col">Nama Gedung</th>
                             <th scope="col">Nama Area</th>
                             <th scope="col">Nama Witel</th>
@@ -430,13 +431,14 @@
                         @forelse ($gedung as $s)
                             <tr>
                                 {{-- <th scope="row">{{ ++$no }}</th> --}}
+                                <td>{{ $s->Id_gedung }}</td>
                                 <td>{{ $s->nama_gedung }}</td>
                                 <td>{{ $s->nama_area}}</td>
                                 <td>{{ $s->nama_witel }}</td>
                                 <td>{{ $s->alamat }}</td>
                                 <td>{{ $s->koordinat }}</td>
                                 <td>{{ $s->total_petugas }}</td>
-                                <td>{{ $s->total_luasan }}</td>
+                                <td>{{ $s->luasan }}</td>
                             </tr>
                         @empty
                             <td colspan="4" class="table-active text-center">Tidak Ada Data</td>

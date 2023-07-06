@@ -415,8 +415,20 @@
                         <tr>
                             {{-- <th scope="col">#</th> --}}
                             <th scope="col">customer</th>
+                            <th scope="col">id_crm</th>
                             <th scope="col">witel</th>
                             <th scope="col">nama_project</th>
+                            <th scope="col">kategori</th>
+                            <th scope="col">skema</th>
+                            <th scope="col">nilai_project</th>
+                            <th scope="col">sudah_akru</th>
+                            <th scope="col">sisa_belum_akru</th>
+                            <th scope="col">progress_ml</th>
+                            <th scope="col">progress_mi</th>
+                            <th scope="col">target_deal</th>
+                            <th scope="col">keterangan</th>
+                            <th scope="col">start_date</th>
+                            <th scope="col">end_date</th>
                             <th scope="col">tahap</th>
                             <th scope="col">akru</th>
                         </tr>
@@ -429,8 +441,20 @@
                             <tr>
                                 {{-- <th scope="row">{{ ++$no }}</th> --}}
                                 <td>{{ $p->customer }}</td>
-                                <td>{{ $p->witel }}</td>
+                                <td>{{ $p->id_crm }}</td>
+                                <td>{{ $p->witel}}</td>
                                 <td>{{ $p->nama_project }}</td>
+                                <td>{{ $p->kategori }}</td>
+                                <td>{{ $p->skema }}</td>
+                                <td>{{ $p->nilai_project }}</td>
+                                <td>{{ $p->sudah_akru}}</td>
+                                <td>{{ $p->sisa_belum_akru }}</td>
+                                <td>{{ $p->progress_ml}}</td>
+                                <td>{{ $p->progress_mi}}</td>
+                                <td>{{ $p->target_deal }}</td>
+                                <td>{{ $p->keterangan }}</td>
+                                <td>{{ $p->start_date }}</td>
+                                <td>{{ $p->end_date}}</td>
                                 <td>{{ $p->tahap }}</td>
                                 <td>{{ $p->akru }}</td>
                             </tr>

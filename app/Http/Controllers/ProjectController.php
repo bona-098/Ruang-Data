@@ -53,7 +53,6 @@ class ProjectController extends Controller
     {
         Project::create([
             'customer' =>$request->customer,
-            'id_crm' =>$request->id_crm,
             'witel' =>$request->witel,
             'nama_project' =>$request->nama_project,
             'kategori' =>$request->kategori,
@@ -65,8 +64,6 @@ class ProjectController extends Controller
             'progress_mi' =>$request->progress_mi,
             'target_deal' =>$request->target_deal,
             'keterangan' =>$request->keterangan,
-            'start_date' =>$request->start_date,
-            'end_date' =>$request->end_date,
             'tahap' =>$request->tahap,
             'akru' =>$request->akru
         ]);
@@ -109,7 +106,6 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->update([
             'customer' =>$request->customer,
-            'id_crm' =>$request->id_crm,
             'witel' =>$request->witel,
             'nama_project' =>$request->nama_project,
             'kategori' =>$request->kategori,
@@ -121,8 +117,6 @@ class ProjectController extends Controller
             'progress_mi' =>$request->progress_mi,
             'target_deal' =>$request->target_deal,
             'keterangan' =>$request->keterangan,
-            'start_date' =>$request->start_date,
-            'end_date' =>$request->end_date,
             'tahap' =>$request->tahap,
             'akru' =>$request->akru
         ]);

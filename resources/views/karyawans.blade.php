@@ -417,9 +417,15 @@
                             <th scope="col">NIK Telpro</th>
                             <th scope="col">NIK Telkom Group</th>
                             <th scope="col">Nama Karyawan</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Tanggal Lahir</th>
+                            <th scope="col">Kota Lahir</th>
                             <th scope="col">Agama</th>
-                            <th scope="col">Alamat</th>
+                            <th scope="col">Jalan</th>
+                            <th scope="col">Unit Kerja</th>
+                            <th scope="col">Loker</th>
                             <th scope="col">Jabatan</th>
+                            <th scope="col">Band kelas Posisi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -432,9 +438,15 @@
                                 <td>{{ $user->nik }}</td>
                                 <td>{{ $user->no_hp }}</td>
                                 <td>{{ $user->nama_karyawan }}</td>
+                                <td>{{ $user->jenis_kelamin }}</td>
+                                <td>{{ $user->tgl_lahir }}</td>
+                                <td>{{ $user->kota_lahir }}</td>
                                 <td>{{ $user->agama }}</td>
-                                <td>{{ $user->alamat }}</td>
+                                <td>{{ $user->jalan }}</td>
+                                <td>{{ $user->unit_kerja }}</td>
+                                <td>{{ $user->loker }}</td>
                                 <td>{{ $user->jabatan }}</td>
+                                <td>{{ $user->band_kelas_posisi }}</td>
                             </tr>
                         @empty
                             <td colspan="4" class="table-active text-center">Tidak Ada Data</td>

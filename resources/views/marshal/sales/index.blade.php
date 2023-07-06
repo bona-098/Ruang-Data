@@ -278,7 +278,7 @@
                                                 <option value="PROJECT SOLUTION">PROJECT SOLUTION</option>
                                                 <option value="PROPERTY MANAGEMENT">PROPERTY MANAGEMENT</option>
                                                 <option value="TRANSPORT MANAGEMENT SERVICES">TRANSPORT MANAGEMENT SERVICES</option>
-                                                <option value="Win">Win</option>
+                                                {{-- <option value="Win">Win</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -286,11 +286,13 @@
                                         <div class="form-group">
                                             <label class="control-label">Progress Project</label>
                                             <select name="progress_project" class="form-control custom-select">
-                                                <option value="Delivery">Delivery</option>
+                                                <option value="Inisiasi">Inisiasi</option>
+                                                <option value="Sph">SPH</option>
                                                 <option value="BAKN">BAKN</option>
-                                                <option value="Komersil">Komersil</option>
-                                                <option value="PKS Sign">PKS Sign</option>
                                                 <option value="Win">Win</option>
+                                                <option value="PKS Sign">PKS Sign</option>
+                                                <option value="Delivery">Delivery</option>
+                                                <option value="Komersil">Komersil</option>
                                             </select>
                                             <small class="form-control-feedback">
                                                 @error('progress_project')

@@ -11,7 +11,6 @@ class Project extends Model
     public $table = "project";
     protected $fillable = [
         'customer',
-        'id_crm',
         'witel',
         'nama_project',
         'kategori',
@@ -23,8 +22,6 @@ class Project extends Model
         'progress_mi',
         'target_deal',
         'keterangan',
-        'start_date',
-        'end_date',
         'tahap',
         'akru',
     ];

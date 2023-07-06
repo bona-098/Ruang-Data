@@ -9,49 +9,40 @@
                 <form action="{{ route('project.index') }}" method="GET" id="form_1">
                     @csrf
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="filter2">Kode AMPM</label>
-                            <select name="id_crm" class="form-control" onchange="submitForm1()">
-                                <option value="">Semua Kode Ampm</option>
-                                <option value="lop"
-                                    {{ isset($_GET['id_crm']) && $_GET['id_crm'] == 'lop' ? 'selected' : '' }}>
-                                    lop</option>
-                                <option value="nlop"
-                                    {{ isset($_GET['id_crm']) && $_GET['id_crm'] == 'nlop' ? 'selected' : '' }}>
-                                    nlop</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
+                        {{-- <div class="col-md-3">
                             <label for="filter1">Witel</label>
                             <select name="witel" class="form-control" onchange="submitForm2()">
                                 <option value="">Semua Witel</option>
-                                <option value="Balikpapan"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Balikpapan' ? 'selected' : '' }}>
-                                    Balikpapan</option>
-                                <option value="Samarinda"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Samarinda' ? 'selected' : '' }}>
-                                    Samarinda</option>
-                                <option value="Kalsel"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Kalsel' ? 'selected' : '' }}>
-                                    Kalsel</option>
-                                <option value="Kalbar"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Kalbar' ? 'selected' : '' }}>
-                                    Kalbar</option>
-                                <option value="Treg"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'Treg' ? 'selected' : '' }}>
-                                    Treg</option>
+                                <option value="BALIKPAPAN"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'BALIKPAPAN' ? 'selected' : '' }}>
+                                    BALIKPAPAN</option>
+                                <option value="SAMARINDA"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'SAMARINDA' ? 'selected' : '' }}>
+                                    SAMARINDA</option>
+                                <option value="KALSEL"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'KALSEL' ? 'selected' : '' }}>
+                                    KALSEL</option>
+                                <option value="KALBAR"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'KALBAR' ? 'selected' : '' }}>
+                                    KALBAR</option>
+                                <option value="TREG"
+                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'TREG' ? 'selected' : '' }}>
+                                    TREG</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="col-md-3">
                             <label for="filter2">Kategori</label>
                             <select name="kategori" class="form-control" onchange="submitForm3()">
                                 <option value="">Semua Kategori</option>
-                                <option value="Subsidiaries"
-                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Exma' ? 'selected' : '' }}>
-                                    Exma</option>
+                                <option value="Enterprise"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Enterprise' ? 'selected' : '' }}>
+                                    Enterprise</option>
                                 <option value="Government"
-                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Telkom Grup' ? 'selected' : '' }}>
-                                    Telkom Grup</option>
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Government' ? 'selected' : '' }}>
+                                    Government</option>
+                                <option value="Telkom Group"
+                                    {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Telkom Group' ? 'selected' : '' }}>
+                                    Telkom Group</option>
                                 <option value="Telkom"
                                     {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Telkom' ? 'selected' : '' }}>
                                     Telkom</option>
@@ -121,7 +112,6 @@
                             <th>No</th>
                             <th>Action</th>
                             <th>Customer</th>
-                            <th style="white-space: nowrap;">Kode AMPM</th>
                             <th>Witel</th>
                             <th style="white-space: nowrap;">Nama Project</th>
                             <th>kategori</th>
@@ -131,8 +121,6 @@
                             <th style="white-space: nowrap;">Sisa Belum Akru</th>
                             <th style="white-space: nowrap;">progress ML</th>
                             <th style="white-space: nowrap;">progress MI</th>
-                            <th style="white-space: nowrap;">Start Date</th>
-                            <th style="white-space: nowrap;">End Date</th>
                             <th>Keterangan</th>
                             <th>Tahap</th>
                             <th>Akru</th>
@@ -149,7 +137,6 @@
                                     </div>
                                 </td>
                                 <td>{{ $p->customer }}</td>
-                                <td>{{ $p->id_crm }}</td>
                                 <td>{{ $p->witel }}</td>
                                 <td>{{ $p->nama_project }}</td>
                                 <td>{{ $p->kategori }}</td>
@@ -159,8 +146,6 @@
                                 <td>{{ $p->sisa_belum_akru }}</td>
                                 <td>{{ $p->progress_ml }}</td>
                                 <td>{{ $p->progress_mi }}</td>
-                                <td>{{ $p->start_date }}</td>
-                                <td>{{ $p->end_date }}</td>
                                 <td>{{ $p->keterangan }}</td>
                                 <td>{{ $p->tahap }}</td>
                                 <td>{{ $p->akru }}</td>
@@ -192,53 +177,33 @@
                             @csrf
                             <div class="form-body">
                                 <div class="row p-t-20">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
                                             <input type="text" name="customer" id="customer" class="form-control"
-                                                placeholder="Customer" required>
+                                                placeholder="Customer" >
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kode AMPM</label>
-                                            <select required name="id_crm" class="form-control">
-                                                <option value="">Pilih Kode AMPM</option>
-                                                <option value="nlop">Non Lop</option>
-                                                <option value="lop">Lop</option>
-                                            </select>
-                                            <small class="form-control-feedback">
-                                                @error('id_crm')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Witel</label>
-                                            <select required name="witel" class="form-control">
-                                                <option value="">Pilih Witel</option>
-                                                <option value="Balikpapan">Balikpapan</option>
-                                                <option value="Samarinda">Samarinda</option>
-                                                <option value="Kalsel">Kalsel</option>
-                                                <option value="Kalbar">Kalbar</option>
-                                                <option value="Treg">Treg</option>
-                                            </select>
-                                            <small class="form-control-feedback"> @error('witel')
+                                            <label>Witel</label>
+                                            <input name="witel"  type="text" class="form-control">
+                                            <small class="form-control-feedback">
+                                                @error('witel')
                                                     {{ $message }}
-                                                @enderror </small>
+                                                @enderror
+                                            </small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
-                                            <select required name="kategori" class="form-control ">
+                                            <select  name="kategori" class="form-control ">
                                                 <option value="">Pilih Kategori</option>
                                                 <option value="Enterprise">Enterprise</option>
                                                 <option value="Governance">Governance</option>
@@ -255,7 +220,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" required type="text" id="nama_project"
+                                            <input name="nama_project"  type="text" id="nama_project"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
@@ -269,7 +234,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Skem</label>
-                                            <input name="skema" required type="text" class="form-control">
+                                            <input name="skema"  type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('skema')
                                                     {{ $message }}
@@ -282,7 +247,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project</label>
-                                            <input required name="nilai_project" id="nilai_project" min="0"
+                                            <input  name="nilai_project" id="nilai_project" min="0"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project')
@@ -294,7 +259,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sudah Akru</label>
-                                            <input required name="sudah_akru" id="sudah_akru" min="0"
+                                            <input  name="sudah_akru" id="sudah_akru" min="0"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sudah_akru')
@@ -306,7 +271,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
-                                            <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
+                                            <input  name="sisa_belum_akru" id="sisa_belum_akru" min="0"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
@@ -318,7 +283,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Lalu</label>
-                                            <input required name="progress_ml" type="number" class="form-control">
+                                            <input  name="progress_ml" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
                                                     {{ $message }}
@@ -329,7 +294,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Ini</label>
-                                            <input required name="progress_mi" type="number" class="form-control">
+                                            <input  name="progress_mi" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
                                                     {{ $message }}
@@ -340,43 +305,20 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
-                                            <input required name="target_deal" type="text" class="form-control">
+                                            <input  name="target_deal" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('target_deal')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input required name="keterangan" type="text"
-                                                class="form-control">
+                                            <input  name="keterangan" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Start Date</label>
-                                            <input required name="start_date" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('due_date')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>End Date</label>
-                                            <input required name="end_date" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('due_date')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
@@ -397,13 +339,25 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Akru</label>
-                                            <input required name="akru" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('akru')
+                                            <label for="bulan">Akru</label>
+                                            <select id="bulan" name="akru" class="form-control">
+                                                <option value="">Pilih Bulan</option>
+                                                <option value="Januari">Januari</option>
+                                                <option value="Februari">Februari</option>
+                                                <option value="Maret">Maret</option>
+                                                <option value="April">April</option>
+                                                <option value="Mei">Mei</option>
+                                                <option value="Juni">Juni</option>
+                                                <option value="Juli">Juli</option>
+                                                <option value="Agustus">Agustus</option>
+                                                <option value="September">September</option>
+                                                <option value="Oktober">Oktober</option>
+                                                <option value="November">November</option>
+                                                <option value="Desember">Desember</option>
+                                            </select>
+                                            <small class="form-control-feedback"> @error('bulan')
                                                     {{ $message }}
-                                                @enderror
-                                            </small>
+                                                @enderror </small>
                                         </div>
                                     </div>
                                 </div>

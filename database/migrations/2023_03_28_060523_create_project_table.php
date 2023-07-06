@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('project', function (Blueprint $table) {
             $table->id();
             $table->string('customer')->nullable();
-            $table->string('id_crm')->nullable();
             $table->string('witel')->nullable();
             $table->string('nama_project')->nullable();
             $table->string('kategori')->nullable();
@@ -28,8 +27,6 @@ return new class extends Migration
             $table->string('progress_mi')->nullable();
             $table->string('target_deal')->nullable();
             $table->string('keterangan')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
             $table->string('tahap')->nullable();
             $table->string('akru')->nullable();
             $table->timestamps();

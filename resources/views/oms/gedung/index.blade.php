@@ -169,8 +169,8 @@
                                     <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
                                     <td style="white-space: nowrap;">{{ $g->alamat }}</td>
                                     <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
                                     <td style="white-space: nowrap;">{{ $g->luasan }}</td>
+                                    <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
                                     <td>
                                         <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
                                     </td>

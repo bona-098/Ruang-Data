@@ -23,10 +23,6 @@
                                     <td>{{ $project->customer }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kode AMPM</th>
-                                    <td>{{ $project->id_crm }}</td>
-                                </tr>
-                                <tr>
                                     <th scope="row">Witel</th>
                                     <td>{{ $project->witel }}</td>
                                 </tr>
@@ -71,14 +67,6 @@
                                     <td>{{ $project->keterangan }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Start Date</th>
-                                    <td>{{ $project->start_date }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">End Date</th>
-                                    <td>{{ $project->end_date }}</td>
-                                </tr>
-                                <tr>
                                     <th scope="row">Tahap</th>
                                     <td>{{ $project->tahap }}</td>
                                 </tr>
@@ -115,7 +103,7 @@
                             {{ method_field('PUT') }}
                             <div class="form-body">
                                 <div class="row p-t-20">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
                                             <input type="text" name="customer" id="Unit Kerja"
@@ -123,20 +111,6 @@
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kode AMPM</label>
-                                            <select required name="id_crm" class="form-control">
-                                                <option value="nlop" {{ $project->id_crm == 'nlop' ? 'selected' : '' }}>Non Lop</option>
-                                                <option value="lop" {{ $project->id_crm == 'lop' ? 'selected' : '' }}>Lop</option>
-                                            </select>
-                                            <small class="form-control-feedback">
-                                                @error('id_crm')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +213,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input required name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="number"
+                                            <input required name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
@@ -251,7 +225,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input required name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="number"
+                                            <input required name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
@@ -286,28 +260,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Start Date</label>
-                                            <input required name="start_date" value="{{ $project->start_date }}" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('start_date')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>End Date</label>
-                                            <input required name="end_date" value="{{ $project->end_date }}" type="date" class="form-control">
-                                            <small class="form-control-feedback">
-                                                @error('end_date')
-                                                    {{ $message }}
-                                                @enderror
-                                            </small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label class="control-label">Tahap</label>
                                             <select name="tahap" class="form-control">
                                                 <option selected value="{{ $project->tahap }}">{{ $project->tahap }}</option>
@@ -331,6 +283,57 @@
                                             </small>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Akru">Akru</label>
+                                            <select  name="akru"
+                                                class="form-control">
+                                                <option value="">Pilih Bulan</option>
+                                                <option value="Januari"
+                                                    @if ($project->akru == 'Januari') selected @endif>
+                                                    Januari</option>
+                                                <option value="Februari"
+                                                    @if ($project->akru == 'Februari') selected @endif>
+                                                    Februari</option>
+                                                <option value="Maret"
+                                                    @if ($project->akru == 'Maret') selected @endif>
+                                                    Maret</option>
+                                                <option value="April"
+                                                    @if ($project->akru == 'April') selected @endif>
+                                                    April</option>
+                                                <option value="Mei"
+                                                    @if ($project->akru == 'Mei') selected @endif>
+                                                    Mei</option>
+                                                <option value="Juni"
+                                                    @if ($project->akru == 'Juni') selected @endif>
+                                                    Juni</option>
+                                                <option value="Juli"
+                                                    @if ($project->akru == 'Juli') selected @endif>
+                                                    Juli</option>
+                                                <option value="Agustus"
+                                                    @if ($project->akru == 'Agustus') selected @endif>
+                                                    Agustus</option>
+                                                <option value="September"
+                                                    @if ($project->akru == 'September') selected @endif>
+                                                    September</option>
+                                                <option value="Oktober"
+                                                    @if ($project->akru == 'Oktober') selected @endif>
+                                                    Oktober
+                                                </option>
+                                                <option value="November"
+                                                    @if ($project->akru == 'November') selected @endif>
+                                                    November</option>
+                                                <option value="Desember"
+                                                    @if ($project->akru == 'Desember') selected @endif>
+                                                    Desember</option>
+                                            </select>
+                                            @error('bulan')
+                                                <small
+                                                    class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                     </div>
