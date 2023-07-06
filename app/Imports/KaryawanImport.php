@@ -15,19 +15,17 @@ class KaryawanImport implements ToModel
      */
     public function model(array $row)
     {
-        // $tgl_lahir = null;
-        // if (!empty($row[4])) {
-        //     $dateParts = explode('/', $row[4]); // Ganti '/' dengan simbol pemisah yang sesuai
-        //     if (count($dateParts) === 3) {
-        //         $tgl_lahir = Carbon::createFromFormat('m/d/Y', $row[4])->toDateString();
-        //     }
-        // }
+        $tgl_lahir = null;
+        if (!empty($row[4])) {
+            // Ubah format "general" menjadi tipe data tanggal
+            $tgl_lahir = Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[4]))->toDateString();
+        }
         return new Karyawan([
             'nik' => $row[0],
             'no_hp' => $row[1],
             'nama_karyawan' => $row[2],
             'jenis_kelamin' => $row[3],
-            'tgl_lahir' => $row[4],
+            'tgl_lahir' => $tgl_lahir,
             'kota_lahir' => $row[5],
             'agama' => $row[6],
             'jalan' => $row[7],

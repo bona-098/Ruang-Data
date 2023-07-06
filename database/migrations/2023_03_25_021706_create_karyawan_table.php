@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();            
             $table->string('nama_karyawan')->nullable();            
             $table->string('jenis_kelamin')->nullable();            
-            $table->date('tgl_lahir')->nullable();            
+            $table->string('tgl_lahir')->nullable();            
             $table->string('kota_lahir')->nullable();            
             $table->string('agama')->nullable();            
             $table->string('jalan')->nullable();            
