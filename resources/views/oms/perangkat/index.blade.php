@@ -94,8 +94,8 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPerangkat">
                     <i class="fa fa-user-plus"></i> Tambah Perangkat
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><i
-                        class="fa fa-plus"></i> Import Data Perangkat</button>
+                <a button type="button" class="btn btn-primary" href="/import-perangkat"><i
+                    class="fa fa-plus"></i> Import Data Perangkat</button> </a>
                 <table text-align: left; id="myTable"
                     class=" table table-responsive display table-bordered table-striped">
                     <thead>

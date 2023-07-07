@@ -72,6 +72,8 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPetugas">
                     <i class="fa fa-user-plus"></i> Tambah personil
                 </button>
+                <a button type="button" class="btn btn-primary" href="/import-personil"><i
+                    class="fa fa-plus"></i> Import Data Personil</button> </a>
                 <table text-align: left; id="myTable"
                     class=" table table-responsive display table-bordered table-striped">
                     <thead>

@@ -15,13 +15,12 @@ class PersonilImport implements ToModel
     public function model(array $row)
     {
         return new Personil([
-            'nama',
-            'nik',
-            'lokasi_kerja',
-            'kontrak',
-            'telepon',
-            'gedung_id',
-            'bloman'
+            'nama'=> $row[0], 
+            'nik'=> $row[1],
+            'lokasi_kerja'=> $row[2],
+            'kontrak'=> $row[3],
+            'telepon'=> $row[4],
+            'gedung_id'=> $row[5]
         ]);
     }
 }
