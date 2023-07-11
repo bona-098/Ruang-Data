@@ -244,24 +244,31 @@
         const chart2 = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['Telkom', 'Telkom Group', 'Enterprise', 'Governance'],
+                labels: ['Telkom', 'Telkom Group', 'Enterprise', 'Goverment'],
                 datasets: [{
                         label: 'nilai_project',
-                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }}, {{ $governanceAkru }}],
+                        data: [{{ $telkomAkru }}, {{ $telkomGroupAkru }}, {{ $enterpriseAkru }},
+                            {{ $governanceAkru }}
+                        ],
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'sudah_akru',
-                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }},{{ $governanceSudahAkru }}],
+                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }},
+                            {{ $governanceSudahAkru }}
+                        ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
-                        borderWidth: 1
+                        borderWidth: 1,
+
                     },
                     {
                         label: 'sisa_belum_akru',
-                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }},{{ $governanceBelumAkru }}],
+                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }},
+                            {{ $governanceBelumAkru }}
+                        ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
@@ -270,9 +277,16 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                categoryPercentage:1,
+                barPercentage:0.5,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                            }
+                        }
                     }
                 },
                 plugins: {
@@ -280,12 +294,16 @@
                         anchor: 'end',
                         align: 'top',
                         formatter: function(value) {
-                            return value;
+                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                         }
                     }
+                },
+                legend: {
+                    position: 'top'
                 }
             }
         });
+
         document.getElementById('myChart2').addEventListener('click', function(event) {
             const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
@@ -296,7 +314,7 @@
                 const label = chart2.data.labels[firstPoint.index];
                 const category = chart2.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
-                const url = "detail_chart_projek?label=" + label + "&category=" + category;
+                const url = "detail_chart_nilai?label=" + label + "&category=" + category;
                 window.open(url, "_blank");
             }
         });
@@ -304,31 +322,37 @@
         const chart3 = new Chart(ctx3, {
             type: 'bar',
             data: {
-                labels: ['Done', 'Progress', 'Belum Mulai'],
+                labels: ['Done', 'Progress', 'Potensial'],
                 datasets: [{
                         label: 'Telkom',
-                        data: [{{ $telkomDone }},{{ $telkomProgress }} , {{ $telkomBelumMulai }}  ],
+                        data: [{{ $telkomDone }}, {{ $telkomProgress }}, {{ $telkomBelumMulai }}],
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         borderColor: 'rgba(75, 192, 192, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Telkom Group',
-                        data: [ {{ $telkomGroupDone }} , {{ $telkomGroupProgress }},{{ $telkomGroupBelumMulai }}],
+                        data: [{{ $telkomGroupDone }}, {{ $telkomGroupProgress }},
+                            {{ $telkomGroupBelumMulai }}
+                        ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
                         borderWidth: 1
                     },
                     {
                         label: 'Enterprise',
-                        data: [ {{ $enterpriseDone }},  {{ $enterpriseProgress }} , {{ $enterpriseBelumMulai }} ],
+                        data: [{{ $enterpriseDone }}, {{ $enterpriseProgress }},
+                            {{ $enterpriseBelumMulai }}
+                        ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Governance',
-                        data:[ {{ $governanceDone }},  {{ $governanceProgress }} ,{{ $governanceBelumMulai }}],
+                        label: 'Goverment',
+                        data: [{{ $governanceDone }}, {{ $governanceProgress }},
+                            {{ $governanceBelumMulai }}
+                        ],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
                         borderWidth: 1
@@ -339,7 +363,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '10%'
                     }
                 },
                 plugins: {
@@ -354,18 +379,19 @@
             }
         });
         document.getElementById('myChart3').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+            const activePoints = chart3.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
             }, true);
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                const label = chart3.data.labels[firstPoint.index];
+                const category = chart3.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
                 // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
                 // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_projek?label=" + label + "&category=" + category;
+                window.open(url, "_blank");
             }
         });
         const ctx4 = document.getElementById('ManarBpp').getContext('2d');
@@ -427,7 +453,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '20%'
                     }
                 },
                 plugins: {
@@ -516,7 +543,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '20%'
                     }
                 },
                 plugins: {
@@ -604,7 +632,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '20%'
                     }
                 },
                 plugins: {
@@ -692,7 +721,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '10%'
                     }
                 },
                 plugins: {

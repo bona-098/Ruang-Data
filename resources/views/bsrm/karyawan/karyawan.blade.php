@@ -13,20 +13,18 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
                     <i class="fa fa-user-plus"></i> Tambah Karyawan
                 </button>
-                <a button type="button" class="btn btn-primary" href="/import-karyawan">
+                <button type="button" class="btn btn-primary" href="/import-karyawan">
                     <i class="fa fa-user-plus"></i> Import Karyawan
-                </button></a>
-
-                {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-                {{-- <div class=" table-responsive"> --}}
-                    <table text-align: left; id="myTable" class="table table-responsive table-bordered table-striped">
+                </button>                {{-- <h6 class="card-subtitle">Data table example</h6> --}}
+                <div class=" table-responsive">
+                    <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
                                 <th class="text-center">Action</th>
                                 <th style="white-space: nowrap;">NIK Telpro</th>
                                 <th style="white-space: nowrap;">NIK Telkom Group</th>
                                 <th style="white-space: nowrap;">Nama Karyawan</th>
-                                <th style="white-space: nowrap;">jenis Kelamin</th>
+                                {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
                                 <th style="white-space: nowrap;">Unit Kerja</th>
                                 <th style="white-space: nowrap;">Loker</th>
                             </tr>
@@ -53,14 +51,14 @@
                                     <td>{{ $k->nik }}</td>
                                     <td style="white-space: nowrap;">{{ $k->no_hp }}</td>
                                     <td>{{ $k->nama_karyawan }}</td>
-                                    <td>{{ $k->jenis_kelamin }}</td>
+                                    {{-- <td>{{ $k->jenis_kelamin }}</td> --}}
                                     <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                     <td style="white-space: nowrap;">{{ $k->loker }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                {{-- </div> --}}
+                </div>
             </div>
         </div>
         {{-- Selesai --}}

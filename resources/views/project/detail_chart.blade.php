@@ -56,51 +56,51 @@
                 <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            {{-- <th>No</th> --}}
                             <th>Action</th>
                             <th>Customer</th>
-                            <th style="white-space: nowrap;">Kode AMPM</th>
-                            <th>Witel</th>
+                            {{-- <th style="white-space: nowrap;">Kode AMPM</th> --}}
+                            {{-- <th>Witel</th> --}}
                             <th style="white-space: nowrap;">Nama Project</th>
                             <th>kategori</th>
-                            <th>Skem</th>
+                            {{-- <th>Skem</th> --}}
                             <th style="white-space: nowrap;">Nilai Project</th>
                             <th style="white-space: nowrap;">Sudah Akru</th>
                             <th style="white-space: nowrap;">Sisa Belum Akru</th>
-                            <th style="white-space: nowrap;">progress ML</th>
+                            {{-- <th style="white-space: nowrap;">progress ML</th>
                             <th style="white-space: nowrap;">progress MI</th>
                             <th style="white-space: nowrap;">Start Date</th>
                             <th style="white-space: nowrap;">End Date</th>
-                            <th>Keterangan</th>
+                            <th>Keterangan</th> --}}
                             <th>Tahap</th>
-                            <th>Akru</th>
+                            {{-- <th>Akru</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($project as $p)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>
                                     <div class=" text-center">
-                                        <a href="{{ route('project.show',$p->customer) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('project.show',$p->id) }}" class="btn btn-primary">Detail</a>
                                     </div>
                                 </td>
                                 <td>{{ $p->customer }}</td>
-                                <td>{{ $p->id_crm }}</td>
-                                <td>{{ $p->witel }}</td>
+                                {{-- <td>{{ $p->id_crm }}</td>
+                                <td>{{ $p->witel }}</td> --}}
                                 <td>{{ $p->nama_project }}</td>
                                 <td>{{ $p->kategori }}</td>
-                                <td>{{ $p->skema }}</td>
+                                {{-- <td>{{ $p->skema }}</td> --}}
                                 <td>{{ $p->nilai_project }}</td>
                                 <td>{{ $p->sudah_akru }}</td>
                                 <td>{{ $p->sisa_belum_akru }}</td>
-                                <td>{{ $p->progress_ml }}</td>
+                                {{-- <td>{{ $p->progress_ml }}</td>
                                 <td>{{ $p->progress_mi }}</td>
                                 <td>{{ $p->start_date }}</td>
                                 <td>{{ $p->end_date }}</td>
-                                <td>{{ $p->keterangan }}</td>
+                                <td>{{ $p->keterangan }}</td> --}}
                                 <td>{{ $p->tahap }}</td>
-                                <td>{{ $p->akru }}</td>
+                                {{-- <td>{{ $p->akru }}</td> --}}
                             </tr>
                         @endforeach
                     </tbody>

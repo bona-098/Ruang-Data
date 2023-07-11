@@ -407,7 +407,7 @@
                         <input type="file" name="file" class="form-control" placeholder="Recipient's username"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
-                        <a button class="btn btn-primary" href="/project">Import</button></a>
+                        <a button class="btn btn-primary" href="/project">Back</button></a>
                     </div>
                 </form>
                 <table class="table table-striped table-hover">

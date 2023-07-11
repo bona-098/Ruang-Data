@@ -9,30 +9,9 @@
                 <form action="{{ route('project.index') }}" method="GET" id="form_1">
                     @csrf
                     <div class="row">
-                        {{-- <div class="col-md-3">
-                            <label for="filter1">Witel</label>
-                            <select name="witel" class="form-control" onchange="submitForm2()">
-                                <option value="">Semua Witel</option>
-                                <option value="BALIKPAPAN"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'BALIKPAPAN' ? 'selected' : '' }}>
-                                    BALIKPAPAN</option>
-                                <option value="SAMARINDA"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'SAMARINDA' ? 'selected' : '' }}>
-                                    SAMARINDA</option>
-                                <option value="KALSEL"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'KALSEL' ? 'selected' : '' }}>
-                                    KALSEL</option>
-                                <option value="KALBAR"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'KALBAR' ? 'selected' : '' }}>
-                                    KALBAR</option>
-                                <option value="TREG"
-                                    {{ isset($_GET['witel']) && $_GET['witel'] == 'TREG' ? 'selected' : '' }}>
-                                    TREG</option>
-                            </select>
-                        </div> --}}
                         <div class="col-md-3">
                             <label for="filter2">Kategori</label>
-                            <select name="kategori" class="form-control" onchange="submitForm3()">
+                            <select name="kategori" class="form-control" >
                                 <option value="">Semua Kategori</option>
                                 <option value="Enterprise"
                                     {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Enterprise' ? 'selected' : '' }}>
@@ -50,7 +29,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="filter3">Tahap</label>
-                            <select name="tahap" class="form-control" onchange="submitForm4()">
+                            <select name="tahap" class="form-control" >
                                 <option value="">Semua Tahap</option>
                                 <option value="Co-OnHand"
                                     {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Co-OnHand' ? 'selected' : '' }}>
@@ -58,79 +37,80 @@
                                 <option value="Komersial"
                                     {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Komersial' ? 'selected' : '' }}>
                                     Komersial</option>
-                                <option value="On hand"
+                                <option value="OnHand"
                                     {{ isset($_GET['tahap']) && $_GET['tahap'] == 'OnHand' ? 'selected' : '' }}>
                                     OnHand</option>
                             </select>
                         </div>
-                        {{-- <div class="col-md-2" style="padding-top: 5px;">
+                        <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div> --}}
+                        </div>
                     </div>
                 </form>
                 <script>
                     function submitForm1() {
                         document.getElementById('form_1').submit();
                     }
-
+        
                     function submitForm2() {
                         document.getElementById('form_1').submit();
                     }
-
+        
                     function submitForm3() {
                         document.getElementById('form_1').submit();
                     }
-
+        
                     function submitForm4() {
                         document.getElementById('form_1').submit();
                     }
                 </script>
             </div>
         </div>
+        
         {{-- Akhir Filter Tabel --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Project</h4>
                 <br>
-                <!-- Button trigger modal -->
-                <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahProject">
-                    <i class="fa fa-user-plus"></i> Tambah Data
+                <!-- Button trigger modal -->
+                <i class="fa fa-user-plus"></i> Tambah Data
+                <!-- Button trigger modal -->
                 </button>
                 <a button type="button" href="/projek" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Import Data
                     </button> </a>
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
 
-                {{-- <div class="table-responsive"> --}}
-                <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
+                <div class="table-responsive">
+                <table text-align: left; id="myTable" class="table  display table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            {{-- <th>No</th> --}}
                             <th>Action</th>
                             <th>Customer</th>
                             <th>Witel</th>
                             <th style="white-space: nowrap;">Nama Project</th>
-                            <th>kategori</th>
-                            <th>Skem</th>
+                            {{-- <th>kategori</th> --}}
+                            {{-- <th>Skem</th> --}}
                             <th style="white-space: nowrap;">Nilai Project</th>
                             <th style="white-space: nowrap;">Sudah Akru</th>
                             <th style="white-space: nowrap;">Sisa Belum Akru</th>
-                            <th style="white-space: nowrap;">progress ML</th>
+                            {{-- <th style="white-space: nowrap;">progress ML</th>
                             <th style="white-space: nowrap;">progress MI</th>
                             <th>Keterangan</th>
-                            <th>Tahap</th>
-                            <th>Akru</th>
+                            <th>Akru</th> --}}
+                           {{-- <th>Tahap</th>  --}}
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($project as $p)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>
                                     <div class=" text-center">
                                         <a href="{{ route('project.show', $p->id) }}" class="btn btn-primary">Detail</a>
@@ -139,21 +119,21 @@
                                 <td>{{ $p->customer }}</td>
                                 <td>{{ $p->witel }}</td>
                                 <td>{{ $p->nama_project }}</td>
-                                <td>{{ $p->kategori }}</td>
-                                <td>{{ $p->skema }}</td>
+                                {{-- <td>{{ $p->kategori }}</td> --}}
+                                {{-- <td>{{ $p->skema }}</td> --}}
                                 <td>{{ $p->nilai_project }}</td>
                                 <td>{{ $p->sudah_akru }}</td>
                                 <td>{{ $p->sisa_belum_akru }}</td>
-                                <td>{{ $p->progress_ml }}</td>
+                                {{-- <td>{{ $p->progress_ml }}</td>
                                 <td>{{ $p->progress_mi }}</td>
                                 <td>{{ $p->keterangan }}</td>
-                                <td>{{ $p->tahap }}</td>
-                                <td>{{ $p->akru }}</td>
+                                <td>{{ $p->akru }}</td> --}}
+                                {{-- <td>{{ $p->tahap }}</td> --}}
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{-- </div> --}}
+                </div>
             </div>
             <!-- /# column -->
         </div>

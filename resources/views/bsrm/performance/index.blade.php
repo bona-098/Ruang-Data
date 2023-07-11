@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="filter1">Area</label>
-                                <select name="area" class="form-control" onchange="submitForm1()">
+                                <select name="area" class="form-control">
                                     <option value="">Semua Area</option>
                                     <option value="Regional Only"
                                         {{ isset($_GET['area']) && $_GET['area'] == 'Regional Only' ? 'selected' : '' }}>
@@ -36,16 +36,14 @@
                                         Kalimantan Barat</option>
                                 </select>
                             </div>
-
                             <div class="col-md-3">
                                 <label for="filter1">Tahun</label>
-                                <input type="text" name="tahun" class="form-control"
-                                    value="{{ isset($_GET['tahun']) ? $_GET['tahun'] : '' }}" onchange="submitForm2()">
+                                <input type="text" name="tahun" min="2023" class="form-control"
+                                    value="{{ isset($_GET['tahun']) ? $_GET['tahun'] : '' }}">
                             </div>
-
                             <div class="col-md-3">
                                 <label for="filter2">Bulan</label>
-                                <select name="bulan" class="form-control" onchange="submitForm3()">
+                                <select name="bulan" class="form-control">
                                     <option value="">Semua Bulan</option>
                                     <option value="Januari"
                                         {{ isset($_GET['bulan']) && $_GET['bulan'] == 'Januari' ? 'selected' : '' }}>Januari
@@ -85,34 +83,16 @@
                                         Desember</option>
                                 </select>
                             </div>
-
-
-                            {{-- <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
-                                Search</button>
-                        </div> --}}
+                            <div class="col-md-2" style="padding-top: 5px;">
+                                <label for="filter5"> </label>
+                                <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
+                                    Search</button>
+                            </div>
                         </div>
                     </form>
-                    <script>
-                        function submitForm1() {
-                            document.getElementById('form_1').submit();
-                        }
-
-                        function submitForm2() {
-                            document.getElementById('form_1').submit();
-                        }
-
-                        function submitForm3() {
-                            document.getElementById('form_1').submit();
-                        }
-
-                        // function submitForm4() {
-                        //     document.getElementById('form_1').submit();
-                        // }
-                    </script>
                 </div>
             </div>
+            
             {{-- Akhir Filter Tabel --}}
 
             {{-- Filter Tabel --}}

@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Mitra;
 use App\Models\Sales;
 use App\Models\Gedung;
@@ -228,8 +227,8 @@ Route::get('/testing', function () {
 });
 
 
-Route::get('/detail_chart_projek', [ProjectController::class, 'detailchart']);
-
+Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
+Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
 // Route::get('/detail_chart_projek', function () {
 //     return view('project.detail_chart');
 // });

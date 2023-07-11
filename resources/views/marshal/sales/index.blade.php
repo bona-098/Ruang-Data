@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="filter2">Unit Kerja:</label>
-                            <select name="unit_kerja" class="form-control" onchange="submitForm1()">
+                            <select name="unit_kerja" class="form-control">
                                 <option value="">Semua Unit Kerja</option>
                                 <option value="Area Balikpapan"
                                     {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Balikpapan' ? 'selected' : '' }}>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="filter1">Status Revenue</label>
-                            <select name="status_revenue" class="form-control" onchange="submitForm2()">
+                            <select name="status_revenue" class="form-control">
                                 <option value="">Semua Status Revenue</option>
                                 <option value="Recurring"
                                     {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Recurring' ? 'selected' : '' }}>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="filter2">Segment</label>
-                            <select name="segment" class="form-control" onchange="submitForm3()">
+                            <select name="segment" class="form-control">
                                 <option value="">Semua Segment</option>
                                 <option value="Subsidiaries"
                                     {{ isset($_GET['segment']) && $_GET['segment'] == 'Subsidiaries' ? 'selected' : '' }}>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="filter3">Status Project</label>
-                            <select name="status_project" class="form-control" onchange="submitForm4()">
+                            <select name="status_project" class="form-control">
                                 <option value="">Semua Status</option>
                                 <option value="Potensi"
                                     {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Potensi' ? 'selected' : '' }}>
@@ -72,33 +72,17 @@
                                     Out</option>
                             </select>
                         </div>
-                        {{-- <div class="col-md-2" style="padding-top: 5px;">
+                        <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div> --}}
+                        </div>
                     </div>
                 </form>
-                <script>
-                    function submitForm1() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm2() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm3() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm4() {
-                        document.getElementById('form_1').submit();
-                    }
-                </script>
             </div>
         </div>
-    </div>
+        
+   
     {{-- Akhir Filter Tabel --}}
     {{-- Data Tabel mulai baru --}}
     <div class="card">
@@ -118,15 +102,14 @@
                         <th>No</th>
                         <th>Action</th>
                         <th style="white-space: nowrap;">Unit Kerja</th>
-                        <th style="white-space: nowrap;">Status Revenue</th>
+                        {{-- <th style="white-space: nowrap;">Status Revenue</th> --}}
                         <th style="white-space: nowrap;">Customer</th>
-                        <th>Segment</th>
+                        {{-- <th>Segment</th> --}}
                         <th style="white-space: nowrap;">Nama Project</th>
-                        <th style="white-space: nowrap;">Lokasi/Gedung</th>
-                        <th style="white-space: nowrap;">Jenis Pekerjaan</th>
-                        <th>Portfolio</th>
-                        <th style="white-space: nowrap;">Progress Project</th>
-                        <th style="white-space: nowrap;">Status Project</th>
+                        <th style="white-space: nowrap;">Nilai Total Project (Sebelum PPN)</th>
+                        <th style="white-space: nowrap;">Nilai Project Per Tahun (Sebelum PPN)</th>
+                        {{-- <th>Portfolio</th> --}}
+                        <th style="white-space: nowrap;">Nilai Project Per Bulan (Sebelum PPN)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -136,16 +119,16 @@
                             <td>
                                 <a class="btn btn-primary" href="{{ route('sales.show', $data->id) }}">Detail</a>
                             </td>
-                            <td>{{ $data->unit_kerja }}</td>
-                            <td>{{ $data->status_revenue }}</td>
+                            <td style="white-space: nowrap;">{{ $data->unit_kerja }}</td>
+                            {{-- <td>{{ $data->status_revenue }}</td> --}}
                             <td>{{ $data->customer }}</td>
-                            <td>{{ $data->segment }}</td>
+                            {{-- <td>{{ $data->segment }}</td> --}}
                             <td>{{ $data->nama_project }}</td>
-                            <td>{{ $data->lokasi_gedung }}</td>
-                            <td>{{ $data->jenis_pekerjaan }}</td>
-                            <td>{{ $data->portfolio }}</td>
-                            <td>{{ $data->progress_project }}</td>
-                            <td>{{ $data->status_project }}</td>
+                            <td>{{ $data->nilai_total_project }}</td>
+                            <td>{{ $data->nilai_project_pertahun }}</td>
+                            <td>{{ $data->nilai_project_perbulan }}</td>
+                            {{-- <td>{{ $data->progress_project }}</td>
+                            <td>{{ $data->status_project }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -277,7 +260,8 @@
                                                 <option value="PROPERTY DEVELOPMENT">PROPERTY DEVELOPMENT</option>
                                                 <option value="PROJECT SOLUTION">PROJECT SOLUTION</option>
                                                 <option value="PROPERTY MANAGEMENT">PROPERTY MANAGEMENT</option>
-                                                <option value="TRANSPORT MANAGEMENT SERVICES">TRANSPORT MANAGEMENT SERVICES</option>
+                                                <option value="TRANSPORT MANAGEMENT SERVICES">TRANSPORT MANAGEMENT SERVICES
+                                                </option>
                                                 {{-- <option value="Win">Win</option> --}}
                                             </select>
                                         </div>
@@ -642,5 +626,5 @@
         </div>
     </div>
 
-    </div>
+</div>
 @endsection

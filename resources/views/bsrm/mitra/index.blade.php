@@ -5,14 +5,14 @@
     <div class="container-fluid">
 
         {{-- MEMFILTER DATA --}}
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-body">
                 <form action="{{ route('mitra.index') }}" method="GET" id="form_1">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
                             <label for="filter1">Status :</label>
-                            <select name="kategori" class="form-control" onchange="submitForm()">
+                            <select name="kategori" class="form-control" onchange="handleCategoryChange(this)">
                                 <option value="">Semua Kategori</option>
                                 <option value="Eksisting"
                                     {{ isset($_GET['status']) && $_GET['status'] == 'Eksisting' ? 'selected' : '' }}>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Domisili :</label>
-                            <select name="domisili" class="form-control" onchange="submitForm2()">
+                            <select name="domisili" class="form-control">
                                 <option value="">Semua Domisili</option>
                                 <option value="Balikpapan"
                                     {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' ? 'selected' : '' }}>
@@ -40,24 +40,27 @@
                                     Kalimantan Barat</option>
                             </select>
                         </div>
-                        {{-- <div class="col-md-2" style="padding-top: 5px;">
+                        <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div> --}}
+                        </div>
                     </div>
                 </form>
                 <script>
-                    function submitForm() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm2() {
-                        document.getElementById('form_1').submit();
+                    function handleCategoryChange(select) {
+                        const allCategoryOption = select.querySelector('option[value=""]');
+                        if (select.value === 'Registered' || select.value === 'Eksisting') {
+                            allCategoryOption.removeAttribute('selected');
+                            allCategoryOption.disabled = true;
+                        } else {
+                            allCategoryOption.disabled = false;
+                        }
                     }
                 </script>
             </div>
-        </div>
+        </div> --}}
+        
         {{-- MEMFILTER DATA --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -69,20 +72,20 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahMitra">
                     <i class="fa fa-user-plus"></i> Tambah Mitra
                 </button>
-                <a button type="button" class="btn btn-primary" href="/import-mitra" >
+                <a button type="button" class="btn btn-primary" href="/import-mitra">
                     <i class="fa fa-plus"></i> Import Mitra
-                </button> </a>
+                    </button> </a>
 
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class="table-responsive ">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                    <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Domisili</th>
                                 <th>Kategori</th>
-                                <th>Nilai Asses</th>
+                                {{-- <th>Nilai Asses</th> --}}
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -94,7 +97,7 @@
                                     <td>{{ $m->nama_vendor }}</td>
                                     <td>{{ $m->domisili }}</td>
                                     <td>{{ $m->kategori }}</td>
-                                    <td>{{ $m->nilai_asses }}</td>
+                                    {{-- <td>{{ $m->nilai_asses }}</td> --}}
                                     <td>{{ $m->status }}</td>
                                     <td>
                                         <div class="dropdown">
@@ -119,7 +122,8 @@
 
                                 <!-- Modal Update Mitra -->
                                 <div class="modal fade" id="ModalUpdateMitra{{ $m->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                                    role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                    aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -179,7 +183,8 @@
                                                     </div>
                                                     <!-- Tambahkan input lainnya sesuai kebutuhan -->
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
                                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                                     </div>
                                                 </form>

@@ -136,7 +136,7 @@ class ProjectController extends Controller
         return redirect()->route('project.index');
     }
 
-    public function detailchart(Request $request)
+    public function detailchartnilai(Request $request)
     {
         $labelValue = $request->query('label');
         $columnName = $request->query('category');
@@ -153,5 +153,36 @@ class ProjectController extends Controller
         
         return view('project.detail_chart', compact('project'));
     }
+
+    public function detailchartprojek(Request $request)
+    {
+        $label = $request->query('label');
+        $columnName = $request->query('category');
+        
+        // Tentukan nilai $labelValue berdasarkan label
+        if ($label === 'Done') {
+            $labelValue = 'Komersial';
+        } elseif ($label === 'Progress') {
+            $labelValue = 'OnHand';
+        } elseif ($label === 'Potensial') {
+            $labelValue = 'Co-OnHand';
+        } else {
+            // Nilai default jika label tidak cocok dengan kondisi di atas
+            $labelValue = null;
+        }
+        
+        // Mencari project berdasarkan nilai dari kolom 'labelValue' dan nama kolom
+        $project = Project::where('tahap', $labelValue)
+                          ->where('kategori', $columnName )
+                          ->get();
+        
+        // Jika project tidak ditemukan, bisa melakukan penanganan sesuai kebutuhan Anda, misalnya menampilkan pesan error atau mengarahkan pengguna ke halaman lain.
+        if (!$project) {
+            abort(404); // Contoh: Menampilkan halaman error 404
+        }
+        
+        return view('project.detail_chart', compact('project'));
+    }
+    
 
 }
