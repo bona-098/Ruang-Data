@@ -11,64 +11,46 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="filter2">Nama Witel :</label>
-                            <select name="nama_witel" class="form-control" onchange="submitForm1()">
+                            <select name="nama_witel" class="form-control">
                                 <option value="">Semua Witel</option>
-                                <option value="WITEL BALIKPAPAN"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN' ? 'selected' : '' }}>
+                                <option value="WITEL BALIKPAPAN" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN' ? 'selected' : '' }}>
                                     WITEL BALIKPAPAN</option>
-                                <option value="WITEL SAMARINDA"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL SAMARINDA' ? 'selected' : '' }}>
+                                <option value="WITEL SAMARINDA" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL SAMARINDA' ? 'selected' : '' }}>
                                     WITEL SAMARINDA</option>
-                                <option value="WITEL KALSEL"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL' ? 'selected' : '' }}>
+                                <option value="WITEL KALSEL" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL' ? 'selected' : '' }}>
                                     WITEL KALSEL</option>
-                                <option value="WITEL KALBAR"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR' ? 'selected' : '' }}>
+                                <option value="WITEL KALBAR" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR' ? 'selected' : '' }}>
                                     {{-- WITEL KALBAR</option>
-                                    <option value="Witel Kalsel"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalsel' ? 'selected' : '' }}>
+                                <option value="Witel Kalsel" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalsel' ? 'selected' : '' }}>
                                     Kalimantan Timur</option>
-                                <option value="Witel Kalbar"
-                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalbar' ? 'selected' : '' }}>
+                                <option value="Witel Kalbar" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalbar' ? 'selected' : '' }}>
                                     Kalimantan Barat</option> --}}
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Nama Area :</label>
-                            <select name="nama_area" class="form-control" onchange="submitForm2()">
+                            <select name="nama_area" class="form-control">
                                 <option value="">Semua Area</option>
-                                <option value="AREA BALIKPAPAN"
-                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
+                                <option value="AREA BALIKPAPAN" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
                                     AREA BALIKPAPAN</option>
-                                <option value="AREA KALTIM"
-                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
+                                <option value="AREA KALTIM" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
                                     AREA KALTIM</option>
-                                <option value="AREA KALSEL"
-                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
+                                <option value="AREA KALSEL" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
                                     AREA KALSEL</option>
-                                <option value="AREA KALBAR"
-                                    {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
+                                <option value="AREA KALBAR" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
                                     AREA KALBAR</option>
                             </select>
                         </div>
-                        {{-- <div class="col-md-2" style="padding-top: 5px;">
+                        <div class="col-md-2" style="padding-top: 5px;">
                             <label for="filter5"> </label>
                             <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
                                 Search</button>
-                        </div> --}}
+                        </div>
                     </div>
                 </form>
-                <script>
-                    function submitForm() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm2() {
-                        document.getElementById('form_1').submit();
-                    }
-                </script>
             </div>
         </div>
+        
         {{-- MEMFILTER DATA --}}
 
         {{-- <div class="card">

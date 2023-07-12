@@ -20,7 +20,6 @@
                     <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">
                         <thead>
                             <tr>
-                                <th class="text-center">Action</th>
                                 <th style="white-space: nowrap;">NIK Telpro</th>
                                 <th style="white-space: nowrap;">NIK Telkom Group</th>
                                 <th style="white-space: nowrap;">Nama Karyawan</th>
@@ -32,7 +31,7 @@
                         <tbody>
                             @foreach ($karyawan as $k)
                                 <tr>
-                                    <div class="dropdown">
+                                    {{-- <div class="dropdown">
                                         <td>
                                             <button class="btn btn-primary dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -47,7 +46,7 @@
                                                     Delete</a>
                                             </div>
                                         </td>
-                                    </div>
+                                    </div> --}}
                                     <td>{{ $k->nik }}</td>
                                     <td style="white-space: nowrap;">{{ $k->no_hp }}</td>
                                     <td>{{ $k->nama_karyawan }}</td>
