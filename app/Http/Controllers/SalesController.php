@@ -256,4 +256,34 @@ class SalesController extends Controller
         $sales->delete();
         return redirect()->route('sales.index');
     }
+
+    public function detailchartsales(Request $request)
+    {
+        $label = $request->query('label');
+        $columnName = $request->query('category');
+        
+        // Tentukan nilai $labelValue berdasarkan label
+        if ($label === 'category') {
+            $labelValue = 'enterprise';
+        } elseif ($label === 'Unit_kerja') {
+            $labelValue = 'Area Balikpapan';
+        } elseif ($label === 'Potensial') {
+            $labelValue = 'Co-OnHand';
+        } else {
+            // Nilai default jika label tidak cocok dengan kondisi di atas
+            $labelValue = null;
+        }
+        
+        // Mencari project berdasarkan nilai dari kolom 'labelValue' dan nama kolom
+        $sales = Sales::where('tahap', $labelValue)
+                          ->where('kategori', $columnName )
+                          ->get();
+        
+        // Jika project tidak ditemukan, bisa melakukan penanganan sesuai kebutuhan Anda, misalnya menampilkan pesan error atau mengarahkan pengguna ke halaman lain.
+        if (!$sales) {
+            abort(404); // Contoh: Menampilkan halaman error 404
+        }
+        
+        return view('marshal.sales.detail_chart', compact('sales'));
+    }
 }
