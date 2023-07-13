@@ -18,27 +18,27 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
-    $sales = Sales::query();
+        $sales = Sales::query();
 
-    if ($request->unit_kerja && $request->unit_kerja != 'Pilih') {
-        $sales->where('unit_kerja', $request->unit_kerja);
-    }
+        if ($request->unit_kerja && $request->unit_kerja != 'Pilih') {
+            $sales->where('unit_kerja', $request->unit_kerja);
+        }
 
-    if ($request->status_revenue && $request->status_revenue != 'Pilih') {
-        $sales->where('status_revenue', $request->status_revenue);
-    }
+        if ($request->status_revenue && $request->status_revenue != 'Pilih') {
+            $sales->where('status_revenue', $request->status_revenue);
+        }
 
-    if ($request->segment && $request->segment != 'Pilih') {
-        $sales->where('segment', $request->segment);
-    }
+        if ($request->segment && $request->segment != 'Pilih') {
+            $sales->where('segment', $request->segment);
+        }
 
-    if ($request->status_project && $request->status_project != 'Pilih') {
-        $sales->where('status_project', $request->status_project);
-    }
+        if ($request->status_project && $request->status_project != 'Pilih') {
+            $sales->where('status_project', $request->status_project);
+        }
 
-    $sales = $sales->get(); // Mengambil data dari query
+        $sales = $sales->get(); // Mengambil data dari query
 
-    return view('marshal.sales.index', compact('sales'));
+        return view('marshal.sales.index', compact('sales'));
     }
     public function export()
     {
@@ -62,7 +62,8 @@ class SalesController extends Controller
             $fileName = 'sales_export.xlsx';
 
             $excel = new Excel();
-            $excel->store(new class($exportSales) implements FromCollection {
+            $excel->store(new class($exportSales) implements FromCollection
+            {
                 private $sales;
 
                 public function __construct($sales)
@@ -114,44 +115,44 @@ class SalesController extends Controller
         // }
         if ($request->hasFile('drive_kontrak')) {
             $file = $request->file('drive_kontrak');
-            $file_kontrak = time()."_".$file->getClientOriginalName();
+            $file_kontrak = time() . "_" . $file->getClientOriginalName();
             $file->move(public_path('/drive'), $file_kontrak);
             $validatedData['drive_kontrak'] = $file_kontrak;
         }
         Sales::create(array_merge($validatedData, [
-            'unit_kerja'=>$request->unit_kerja,
-            'status_revenue'=>$request->status_revenue,
-            'customer'=>$request->customer,
-            'segment'=>$request->segment,
-            'nama_project'=>$request->nama_project,
-            'lokasi_gedung'=>$request->lokasi_gedung,
-            'jenis_pekerjaan'=>$request->jenis_pekerjaan,
-            'portfolio'=>$request->portfolio,
-            'progress_project'=>$request->progress_project,
-            'status_project'=>$request->status_project,
-            'proses_pendekatan_customer'=>$request->proses_pendekatan_customer,
-            'visit'=>$request->visit,
-            'sph'=>$request->sph,
-            'bakn'=>$request->bakn,
-            'spk'=>$request->spk,
-            'masa_project'=>$request->masa_project,
-            'jumlah_man_power'=>$request->jumlah_man_power,
-            'tgl_sp'=>$request->tgl_sp,
-            'no_sp'=>$request->no_sp,
-            'jenis_kontrak'=>$request->jenis_kontrak,
-            'tgl_mulai_project'=>$request->tgl_mulai_project,
-            'tgl_akhir_project'=>$request->tgl_akhir_project,
-            'sisa_kontrak'=>$request->sisa_kontrak,
-            'nilai_total_project'=>$request->nilai_total_project,
-            'nilai_project_pertahun'=>$request->nilai_project_pertahun,
-            'nilai_project_perbulan'=>$request->nilai_project_perbulan,
-            'nama_key_kontak_client'=>$request->nama_key_kontak_client,
-            'jabatan_pic_client'=>$request->jabatan_pic_client,
-            'no_hp_pic_client'=>$request->no_hp_pic_client,
-            'nama_pic_gsd'=>$request->nama_pic_gsd,
+            'unit_kerja' => $request->unit_kerja,
+            'status_revenue' => $request->status_revenue,
+            'customer' => $request->customer,
+            'segment' => $request->segment,
+            'nama_project' => $request->nama_project,
+            'lokasi_gedung' => $request->lokasi_gedung,
+            'jenis_pekerjaan' => $request->jenis_pekerjaan,
+            'portfolio' => $request->portfolio,
+            'progress_project' => $request->progress_project,
+            'status_project' => $request->status_project,
+            'proses_pendekatan_customer' => $request->proses_pendekatan_customer,
+            'visit' => $request->visit,
+            'sph' => $request->sph,
+            'bakn' => $request->bakn,
+            'spk' => $request->spk,
+            'masa_project' => $request->masa_project,
+            'jumlah_man_power' => $request->jumlah_man_power,
+            'tgl_sp' => $request->tgl_sp,
+            'no_sp' => $request->no_sp,
+            'jenis_kontrak' => $request->jenis_kontrak,
+            'tgl_mulai_project' => $request->tgl_mulai_project,
+            'tgl_akhir_project' => $request->tgl_akhir_project,
+            'sisa_kontrak' => $request->sisa_kontrak,
+            'nilai_total_project' => $request->nilai_total_project,
+            'nilai_project_pertahun' => $request->nilai_project_pertahun,
+            'nilai_project_perbulan' => $request->nilai_project_perbulan,
+            'nama_key_kontak_client' => $request->nama_key_kontak_client,
+            'jabatan_pic_client' => $request->jabatan_pic_client,
+            'no_hp_pic_client' => $request->no_hp_pic_client,
+            'nama_pic_gsd' => $request->nama_pic_gsd,
             // 'drive_kontrak'=>$file_kontrak,
-            'amandemen'=>$request->amandemen,
-            'keterangan'=>$request->keterangan
+            'amandemen' => $request->amandemen,
+            'keterangan' => $request->keterangan
         ]));
         return redirect()->back();
     }
@@ -164,8 +165,8 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        $sales = Sales::find($id);  
-        return view ('marshal.sales.detail', compact('sales'));
+        $sales = Sales::find($id);
+        return view('marshal.sales.detail', compact('sales'));
     }
 
     /**
@@ -207,39 +208,39 @@ class SalesController extends Controller
         // unset ($sales['srive_kontrak']);
         // }
         $sales->update([
-            'unit_kerja' =>$request->unit_kerja,
-            'status_revenue' =>$request->status_revenue,
-            'customer' =>$request->customer,
-            'segment' =>$request->segment,
-            'nama_project' =>$request->nama_project,
-            'lokasi_gedung' =>$request->lokasi_gedung,
-            'jenis_pekerjaan' =>$request->jenis_pekerjaan,
-            'portfolio' =>$request->portfolio,
-            'progress_project' =>$request->progress_project,
-            'status_project' =>$request->status_project,
-            'proses_pendekatan_customer' =>$request->proses_pendekatan_customer,
-            'visit' =>$request->visit,
-            'sph' =>$request->sph, 
-            'bakn' =>$request->bakn, 
-            'spk' =>$request->spk,
-            'masa_project' =>$request->masa_project,
-            'jumlah_man_power' =>$request->jumlah_man_power,
-            'tgl_sp' =>$request->tgl_sp,
-            'no_sp' =>$request->no_sp,
-            'jenis_kontrak' =>$request->jenis_kontrak,
-            'tgl_mulai_project' =>$request->tgl_mulai_project,
-            'tgl_akhir_project' =>$request->tgl_akhir_project,
-            'sisa_kontrak' =>$request->sisa_kontrak,
-            'nilai_total_project' =>$request->nilai_total_project,
-            'nilai_project_pertahun' =>$request->nilai_project_pertahun,
-            'nilai_project_perbulan' =>$request->nilai_project_perbulan,
-            'nama_key_kontak_client' =>$request->nama_key_kontak_client,
-            'jabatan_pic_client' =>$request->jabatan_pic_client,
-            'no_hp_pic_client' =>$request->no_hp_pic_client,
-            'nama_pic_gsd' =>$request->nama_pic_gsd,
-            'drive_kontrak' =>$request->drive_kontrak,
-            'amandemen' =>$request->amandemen,
-            'keterangan' =>$request->keterangan
+            'unit_kerja' => $request->unit_kerja,
+            'status_revenue' => $request->status_revenue,
+            'customer' => $request->customer,
+            'segment' => $request->segment,
+            'nama_project' => $request->nama_project,
+            'lokasi_gedung' => $request->lokasi_gedung,
+            'jenis_pekerjaan' => $request->jenis_pekerjaan,
+            'portfolio' => $request->portfolio,
+            'progress_project' => $request->progress_project,
+            'status_project' => $request->status_project,
+            'proses_pendekatan_customer' => $request->proses_pendekatan_customer,
+            'visit' => $request->visit,
+            'sph' => $request->sph,
+            'bakn' => $request->bakn,
+            'spk' => $request->spk,
+            'masa_project' => $request->masa_project,
+            'jumlah_man_power' => $request->jumlah_man_power,
+            'tgl_sp' => $request->tgl_sp,
+            'no_sp' => $request->no_sp,
+            'jenis_kontrak' => $request->jenis_kontrak,
+            'tgl_mulai_project' => $request->tgl_mulai_project,
+            'tgl_akhir_project' => $request->tgl_akhir_project,
+            'sisa_kontrak' => $request->sisa_kontrak,
+            'nilai_total_project' => $request->nilai_total_project,
+            'nilai_project_pertahun' => $request->nilai_project_pertahun,
+            'nilai_project_perbulan' => $request->nilai_project_perbulan,
+            'nama_key_kontak_client' => $request->nama_key_kontak_client,
+            'jabatan_pic_client' => $request->jabatan_pic_client,
+            'no_hp_pic_client' => $request->no_hp_pic_client,
+            'nama_pic_gsd' => $request->nama_pic_gsd,
+            'drive_kontrak' => $request->drive_kontrak,
+            'amandemen' => $request->amandemen,
+            'keterangan' => $request->keterangan
         ]);
         return redirect()->back()->with('berhasil', 'data sales berhasil diubah');
     }
@@ -259,31 +260,19 @@ class SalesController extends Controller
 
     public function detailchartsales(Request $request)
     {
-        $label = $request->query('label');
-        $columnName = $request->query('category');
-        
-        // Tentukan nilai $labelValue berdasarkan label
-        if ($label === 'category') {
-            $labelValue = 'enterprise';
-        } elseif ($label === 'Unit_kerja') {
-            $labelValue = 'Area Balikpapan';
-        } elseif ($label === 'Potensial') {
-            $labelValue = 'Co-OnHand';
-        } else {
-            // Nilai default jika label tidak cocok dengan kondisi di atas
-            $labelValue = null;
+        $segment = $request->query('segment');
+        $status_project = $request->query('status_project');
+        $unitKerja = $request->query('unit_kerja');
+
+        $sales = Sales::where('segment', $segment)
+            ->where('status_project', $status_project)
+            ->where('unit_kerja', $unitKerja)
+            ->get();
+
+        if ($sales->isEmpty()) {
+            abort(404);
         }
-        
-        // Mencari project berdasarkan nilai dari kolom 'labelValue' dan nama kolom
-        $sales = Sales::where('tahap', $labelValue)
-                          ->where('kategori', $columnName )
-                          ->get();
-        
-        // Jika project tidak ditemukan, bisa melakukan penanganan sesuai kebutuhan Anda, misalnya menampilkan pesan error atau mengarahkan pengguna ke halaman lain.
-        if (!$sales) {
-            abort(404); // Contoh: Menampilkan halaman error 404
-        }
-        
+
         return view('marshal.sales.detail_chart', compact('sales'));
     }
 }

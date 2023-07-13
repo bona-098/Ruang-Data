@@ -277,8 +277,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
-                categoryPercentage:1,
-                barPercentage:0.5,
+                categoryPercentage: 1,
+                barPercentage: 0.5,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -424,7 +424,7 @@
                         borderWidth: 1
                     },
                     {
-                        label: 'Onhand',
+                        label: 'On hand',
                         data: [
                             {{ $onhandTelkom }},
                             {{ $onhandSubsidiaries }},
@@ -476,15 +476,15 @@
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart4.data.labels[firstPoint.index];
-                const category = chart4.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Area Balikpapan";
+                const segment = chart4.data.labels[firstPoint.index];
+                const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Segment: " + segment + ", Status Project: " + statusProject);
+                const unitKerja = "Area Balikpapan";
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
+
         const ctx5 = document.getElementById('ManarKaltim').getContext('2d');
         const chart5 = new Chart(ctx5, {
             type: 'bar',
@@ -566,12 +566,11 @@
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart5.data.labels[firstPoint.index];
-                const category = chart5.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kaltim";
+                const segment = chart4.data.labels[firstPoint.index];
+                const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Segment: " + segment + ", Status Project: " + statusProject);
+                const unitKerja = "Area Kaltim";
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
@@ -656,12 +655,11 @@
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart6.data.labels[firstPoint.index];
-                const category = chart6.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kalsel";
+                const segment = chart4.data.labels[firstPoint.index];
+                const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Segment: " + segment + ", Status Project: " + statusProject);
+                const unitKerja = "Area Kalsel";
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
@@ -697,7 +695,7 @@
                     {
                         label: 'Onhand',
                         data: [
-                            {{ $kbonhandTelkom }}, 
+                            {{ $kbonhandTelkom }},
                             {{ $kbonhandSubsidiaries }},
                             {{ $kbonhandEnterprise }},
                             {{ $kbonhandGovernment }}
@@ -746,12 +744,11 @@
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart7.data.labels[firstPoint.index];
-                const category = chart7.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-                // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kalbar";
+                const segment = chart4.data.labels[firstPoint.index];
+                const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
+                console.log("Segment: " + segment + ", Status Project: " + statusProject);
+                const unitKerja = "Area Kalbar";
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
