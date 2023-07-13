@@ -1,117 +1,9 @@
 @extends('layout.layout')
 @section('content')
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <form action="{{ route('sales.index') }}" method="GET" id="form_1">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="filter2">Unit Kerja:</label>
-                            <select name="unit_kerja" class="form-control" onchange="submitForm1()">
-                                <option value="">Pilih</option>
-                                <option value="Area Balikpapan"
-                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Balikpapan' ? 'selected' : '' }}>
-                                    Area Balikpapan</option>
-                                <option value="Kaltim"
-                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kaltim' ? 'selected' : '' }}>
-                                    Kaltim</option>
-                                <option value="Kalsel"
-                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kalsel' ? 'selected' : '' }}>
-                                    Kalsel</option>
-                                <option value="Kalbar"
-                                    {{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Kalbar' ? 'selected' : '' }}>
-                                    Kalbar</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="filter1">Status Revenue</label>
-                            <select name="status_revenue" class="form-control" onchange="submitForm2()">
-                                <option value="">Pilih</option>
-                                <option value="Recurring"
-                                    {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Recurring' ? 'selected' : '' }}>
-                                    Recurring</option>
-                                <option value="Scalling"
-                                    {{ isset($_GET['status_revenue']) && $_GET['status_revenue'] == 'Scalling' ? 'selected' : '' }}>
-                                    Scalling</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="filter2">Segment</label>
-                            <select name="segment" class="form-control" onchange="submitForm3()">
-                                <option value="">Pilih</option>
-                                <option value="Subsidiaries"
-                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Subsidiaries' ? 'selected' : '' }}>
-                                    Subsidiaries</option>
-                                <option value="Government"
-                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Government' ? 'selected' : '' }}>
-                                    Government</option>
-                                <option value="Telkom"
-                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Telkom' ? 'selected' : '' }}>
-                                    Telkom</option>
-                                <option value="Enterprise"
-                                    {{ isset($_GET['segment']) && $_GET['segment'] == 'Enterprise' ? 'selected' : '' }}>
-                                    Enterprise</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="filter3">Status Project</label>
-                            <select name="status_project" class="form-control" onchange="submitForm4()">
-                                <option value="">Pilih</option>
-                                <option value="Potensi"
-                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Potensi' ? 'selected' : '' }}>
-                                    Potensi</option>
-                                <option value="Prospek"
-                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Prospek' ? 'selected' : '' }}>
-                                    Prospek</option>
-                                <option value="On hand"
-                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'On hand' ? 'selected' : '' }}>
-                                    On hand</option>
-                                <option value="Out"
-                                    {{ isset($_GET['status_project']) && $_GET['status_project'] == 'Out' ? 'selected' : '' }}>
-                                    Out</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
-                                Search</button>
-                        </div>
-                    </div>
-                </form>
-                <script>
-                    function submitForm1() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm2() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm3() {
-                        document.getElementById('form_1').submit();
-                    }
-
-                    function submitForm4() {
-                        document.getElementById('form_1').submit();
-                    }
-                </script>
-            </div>
-        </div>
-    </div>
-    {{-- Akhir Filter Tabel --}}
-    {{-- Data Tabel mulai baru --}}
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Data Sales</h4>
-            <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCustomer">
-                <i class="fa fa-user-plus"></i> Tambah Sales
-            </button>
-            <a button type="button" href="/salees" class="btn btn-primary">
-                <i class="fa fa-plus"></i> Import Sales</button> </a>
-            <a button type="button" href="{{ route('sales.export') }}" class="btn btn-primary">
-                <i class="fa fa-plus"></i> Export</button> </a>
+            
             <table text-align: left; id="myTable" class="table display table-bordered table-striped">
                 <thead>
                     <tr>
@@ -613,33 +505,5 @@
             </div>
         </div>
     </div>
-    <!-- Modal Import -->
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="modal-import-label"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="/sales-import" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-import-label">Import Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="file">Pilih file Excel</label>
-                            <input type="file" class="form-control-file" id="file" name="file">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Import</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     </div>
 @endsection
