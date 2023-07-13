@@ -124,9 +124,9 @@
                             <td>{{ $data->customer }}</td>
                             {{-- <td>{{ $data->segment }}</td> --}}
                             <td>{{ $data->nama_project }}</td>
-                            <td>{{ $data->nilai_total_project }}</td>
-                            <td>{{ $data->nilai_project_pertahun }}</td>
-                            <td>{{ $data->nilai_project_perbulan }}</td>
+                            <td>{{ number_format(floatval( $data->nilai_total_project), 0, ',', '.') }}</td>
+                            <td>{{ number_format(floatval( $data->nilai_project_pertahun), 0, ',', '.') }}</td>
+                            <td>{{ number_format(floatval($data->nilai_project_perbulan), 0, ',', '.') }}</td>
                             {{-- <td>{{ $data->progress_project }}</td>
                             <td>{{ $data->status_project }}</td> --}}
                         </tr>
@@ -186,7 +186,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
-                                            <input type="text" required name="customer" id=""
+                                            <input type="text"  name="customer" id=""
                                                 class="form-control" placeholder="Masukkan Customer">
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
@@ -197,7 +197,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Segment</label>
-                                            <select name="segment" required class="form-control custom-select">
+                                            <select name="segment"  class="form-control custom-select">
                                                 <option value="Subsidiaries">Subsidiaries</option>
                                                 <option value="Government">Government</option>
                                                 <option value="Telkom">Telkom</option>
@@ -214,7 +214,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" required type="text" id="kota_lahir"
+                                            <input name="nama_project"  type="text" id="kota_lahir"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
@@ -231,7 +231,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Lokasi Gedung</label>
-                                            <input name="lokasi_gedung" required type="text" class="form-control">
+                                            <input name="lokasi_gedung"  type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('lokasi_gedung')
                                                     {{ $message }}
@@ -244,7 +244,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jenis Pekerjaan</label>
-                                            <input name="jenis_pekerjaan" required type="text" class="form-control">
+                                            <input name="jenis_pekerjaan"  type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_pekerjaan')
                                                     {{ $message }}
@@ -320,7 +320,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Visit</label>
-                                            <input required name="visit" type="date" class="form-control">
+                                            <input  name="visit" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('visit')
                                                     {{ $message }}
@@ -331,7 +331,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>SPH</label>
-                                            <input required name="sph" type="date" class="form-control">
+                                            <input  name="sph" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sph')
                                                     {{ $message }}
@@ -342,7 +342,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BAKN</label>
-                                            <input required name="bakn" type="date" class="form-control"
+                                            <input  name="bakn" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('bakn')
@@ -354,7 +354,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPK/PO/PKS</label>
-                                            <input required name="spk" type="date" class="form-control"
+                                            <input  name="spk" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('spk')
@@ -366,7 +366,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Masa Project (Bulan)</label>
-                                            <input required name="masa_project" type="number" class="form-control">
+                                            <input  name="masa_project" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('masa_project')
                                                     {{ $message }}
@@ -377,7 +377,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jumlah Man Power/Unit/Luas</label>
-                                            <input required name="jumlah_man_power" type="text" class="form-control">
+                                            <input  name="jumlah_man_power" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jumlah_man_power')
                                                     {{ $message }}
@@ -388,7 +388,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="tgl_sp" type="date" class="form-control"
+                                            <input  name="tgl_sp" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_sp')
@@ -400,7 +400,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="no_sp" type="text" pattern="[a-zA-Z0-9\-@]+"
+                                            <input  name="no_sp" type="text" pattern="[a-zA-Z0-9\-@]+"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_sp')
@@ -427,7 +427,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Mulai Project</label>
-                                            <input required name="tgl_mulai_project" type="date" class="form-control"
+                                            <input  name="tgl_mulai_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_mulai_project')
@@ -439,7 +439,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Akhir Project</label>
-                                            <input required name="tgl_akhir_project" type="date" class="form-control"
+                                            <input  name="tgl_akhir_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_akhir_project')
@@ -451,7 +451,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Kontrak</label>
-                                            <input required name="sisa_kontrak" type="number" class="form-control">
+                                            <input  name="sisa_kontrak" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_kontrak')
                                                     {{ $message }}
@@ -462,7 +462,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Total Project (Sebelum PPN)</label>
-                                            <input required name="nilai_total_project" type="number"
+                                            <input  name="nilai_total_project" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_total_project')
@@ -474,7 +474,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Tahun (Sebelum PPN)</label>
-                                            <input required name="nilai_project_pertahun" type="text"
+                                            <input  name="nilai_project_pertahun" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_pertahun')
@@ -486,7 +486,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Bulan (Sebelum PPN)</label>
-                                            <input required name="nilai_project_perbulan" type="text"
+                                            <input  name="nilai_project_perbulan" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_perbulan')
@@ -498,7 +498,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama Key Contact Client</label>
-                                            <input required name="nama_key_kontak_client" type="text"
+                                            <input  name="nama_key_kontak_client" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_key_kontak_client')
@@ -510,7 +510,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jenis Kontrak</label>
-                                            <input required name="jenis_kontrak" type="text" class="form-control">
+                                            <input  name="jenis_kontrak" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_kontrak')
                                                     {{ $message }}
@@ -521,7 +521,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jabatan Pic Client</label>
-                                            <input required name="jabatan_pic_client" type="text"
+                                            <input  name="jabatan_pic_client" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jabatan_pic_client')
@@ -533,7 +533,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No HP PIC Client</label>
-                                            <input required name="no_hp_pic_client" type="text" class="form-control">
+                                            <input  name="no_hp_pic_client" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_hp_pic_client')
                                                     {{ $message }}
@@ -545,7 +545,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama AM/PIC GSD Handle Project</label>
-                                            <input required name="nama_pic_gsd" type="text" class="form-control">
+                                            <input  name="nama_pic_gsd" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_pic_gsd')
                                                     {{ $message }}
@@ -567,7 +567,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Amandemen</label>
-                                            <input required name="amandemen" type="text" class="form-control">
+                                            <input  name="amandemen" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('amandemen')
                                                     {{ $message }}
@@ -578,7 +578,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input required name="keterangan" type="text" class="form-control">
+                                            <input  name="keterangan" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
                                                     {{ $message }}

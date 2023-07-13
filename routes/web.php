@@ -232,7 +232,4 @@ Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek
 // Route::get('/detail_chart_projek', function () {
 //     return view('project.detail_chart');
 // });
-
-Route::get('/detail_chart_sales', function () {
-    return view('sales.detail_chart');
-});
+Route::get('/detail_chart_sales', [SalesController::class, 'detailchartsales']);

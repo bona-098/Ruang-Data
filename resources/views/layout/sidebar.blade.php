@@ -44,11 +44,6 @@
                             class="fa fa-users"></i><span class="hide-menu">Personil</span></a>
                 </li>
                 @endcanany
-                @canany(['oms', 'admin'])
-                <li> <a class="" href="{{ route('perangkat.index') }}" aria-expanded="false"><i
-                            class="fa fa-tv"></i><span class="hide-menu">Perangkat</span></a>
-                </li>
-                @endcanany
                 @canany(['admin'])
                 <li> <a class="" href="{{ route('pengguna.index') }}" aria-expanded="false"><i
                             class="fa fa-tv"></i><span class="hide-menu">Data Pengguna</span></a>

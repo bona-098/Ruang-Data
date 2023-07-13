@@ -187,7 +187,7 @@
                                             <label class="control-label">Drive Kontrak</label>
                                             <input type="file" value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
                                                 id="drive_kontrak" class="form-control" placeholder="Masukkan Unit Kerja"
-                                                required>
+                                                >
                                             <small class="form-control-feedback"> @error('drive_kontrak')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -225,7 +225,7 @@
                                             <label class="control-label">Unit Kerja</label>
                                             <input type="text" value="{{ $sales->unit_kerja }}" name="unit_kerja"
                                                 id="Unit Kerja" class="form-control" placeholder="Masukkan Unit Kerja"
-                                                required>
+                                                >
                                             <small class="form-control-feedback"> @error('unit_kerja')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -251,7 +251,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
-                                            <input type="text" required name="customer" id=""
+                                            <input type="text"  name="customer" id=""
                                                 value="{{ $sales->customer }}" class="form-control"
                                                 placeholder="Masukkan Customer">
                                             <small class="form-control-feedback"> @error('customer')
@@ -262,7 +262,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Segment</label>
-                                            <select name="segment" required class="form-control custom-select">
+                                            <select name="segment"  class="form-control custom-select">
                                                 <option value="Enterprise" {{ $sales->segment == 'Enterprise' ? 'selected' : '' }}>Enterprise</option>
                                                 <option value="Government" {{ $sales->segment == 'Government' ? 'selected' : '' }}>Government</option>
                                                 <option value="Subsidiaries" {{ $sales->segment == 'Subsidiaries' ? 'selected' : '' }}>Subsidiaries</option>
@@ -278,7 +278,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project" value="{{ $sales->nama_project }}" required
+                                            <input name="nama_project" value="{{ $sales->nama_project }}" 
                                                 type="text" id="kota_lahir" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
@@ -292,7 +292,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Lokasi Gedung</label>
-                                            <input name="lokasi_gedung" value="{{ $sales->lokasi_gedung }}" required
+                                            <input name="lokasi_gedung" value="{{ $sales->lokasi_gedung }}" 
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('lokasi_gedung')
@@ -306,7 +306,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jenis Pekerjaan </label>
-                                            <input name="jenis_pekerjaan" value="{{ $sales->jenis_pekerjaan }}" required
+                                            <input name="jenis_pekerjaan" value="{{ $sales->jenis_pekerjaan }}" 
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_pekerjaan')
@@ -318,7 +318,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Portfolio</label>
-                                            <input type="text" required value="{{ $sales->portfolio }}"
+                                            <input type="text"  value="{{ $sales->portfolio }}"
                                                 name="portfolio" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('portfolio')
@@ -380,7 +380,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Visit</label>
-                                            <input required name="visit" type="date" value="{{ $sales->visit }}"
+                                            <input  name="visit" type="date" value="{{ $sales->visit }}"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('visit')
@@ -392,7 +392,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>SPH</label>
-                                            <input required name="sph" value="{{ $sales->sph }}" type="date"
+                                            <input  name="sph" value="{{ $sales->sph }}" type="date"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sph')
@@ -404,7 +404,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BAKN</label>
-                                            <input required name="bakn" value="{{ $sales->bakn }}" type="date"
+                                            <input  name="bakn" value="{{ $sales->bakn }}" type="date"
                                                 class="form-control" placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('bakn')
@@ -416,7 +416,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPK/PO/PKS</label>
-                                            <input required name="spk" value="{{ $sales->spk }}" type="date"
+                                            <input  name="spk" value="{{ $sales->spk }}" type="date"
                                                 class="form-control" placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('spk')
@@ -428,7 +428,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Masa Project (Bulan)</label>
-                                            <input required name="masa_project" value="{{ $sales->masa_project }}"
+                                            <input  name="masa_project" value="{{ $sales->masa_project }}"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('masa_project')
@@ -440,7 +440,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jumlah Man Power/Unit/Luas</label>
-                                            <input required name="jumlah_man_power"
+                                            <input  name="jumlah_man_power"
                                                 value="{{ $sales->jumlah_man_power }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
@@ -453,7 +453,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="tgl_sp" value="{{ $sales->tgl_sp }}" type="date"
+                                            <input  name="tgl_sp" value="{{ $sales->tgl_sp }}" type="date"
                                                 class="form-control" placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
                                                 @error('tgl_sp')
@@ -465,7 +465,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No SP/BA/Kontrak/Nokes/Amandemen</label>
-                                            <input required name="no_sp" value="{{ $sales->no_sp }}" type="text"
+                                            <input  name="no_sp" value="{{ $sales->no_sp }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_sp')
@@ -494,7 +494,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Mulai Project</label>
-                                            <input required value="{{ $sales->tgl_mulai_project }}"
+                                            <input  value="{{ $sales->tgl_mulai_project }}"
                                                 name="tgl_mulai_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
@@ -507,7 +507,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Tanggal Akhir Project</label>
-                                            <input required value="{{ $sales->tgl_akhir_project }}"
+                                            <input  value="{{ $sales->tgl_akhir_project }}"
                                                 name="tgl_akhir_project" type="date" class="form-control"
                                                 placeholder="dd/mm/yyyy">
                                             <small class="form-control-feedback">
@@ -520,7 +520,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Kontrak</label>
-                                            <input required value="{{ $sales->sisa_kontrak }}" name="sisa_kontrak"
+                                            <input  value="{{ $sales->sisa_kontrak }}" name="sisa_kontrak"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_kontrak')
@@ -532,7 +532,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Total Project (Sebelum PPN)</label>
-                                            <input required name="nilai_total_project"
+                                            <input  name="nilai_total_project"
                                                 value="{{ $sales->nilai_total_project }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
@@ -545,7 +545,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Tahun (Sebelum PPN)</label>
-                                            <input required value="{{ $sales->nilai_project_pertahun }}"
+                                            <input  value="{{ $sales->nilai_project_pertahun }}"
                                                 name="nilai_project_pertahun" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_pertahun')
@@ -557,7 +557,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project Per Bulan (Sebelum PPN)</label>
-                                            <input required value="{{ $sales->nilai_project_perbulan }}"
+                                            <input  value="{{ $sales->nilai_project_perbulan }}"
                                                 name="nilai_project_perbulan" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project_perbulan')
@@ -569,7 +569,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama Key Contact Client</label>
-                                            <input required value="{{ $sales->nama_key_kontak_client }}"
+                                            <input  value="{{ $sales->nama_key_kontak_client }}"
                                                 name="nama_key_kontak_client" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_key_kontak_client')
@@ -581,7 +581,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jenis Kontrak</label>
-                                            <input required value="{{ $sales->jenis_kontrak }}" name="jenis_kontrak"
+                                            <input  value="{{ $sales->jenis_kontrak }}" name="jenis_kontrak"
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jenis_kontrak')
@@ -593,7 +593,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Jabatan Pic Client</label>
-                                            <input required value="{{ $sales->jabatan_pic_client }}"
+                                            <input  value="{{ $sales->jabatan_pic_client }}"
                                                 name="jabatan_pic_client" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('jabatan_pic_client')
@@ -605,7 +605,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No HP PIC Client</label>
-                                            <input required value="{{ $sales->no_hp_pic_client }}"
+                                            <input  value="{{ $sales->no_hp_pic_client }}"
                                                 name="no_hp_pic_client" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('no_hp_pic_client')
@@ -617,7 +617,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nama AM/PIC GSD Handle Project</label>
-                                            <input required value="{{ $sales->nama_pic_gsd }}" name="nama_pic_gsd"
+                                            <input  value="{{ $sales->nama_pic_gsd }}" name="nama_pic_gsd"
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_pic_gsd')
@@ -629,7 +629,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Drive Kontrak</label>
-                                            <input required value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
+                                            <input  value="{{ $sales->drive_kontrak }}" name="drive_kontrak"
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('drive_kontrak')
@@ -641,7 +641,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Amandemen</label>
-                                            <input required name="amandemen" value="{{ $sales->amandemen }}"
+                                            <input  name="amandemen" value="{{ $sales->amandemen }}"
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('amandemen')
@@ -653,7 +653,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input required name="keterangan" value="{{ $sales->keterangan }}"
+                                            <input  name="keterangan" value="{{ $sales->keterangan }}"
                                                 type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')

@@ -2,135 +2,116 @@
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>568120</h2>
-                            <p class="m-b-0">Total Revenue</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>1178</h2>
-                            <p class="m-b-0">Sales</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>25</h2>
-                            <p class="m-b-0">Stores</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-user f-s-40 color-danger"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>847</h2>
-                            <p class="m-b-0">Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-user f-s-40 color-danger"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>847</h2>
-                            <p class="m-b-0">Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <div class="card">
             <div class="card-body">
                 <form action="" method="GET" id="form_1">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="filter1">Nama Area :</label>
-                            <select name="nama_area" class="form-control">
-                                <option value="">Semua Area </option>
-                                <option value="Area Balikpapan"
-                                    value="{{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Balikpapan' }}">
-                                    Area Balikpapan</option>
-                                <option value="Area Kaltim"
-                                    value="{{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Kaltim' }}">Area
-                                    Kalimantan Timur</option>
-                                <option value="Area Kalsel"
-                                    value="{{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Kalsel' }}">Area
-                                    Kalimantan Selatan</option>
-                                <option value="Area Kalbar"
-                                    value="{{ isset($_GET['unit_kerja']) && $_GET['unit_kerja'] == 'Area Kalbar' }}">Area
-                                    Kalimantan Barat</option>
+                            <label for="filter1">Nama Area:</label>
+                            <select name="nama_area" class="form-control" onchange="updateWitelOptions(this.value)">
+                                <option value="">Semua Area</option>
+                                <option value="Balikpapan">Balikpapan</option>
+                                <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                <option value="Kalimantan Barat">Kalimantan Barat</option>
                             </select>
-                            {{-- <script>
-                                document.getElementById('unit_kerja').value = "<?php if (isset($_GET['unit_kerja']) && $_GET['unit_kerja']) {
-                                    echo $_GET['unit_kerja'];
-                                } ?>";
-                            </script> --}}
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Nama Witel:</label>
                             <select id="filter2" name="nama_witel" class="form-control">
-                                <option value=" ">Semua Witel</option>
-                                <option value=" ">Witel Balikpapan</option>
-                                <option value=" ">Witel Kalimantan Timur</option>
-                                <option value=" ">Witel Kalimantan Utara</option>
-                                <option value=" ">Witel Kalimantan Selatan</option>
-                                <option value=" ">Witel Kalimantan Tengah</option>
-                                <option value=" ">Witel Kalimantan Barat</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="filter5">Nama personil:</label>
-                            <select id="filter5" name="nama_personil" class="form-control">
-                                <option value="">Semua personil</option>
-
+                                <option value="">Semua Witel</option>
                             </select>
                         </div>
                         <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="submit" class=" form-control btn-success"> <i class="fa fa-filter"></i>
-                                Filter</button>
+                            <label for="filter5"></label>
+                            <button type="submit" class="form-control btn-success"><i class="fa fa-filter"></i> Filter</button>
                         </div>
                         <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="button" class=" form-control btn-success">Reset</button>
+                            <label for="filter5"></label>
+                            <button type="button" class="form-control btn-success">Reset</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        
+        <script>
+            function updateWitelOptions(area) {
+                const witelSelect = document.getElementById('filter2');
+                witelSelect.innerHTML = '';
+        
+                const optionAll = document.createElement('option');
+                optionAll.value = '';
+                optionAll.text = 'Semua Witel';
+                witelSelect.add(optionAll);
+        
+                if (area === '') {
+                    const option1 = document.createElement('option');
+                    option1.value = 'WITEL BALIKPAPAN';
+                    option1.text = 'WITEL BALIKPAPAN';
+                    witelSelect.add(option1);
+        
+                    const option2 = document.createElement('option');
+                    option2.value = 'WITEL KALTIM';
+                    option2.text = 'WITEL KALTIM';
+                    witelSelect.add(option2);
+        
+                    const option3 = document.createElement('option');
+                    option3.value = 'WITEL KALTARA';
+                    option3.text = 'WITEL KALTARA';
+                    witelSelect.add(option3);
+        
+                    const option4 = document.createElement('option');
+                    option4.value = 'WITEL KALSEL';
+                    option4.text = 'WITEL KALSEL';
+                    witelSelect.add(option4);
+        
+                    const option5 = document.createElement('option');
+                    option5.value = 'WITEL KALTENG';
+                    option5.text = 'WITEL KALTENG';
+                    witelSelect.add(option5);
+        
+                    const option6 = document.createElement('option');
+                    option6.value = 'WITEL KALBAR';
+                    option6.text = 'WITEL KALBAR';
+                    witelSelect.add(option6);
+                } else if (area === 'Balikpapan') {
+                    const option1 = document.createElement('option');
+                    option1.value = 'WITEL BALIKPAPAN';
+                    option1.text = 'WITEL BALIKPAPAN';
+                    witelSelect.add(option1);
+                } else if (area === 'Kalimantan Timur') {
+                    const option2 = document.createElement('option');
+                    option2.value = 'WITEL KALTIM';
+                    option2.text = 'WITEL KALTIM';
+                    witelSelect.add(option2);
+        
+                    const option3 = document.createElement('option');
+                    option3.value = 'WITEL KALTARA';
+                    option3.text = 'WITEL KALTARA';
+                    witelSelect.add(option3);
+                } else if (area === 'Kalimantan Selatan') {
+                    const option4 = document.createElement('option');
+                    option4.value = 'WITEL KALSEL';
+                    option4.text = 'WITEL KALSEL';
+                    witelSelect.add(option4);
+        
+                    const option5 = document.createElement('option');
+                    option5.value = 'WITEL KALTENG';
+                    option5.text = 'WITEL KALTENG';
+                    witelSelect.add(option5);
+                } else if (area === 'Kalimantan Barat') {
+                    const option6 = document.createElement('option');
+                    option6.value = 'WITEL KALBAR';
+                    option6.text = 'WITEL KALBAR';
+                    witelSelect.add(option6);
+                }
+            }
+        </script>
+        
+        
         {{-- Akhir Filter Tabel --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -149,16 +130,15 @@
                             <th>No</th>
                             <th>Action</th>
                             <th style="white-space: nowrap;">Nama</th>
-                            <th style="white-space: nowrap;">NIK</th>
-                            <th style="white-space: nowrap;">Lokasi Kerja</th>
-                            <th style="white-space: nowrap;">Kontrak</th>
-                            <th style="white-space: nowrap;">Telepon</th>
+                            <th style="white-space: nowrap;">Area</th>
+                            <th style="white-space: nowrap;">Witel</th>
+                            <th style="white-space: nowrap;">Jabatan</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($personil as $p)
                             <tr>
-                                <td>1</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button"
@@ -179,8 +159,8 @@
                                     </div>
                                 </td>
                                 <td style="white-space: nowrap;">{{ $p->nama }}</td>
-                                <td style="white-space: nowrap;">{{ $p->nik }}</td>
-                                <td style="white-space: nowrap;">{{ $p->lokasi_kerja }}</td>
+                                <td style="white-space: nowrap;">{{ $p->area }}</td>
+                                <td style="white-space: nowrap;">{{ $p->witel }}</td>
                                 <td style="white-space: nowrap;">{{ $p->kontrak }}</td>
                                 <td style="white-space: nowrap;">{{ $p->telepon }}</td>
                             </tr>

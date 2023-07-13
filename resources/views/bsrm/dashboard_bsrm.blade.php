@@ -140,7 +140,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Manar Kalimantan Timur</h4>
+                                <h4>Manar Kalimantan Timur dan Utara</h4>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -398,14 +398,14 @@
         const chart4 = new Chart(ctx4, {
             type: 'bar',
             data: {
-                labels: ['Enterprise', 'Government', 'Subsidiaries', 'Telkom'],
+                labels: ['Telkom', 'Subsidiaries', 'Enterprise', 'Government'],
                 datasets: [{
                         label: 'Prospek',
                         data: [
-                            {{ $prospekEnterprise }},
-                            {{ $prospekGovernment }},
+                            {{ $prospekTelkom }},
                             {{ $prospekSubsidiaries }},
-                            {{ $prospekTelkom }}
+                            {{ $prospekEnterprise }},
+                            {{ $prospekGovernment }}
                         ],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
@@ -414,10 +414,10 @@
                     {
                         label: 'Potensi',
                         data: [
-                            {{ $potensiEnterprise }},
-                            {{ $potensiGovernment }},
+                            {{ $potensiTelkom }},
                             {{ $potensiSubsidiaries }},
-                            {{ $potensiTelkom }}
+                            {{ $potensiEnterprise }},
+                            {{ $potensiGovernment }}
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
@@ -426,10 +426,10 @@
                     {
                         label: 'Onhand',
                         data: [
-                            {{ $onhandEnterprise }},
-                            {{ $onhandGovernment }},
+                            {{ $onhandTelkom }},
                             {{ $onhandSubsidiaries }},
-                            {{ $onhandTelkom }}
+                            {{ $onhandEnterprise }},
+                            {{ $onhandGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
@@ -438,10 +438,10 @@
                     {
                         label: 'Out',
                         data: [
-                            {{ $outEnterprise }},
-                            {{ $outGovernment }},
+                            {{ $outTelkom }},
                             {{ $outSubsidiaries }},
-                            {{ $outTelkom }}
+                            {{ $outEnterprise }},
+                            {{ $outGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
@@ -470,32 +470,33 @@
         });
 
         document.getElementById('ManarBpp').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+            const activePoints = chart4.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
             }, true);
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                const label = chart4.data.labels[firstPoint.index];
+                const category = chart4.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
                 // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
                 // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Area Balikpapan";
+                window.open(url, "_blank");
             }
         });
         const ctx5 = document.getElementById('ManarKaltim').getContext('2d');
         const chart5 = new Chart(ctx5, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
+                labels: ['Telkom', 'Subsidiaries', 'Enterprise', 'Government'],
                 datasets: [{
                         label: 'Prospek',
                         data: [
-                            {{ $ktprospekEnterprise }},
-                            {{ $ktprospekGovernment }},
+                            {{ $ktprospekTelkom }},
                             {{ $ktprospekSubsidiaries }},
-                            {{ $ktprospekTelkom }}
+                            {{ $ktprospekEnterprise }},
+                            {{ $ktprospekGovernment }}
                         ],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
@@ -504,10 +505,10 @@
                     {
                         label: 'Potensi',
                         data: [
+                            {{ $ktpotensiTelkom }},
+                            {{ $ktpotensiSubsidiaries }},
                             {{ $ktpotensiEnterprise }},
                             {{ $ktpotensiGovernment }},
-                            {{ $ktpotensiSubsidiaries }},
-                            {{ $ktpotensiTelkom }}
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
@@ -516,10 +517,10 @@
                     {
                         label: 'Onhand',
                         data: [
-                            {{ $ktonhandEnterprise }},
-                            {{ $ktonhandGovernment }},
+                            {{ $ktonhandTelkom }},
                             {{ $ktonhandSubsidiaries }},
-                            {{ $ktonhandTelkom }}
+                            {{ $ktonhandEnterprise }},
+                            {{ $ktonhandGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
@@ -528,10 +529,10 @@
                     {
                         label: 'Out',
                         data: [
-                            {{ $ktoutEnterprise }},
-                            {{ $ktoutGovernment }},
+                            {{ $ktoutTelkom }},
                             {{ $ktoutSubsidiaries }},
-                            {{ $ktoutTelkom }}
+                            {{ $ktoutEnterprise }},
+                            {{ $ktoutGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
@@ -559,32 +560,33 @@
             }
         });
         document.getElementById('ManarKaltim').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+            const activePoints = chart5.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
             }, true);
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                const label = chart5.data.labels[firstPoint.index];
+                const category = chart5.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
                 // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
                 // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kaltim";
+                window.open(url, "_blank");
             }
         });
         const ctx6 = document.getElementById('ManarKalselteng').getContext('2d');
         const chart6 = new Chart(ctx6, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
+                labels: ['Telkom', 'Subsidiaries', 'Enterprise', 'Government'],
                 datasets: [{
                         label: 'Prospek',
                         data: [
-                            {{ $ksprospekEnterprise }},
-                            {{ $ksprospekGovernment }},
+                            {{ $ksprospekTelkom }},
                             {{ $ksprospekSubsidiaries }},
-                            {{ $ksprospekTelkom }}
+                            {{ $ksprospekEnterprise }},
+                            {{ $ksprospekGovernment }}
                         ],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
@@ -593,10 +595,10 @@
                     {
                         label: 'Potensi',
                         data: [
-                            {{ $kspotensiEnterprise }},
-                            {{ $kspotensiGovernment }},
+                            {{ $kspotensiTelkom }},
                             {{ $kspotensiSubsidiaries }},
-                            {{ $kspotensiTelkom }}
+                            {{ $kspotensiEnterprise }},
+                            {{ $kspotensiGovernment }}
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
@@ -605,10 +607,10 @@
                     {
                         label: 'Onhand',
                         data: [
-                            {{ $ksonhandEnterprise }},
-                            {{ $ksonhandGovernment }},
+                            {{ $ksonhandTelkom }},
                             {{ $ksonhandSubsidiaries }},
-                            {{ $ksonhandTelkom }}
+                            {{ $ksonhandEnterprise }},
+                            {{ $ksonhandGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
@@ -617,10 +619,10 @@
                     {
                         label: 'Out',
                         data: [
-                            {{ $ksoutEnterprise }},
-                            {{ $ksoutGovernment }},
+                            {{ $ksoutTelkom }},
                             {{ $ksoutSubsidiaries }},
-                            {{ $ksoutTelkom }}
+                            {{ $ksoutEnterprise }},
+                            {{ $ksoutGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
@@ -648,32 +650,33 @@
             }
         });
         document.getElementById('ManarKalselteng').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+            const activePoints = chart6.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
             }, true);
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                const label = chart6.data.labels[firstPoint.index];
+                const category = chart6.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
                 // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
                 // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kalsel";
+                window.open(url, "_blank");
             }
         });
         const ctx7 = document.getElementById('ManarKalbar').getContext('2d');
         const chart7 = new Chart(ctx7, {
             type: 'bar',
             data: {
-                labels: ['Enterpries', 'Government', 'Subsidiaries', 'Telkom'],
+                labels: ['Telkom', 'Subsidiaries', 'Enterprise', 'Government'],
                 datasets: [{
                         label: 'Prospek',
                         data: [
-                            {{ $kbprospekEnterprise }},
-                            {{ $kbprospekGovernment }},
+                            {{ $kbprospekTelkom }},
                             {{ $kbprospekSubsidiaries }},
-                            {{ $kbprospekTelkom }}
+                            {{ $kbprospekEnterprise }},
+                            {{ $kbprospekGovernment }}
                         ],
                         backgroundColor: 'rgba(0, 128, 0, 0.5)',
                         borderColor: 'rgba(0, 128, 0, 0.5)',
@@ -682,10 +685,10 @@
                     {
                         label: 'Potensi',
                         data: [
-                            {{ $kbpotensiEnterprise }},
-                            {{ $kbpotensiGovernment }},
+                            {{ $kbpotensiTelkom }},
                             {{ $kbpotensiSubsidiaries }},
-                            {{ $kbpotensiTelkom }}
+                            {{ $kbpotensiEnterprise }},
+                            {{ $kbpotensiGovernment }}
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 0.5)',
@@ -694,10 +697,10 @@
                     {
                         label: 'Onhand',
                         data: [
-                            {{ $kbonhandEnterprise }},
-                            {{ $kbonhandGovernment }},
+                            {{ $kbonhandTelkom }}, 
                             {{ $kbonhandSubsidiaries }},
-                            {{ $kbonhandTelkom }}
+                            {{ $kbonhandEnterprise }},
+                            {{ $kbonhandGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         borderColor: 'rgba(255, 255, 0, 0.5)',
@@ -706,10 +709,10 @@
                     {
                         label: 'Out',
                         data: [
-                            {{ $kboutEnterprise }},
-                            {{ $kboutGovernment }},
+                            {{ $kboutTelkom }},
                             {{ $kboutSubsidiaries }},
-                            {{ $kboutTelkom }}
+                            {{ $kboutEnterprise }},
+                            {{ $kboutGovernment }}
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
                         borderColor: 'rgba(255, 99, 132, 0.5)',
@@ -737,18 +740,19 @@
             }
         });
         document.getElementById('ManarKalbar').addEventListener('click', function(event) {
-            const activePoints = chart2.getElementsAtEventForMode(event, 'nearest', {
+            const activePoints = chart7.getElementsAtEventForMode(event, 'nearest', {
                 intersect: true
             }, true);
 
             if (activePoints.length > 0) {
                 const firstPoint = activePoints[0];
-                const label = chart2.data.labels[firstPoint.index];
-                const category = chart2.data.datasets[firstPoint.datasetIndex].label;
+                const label = chart7.data.labels[firstPoint.index];
+                const category = chart7.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Label: " + label + ", Category: " + category);
                 // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
                 // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-                window.location.href = "halaman-baru.html?label=" + label + "&category=" + category;
+                const url = "detail_chart_sales?label=" + label + "&category=" + category + "&unitkerja=" + "Kalbar";
+                window.open(url, "_blank");
             }
         });
     </script>

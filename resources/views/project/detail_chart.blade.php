@@ -53,7 +53,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ImportData"><i
                     class="fa fa-plus"></i> Import Sales</button> --}}
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-                <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
+                <table text-align: left; id="myTable" class="table  display table-bordered table-striped"style="font-size: 14px;">
                     <thead>
                         <tr>
                             {{-- <th>No</th> --}}
@@ -82,7 +82,7 @@
                                 {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>
                                     <div class=" text-center">
-                                        <a href="{{ route('project.show',$p->id) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('project.show', $p->id) }}" class="btn btn-primary">Detail</a>
                                     </div>
                                 </td>
                                 <td>{{ $p->customer }}</td>
@@ -91,9 +91,9 @@
                                 <td>{{ $p->nama_project }}</td>
                                 <td>{{ $p->kategori }}</td>
                                 {{-- <td>{{ $p->skema }}</td> --}}
-                                <td>{{ $p->nilai_project }}</td>
-                                <td>{{ $p->sudah_akru }}</td>
-                                <td>{{ $p->sisa_belum_akru }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->nilai_project), 0, ',', '.') }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sudah_akru), 0, ',', '.') }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sisa_belum_akru), 0, ',', '.') }}</td>
                                 {{-- <td>{{ $p->progress_ml }}</td>
                                 <td>{{ $p->progress_mi }}</td>
                                 <td>{{ $p->start_date }}</td>

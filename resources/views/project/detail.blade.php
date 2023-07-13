@@ -40,15 +40,15 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project</th>
-                                    <td>{{ $project->nilai_project }}</td>
+                                    <td>RP {{ number_format(floatval($project->nilai_project), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sudah Akru</th>
-                                    <td>{{ $project->sudah_akru }}</td>
+                                    <td>RP {{ number_format(floatval($project->sudah_akru), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Sisa Belum Akru</th>
-                                    <td>{{ $project->sisa_belum_akru }}</td>
+                                    <td>RP {{ number_format(floatval($project->sisa_belum_akru), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Progres ML</th>
@@ -107,7 +107,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
                                             <input type="text" name="customer" id="Unit Kerja"
-                                                class="form-control" value="{{ $project->customer }}" required>
+                                                class="form-control" value="{{ $project->customer }}" >
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -118,7 +118,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
-                                            <select required name="witel" class="form-control">
+                                            <select  name="witel" class="form-control">
                                                 <option value="Balikpapan" {{ $project->witel == 'Balikpapan' ? 'selected' : '' }}>Balikpapan</option>
                                                 <option value="Samarinda" {{ $project->witel == 'Samarinda' ? 'selected' : '' }}>Samarinda</option>
                                                 <option value="Kalsel" {{ $project->witel == 'Kalsel' ? 'selected' : '' }}>Kalsel</option>
@@ -133,7 +133,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
-                                            <select required name="kategori" class="form-control">
+                                            <select  name="kategori" class="form-control">
                                                 <option value="Enterprise" {{ $project->kategori == 'Enterprise' ? 'selected' : '' }}>Enterprise</option>
                                                 <option value="Governance" {{ $project->kategori == 'Governance' ? 'selected' : '' }}>Governance</option>
                                                 <option value="Telkom" {{ $project->kategori == 'Telkom' ? 'selected' : '' }}>Telkom</option>
@@ -150,7 +150,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
                                             <input name="nama_project" value="{{ $project->nama_project }}"
-                                                required type="text" id="nama_project" class="form-control">
+                                                 type="text" id="nama_project" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
                                                     {{ $message }}
@@ -163,7 +163,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Skem</label>
-                                            <input name="skema" value="{{ $project->skema }}" required type="text"
+                                            <input name="skema" value="{{ $project->skema }}"  type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('skema')
@@ -177,7 +177,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project</label>
-                                            <input required name="nilai_project" id="nilai_project" min="0"
+                                            <input  name="nilai_project" id="nilai_project" min="0"
                                                 type="number" value="{{ $project->nilai_project }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project')
@@ -189,7 +189,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sudah Akru</label>
-                                            <input required name="sudah_akru" id="sudah_akru" min="0"
+                                            <input  name="sudah_akru" id="sudah_akru" min="0"
                                                 type="number" value="{{ $project->sudah_akru }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sudah_akru')
@@ -201,7 +201,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
-                                            <input required name="sisa_belum_akru" id="sisa_belum_akru" min="0"
+                                            <input  name="sisa_belum_akru" id="sisa_belum_akru" min="0"
                                                 readonly type="number" value="{{ $project->sisa_belum_akru }}" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
@@ -213,7 +213,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input required name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="text"
+                                            <input  name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
@@ -225,7 +225,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input required name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="text"
+                                            <input  name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
@@ -237,7 +237,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
-                                            <input required name="target_deal" value="{{ $project->target_deal }}" type="text"
+                                            <input  name="target_deal" value="{{ $project->target_deal }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('target_deal')
@@ -249,7 +249,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input required name="keterangan" value="{{ $project->keterangan }}" type="text"
+                                            <input  name="keterangan" value="{{ $project->keterangan }}" type="text"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
@@ -275,7 +275,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Akru</label>
-                                            <input required name="akru" value="{{ $project->akru }}" type="date" class="form-control">
+                                            <input  name="akru" value="{{ $project->akru }}" type="date" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('akru')
                                                     {{ $message }}

@@ -11,34 +11,39 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="filter2">Nama Witel :</label>
-                            <select name="nama_witel" class="form-control">
+                            <select name="nama_witel" class="form-control" onchange="updateAreaOptions()">
                                 <option value="">Semua Witel</option>
                                 <option value="WITEL BALIKPAPAN" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN' ? 'selected' : '' }}>
                                     WITEL BALIKPAPAN</option>
-                                <option value="WITEL SAMARINDA" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL SAMARINDA' ? 'selected' : '' }}>
-                                    WITEL SAMARINDA</option>
+                                <option value="WITEL KALTIM" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALTIM' ? 'selected' : '' }}>
+                                    WITEL KALTIM</option>
                                 <option value="WITEL KALSEL" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL' ? 'selected' : '' }}>
                                     WITEL KALSEL</option>
                                 <option value="WITEL KALBAR" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR' ? 'selected' : '' }}>
-                                    {{-- WITEL KALBAR</option>
-                                <option value="Witel Kalsel" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalsel' ? 'selected' : '' }}>
-                                    Kalimantan Timur</option>
-                                <option value="Witel Kalbar" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'Witel Kalbar' ? 'selected' : '' }}>
-                                    Kalimantan Barat</option> --}}
+                                    WITEL KALBAR</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="filter2">Nama Area :</label>
                             <select name="nama_area" class="form-control">
                                 <option value="">Semua Area</option>
-                                <option value="AREA BALIKPAPAN" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
-                                    AREA BALIKPAPAN</option>
-                                <option value="AREA KALTIM" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
-                                    AREA KALTIM</option>
-                                <option value="AREA KALSEL" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
-                                    AREA KALSEL</option>
-                                <option value="AREA KALBAR" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
-                                    AREA KALBAR</option>
+                                @if(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN')
+                                    <option value="AREA BALIKPAPAN" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
+                                        AREA BALIKPAPAN</option>
+                                @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALTIM')
+                                    <option value="AREA KALTIM" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
+                                        AREA KALTIM</option>
+                                    <option value="AREA KALTARA" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTARA' ? 'selected' : '' }}>
+                                        AREA KALTARA</option>
+                                @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL')
+                                    <option value="AREA KALSEL" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
+                                        AREA KALSEL</option>
+                                    <option value="AREA KALTENG" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTENG' ? 'selected' : '' }}>
+                                        AREA KALTENG</option>
+                                @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR')
+                                    <option value="AREA KALBAR" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
+                                        AREA KALBAR</option>
+                                @endif
                             </select>
                         </div>
                         <div class="col-md-2" style="padding-top: 5px;">
@@ -50,6 +55,47 @@
                 </form>
             </div>
         </div>
+        
+        <script>
+            function updateAreaOptions() {
+                const witelSelect = document.querySelector('select[name="nama_witel"]');
+                const areaSelect = document.querySelector('select[name="nama_area"]');
+        
+                // Mendapatkan nilai terpilih dari select witel
+                const selectedWitel = witelSelect.value;
+        
+                // Mengosongkan pilihan area saat witel berubah
+                areaSelect.innerHTML = '<option value="">Semua Area</option>';
+        
+                // Menambahkan pilihan area sesuai dengan witel yang dipilih
+                if (selectedWitel === 'WITEL BALIKPAPAN') {
+                    areaSelect.innerHTML += `
+                        <option value="AREA BALIKPAPAN" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
+                            AREA BALIKPAPAN</option>
+                    `;
+                } else if (selectedWitel === 'WITEL KALTIM') {
+                    areaSelect.innerHTML += `
+                        <option value="AREA KALTIM" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
+                            AREA KALTIM</option>
+                        <option value="AREA KALTARA" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTARA' ? 'selected' : '' }}>
+                            AREA KALTARA</option>
+                    `;
+                } else if (selectedWitel === 'WITEL KALSEL') {
+                    areaSelect.innerHTML += `
+                        <option value="AREA KALSEL" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
+                            AREA KALSEL</option>
+                        <option value="AREA KALTENG" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTENG' ? 'selected' : '' }}>
+                            AREA KALTENG</option>
+                    `;
+                } else if (selectedWitel === 'WITEL KALBAR') {
+                    areaSelect.innerHTML += `
+                        <option value="AREA KALBAR" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
+                            AREA KALBAR</option>
+                    `;
+                }
+            }
+        </script>
+        
         
         {{-- MEMFILTER DATA --}}
 

@@ -86,7 +86,7 @@
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
 
                 <div class="table-responsive">
-                <table text-align: left; id="myTable" class="table  display table-bordered table-striped">
+                <table text-align: left; id="myTable" class="table  display table-bordered table-striped" style="font-size: 14px;"  >
                     <thead>
                         <tr>
                             {{-- <th>No</th> --}}
@@ -121,9 +121,9 @@
                                 <td>{{ $p->nama_project }}</td>
                                 {{-- <td>{{ $p->kategori }}</td> --}}
                                 {{-- <td>{{ $p->skema }}</td> --}}
-                                <td>{{ $p->nilai_project }}</td>
-                                <td>{{ $p->sudah_akru }}</td>
-                                <td>{{ $p->sisa_belum_akru }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->nilai_project), 0, ',', '.') }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sudah_akru), 0, ',', '.') }}</td>
+                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sisa_belum_akru), 0, ',', '.') }}</td>
                                 {{-- <td>{{ $p->progress_ml }}</td>
                                 <td>{{ $p->progress_mi }}</td>
                                 <td>{{ $p->keterangan }}</td>
@@ -308,9 +308,9 @@
                                         <div class="form-group">
                                             <label class="control-label">Tahap</label>
                                             <select name="tahap" class="form-control">
-                                                <option value="Co-OnHand">Co-OnHand</option>
-                                                <option value="Komersial">Komersial</option>
-                                                <option value="OnHand">OnHand</option>
+                                                <option value="Co-OnHand">Potensial</option>
+                                                <option value="Komersial">Done</option>
+                                                <option value="OnHand">Progress</option>
                                             </select>
                                             <small class="form-control-feedback"> @error('tahap')
                                                     {{ $message }}

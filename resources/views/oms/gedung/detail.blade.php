@@ -33,6 +33,10 @@
                                     <td colspan="6">{{ $gedung->nama_witel }}</td>
                                 </tr>
                                 <tr>
+                                    <th scope="row">Nama Gedung</th>
+                                    <td colspan="6">{{ $gedung->nama_gedung }}</td>
+                                </tr>
+                                <tr>
                                     <th scope="row">Alamat</th>
                                     <td colspan="6">{{ $gedung->alamat }}</td>
                                 </tr>
@@ -42,11 +46,11 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Luas</th>
-                                    <td colspan="6">{{ $gedung->koordinat }}</td>
+                                    <td colspan="6">{{ $gedung->luasan}}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Petugas</th>
-                                    <td colspan="6">{{ $gedung->koordinat }}</td>
+                                    <td colspan="6">{{ $gedung->total_petugas}}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;"><strong>Daftar Petugas Gedung</strong>
