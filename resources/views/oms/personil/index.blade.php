@@ -161,8 +161,7 @@
                                 <td style="white-space: nowrap;">{{ $p->nama }}</td>
                                 <td style="white-space: nowrap;">{{ $p->area }}</td>
                                 <td style="white-space: nowrap;">{{ $p->witel }}</td>
-                                <td style="white-space: nowrap;">{{ $p->kontrak }}</td>
-                                <td style="white-space: nowrap;">{{ $p->telepon }}</td>
+                                <td style="white-space: nowrap;">{{ $p->jabatan }}</td>
                             </tr>
                             <div class="modal fade" id="ModalUpdatepetugas{{ $p->id }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -187,24 +186,24 @@
                                                         value="{{ $p->nama }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="telepon">Telepon</label>
-                                                    <input type="text" class="form-control" id="telepon"
-                                                        name="telepon" placeholder="Masukkan telepon"
-                                                        value="{{ $p->telepon }}">
+                                                    <label for="area">Area</label>
+                                                    <input type="text" class="form-control" id="area"
+                                                        name="area" placeholder="Masukkan area"
+                                                        value="{{ $p->area }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nik">NIK</label>
-                                                    <input type="text" class="form-control" id="nik"
-                                                        name="nik" placeholder="Masukkan NIK"
-                                                        value="{{ $p->nik }}">
+                                                    <label for="witel">Witel</label>
+                                                    <input type="text" class="form-control" id="witel"
+                                                        name="witel" placeholder="Masukkan witel"
+                                                        value="{{ $p->witel }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="lokasi_kerja">Lokasi Kerja</label>
-                                                    <input type="text" class="form-control" id="lokasi_kerja"
-                                                        name="lokasi_kerja" 
-                                                        value=" $p->email">
+                                                    <label for="jabatan">Jabatan</label>
+                                                    <input type="text" class="form-control" id="jabatan"
+                                                        name="jabatan" 
+                                                        value=" $p->jabatan">
                                                 </div>
-                                                <div class="form-group">
+                                                {{-- <div class="form-group">
                                                     <label for="gedung_id">Gedung</label>
                                                     <select class="form-control" id="gedung_id" name="gedung_id">
                                                         @foreach($gedungOptions as $gedung)
@@ -213,7 +212,7 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                </div>                                                
+                                                </div>                                                 --}}
                                                 <!-- Tambahkan input lainnya sesuai kebutuhan -->
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Tutup</button>
@@ -281,28 +280,28 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nomor Telepon</label>
-                                            <input required type="text" name="telepon" class="form-control">
-                                            <small class="form-control-feedback">@error('telepon') {{ $message }} @enderror</small>
+                                            <label class="control-label">Area</label>
+                                            <input required type="text" name="area" class="form-control">
+                                            <small class="form-control-feedback">@error('area') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nik</label>
-                                            <input required type="text" name="nik" class="form-control">
-                                            <small class="form-control-feedback">@error('nik') {{ $message }} @enderror</small>
+                                            <label class="control-label">Witel</label>
+                                            <input required type="text" name="witel" class="form-control">
+                                            <small class="form-control-feedback">@error('witel') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Loker Kerja</label>
-                                            <input required type="text" name="lokasi_kerja" class="form-control">
-                                            <small class="form-control-feedback">@error('lokasi_kerja') {{ $message }} @enderror</small>
+                                            <label class="control-label">Jabatan</label>
+                                            <input required type="text" name="jabatan" class="form-control">
+                                            <small class="form-control-feedback">@error('jabatan') {{ $message }} @enderror</small>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kontrak</label>
                                             <input required type="text" name="kontrak" class="form-control">
@@ -321,7 +320,7 @@
                                             </select>
                                             <small class="form-control-feedback">@error('gedung_id') {{ $message }} @enderror</small>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="modal-footer">

@@ -400,25 +400,24 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
         <div class="container">
             <div class="row">
-                <form action="/mitras" method="post" enctype="multipart/form-data">
+                <form action="/personul" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="input-group mb-3">
                         <input type="file" name="file" class="form-control" placeholder="Recipient's username"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-primary" type="submit" id="button-addon2">Import</button>
-                        <a button class="btn btn-primary" href="/mitra">Back</button></a>
+                        <a button class="btn btn-primary" href="/personil">Back</button></a>
                     </div>
                 </form>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             {{-- <th scope="col">#</th> --}}
-                            <th scope="col">Nama_vendor</th>
-                            <th scope="col">Domisili</th>
-                            <th scope="col">Kategori</th>
-                            <th scope="col">Nilai Asses</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Witel</th>
+                            <th scope="col">Jabatan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -428,11 +427,10 @@
                         @forelse ($personil as $user)
                             <tr>
                                 {{-- <th scope="row">{{ ++$no }}</th> --}}
-                                <td>{{ $user->nama_vendor }}</td>
-                                <td>{{ $user->domisili }}</td>
-                                <td>{{ $user->kategori }}</td>
-                                <td>{{ $user->nilai_asses }}</td>
-                                <td>{{ $user->status }}</td>
+                                <td>{{ $user->nama }}</td>
+                                <td>{{ $user->area }}</td>
+                                <td>{{ $user->witel }}</td>
+                                <td>{{ $user->jabatan }}</td>
                             </tr>
                         @empty
                             <td colspan="4" class="table-active text-center">Tidak Ada Data</td>

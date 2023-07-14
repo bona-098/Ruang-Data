@@ -16,11 +16,9 @@ return new class extends Migration
         Schema::create('personil', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
-            $table->string('nik')->nullable();
-            $table->string('lokasi_kerja')->nullable();
-            $table->string('kontrak')->nullable();
-            $table->string('telepon')->nullable();
-            $table->foreignId('gedung_id')->constrained('gedung')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('area')->nullable();
+            $table->string('witel')->nullable();
+            $table->string('jabatan')->nullable();
             $table->timestamps();
         });
     }
