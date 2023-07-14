@@ -313,11 +313,19 @@
                 const firstPoint = activePoints[0];
                 const label = chart2.data.labels[firstPoint.index];
                 const category = chart2.data.datasets[firstPoint.datasetIndex].label;
-                console.log("Label: " + label + ", Category: " + category);
-                const url = "detail_chart_nilai?label=" + label + "&category=" + category;
+                const sudahAkru = chart2.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+
+                console.log("Label: " + label + ", Category: " + category + ", Sudah Akru: " + sudahAkru);
+
+                // Konstruksi URL dengan parameter filter
+                let url = "detail_chart_nilai?label=" + label + "&category=" + category + "&sudahAkru=" + sudahAkru;
+
+                // Buka halaman baru dengan URL yang dikonstruksi
                 window.open(url, "_blank");
             }
         });
+
+
         const ctx3 = document.getElementById('myChart3').getContext('2d');
         const chart3 = new Chart(ctx3, {
             type: 'bar',
@@ -480,7 +488,8 @@
                 const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Segment: " + segment + ", Status Project: " + statusProject);
                 const unitKerja = "Area Balikpapan";
-                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject +
+                    "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
@@ -570,7 +579,8 @@
                 const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Segment: " + segment + ", Status Project: " + statusProject);
                 const unitKerja = "Area Kaltim";
-                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject +
+                    "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
@@ -659,7 +669,8 @@
                 const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Segment: " + segment + ", Status Project: " + statusProject);
                 const unitKerja = "Area Kalsel";
-                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject +
+                    "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
@@ -748,7 +759,8 @@
                 const statusProject = chart4.data.datasets[firstPoint.datasetIndex].label;
                 console.log("Segment: " + segment + ", Status Project: " + statusProject);
                 const unitKerja = "Area Kalbar";
-                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject + "&unit_kerja=" + unitKerja;
+                const url = "detail_chart_sales?segment=" + segment + "&status_project=" + statusProject +
+                    "&unit_kerja=" + unitKerja;
                 window.open(url, "_blank");
             }
         });
