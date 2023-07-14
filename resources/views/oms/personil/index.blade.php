@@ -201,7 +201,7 @@
                                                     <label for="jabatan">Jabatan</label>
                                                     <input type="text" class="form-control" id="jabatan"
                                                         name="jabatan" 
-                                                        value=" $p->jabatan">
+                                                        value="{{$p->jabatan}}">
                                                 </div>
                                                 {{-- <div class="form-group">
                                                     <label for="gedung_id">Gedung</label>
