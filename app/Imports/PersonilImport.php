@@ -16,11 +16,9 @@ class PersonilImport implements ToModel
     {
         return new Personil([
             'nama'=> $row[0], 
-            'nik'=> $row[1],
-            'lokasi_kerja'=> $row[2],
-            'kontrak'=> $row[3],
-            'telepon'=> $row[4],
-            'gedung_id'=> $row[5]
+            'area'=> $row[1],
+            'witel'=> $row[2],
+            'jabatan'=> $row[3],            
         ]);
     }
 }

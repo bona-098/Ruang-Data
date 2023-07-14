@@ -150,6 +150,7 @@ Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
+//sad
 Route::get('/import-personil', function () {
     $personil = Personil::all();
     return view('personul',['personil'=>$personil]);
@@ -158,6 +159,7 @@ Route::post('/personul', function () {
     Excel::import(new PersonilImport, request()->file('file'));
     return back();
 });
+//as
 Route::get('/import-perangkat', function () {
     $perangkat = Perangkat::all();
     return view('perang',['perangkat'=>$perangkat]);

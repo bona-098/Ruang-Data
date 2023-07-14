@@ -44,11 +44,9 @@ class PersonilController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
-            'nik' => 'required',
-            'lokasi_kerja' => 'required',
-            'kontrak' => 'required',
-            'telepon' => 'required',
-            'gedung_id' => 'required',
+            'area' => 'required',
+            'witel' => 'required',
+            'jabatan' => 'required',
         ]);
     
         try {
@@ -97,11 +95,10 @@ class PersonilController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nik' => 'required',
-            'lokasi_kerja' => 'required',
-            'kontrak' => 'required',
-            'telepon' => 'required',
-            'gedung_id' => 'required',
+            'area' => 'required',
+            'witel' => 'required',
+            'jabatan' => 'required',
+            'gedung_id' => 'nullable',
         ]);
 
         $personil = Personil::find($id);
@@ -110,19 +107,13 @@ class PersonilController extends Controller
         }
 
         $personil->nama = $request->nama;
-        $personil->nik = $request->nik;
-        $personil->lokasi_kerja = $request->lokasi_kerja;
-        $personil->kotrak = $request->kotrak;
-        $personil->telepon = $request->telepon;
+        $personil->area = $request->area;
+        $personil->witel = $request->witel;
+        $personil->jabatan = $request->jabatan;
         // $personil->gedung_id = $request->gedung_id;
 
         // Cek apakah gedung_id yang baru valid dan ada dalam tabel gedung
-        $gedung = Gedung::find($request->gedung_id);
-        if (!$gedung) {
-            return redirect()->back()->with('error', 'Gedung tidak ditemukan');
-        }
-
-        $personil->gedung_id = $gedung->id;
+        
 
         $personil->save();
 
