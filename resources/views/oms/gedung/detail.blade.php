@@ -13,9 +13,9 @@
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateGedung" href="#">Edit</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteGedung" href="#">Delete</a>
                 </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPetugas">
+                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPetugas">
                     <i class="fa fa-user-plus"></i> Tambah Daftar Petugas
-                </button>
+                </button> --}}
                 <div style="margin-top: 20px;">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-bordered table-striped">
@@ -65,7 +65,7 @@
                                     <th>Action</th>
                                 </tr>
 
-                                @foreach ($personil as $pe)
+                                {{-- @foreach ($personil as $pe)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pe->nama }}</td>
@@ -87,7 +87,7 @@
                                             </td>
                                         </div>
                                 @endforeach
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
 

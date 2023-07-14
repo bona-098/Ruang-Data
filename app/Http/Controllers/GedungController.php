@@ -87,8 +87,8 @@ class GedungController extends Controller
     public function show($id)
     {
         $gedung = Gedung::findOrfail($id);
-        $personil = Personil::where('gedung_id', $id)->get();
-        return view('oms.gedung.detail', compact('gedung', 'personil'));
+        // $personil = Personil::where('gedung_id', $id)->get();
+        return view('oms.gedung.detail', compact('gedung'));
     }
 
     /**
