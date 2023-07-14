@@ -117,15 +117,15 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Total Project (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_total_project }}</td>
+                                    <td>Rp {{ number_format(floatval($sales->nilai_total_project), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project Per Tahun (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_project_pertahun }}</td>
+                                    <td>Rp {{ number_format(floatval($sales->nilai_project_pertahun), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nilai Project Per Bulan (Sebelum PPN)</th>
-                                    <td>{{ $sales->nilai_project_perbulan }}</td>
+                                    <td>Rp {{ number_format(floatval($sales->nilai_project_perbulan), 0, ',', '.') }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Key Contact Client</th>

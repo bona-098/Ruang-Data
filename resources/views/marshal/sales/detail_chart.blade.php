@@ -1,47 +1,45 @@
 @extends('layout.layout')
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Data Sales</h4>
-            
-            <table text-align: left; id="myTable" class="table display table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Action</th>
-                        <th>Unit Kerja</th>
-                        <th>Status Revenue</th>
-                        <th>Customer</th>
-                        <th>Segment</th>
-                        <th>Nama Project</th>
-                        <th>Lokasi/Gedung</th>
-                        <th>Jenis Pekerjaan</th>
-                        <th>Portfolio</th>
-                        <th>Progress Project</th>
-                        <th>Status Project</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($sales as $data)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>
-                                <a class="btn btn-success" href="{{ route('sales.show', $data->id) }}">Detail</a>
-                            </td>
-                            <td>{{ $data->unit_kerja }}</td>
-                            <td>{{ $data->status_revenue }}</td>
-                            <td>{{ $data->customer }}</td>
-                            <td>{{ $data->segment }}</td>
-                            <td>{{ $data->nama_project }}</td>
-                            <td>{{ $data->lokasi_gedung }}</td>
-                            <td>{{ $data->jenis_pekerjaan }}</td>
-                            <td>{{ $data->portfolio }}</td>
-                            <td>{{ $data->progress_project }}</td>
-                            <td>{{ $data->status_project }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Data Sales</h4>
+                {{-- <div class=" m-t-40"> --}}
+                    <table text-align: left; id="myTable" class="table table-responsive display table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Action</th>
+                                <th>Unit Kerja</th>
+                                <th>Customer</th>
+                                <th>Nama Project</th>
+                                <th style="white-space: nowrap;">Nilai Total Project (Sebelum PPN)</th>
+                                <th style="white-space: nowrap;">Nilai Project Per Tahun (Sebelum PPN)</th>
+                                <th style="white-space: nowrap;">Nilai Project Per Bulan (Sebelum PPN)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($sales as $data)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ route('sales.show', $data->id) }}">Detail</a>
+                                    </td>
+                                    <td style="white-space: nowrap;">{{ $data->unit_kerja }}</td>
+                                    <td>{{ $data->customer }}</td>
+                                    <td>{{ $data->nama_project }}</td>
+                                    <td style="white-space: nowrap;">RP
+                                        {{ number_format(floatval($data->nilai_total_project), 0, ',', '.') }}</td>
+                                    <td style="white-space: nowrap;">RP
+                                        {{ number_format(floatval($data->nilai_project_perbulan), 0, ',', '.') }}</td>
+                                    <td style="white-space: nowrap;">RP
+                                        {{ number_format(floatval($data->nilai_project_pertahun), 0, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                {{-- </div> --}}
+            </div>
         </div>
     </div>
     <div class="modal fade" id="ModalTambahCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"

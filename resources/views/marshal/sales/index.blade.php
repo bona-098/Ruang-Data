@@ -124,9 +124,9 @@
                             <td>{{ $data->customer }}</td>
                             {{-- <td>{{ $data->segment }}</td> --}}
                             <td>{{ $data->nama_project }}</td>
-                            <td>{{ number_format(floatval( $data->nilai_total_project), 0, ',', '.') }}</td>
-                            <td>{{ number_format(floatval( $data->nilai_project_pertahun), 0, ',', '.') }}</td>
-                            <td>{{ number_format(floatval($data->nilai_project_perbulan), 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format(floatval( $data->nilai_total_project), 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format(floatval( $data->nilai_project_pertahun), 0, ',', '.') }}</td>
+                            <td>Rp {{ number_format(floatval($data->nilai_project_perbulan), 0, ',', '.') }}</td>
                             {{-- <td>{{ $data->progress_project }}</td>
                             <td>{{ $data->status_project }}</td> --}}
                         </tr>
