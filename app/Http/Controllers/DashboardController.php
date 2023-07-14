@@ -22,15 +22,57 @@ class DashboardController extends Controller
         $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('nilai_project');
         $governanceAkru = Project::where('kategori', 'Governance')->sum('nilai_project');
 
-        $telkomSudahAkru = Project::where('kategori', 'Telkom')->sum('sudah_akru');
-        $telkomGroupSudahAkru = Project::where('kategori', 'Telkom Group')->sum('sudah_akru');
-        $enterpriseSudahAkru = Project::where('kategori', 'Enterprise')->sum('sudah_akru');
-        $governanceSudahAkru = Project::where('kategori', 'Governance')->sum('sudah_akru');
+        $telkomSudahAkru = Project::where('kategori', 'Telkom')
+            ->where(function ($query) {
+                $query->where('sudah_akru', '!=', null)
+                    ->where('sudah_akru', '!=', 0);
+            })
+            ->sum('sudah_akru');
+        $telkomGroupSudahAkru = Project::where('kategori', 'Telkom Group')
+            ->where(function ($query) {
+                $query->where('sudah_akru', '!=', null)
+                    ->where('sudah_akru', '!=', 0);
+            })
+            ->sum('sudah_akru');
+        $enterpriseSudahAkru = Project::where('kategori', 'Enterprise')
+            ->where(function ($query) {
+                $query->where('sudah_akru', '!=', null)
+                    ->where('sudah_akru', '!=', 0);
+            })
+            ->sum('sudah_akru');
+        $governanceSudahAkru = Project::where('kategori', 'Governance')
+            ->where(function ($query) {
+                $query->where('sudah_akru', '!=', null)
+                    ->where('sudah_akru', '!=', 0);
+            })
+            ->sum('sudah_akru');
 
-        $telkomBelumAkru = Project::where('kategori', 'Telkom')->sum('sisa_belum_akru');
-        $telkomGroupBelumAkru = Project::where('kategori', 'Telkom Group')->sum('sisa_belum_akru');
-        $enterpriseBelumAkru = Project::where('kategori', 'Enterprise')->sum('sisa_belum_akru');
-        $governanceBelumAkru = Project::where('kategori', 'Governance')->sum('sisa_belum_akru');
+        $telkomBelumAkru = Project::where('kategori', 'Telkom')
+            ->where(function ($query) {
+                $query->where('sudah_akru', null)
+                    ->orWhere('sudah_akru', 0);
+            })
+            ->sum('sisa_belum_akru');
+        $telkomGroupBelumAkru = Project::where('kategori', 'Telkom Group')
+            ->where(function ($query) {
+                $query->where('sudah_akru', null)
+                    ->orWhere('sudah_akru', 0);
+            })
+            ->sum('sisa_belum_akru');
+        $enterpriseBelumAkru = Project::where('kategori', 'Enterprise')
+            ->where(function ($query) {
+                $query->where('sudah_akru', null)
+                    ->orWhere('sudah_akru', 0);
+            })
+            ->sum('sisa_belum_akru');
+        $governanceBelumAkru = Project::where('kategori', 'Governance')
+            ->where(function ($query) {
+                $query->where('sudah_akru', null)
+                    ->orWhere('sudah_akru', 0);
+            })
+            ->sum('sisa_belum_akru');
+
+
 
 
         $telkomDone = Project::where('kategori', 'Telkom')
@@ -44,34 +86,34 @@ class DashboardController extends Controller
             ->where('tahap', 'Komersial')
             ->count();
         $governanceDone =  Project::where('kategori', 'Governance')
-        ->where('tahap', 'Komersial')
-        ->count();
+            ->where('tahap', 'Komersial')
+            ->count();
 
         $telkomProgress = Project::where('kategori', 'Telkom')
-        ->where('tahap', 'OnHand')
-        ->count();
+            ->where('tahap', 'OnHand')
+            ->count();
         $telkomGroupProgress = Project::where('kategori', 'Telkom Group')
-        ->where('tahap', 'OnHand')
-        ->count();
+            ->where('tahap', 'OnHand')
+            ->count();
         $enterpriseProgress = Project::where('kategori', 'Enterprise')
-        ->where('tahap', 'OnHand')
-        ->count();
+            ->where('tahap', 'OnHand')
+            ->count();
         $governanceProgress = Project::where('kategori', 'Governance')
-        ->where('tahap', 'OnHand')
-        ->count();
+            ->where('tahap', 'OnHand')
+            ->count();
 
         $telkomBelumMulai = Project::where('kategori', 'Telkom')
-        ->where('tahap', 'Co-OnHand')
-        ->count();
+            ->where('tahap', 'Co-OnHand')
+            ->count();
         $telkomGroupBelumMulai = Project::where('kategori', 'Telkom Group')
-        ->where('tahap', 'Co-OnHand')
-        ->count();
+            ->where('tahap', 'Co-OnHand')
+            ->count();
         $enterpriseBelumMulai = Project::where('kategori', 'Enterprise')
-        ->where('tahap', 'Co-OnHand')
-        ->count();
+            ->where('tahap', 'Co-OnHand')
+            ->count();
         $governanceBelumMulai =  Project::where('kategori', 'Governance')
-        ->where('tahap', 'Co-OnHand')
-        ->count();
+            ->where('tahap', 'Co-OnHand')
+            ->count();
 
 
 
