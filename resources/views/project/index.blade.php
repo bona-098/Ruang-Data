@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="filter2">Kategori</label>
-                            <select name="kategori" class="form-control" >
+                            <select name="kategori" class="form-control">
                                 <option value="">Semua Kategori</option>
                                 <option value="Enterprise"
                                     {{ isset($_GET['kategori']) && $_GET['kategori'] == 'Enterprise' ? 'selected' : '' }}>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="filter3">Tahap</label>
-                            <select name="tahap" class="form-control" >
+                            <select name="tahap" class="form-control">
                                 <option value="">Semua Tahap</option>
                                 <option value="Co-OnHand"
                                     {{ isset($_GET['tahap']) && $_GET['tahap'] == 'Co-OnHand' ? 'selected' : '' }}>
@@ -53,22 +53,22 @@
                     function submitForm1() {
                         document.getElementById('form_1').submit();
                     }
-        
+
                     function submitForm2() {
                         document.getElementById('form_1').submit();
                     }
-        
+
                     function submitForm3() {
                         document.getElementById('form_1').submit();
                     }
-        
+
                     function submitForm4() {
                         document.getElementById('form_1').submit();
                     }
                 </script>
             </div>
         </div>
-        
+
         {{-- Akhir Filter Tabel --}}
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -76,63 +76,50 @@
                 <h4 class="card-title">Data Project</h4>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahProject">
-                <!-- Button trigger modal -->
-                <i class="fa fa-user-plus"></i> Tambah Data
-                <!-- Button trigger modal -->
+                    <!-- Button trigger modal -->
+                    <i class="fa fa-user-plus"></i> Tambah Data
+                    <!-- Button trigger modal -->
                 </button>
                 <a button type="button" href="/projek" class="btn btn-primary">
                     <i class="fa fa-plus"></i> Import Data
                     </button> </a>
-                {{-- <h6 class="card-subtitle">Data table example</h6> --}}
 
                 <div class="table-responsive">
-                <table text-align: left; id="myTable" class="table  display table-bordered table-striped" style="font-size: 14px;"  >
-                    <thead>
-                        <tr>
-                            {{-- <th>No</th> --}}
-                            <th>Action</th>
-                            <th>Customer</th>
-                            <th>Witel</th>
-                            <th style="white-space: nowrap;">Nama Project</th>
-                            {{-- <th>kategori</th> --}}
-                            {{-- <th>Skem</th> --}}
-                            <th style="white-space: nowrap;">Nilai Project</th>
-                            <th style="white-space: nowrap;">Sudah Akru</th>
-                            <th style="white-space: nowrap;">Sisa Belum Akru</th>
-                            {{-- <th style="white-space: nowrap;">progress ML</th>
-                            <th style="white-space: nowrap;">progress MI</th>
-                            <th>Keterangan</th>
-                            <th>Akru</th> --}}
-                           {{-- <th>Tahap</th>  --}}
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($project as $p)
+                    <table text-align: left; id="myTable" class="table display table-bordered table-striped"
+                        style="font-size: 12px;">
+                        <thead>
                             <tr>
-                                {{-- <td>{{ $loop->iteration }}</td> --}}
-                                <td>
-                                    <div class=" text-center">
-                                        <a href="{{ route('project.show', $p->id) }}" class="btn btn-primary">Detail</a>
-                                    </div>
-                                </td>
-                                <td>{{ $p->customer }}</td>
-                                <td>{{ $p->witel }}</td>
-                                <td>{{ $p->nama_project }}</td>
-                                {{-- <td>{{ $p->kategori }}</td> --}}
-                                {{-- <td>{{ $p->skema }}</td> --}}
-                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->nilai_project), 0, ',', '.') }}</td>
-                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sudah_akru), 0, ',', '.') }}</td>
-                                <td style="white-space: nowrap;">Rp {{ number_format(floatval($p->sisa_belum_akru), 0, ',', '.') }}</td>
-                                {{-- <td>{{ $p->progress_ml }}</td>
-                                <td>{{ $p->progress_mi }}</td>
-                                <td>{{ $p->keterangan }}</td>
-                                <td>{{ $p->akru }}</td> --}}
-                                {{-- <td>{{ $p->tahap }}</td> --}}
+                                <th>Customer</th>
+                                <th>Witel</th>
+                                <th>Nama Project</th>
+                                <th>Progress ML</th>
+                                <th>Progress MI</th>
+                                <th style="white-space: nowrap;">Nilai Project</th>
+                                <th style="white-space: nowrap;">Sudah Akru</th>
+                                <th style="white-space: nowrap;">Sisa Belum Akru</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($project as $p)
+                                <tr>
+                                    <td>{{ $p->customer }}</a></td>
+                                    <td style="font-size: 12px;"><a href="{{ route('project.show', $p->id) }}"
+                                        target="_blank"
+                                        style="color: rgb(20, 19, 19); text-decoration: underline;">{{ $p->nama_project }}
+                                    </td>
+                                    <td>{{ $p->witel }}</td>
+                                    <td>{{ $p->progress_ml }}%</td>
+                                    <td>{{ $p->progress_mi }}%</td>
+                                    <td style="white-space: nowrap; font-size: 12px;">Rp
+                                        {{ number_format(floatval($p->nilai_project), 0, ',', '.') }}</td>
+                                    <td style="white-space: nowrap; font-size: 12px;">Rp
+                                        {{ number_format(floatval($p->sudah_akru), 0, ',', '.') }}</td>
+                                    <td style="white-space: nowrap; font-size: 12px;">Rp
+                                        {{ number_format(floatval($p->sisa_belum_akru), 0, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /# column -->
@@ -161,7 +148,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Customer</label>
                                             <input type="text" name="customer" id="customer" class="form-control"
-                                                placeholder="Customer" >
+                                                placeholder="Customer">
                                             <small class="form-control-feedback"> @error('customer')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -172,7 +159,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Witel</label>
-                                            <input name="witel"  type="text" class="form-control">
+                                            <input name="witel" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('witel')
                                                     {{ $message }}
@@ -183,7 +170,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kategori</label>
-                                            <select  name="kategori" class="form-control ">
+                                            <select name="kategori" class="form-control ">
                                                 <option value="">Pilih Kategori</option>
                                                 <option value="Enterprise">Enterprise</option>
                                                 <option value="Governance">Governance</option>
@@ -200,7 +187,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Nama Project</label>
-                                            <input name="nama_project"  type="text" id="nama_project"
+                                            <input name="nama_project" type="text" id="nama_project"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nama_project')
@@ -214,7 +201,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label>Skem</label>
-                                            <input name="skema"  type="text" class="form-control">
+                                            <input name="skema" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('skema')
                                                     {{ $message }}
@@ -227,8 +214,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Nilai Project</label>
-                                            <input  name="nilai_project" id="nilai_project" min="0"
-                                                type="number" class="form-control">
+                                            <input name="nilai_project" id="nilai_project" min="0" type="number"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('nilai_project')
                                                     {{ $message }}
@@ -239,8 +226,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sudah Akru</label>
-                                            <input  name="sudah_akru" id="sudah_akru" min="0"
-                                                type="number" class="form-control">
+                                            <input name="sudah_akru" id="sudah_akru" min="0" type="number"
+                                                class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sudah_akru')
                                                     {{ $message }}
@@ -251,7 +238,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Sisa Belum Akru</label>
-                                            <input  name="sisa_belum_akru" id="sisa_belum_akru" min="0"
+                                            <input name="sisa_belum_akru" id="sisa_belum_akru" min="0"
                                                 type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('sisa_belum_akru')
@@ -263,7 +250,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Lalu</label>
-                                            <input  name="progress_ml" type="text" class="form-control">
+                                            <input name="progress_ml" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
                                                     {{ $message }}
@@ -274,7 +261,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Ini</label>
-                                            <input  name="progress_mi" type="text" class="form-control">
+                                            <input name="progress_mi" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
                                                     {{ $message }}
@@ -285,18 +272,18 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Target Deal</label>
-                                            <input  name="target_deal" type="text" class="form-control">
+                                            <input name="target_deal" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('target_deal')
                                                     {{ $message }}
                                                 @enderror
                                             </small>
-                                        </div>  
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Keterangan</label>
-                                            <input  name="keterangan" type="text" class="form-control">
+                                            <input name="keterangan" type="text" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('keterangan')
                                                     {{ $message }}

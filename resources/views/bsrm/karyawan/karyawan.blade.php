@@ -16,43 +16,29 @@
                 <a button type="button" class="btn btn-primary" href="/import-karyawan">
                     <i class="fa fa-user-plus"></i> Import Karyawan
                 </button></a>              {{-- <h6 class="card-subtitle">Data table example</h6> --}}
-                <div class=" table-responsive">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">
+              <div class=" table-responsive"> 
+                    <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 12px;">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;">NIK Telpro</th>
-                                <th style="white-space: nowrap;">NIK Telkom Group</th>
+                                <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                 <th style="white-space: nowrap;">Nama Karyawan</th>
                                 {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
                                 <th style="white-space: nowrap;">Unit Kerja</th>
                                 <th style="white-space: nowrap;">Loker</th>
+                                <th>Jabatan</th>
+                                <th>Band</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($karyawan as $k)
                                 <tr>
-                                    {{-- <div class="dropdown">
-                                        <td>
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-cog"> Aksi</i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="{{ route('karyawan.show', $k->id) }}"
-                                                    target="_blank"><i class="fa fa-eye"></i> Detail</a>
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#ModalDeleteKaryawan{{ $k->id }}"><i class="fa fa-trash"></i>
-                                                    Delete</a>
-                                            </div>
-                                        </td>
-                                    </div> --}}
-                                    <td>{{ $k->nik }}</td>
-                                    <td style="white-space: nowrap;">{{ $k->no_hp }}</td>
-                                    <td>{{ $k->nama_karyawan }}</td>
-                                    {{-- <td>{{ $k->jenis_kelamin }}</td> --}}
+                                    <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}</td>
+                                    <td style="white-space: nowrap;">{{ $k->nama_karyawan }}</td>
                                     <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                     <td style="white-space: nowrap;">{{ $k->loker }}</td>
+                                    <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                    <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

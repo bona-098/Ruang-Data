@@ -7,25 +7,29 @@
         {{-- MEMFILTER DATA --}}
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Cari Pengguna</h4>
-
-                <form action="">
-                    <div class="row">
-                        <!--/span-->
-                        <div class="col">
-                            <div class="form-group">
-                                <input type="text" name="" placeholder="Nama/Email" class="form-control"
-                                    id="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>Cari</button>
-                                {{-- <button type="button" class="btn btn-success">Reset</button> --}}
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <h4 class="card-title">History Login</h4>
+                <div class="table-responsive ">
+                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Role</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($user as $u)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $u->name }}</td>
+                                    <td>{{ $u->role }}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>      
             </div>
         </div>
         {{-- MEMFILTER DATA --}}

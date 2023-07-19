@@ -3,7 +3,7 @@ $(document).ready(function() {
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 "columnDefs": [{
-                    "visible": false,
+                    "visible": true,
                     "targets": 2
                 }],
                 "order": [

@@ -31,6 +31,23 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 75%; /* Atur tinggi grafik sesuai keinginan Anda */
+      margin-bottom: 20px;
+    }
+
+    .chart-container canvas {
+      position: absolute;
+      width: 100% !important;
+      height: 100% !important;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body class="fix-header fix-sidebar">
