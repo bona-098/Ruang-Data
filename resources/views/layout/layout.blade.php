@@ -32,22 +32,17 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <style>
-    .chart-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 75%; /* Atur tinggi grafik sesuai keinginan Anda */
-      margin-bottom: 20px;
-    }
+    @media (max-width: 767px) {
+        /* CSS untuk memperbesar chart di perangkat mobile */
+        canvas#myChart2 {
+            width: 10%;
+        }
 
-    .chart-container canvas {
-      position: absolute;
-      width: 100% !important;
-      height: 100% !important;
-      top: 0;
-      left: 0;
+        .chartjs-render-monitor .chartjs-chart .chartjs-category-axis .chartjs-tick {
+            font-size: 10px;
+        }
     }
-  </style>
+</style>
 </head>
 
 <body class="fix-header fix-sidebar">

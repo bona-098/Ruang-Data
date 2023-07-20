@@ -213,7 +213,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Lalu</label>
-                                            <input  name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="text"
+                                            <input  name="progress_ml" id="progress_ml" value="{{ $project->progress_ml }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
@@ -225,7 +225,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progres Minggu Ini</label>
-                                            <input  name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="text"
+                                            <input  name="progress_mi" id="progress_mi" value="{{ $project->progress_mi }}" type="number"
                                                 class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')

@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
 
-           {{-- MEMFILTER DATA --}}
-           <div class="card">
+        {{-- MEMFILTER DATA --}}
+        <div class="card">
             <div class="card-body">
                 <form action="{{ route('gedung.index') }}" method="GET" id="form_1">
                     @csrf
@@ -13,13 +13,17 @@
                             <label for="filter2">Nama Witel :</label>
                             <select name="nama_witel" class="form-control" onchange="updateAreaOptions()">
                                 <option value="">Semua Witel</option>
-                                <option value="WITEL BALIKPAPAN" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN' ? 'selected' : '' }}>
+                                <option value="WITEL BALIKPAPAN"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN' ? 'selected' : '' }}>
                                     WITEL BALIKPAPAN</option>
-                                <option value="WITEL KALTIM" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALTIM' ? 'selected' : '' }}>
+                                <option value="WITEL KALTIM"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALTIM' ? 'selected' : '' }}>
                                     WITEL KALTIM</option>
-                                <option value="WITEL KALSEL" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL' ? 'selected' : '' }}>
+                                <option value="WITEL KALSEL"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL' ? 'selected' : '' }}>
                                     WITEL KALSEL</option>
-                                <option value="WITEL KALBAR" {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR' ? 'selected' : '' }}>
+                                <option value="WITEL KALBAR"
+                                    {{ isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR' ? 'selected' : '' }}>
                                     WITEL KALBAR</option>
                             </select>
                         </div>
@@ -27,21 +31,27 @@
                             <label for="filter2">Nama Area :</label>
                             <select name="nama_area" class="form-control">
                                 <option value="">Semua Area</option>
-                                @if(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN')
-                                    <option value="AREA BALIKPAPAN" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
+                                @if (isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL BALIKPAPAN')
+                                    <option value="AREA BALIKPAPAN"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA BALIKPAPAN' ? 'selected' : '' }}>
                                         AREA BALIKPAPAN</option>
                                 @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALTIM')
-                                    <option value="AREA KALTIM" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
+                                    <option value="AREA KALTIM"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTIM' ? 'selected' : '' }}>
                                         AREA KALTIM</option>
-                                    <option value="AREA KALTARA" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTARA' ? 'selected' : '' }}>
+                                    <option value="AREA KALTARA"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTARA' ? 'selected' : '' }}>
                                         AREA KALTARA</option>
                                 @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALSEL')
-                                    <option value="AREA KALSEL" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
+                                    <option value="AREA KALSEL"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALSEL' ? 'selected' : '' }}>
                                         AREA KALSEL</option>
-                                    <option value="AREA KALTENG" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTENG' ? 'selected' : '' }}>
+                                    <option value="AREA KALTENG"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALTENG' ? 'selected' : '' }}>
                                         AREA KALTENG</option>
                                 @elseif(isset($_GET['nama_witel']) && $_GET['nama_witel'] == 'WITEL KALBAR')
-                                    <option value="AREA KALBAR" {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
+                                    <option value="AREA KALBAR"
+                                        {{ isset($_GET['nama_area']) && $_GET['nama_area'] == 'AREA KALBAR' ? 'selected' : '' }}>
                                         AREA KALBAR</option>
                                 @endif
                             </select>
@@ -55,18 +65,18 @@
                 </form>
             </div>
         </div>
-        
+
         <script>
             function updateAreaOptions() {
                 const witelSelect = document.querySelector('select[name="nama_witel"]');
                 const areaSelect = document.querySelector('select[name="nama_area"]');
-        
+
                 // Mendapatkan nilai terpilih dari select witel
                 const selectedWitel = witelSelect.value;
-        
+
                 // Mengosongkan pilihan area saat witel berubah
                 areaSelect.innerHTML = '<option value="">Semua Area</option>';
-        
+
                 // Menambahkan pilihan area sesuai dengan witel yang dipilih
                 if (selectedWitel === 'WITEL BALIKPAPAN') {
                     areaSelect.innerHTML += `
@@ -95,8 +105,8 @@
                 }
             }
         </script>
-        
-        
+
+
         {{-- MEMFILTER DATA --}}
 
         {{-- <div class="card">
@@ -161,7 +171,7 @@
             </div>
         </div>
         {{-- Akhir Filter Tabel --}}
-        {{-- Data Tabel mulai baru --}} 
+        {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Gedung</h4>
@@ -169,43 +179,45 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahGedung">
                     <i class="fa fa-user-plus"></i> Tambah Gedung
                 </button>
-                <a button type="button" class="btn btn-primary" href="/gedung_import"><i
-                        class="fa fa-plus"></i> Import Data Gedung</button> </a>
+                <a button type="button" class="btn btn-primary" href="/gedung_import"><i class="fa fa-plus"></i> Import
+                    Data Gedung</button> </a>
                 {{-- <div class="table-responsive"> --}}
-                    <table text-align: left; id="myTable" class=" table table-responsive  display table-bordered table-striped">
-                        <thead>
+                <table text-align: left; id="myTable"
+                    class=" table table-responsive  display table-bordered table-striped" style="font-size: 14px;">
+                    <thead>
+                        <tr>
+                            <th style="white-space: nowrap;">ID Gedung</th>
+                            <th style="white-space: nowrap;">Nama Gedung</th>
+                            <th style="white-space: nowrap;">Nama Area</th>
+                            <th style="white-space: nowrap;">Nama Witel</th>
+                            <th>Kelas</th>
+                            <th style="white-space: nowrap;">Alamat</th>
+                            <th>Koordinat</th>
+                            <th>Luas</th>
+                            <th style="white-space: nowrap;">Total Petugas</th>
+                            {{-- <th>Action</th> --}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($gedung as $g)
                             <tr>
-                                <th>No</th>
-                                <th style="white-space: nowrap;">ID Gedung</th>
-                                <th style="white-space: nowrap;">Nama Gedung</th>
-                                <th style="white-space: nowrap;">Nama Area</th>
-                                <th style="white-space: nowrap;">Nama Witel</th>
-                                <th style="white-space: nowrap;">Alamat</th>
-                                <th>Koordinat</th>
-                                <th>Luas</th>
-                                <th style="white-space: nowrap;">Total Petugas</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($gedung as $g)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->Id_gedung }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->nama_gedung }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->alamat }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->luasan }}</td>
-                                    <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
-                                    <td>
+
+                                <td>{{ $g->Id_gedung }}</td>
+                                <td style="white-space: nowrap;">{{ $g->nama_gedung }}</td>
+                                <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
+                                <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
+                                <td style="white-space: nowrap;">kelas</td>
+                                <td style="white-space: nowrap;">{{ $g->alamat }}</td>
+                                <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
+                                <td style="white-space: nowrap;">{{ $g->luasan }}</td>
+                                <td style="white-space: nowrap;">{{ $g->total_petugas }}</td>
+                                {{-- <td>
                                         <a class="btn btn-primary" href="{{ route('gedung.show', $g->id) }}">Detail</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </td> --}}
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 {{-- </div> --}}
             </div>
         </div>

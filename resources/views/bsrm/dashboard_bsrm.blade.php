@@ -58,68 +58,64 @@
             </div>
         </div> --}}
         {{-- Selesai --}}
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-lg-12 col-md-5">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Performansi Project Solution</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="myChart1"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /# column -->
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-lg-12 col-md-5">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Perbandingan Jumlah Nilai</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="myChart2"></canvas>
 
+        <div class="row">
+            <!-- Bar Chart -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Performansi Project Solution</h4>
                             </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="myChart1"></canvas>
                         </div>
                     </div>
                 </div>
-                <!-- /# column -->
             </div>
+            <!-- /# column -->
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-lg-12 col-md-5">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4>Perbandingan Jumlah Proyek</h4>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <canvas id="myChart3"></canvas>
 
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <!-- Bar Chart -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Perbandingan Jumlah Nilai</h4>
                             </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="myChart2"></canvas>
+
                         </div>
                     </div>
                 </div>
-                <!-- /# column -->
             </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <!-- Bar Chart -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Perbandingan Jumlah Proyek</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
         </div>
+
+
+        
+
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -239,6 +235,32 @@
         //         window.open(url, "_blank");
         //     }
         // });
+
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+
+        const formatter = (value) => {
+            if (isMobileDevice()) {
+                if (value >= 1000000000) {
+                    return (value / 1000000000).toFixed(1) + ' M';
+                } else {
+                    return value.toFixed(0); // Tampilkan nilai bulat jika tidak mencapai 1 Miliar
+                }
+            } else {
+                if (value >= 1000000000) {
+                    return (value / 1000000000).toFixed(1) + ' M';
+                } else if (value >= 1000000) {
+                    return (value / 1000000).toFixed(1) + ' M';
+                } else if (value >= 1000) {
+                    return (value / 1000).toFixed(1) + ' K';
+                } else {
+                    return value.toFixed(0);
+                }
+            }
+        };
+
+
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         console.log(ctx2);
         const chart2 = new Chart(ctx2, {
@@ -282,9 +304,10 @@
                 scales: {
                     y: {
                         beginAtZero: true,
+                        grace: '50%',
                         ticks: {
                             callback: function(value, index, values) {
-                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                return formatter(value);
                             }
                         }
                     }
@@ -294,7 +317,7 @@
                         anchor: 'end',
                         align: 'top',
                         formatter: function(value) {
-                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                            return formatter(value);
                         }
                     }
                 },

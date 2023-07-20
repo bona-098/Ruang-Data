@@ -250,7 +250,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Lalu</label>
-                                            <input name="progress_ml" type="text" class="form-control">
+                                            <input name="progress_ml" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_ml')
                                                     {{ $message }}
@@ -261,7 +261,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Progress Minggu Ini</label>
-                                            <input name="progress_mi" type="text" class="form-control">
+                                            <input name="progress_mi" type="number" class="form-control">
                                             <small class="form-control-feedback">
                                                 @error('progress_mi')
                                                     {{ $message }}
