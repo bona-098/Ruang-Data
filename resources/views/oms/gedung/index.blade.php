@@ -202,8 +202,12 @@
                         @foreach ($gedung as $g)
                             <tr>
 
-                                <td>{{ $g->Id_gedung }}</td>
-                                <td style="white-space: nowrap;">{{ $g->nama_gedung }}</td>
+                                <td style="font-size: 12px;">{{ $g->Id_gedung }}
+                                </td>
+                                <td style="white-space: nowrap; font-size: 12px;">
+                                    <a href="{{ route('gedung.show', $g->id) }}" target="_blank"
+                                        style="color: rgb(20, 19, 19); text-decoration: underline;">{{ $g->nama_gedung }}
+                                </td>
                                 <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
                                 <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
                                 <td style="white-space: nowrap;">kelas</td>

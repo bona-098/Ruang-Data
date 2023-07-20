@@ -14,16 +14,16 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Role</th>
                                 <th>Waktu</th>
+                                <th>Aktifitas</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($user as $u)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $u->name }}</td>
-                                    <td>{{ $u->role }}</td>
+                                    <td>{{ $u->name }}/{{ $u->role }}</td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                             @endforeach
