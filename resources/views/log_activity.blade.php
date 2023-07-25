@@ -1,11 +1,6 @@
 <!-- resources/views/log_activity.blade.php -->
 @extends('layout.layout')
 @section('content')
-
-    <head>
-        <title>Log Activity Lists</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    </head>
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -29,9 +24,9 @@
                                         <td>{{ $log->activity }}</td>
                                         <td>{{ $log->login_at }}</td>
                                     </tr>
+                                    @endforeach
                         </tbody>
                     </table>
-                    @endforeach
                 @else
                     <tr>
                         <td colspan="4">No log activity found.</td>
