@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->string('customer')->nullable();
-            $table->string('witel')->nullable();
-            $table->string('nama_project')->nullable();
-            $table->string('kategori')->nullable();
-            $table->string('skema')->nullable();
-            $table->string('nilai_project')->nullable();
-            $table->string('sudah_akru')->nullable();
-            $table->string('sisa_belum_akru')->nullable();
-            $table->string('progress_ml')->nullable();
-            $table->string('progress_mi')->nullable();
-            $table->string('target_deal')->nullable();
-            $table->string('keterangan')->nullable();
-            $table->string('tahap')->nullable();
-            $table->string('akru')->nullable();
+            $table->string('customer', 50)->nullable();
+            $table->string('witel', 50)->nullable();
+            $table->string('nama_project', 50)->nullable();
+            $table->string('kategori', 255)->nullable();
+            $table->string('skema', 50)->nullable();
+            $table->string('nilai_project', 255)->nullable();
+            $table->string('sudah_akru', 255)->nullable();
+            $table->string('sisa_belum_akru', 255)->nullable();
+            $table->string('progress_ml', 255)->nullable();
+            $table->string('progress_mi', 255)->nullable();
+            $table->string('target_deal', 255)->nullable();
+            $table->string('keterangan', 255)->nullable();
+            $table->string('tahap', 255)->nullable();
+            $table->string('akru', 255)->nullable();
             $table->timestamps();
         });
     }
