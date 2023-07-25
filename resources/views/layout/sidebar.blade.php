@@ -44,6 +44,11 @@
                             class="fa fa-tv"></i><span class="hide-menu">Data Pengguna</span></a>
                 </li>
                 @endcanany
+                @canany(['admin', 'viewer'])
+                <li> <a class="" href="log-activity" aria-expanded="false"><i
+                            class="fa fa-tv"></i><span class="hide-menu">History</span></a>
+                </li>
+                @endcanany
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

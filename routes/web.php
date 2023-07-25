@@ -28,6 +28,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PerangkatController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -57,9 +58,8 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 // Route::get('/bsrm', function () {
 //     return view('Role.bsrm');
 // });
-Route::get('/log-activity', 'ActivityController@logActivityList');
-Route::post('/log-activity', 'ActivityController@logActivity');
-
+Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
+Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log.activity');
 // Rute untuk login dan logout
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest') 
