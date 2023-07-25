@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+// app/Http/Controllers/Auth/AuthenticatedSessionController.php
+
+// app/Http/Controllers/Auth/AuthenticatedSessionController.php
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -10,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\LogActivities; // Import model LogActivities
+use Carbon\Carbon;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -27,25 +32,40 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-         $request->authenticate();
-         $request->session()->regenerate();
-    
-         Alert::toast('Berhasil Login', 'success');
-    
-         return redirect()->intended(RouteServiceProvider::HOME);
+        $request->authenticate();
+        $request->session()->regenerate();
+
+        // Rekam aktivitas login ke dalam database
+        LogActivities::create([
+            'user_id' => auth()->user()->id,
+            'activity' => 'login',
+            'login_at' => Carbon::now('Asia/Singapore'), // Sesuaikan dengan timezone yang diinginkan
+        ]);
+
+        Alert::toast('Berhasil Login', 'success');
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
-    
 
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
-        Alert::toast('Semoga Hari mu Menyenangkan', 'success');
-        $request->session()->invalidate();
+        // Cek apakah user sedang login sebelum melakukan logout
+        if (Auth::guard('web')->check()) {
+            // Rekam aktivitas logout ke dalam database
+            LogActivities::create([
+                'user_id' => auth()->user()->id,
+                'activity' => 'logout',
+                'login_at' => Carbon::now('Asia/Singapore'), // Sesuaikan dengan timezone yang diinginkan
+            ]);
 
-        $request->session()->regenerateToken();
+            Auth::guard('web')->logout();
+            Alert::toast('Semoga Hari mu Menyenangkan', 'success');
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
 
         return redirect('/');
     }

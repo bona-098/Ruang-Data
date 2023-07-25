@@ -6,36 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateActivityLogTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('activity_log', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('log_name', 100)->nullable();
-            $table->string('description', 255)->nullable();
-            $table->text('properties')->nullable();
-            $table->unsignedBigInteger('subject_id');
-            $table->string('subject_type', 100);
-            $table->unsignedBigInteger('causer_id')->nullable();
-            $table->string('causer_type', 100)->nullable();
+            $table->id();
+            $table->unsignedBigInteger('user_id')->nullable(); // Hapus properti auto_increment pada kolom ini
+            $table->string('activity')->notnull();
+            $table->timestamp('login_at')->notnull();
             $table->timestamps();
 
-            // Nama indeks disetel menjadi 'activity_log_index'
-            $table->index(['log_name', 'subject_id', 'subject_type', 'causer_id', 'causer_type'], 'activity_log_index');
+            // Index untuk kolom user_id
+            $table->index('user_id');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('activity_log');
     }
-};
+}
