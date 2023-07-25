@@ -80,11 +80,103 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" data-toggle="modal"
-                                                        data-target="#ModalUpdatePetugas" href="#">Edit</a>
+                                                        data-target="#ModalUpdatePetugas{{ $pe->id }}" href="#">Edit</a>
                                                     <a class="dropdown-item" data-toggle="modal"
                                                         data-target="#ModalDeletePetugas" href="#">Delete</a>
                                                 </div>
                                             </td>
+                                        </div>
+                                        {{-- modalupdate petugas --}}
+                                        <div class="modal fade" id="ModalUpdatePetugas{{ $pe->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
+                                            aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Update Petugas</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="card-body">
+                                                            <form action="{{ route('personil.update', $pe->id) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="form-body">
+                                                                    <!--/row-->
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama
+                                                                                    Petugas</label>
+                                                                                <input value="{{ $pe->nama }}"
+                                                                                    type="text" required name="nama"
+                                                                                    class="form-control">
+                                                                                <small class="form-control-feedback">
+                                                                                    @error('nama')
+                                                                                        {{ $message }}
+                                                                                    @enderror </small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--/span-->
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Area</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $gedung->nama_area }}"
+                                                                                    name="area" class="form-control"
+                                                                                    required>
+                                                                                @error('telepon')
+                                                                                    <small
+                                                                                        class="form-control-feedback">{{ $message }}</small>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Witel</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $gedung->nama_witel }}"
+                                                                                    name="witel" class="form-control"
+                                                                                    required>
+                                                                                @error('nik')
+                                                                                    <small
+                                                                                        class="form-control-feedback">{{ $message }}</small>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    class="control-label">Jabatan</label>
+                                                                                <input type="text" name="jabatan"
+                                                                                    class="form-control" required>
+                                                                                @error('lokasi_kerja')
+                                                                                    <small
+                                                                                        class="form-control-feedback">{{ $message }}</small>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--/span-->
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Simpan</button>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                 @endforeach
                                 </tr>
@@ -98,8 +190,8 @@
     </div>
 
     <!-- KONTEN MODAL UPDATE Gedung  -->
-    <div class="modal fade" id="ModalUpdateGedung" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static"
-        data-keyboard="false" aria-hidden="true">
+    <div class="modal fade" id="ModalUpdateGedung" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -330,80 +422,9 @@
     <!-- KONTEN MODAL Tambah Petugas -->
 
     <!-- KONTEN MODAL Update Petugas  -->
-    
-    <div class="modal fade" id="ModalUpdatePetugas" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Petugas</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <form action="{{ route('personil.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-body">
-                                <!--/row-->
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Petugas</label>
-                                            <input value="{{ $pe->nama }}" type="text" required name="nama" class="form-control">
-                                            <small class="form-control-feedback"> @error('nama')
-                                                    {{ $message }}
-                                                @enderror </small>
-                                        </div>
-                                    </div>
-                                    <!--/span-->
 
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Area</label>
-                                            <input type="text" value="{{ $gedung->nama_area }}" name="area"
-                                                class="form-control" required>
-                                            @error('telepon')
-                                                <small class="form-control-feedback">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Witel</label>
-                                            <input type="text" value="{{ $gedung->nama_witel }}" name="witel"
-                                                class="form-control" required>
-                                            @error('nik')
-                                                <small class="form-control-feedback">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Jabatan</label>
-                                            <input type="text" name="jabatan" class="form-control" required>
-                                            @error('lokasi_kerja')
-                                                <small class="form-control-feedback">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--/span-->
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
+    {{-- @endforeach --}}
     <!-- KONTEN MODAL Tambah Petugas -->
 
     {{-- KONTEN MODAL DELETE Petugas --}}
