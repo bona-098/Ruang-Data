@@ -13,20 +13,22 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Waktu</th>
-                                <th>Aktifitas</th>
+                                <th>Subject</th>
+                                <th>URL</th>
+                                <th>Username</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $u)
+                            @if($logs->count())
+                            @foreach($logs as $key => $log)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $u->name }}/{{ $u->role }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $log->subject }}</td>
+                                    <td>{{ $log->url }}</td>
+                                    <td>{{ $log->agent }}</td>
                                 </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>      
@@ -103,8 +105,10 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
+                    @can(['admin'])
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h5>
                     <br>
+                    @endcan
                 </div>
                 <div class="modal-body">
                     <div class="card-body">

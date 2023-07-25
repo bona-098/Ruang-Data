@@ -10,12 +10,14 @@
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
+                @canany(['bsrm', 'admin'])
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
                     <i class="fa fa-user-plus"></i> Tambah Karyawan
                 </button>
                 <a button type="button" class="btn btn-primary" href="/import-karyawan">
                     <i class="fa fa-user-plus"></i> Import Karyawan
-                </button></a>              {{-- <h6 class="card-subtitle">Data table example</h6> --}}
+                </button></a>
+                @endcanany              {{-- <h6 class="card-subtitle">Data table example</h6> --}}
               <div class=" table-responsive"> 
                     <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 12px;">
                         <thead>

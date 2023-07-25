@@ -41,6 +41,12 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 'oms',
             ],
+            [
+                'name' => 'viewer',
+                'email' => 'telpro@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
         ];
 
         DB::table('users')->insert($users);

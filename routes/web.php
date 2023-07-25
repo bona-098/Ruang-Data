@@ -57,6 +57,8 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 // Route::get('/bsrm', function () {
 //     return view('Role.bsrm');
 // });
+Route::get('/log-activity', 'ActivityController@logActivityList');
+Route::post('/log-activity', 'ActivityController@logActivity');
 
 // Rute untuk login dan logout
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
