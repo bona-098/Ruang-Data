@@ -22,7 +22,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Id</th>
-                                    <td colspan="6">{{ $gedung->Id_gedung}}</td>
+                                    <td colspan="6">{{ $gedung->Id_gedung }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nama Area</th>
@@ -46,11 +46,11 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Luas</th>
-                                    <td colspan="6">{{ $gedung->luasan}}</td>
+                                    <td colspan="6">{{ $gedung->luasan }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Petugas</th>
-                                    <td colspan="6">{{ $gedung->total_petugas}}</td>
+                                    <td colspan="6">{{ $gedung->total_petugas }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;"><strong>Daftar Petugas Gedung</strong>
@@ -288,7 +288,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Area</label>
-                                            <input type="text" name="area" class="form-control" required>
+                                            <input type="text" value="{{ $gedung->nama_area }}" name="area"
+                                                class="form-control" required>
                                             @error('telepon')
                                                 <small class="form-control-feedback">{{ $message }}</small>
                                             @enderror
@@ -297,7 +298,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Witel</label>
-                                            <input type="text" name="witel" class="form-control" required>
+                                            <input type="text" value="{{ $gedung->nama_witel }}" name="witel"
+                                                class="form-control" required>
                                             @error('nik')
                                                 <small class="form-control-feedback">{{ $message }}</small>
                                             @enderror
@@ -328,17 +330,17 @@
     <!-- KONTEN MODAL Tambah Petugas -->
 
     <!-- KONTEN MODAL Update Petugas  -->
+    
     <div class="modal fade" id="ModalUpdatePetugas" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Petugas</h5>
-
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form action="{{ route('personil.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('personil.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
                                 <!--/row-->
@@ -347,7 +349,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Nama Petugas</label>
-                                            <input required type="text" required name="nama" class="form-control">
+                                            <input value="{{ $pe->nama }}" type="text" required name="nama" class="form-control">
                                             <small class="form-control-feedback"> @error('nama')
                                                     {{ $message }}
                                                 @enderror </small>
@@ -358,42 +360,33 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nomor Telepon</label>
-                                            <input required type="text" required name="telepon" class="form-control">
-                                            <small class="form-control-feedback"> @error('telepon')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <label class="control-label">Area</label>
+                                            <input type="text" value="{{ $gedung->nama_area }}" name="area"
+                                                class="form-control" required>
+                                            @error('telepon')
+                                                <small class="form-control-feedback">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nik</label>
-                                            <input required type="text" required name="nik" class="form-control">
-                                            <small class="form-control-feedback"> @error('nik')
-                                                    {{ $message }}
-                                                @enderror </small>
+                                            <label class="control-label">Witel</label>
+                                            <input type="text" value="{{ $gedung->nama_witel }}" name="witel"
+                                                class="form-control" required>
+                                            @error('nik')
+                                                <small class="form-control-feedback">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <!--/span-->
-
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Lokasi Kerja</label>
-                                            <input required type="text" required name="lokasi_kerja"
-                                                class="form-control">
+                                            <label class="control-label">Jabatan</label>
+                                            <input type="text" name="jabatan" class="form-control" required>
+                                            @error('lokasi_kerja')
+                                                <small class="form-control-feedback">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
-
-                                    <!--/span-->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kontrak</label>
-                                            <input required type="text" required name="kontrak" class="form-control">
-                                        </div>
-                                    </div>
-
                                     <!--/span-->
 
                                 </div>
@@ -410,6 +403,7 @@
             </div>
         </div>
     </div>
+    @endforeach
     <!-- KONTEN MODAL Tambah Petugas -->
 
     {{-- KONTEN MODAL DELETE Petugas --}}

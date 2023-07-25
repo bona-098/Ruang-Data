@@ -179,7 +179,49 @@
     <script type="text/javascript">
         //BARCHART TESTING
 
-        
+
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+
+        const formatterchart1 = (value) => {
+            if (value >= 1000000000) {
+                return (value / 1000000000).toFixed(1) + ' M';
+            } else if (value >= 1000000) {
+                return (value / 1000000).toFixed(1) + ' Jt';
+            } else if (value >= 1000) {
+                return (value / 1000).toFixed(1) + ' K';
+            } else {
+                return value.toFixed(0);
+            }
+        };
+
+
+
+
+        function setChartHeight() {
+            const chartCanvas = document.getElementById('myChart1');
+            const chartHeightMobile = 300; // Adjust the height as needed for mobile devices
+            const chartHeightDesktop = 240; // Adjust the height as needed for desktop devices
+
+            // Set the chart height based on the device width
+            if (window.innerWidth <= 767) {
+                chartCanvas.style.height = chartHeightMobile + 'px';
+            } else {
+                chartCanvas.style.height = chartHeightDesktop + 'px';
+            }
+        }
+
+        // Call the function on page load
+        setChartHeight();
+
+        // Call the function whenever the window is resized
+        window.addEventListener('resize', setChartHeight);
+
+
+
+
+
 
         const ctx1 = document.getElementById('myChart1').getContext('2d');
         const chart1 = new Chart(ctx1, {
@@ -190,14 +232,18 @@
                 ],
                 datasets: [{
                         label: 'Target',
-                        data: [200, 2368, 6903, 13754, 19187, 25746, 35271, 42273, 49091, 62615, 80553, 110512],
+                        data: [200000000, 2368000000, 6903000000, 13754000000, 19187000000, 25746000000,
+                            35271000000, 42273000000, 49091000000, 62615000000, 80553000000, 110512000000
+                        ],
                         backgroundColor: 'rgba(0, 123, 255, 0.9)',
                         borderColor: 'rgba(0, 123, 255, 0.9)',
                         borderWidth: 1
                     },
                     {
                         label: 'Realisasi',
-                        data: [710, 15115, 14856, 20572, 28117, 0, 0, 0, 0, 0, 0, 0],
+                        data: [710000000, 15115000000, 14856000000, 20572000000, 28117000000, 0, 0, 0, 0, 0, 0,
+                            0
+                        ],
                         backgroundColor: 'rgba(64, 64, 64, 1.0)',
                         borderColor: 'rgba(64, 64, 64, 1.0)',
                         borderWidth: 1
@@ -206,25 +252,33 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                categoryPercentage: 1,
+                barPercentage: 0.3,
                 responsive: true, // Untuk membuat grafik responsif
                 maintainAspectRatio: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '5%',
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return formatterchart1(value);
+                            }
+                        }
                     }
                 },
                 plugins: {
                     datalabels: {
                         anchor: 'end',
                         align: 'top',
-                        formatter: function(value) {
-                            return value;
+                        formatter: function(value) { // Perbaiki di sini
+                            return formatterchart1(value);
                         }
                     }
                 }
             }
         });
-        
+
         // document.getElementById('myChart1').addEventListener('click', function(event) {
         //     const activePoints = chart1.getElementsAtEventForMode(event, 'nearest', {
         //         intersect: true

@@ -19,16 +19,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($logs->count())
-                            @foreach($logs as $key => $log)
-                                <tr>
-                                    <td>{{ ++$key }}</td>
-                                    <td>{{ $log->subject }}</td>
-                                    <td>{{ $log->url }}</td>
-                                    <td>{{ $log->agent }}</td>
-                                </tr>
-                            @endforeach
-                            @endif
+                            <td>1</td>
+                            <td>SUbej</td>
+                            <td>www.youtube.com</td>
+                            <td>Xprovincere</td>
                         </tbody>
                     </table>
                 </div>      
