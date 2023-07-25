@@ -82,7 +82,7 @@ class UserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'role' => ['required', Rule::in(['bsrm', 'project', 'sales', 'admin', 'oms'])],
+            'role' => ['required', Rule::in(['bsrm', 'project', 'sales', 'admin', 'oms', 'viewer'])],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

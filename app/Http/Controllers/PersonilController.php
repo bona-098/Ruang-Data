@@ -47,6 +47,7 @@ class PersonilController extends Controller
             'area' => 'required',
             'witel' => 'required',
             'jabatan' => 'required',
+            'gedung_id' => 'required',
         ]);
     
         try {

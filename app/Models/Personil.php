@@ -15,6 +15,7 @@ class Personil extends Model
         'area',
         'witel',
         'jabatan',
+        'gedung_id',
         ];
     
         /**

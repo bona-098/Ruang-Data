@@ -13,9 +13,9 @@
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateGedung" href="#">Edit</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteGedung" href="#">Delete</a>
                 </div>
-                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPetugas">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPetugas">
                     <i class="fa fa-user-plus"></i> Tambah Daftar Petugas
-                </button> --}}
+                </button>
                 <div style="margin-top: 20px;">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-bordered table-striped">
@@ -59,18 +59,18 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Telpon</th>
-                                    <th>NIK</th>
-                                    {{-- <th>Email</th> --}}
-                                    <th>Action</th>
+                                    <th>Area</th>
+                                    <th>Witel</th>
+                                    <th>Jabatan</th>
                                 </tr>
 
-                                {{-- @foreach ($personil as $pe)
+                                @foreach ($personil as $pe)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pe->nama }}</td>
-                                        <td>{{ $pe->telepon }}</td>
-                                        <td>{{ $pe->nik }}</td>
+                                        <td>{{ $pe->area }}</td>
+                                        <td>{{ $pe->witel }}</td>
+                                        <td>{{ $pe->jabatan }}</td>
                                         <div class="dropdown">
                                             <td>
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
@@ -87,7 +87,7 @@
                                             </td>
                                         </div>
                                 @endforeach
-                                </tr> --}}
+                                </tr>
                             </tbody>
                         </table>
 
@@ -268,7 +268,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Petugas</h5>
-
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
@@ -288,8 +287,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nomor Telepon</label>
-                                            <input type="text" name="telepon" class="form-control" required>
+                                            <label class="control-label">Area</label>
+                                            <input type="text" name="area" class="form-control" required>
                                             @error('telepon')
                                                 <small class="form-control-feedback">{{ $message }}</small>
                                             @enderror
@@ -297,8 +296,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Nik</label>
-                                            <input type="text" name="nik" class="form-control" required>
+                                            <label class="control-label">Witel</label>
+                                            <input type="text" name="witel" class="form-control" required>
                                             @error('nik')
                                                 <small class="form-control-feedback">{{ $message }}</small>
                                             @enderror
@@ -306,18 +305,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Lokasi Kerja</label>
-                                            <input type="text" name="lokasi_kerja" class="form-control" required>
+                                            <label class="control-label">Jabatan</label>
+                                            <input type="text" name="jabatan" class="form-control" required>
                                             @error('lokasi_kerja')
-                                                <small class="form-control-feedback">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kontrak</label>
-                                            <input type="text" name="kontrak" class="form-control" required>
-                                            @error('kontrak')
                                                 <small class="form-control-feedback">{{ $message }}</small>
                                             @enderror
                                         </div>

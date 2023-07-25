@@ -149,10 +149,12 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Button trigger modal -->
+                    @canany(['bsrm', 'admin'])
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPerformance"
                         style="margin-bottom: 10px">
                         <i class="fa fa-user-plus"></i> Tambah Data
                     </button>
+                    @endcanany
                     <table id="example23" class="table table-responsive table-bordered">
                         <thead>
                             <tr>

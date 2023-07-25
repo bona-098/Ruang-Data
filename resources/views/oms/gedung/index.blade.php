@@ -176,11 +176,13 @@
             <div class="card-body">
                 <h4 class="card-title">Data Gedung</h4>
                 <br>
+                @canany(['oms', 'admin'])
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahGedung">
                     <i class="fa fa-user-plus"></i> Tambah Gedung
                 </button>
                 <a button type="button" class="btn btn-primary" href="/gedung_import"><i class="fa fa-plus"></i> Import
                     Data Gedung</button> </a>
+                @endcanany
                 {{-- <div class="table-responsive"> --}}
                 <table text-align: left; id="myTable"
                     class=" table table-responsive  display table-bordered table-striped" style="font-size: 14px;">
@@ -321,6 +323,173 @@
                                                     @enderror </small>
                                             </div>
                                         </div>
+                                        <!--/span-->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Alamat</label>
+                                                <input required type="text" required name="alamat"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('alamat')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Koordinat</label>
+                                                <input required type="text" required name="koordinat"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('koordinat')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Luasan</label>
+                                                <input required type="text" required name="luasan"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('luasan')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Total Petugas</label>
+                                                <input required type="text" required name="total_petugas"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('total_petugas')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Id Gedung</label>
+                                                <input required type="text" required name="Id_gedung"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('Id_gedung')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+
+                                        <!--/span-->
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Tambah Personil -->
+        <div class="modal fade" id="ModalTambahGedung" tabindex="-1" aria-labelledby="exampleModalLabel"
+            data-backdrop="static" data-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Personil</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <form action="{{ route('personil.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-body">
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nama Gedung</label>
+                                                <input required type="text" required name="nama_gedung"
+                                                    class="form-control">
+                                                <small class="form-control-feedback"> @error('nama_gedung')
+                                                        {{ $message }}
+                                                    @enderror </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Area</label>
+                                                <select required name="nama_area" class="form-control custom-select"
+                                                    id="nama_area">
+                                                    <option value="">Pilih Area</option>
+                                                    <option value="Balikpapan">Balikpapan</option>
+                                                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                                    <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                                                </select>
+                                                <small class="form-control-feedback">
+                                                    @error('area')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Witel</label>
+                                                <select required name="nama_witel" class="form-control custom-select"
+                                                    id="nama_witel">
+                                                    <option value="">Pilih Witel</option>
+                                                    <!-- Opsi witel akan ditambahkan melalui JavaScript -->
+                                                </select>
+                                                <small class="form-control-feedback">
+                                                    @error('witel')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                            // Mendengarkan perubahan pada dropdown "Area"
+                                            document.getElementById('nama_area').addEventListener('change', function() {
+                                                var witelDropdown = document.getElementById('nama_witel');
+                                                witelDropdown.innerHTML = ''; // Menghapus opsi witel sebelumnya
+
+                                                var selectedArea = this.value;
+
+                                                // Menambahkan opsi witel berdasarkan area yang dipilih
+                                                if (selectedArea === 'Balikpapan') {
+                                                    addOption(witelDropdown, 'Witel Balikpapan', 'Witel Balikpapan');
+                                                } else if (selectedArea === 'Kalimantan Timur') {
+                                                    addOption(witelDropdown, 'Witel Samarinda', 'Witel Samarinda');
+                                                    addOption(witelDropdown, 'Witel Kaltara', 'Witel Kaltara');
+                                                } else if (selectedArea === 'Kalimantan Selatan') {
+                                                    addOption(witelDropdown, 'Witel Kalsel', 'Witel Kalsel');
+                                                    addOption(witelDropdown, 'Witel Kalteng', 'Witel Kalteng');
+                                                } else if (selectedArea === 'Kalimantan Barat') {
+                                                    addOption(witelDropdown, 'Witel Kalbar', 'Witel Kalbar');
+                                                }
+                                            });
+
+                                            // Fungsi untuk menambahkan opsi ke dalam dropdown
+                                            function addOption(select, text, value) {
+                                                var option = document.createElement('option');
+                                                option.text = text;
+                                                option.value = value;
+                                                select.add(option);
+                                            }
+                                        </script>
+
+                                        <!--/span-->
+
+                                        
                                         <!--/span-->
 
                                         <div class="col-md-6">
