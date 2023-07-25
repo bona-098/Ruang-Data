@@ -114,7 +114,7 @@
         </div>
 
 
-        
+
 
         <div class="row">
             <div class="col-lg-6">
@@ -178,6 +178,9 @@
 
     <script type="text/javascript">
         //BARCHART TESTING
+
+        
+
         const ctx1 = document.getElementById('myChart1').getContext('2d');
         const chart1 = new Chart(ctx1, {
             type: 'bar',
@@ -203,6 +206,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -219,6 +224,7 @@
                 }
             }
         });
+        
         // document.getElementById('myChart1').addEventListener('click', function(event) {
         //     const activePoints = chart1.getElementsAtEventForMode(event, 'nearest', {
         //         intersect: true
@@ -261,6 +267,26 @@
         };
 
 
+
+        function setChartHeight() {
+            const chartCanvas = document.getElementById('myChart2');
+            const chartHeightMobile = 300; // Adjust the height as needed for mobile devices
+            const chartHeightDesktop = 240; // Adjust the height as needed for desktop devices
+
+            // Set the chart height based on the device width
+            if (window.innerWidth <= 767) {
+                chartCanvas.style.height = chartHeightMobile + 'px';
+            } else {
+                chartCanvas.style.height = chartHeightDesktop + 'px';
+            }
+        }
+
+        // Call the function on page load
+        setChartHeight();
+
+        // Call the function whenever the window is resized
+        window.addEventListener('resize', setChartHeight);
+
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         console.log(ctx2);
         const chart2 = new Chart(ctx2, {
@@ -301,6 +327,8 @@
             options: {
                 categoryPercentage: 1,
                 barPercentage: 0.5,
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,

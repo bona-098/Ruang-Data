@@ -31,18 +31,7 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style>
-    @media (max-width: 767px) {
-        /* CSS untuk memperbesar chart di perangkat mobile */
-        canvas#myChart2 {
-            width: 10%;
-        }
 
-        .chartjs-render-monitor .chartjs-chart .chartjs-category-axis .chartjs-tick {
-            font-size: 10px;
-        }
-    }
-</style>
 </head>
 
 <body class="fix-header fix-sidebar">

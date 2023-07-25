@@ -44,7 +44,7 @@
                     defaultFontFamily: 'Montserrat',
                     datasets: [{
                             label: "Target RKAP",
-                            data: {!! json_encode($target_rkap_data) !!},
+                            data:  {!! json_encode($target_rkap_per_bulan) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(220, 53, 69, 0.75)',
                             borderWidth: 3,
@@ -55,7 +55,7 @@
                         },
                         {
                             label: "Target RKM",
-                            data: {!! json_encode($target_rkm_data) !!},
+                            data: {!! json_encode($target_rkm_per_bulan) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(0, 123, 255, 0.75)',
                             borderWidth: 3,
@@ -66,7 +66,7 @@
                         },
                         {
                             label: "ACH",
-                            data: {!! json_encode($target_ach_data) !!},
+                            data: {!! json_encode($target_ach_per_bulan) !!},
                             backgroundColor: 'transparent',
                             borderColor: 'rgba(40, 167, 69, 0.75)',
                             borderWidth: 3,
