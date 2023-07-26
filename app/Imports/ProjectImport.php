@@ -4,9 +4,11 @@ namespace App\Imports;
 
 use App\Models\Project;
 use Maatwebsite\Excel\Concerns\ToModel;
-
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 class ProjectImport implements ToModel
 {
+    private $imported = false;
     /**
     * @param array $row
     *
@@ -14,6 +16,16 @@ class ProjectImport implements ToModel
     */
     public function model(array $row)
     {
+        if (!$this->imported) {
+            // Catat aktivitas tambah data mitra ke dalam log hanya sekali
+            LogActivities::create([
+                'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+                'activity' => 'Mengimport Data Karyawan', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+                'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+            ]);
+
+            $this->imported = true;
+        }
         return new Project([
             'customer' => $row[0],
             'witel' => $row[1],
