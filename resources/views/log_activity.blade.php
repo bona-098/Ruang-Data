@@ -12,7 +12,7 @@
                                 <th>No</th>
                                 <th>User</th>
                                 <th>Activity</th>
-                                <th>Login Time</th>
+                                <th>Time</th>
                             </tr>
                         </thead>
                         <tbody>
