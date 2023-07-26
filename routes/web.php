@@ -49,15 +49,6 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('dashboard');
-// });
-// Route::get('/chart', function () {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-//     return view('chart');
-// });
-// Route::get('/bsrm', function () {
-//     return view('Role.bsrm');
-// });
 Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
 Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log.activity');
 // Rute untuk login dan logout
@@ -122,9 +113,6 @@ Route::resource('/perangkat', PerangkatController::class);
 Route::resource('/performance', PerformanceController::class);
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
-// Route::get('/mitra/reset-filter', [MitraController::class, 'resetFilter'])->name('mitra.resetFilter');
-// Route::get('/mitra/reset-filter', 'MitraController@resetFilter')->name('mitra.resetFilter');
-
 Route::resource('/sales', SalesController::class);
 Route::resource('/project', ProjectController::class);
 // Route::get('/project', [ProjectController::class], 'grafik');
@@ -139,10 +127,6 @@ Route::get('/lop', function () {
 Route::get('/nlop', function () {
     return view('psd.nlop');
 });
-
-// Route::get('/detail_grafik', function () {
-//     return view('project.detail_grafik');
-// });
 //import mitra
 Route::get('/import-mitra', function () {
     $mitra = Mitra::all();
@@ -152,7 +136,6 @@ Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
     return back();
 });
-//sad
 Route::get('/import-personil', function () {
     $personil = Personil::all();
     return view('personul',['personil'=>$personil]);
@@ -161,7 +144,6 @@ Route::post('/personul', function () {
     Excel::import(new PersonilImport, request()->file('file'));
     return back();
 });
-//as
 Route::get('/import-perangkat', function () {
     $perangkat = Perangkat::all();
     return view('perang',['perangkat'=>$perangkat]);
@@ -170,7 +152,6 @@ Route::post('/perang', function () {
     Excel::import(new PerangkatImport, request()->file('file'));
     return back();
 });
-
 Route::get('/import-karyawan', function () {
     $karyawan = Karyawan::all();
     return view('karyawans',['karyawan'=>$karyawan]);
@@ -179,7 +160,6 @@ Route::post('/karyawans', function () {
     Excel::import(new KaryawanImport, request()->file('file'));
     return back();
 });
-
 //import sales
 Route::get('/salees', function () {
     $sales = Sales::all();
@@ -189,9 +169,7 @@ Route::post('/salees', function () {
     Excel::import(new SalesImport, request()->file('file'));
     return back();
 });
-
 Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
-
 //import project
 Route::get('/projek', function () {
     $project = Project::all();
