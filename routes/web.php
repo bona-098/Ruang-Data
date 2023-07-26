@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Mitra;
 use App\Models\Sales;
 use App\Models\Gedung;
@@ -49,11 +50,10 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 |
 */
 
-Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
-Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log.activity');
+
 // Rute untuk login dan logout
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
-    ->middleware('guest') 
+    ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
@@ -105,7 +105,8 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
 Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
-
+Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
+Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log-activity.logActivity');
 Route::resource('/pengguna', UserController::class)->middleware('auth');
 Route::resource('/personil', PersonilController::class);
 Route::resource('/gedung', GedungController::class);
@@ -130,7 +131,7 @@ Route::get('/nlop', function () {
 //import mitra
 Route::get('/import-mitra', function () {
     $mitra = Mitra::all();
-    return view('mitras',['mitra'=>$mitra]);
+    return view('mitras', ['mitra' => $mitra]);
 });
 Route::post('/mitras', function () {
     Excel::import(new MitraImport, request()->file('file'));
@@ -138,7 +139,7 @@ Route::post('/mitras', function () {
 });
 Route::get('/import-personil', function () {
     $personil = Personil::all();
-    return view('personul',['personil'=>$personil]);
+    return view('personul', ['personil' => $personil]);
 });
 Route::post('/personul', function () {
     Excel::import(new PersonilImport, request()->file('file'));
@@ -146,7 +147,7 @@ Route::post('/personul', function () {
 });
 Route::get('/import-perangkat', function () {
     $perangkat = Perangkat::all();
-    return view('perang',['perangkat'=>$perangkat]);
+    return view('perang', ['perangkat' => $perangkat]);
 });
 Route::post('/perang', function () {
     Excel::import(new PerangkatImport, request()->file('file'));
@@ -154,7 +155,7 @@ Route::post('/perang', function () {
 });
 Route::get('/import-karyawan', function () {
     $karyawan = Karyawan::all();
-    return view('karyawans',['karyawan'=>$karyawan]);
+    return view('karyawans', ['karyawan' => $karyawan]);
 });
 Route::post('/karyawans', function () {
     Excel::import(new KaryawanImport, request()->file('file'));
@@ -163,7 +164,7 @@ Route::post('/karyawans', function () {
 //import sales
 Route::get('/salees', function () {
     $sales = Sales::all();
-    return view('salees',['sales'=>$sales]);
+    return view('salees', ['sales' => $sales]);
 });
 Route::post('/salees', function () {
     Excel::import(new SalesImport, request()->file('file'));
@@ -173,7 +174,7 @@ Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.exp
 //import project
 Route::get('/projek', function () {
     $project = Project::all();
-    return view('projek',['project'=>$project]);
+    return view('projek', ['project' => $project]);
 });
 Route::post('/projek', function () {
     Excel::import(new ProjectImport, request()->file('file'));
@@ -183,7 +184,7 @@ Route::post('/projek', function () {
 //import gedung
 Route::get('/gedung_import', function () {
     $gedung = Gedung::all();
-    return view('gedung',['gedung'=>$gedung]);
+    return view('gedung', ['gedung' => $gedung]);
 });
 Route::post('/gedung_import', function () {
     Excel::import(new GedungImport, request()->file('file'));
