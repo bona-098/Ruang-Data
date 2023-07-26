@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class UserController extends Controller
 {

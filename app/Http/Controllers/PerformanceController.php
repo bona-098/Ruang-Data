@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 
 class PerformanceController extends Controller
@@ -28,9 +30,6 @@ class PerformanceController extends Controller
         if ($request->bulan && $request->bulan != 'Pilih') {
             $performance->where('bulan', $request->bulan);
         }
-        // if ($request->tahap && $request->tahap != 'Pilih') {
-        //     $project->where('tahap', $request->tahap);
-        // }
         $performance = $performance->get();
         return view('bsrm.performance.index', compact('performance'));
     }
@@ -89,10 +88,13 @@ class PerformanceController extends Controller
             'ach' => $request->ach,
             'foto' => $newnamefoto
         ]);
-
-        // Tampilkan SweetAlert success setelah data berhasil disimpan
-        Alert::success('SuccessAlert', 'Data berhasil disimpan!');
-
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Performance', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('performance.index');
     }
 
@@ -158,9 +160,7 @@ class PerformanceController extends Controller
      */
     public function edit($id)
     {
-        // $performance = Performance::findOrFail($id);
-        // dd($performance);
-        // return view('bsrm.performance.edit', compact('performance'));
+        //
     }
 
     /**
@@ -172,16 +172,6 @@ class PerformanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'tahun' => 'required',
-        //     'bulan' => 'required',
-        //     'area' => 'required',
-        //     'target_rkap' => 'required',
-        //     'target_rkm' => 'required',
-        //     'ach' => 'required',
-        //     'foto' => 'required|file|image|mimes:jpg,img,pjeg,png,gif|max:50000'
-        // ]);
-        // dd($request->all());
         $performance = Performance::findOrFail($id);
         $performance->tahun = $request->tahun;
         $performance->bulan = $request->bulan;
@@ -212,6 +202,13 @@ class PerformanceController extends Controller
         }
 
         $performance->save();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Performansi', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('performance.index');
     }
 
@@ -227,6 +224,13 @@ class PerformanceController extends Controller
     {
         $performance = Performance::findOrFail($id);
         $performance->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menghapus Data Performansi', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 }

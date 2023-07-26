@@ -84,6 +84,30 @@
                                                     <a class="dropdown-item" data-toggle="modal"
                                                         data-target="#ModalDeletePetugas" href="#">Delete</a>
                                                 </div>
+                                                {{-- KONTEN MODAL DELETE Petugas --}}
+    <div class="modal fade" id="ModalDeletePetugas" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
+            </div>
+            <div class="modal-body">
+                Tindakan ini akan menghapus data Petugas dan data yang dihapus tidak dapat di kembalikan, apakah anda
+                yakin ingin melanjutkan ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="{{ route('personil.destroy', $pe->id) }}" method="POST" id="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- KONTEN MODAL DELETE Petugas --}}
                                             </td>
                                         </div>
                                         {{-- modalupdate petugas --}}
@@ -427,30 +451,7 @@
     {{-- @endforeach --}}
     <!-- KONTEN MODAL Tambah Petugas -->
 
-    {{-- KONTEN MODAL DELETE Petugas --}}
-    <div class="modal fade" id="ModalDeletePetugas" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-                </div>
-                <div class="modal-body">
-                    Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah anda
-                    yakin ingin melanjutkan ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form action="{{ route('gedung.destroy', $gedung->id) }}" method="POST" id="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- KONTEN MODAL DELETE Petugas --}}
+    
 
 
     {{-- KONTEN MODAL DELETE Gedung --}}
@@ -462,7 +463,7 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
                 </div>
                 <div class="modal-body">
-                    Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat di kembalikan, apakah anda
+                    Tindakan ini akan menghapus data Personil dan data yang dihapus tidak dapat di kembalikan, apakah anda
                     yakin ingin melanjutkan ?
                 </div>
                 <div class="modal-footer">
