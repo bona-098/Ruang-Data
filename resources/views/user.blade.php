@@ -3,34 +3,6 @@
     <!-- End Bread crumb -->
     <!-- Container fluid  -->
     <div class="container-fluid">
-
-        {{-- MEMFILTER DATA --}}
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">History Login</h4>
-                <div class="table-responsive ">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Subject</th>
-                                <th>URL</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <td>1</td>
-                            <td>SUbej</td>
-                            <td>www.youtube.com</td>
-                            <td>Xprovincere</td>
-                        </tbody>
-                    </table>
-                </div>      
-            </div>
-        </div>
-        {{-- MEMFILTER DATA --}}
-        {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Pengguna</h4>

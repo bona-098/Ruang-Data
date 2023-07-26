@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -67,6 +69,13 @@ class ProjectController extends Controller
             'tahap' => $request->tahap,
             'akru' => $request->akru
         ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Project', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -120,6 +129,13 @@ class ProjectController extends Controller
             'tahap' => $request->tahap,
             'akru' => $request->akru
         ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Project', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -133,6 +149,13 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $project->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menghapus Data Project', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('project.index');
     }
 

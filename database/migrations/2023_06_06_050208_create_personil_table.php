@@ -19,7 +19,11 @@ return new class extends Migration
             $table->string('area')->nullable();
             $table->string('witel')->nullable();
             $table->string('jabatan')->nullable();
-            $table->foreignId('gedung_id')->constrained('gedung')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('gedung_id')
+              ->nullable()
+              ->constrained('gedung')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
             $table->timestamps();
         });
     }
