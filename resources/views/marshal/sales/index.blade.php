@@ -107,11 +107,11 @@
                         {{-- <th style="white-space: nowrap;">Status Revenue</th> --}}
                         <th style="white-space: nowrap;">Customer</th>
                         {{-- <th>Segment</th> --}}
-                        <th style="white-space: nowrap;">Nama Project</th>
-                        <th style="white-space: nowrap;">Nilai Total Project (Sebelum PPN)</th>
-                        <th style="white-space: nowrap;">Nilai Project Per Tahun (Sebelum PPN)</th>
+                        <th >Nama Project</th>
+                        <th >Nilai Total Project (Sebelum PPN)</th>
+                        <th >Nilai Project Per Tahun (Sebelum PPN)</th>
                         {{-- <th>Portfolio</th> --}}
-                        <th style="white-space: nowrap;">Nilai Project Per Bulan (Sebelum PPN)</th>
+                        <th >Nilai Project Per Bulan (Sebelum PPN)</th>
                     </tr>
                 </thead>
                 <tbody>

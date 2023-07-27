@@ -46,7 +46,7 @@
                 @endcanany
                 @canany(['admin', 'viewer'])
                 <li> <a class="" href="log-activity" aria-expanded="false"><i
-                            class="fa fa-tv"></i><span class="hide-menu">History</span></a>
+                            class="fa fa-history"></i><span class="hide-menu">History</span></a>
                 </li>
                 @endcanany
             </ul>

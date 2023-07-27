@@ -15,6 +15,7 @@ class Gedung extends Model
         'nama_gedung',
         'nama_area',
         'nama_witel',
+        'kelas',
         'alamat',
         'koordinat',
         'total_petugas',

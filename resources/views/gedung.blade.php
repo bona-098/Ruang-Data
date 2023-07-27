@@ -418,6 +418,7 @@
                             <th scope="col">Nama Gedung</th>
                             <th scope="col">Nama Area</th>
                             <th scope="col">Nama Witel</th>
+                            <th scope="col">Kelas</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">Koordinat</th>
                             <th scope="col">Total Petugas</th>
@@ -435,6 +436,7 @@
                                 <td>{{ $s->nama_gedung }}</td>
                                 <td>{{ $s->nama_area}}</td>
                                 <td>{{ $s->nama_witel }}</td>
+                                <td>{{ $s->kelas }}</td>
                                 <td>{{ $s->alamat }}</td>
                                 <td>{{ $s->koordinat }}</td>
                                 <td>{{ $s->total_petugas }}</td>

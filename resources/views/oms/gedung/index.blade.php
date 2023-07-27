@@ -212,7 +212,7 @@
                                 </td>
                                 <td style="white-space: nowrap;">{{ $g->nama_area }}</td>
                                 <td style="white-space: nowrap;">{{ $g->nama_witel }}</td>
-                                <td style="white-space: nowrap;">kelas</td>
+                                <td style="white-space: nowrap;">{{ $g->kelas }}</td>
                                 <td style="white-space: nowrap;">{{ $g->alamat }}</td>
                                 <td style="white-space: nowrap;">{{ $g->koordinat }}</td>
                                 <td style="white-space: nowrap;">{{ $g->luasan }}</td>

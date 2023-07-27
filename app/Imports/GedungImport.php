@@ -19,10 +19,11 @@ class GedungImport implements ToModel
             'nama_gedung' => $row[1],
             'nama_area' => $row[2],
             'nama_witel' => $row[3],
-            'alamat' => $row[4],
-            'koordinat' => $row[5],
-            'luasan' => $row[6],
-            'total_petugas' => $row[7]
+            'kelas' => $row[4],
+            'alamat' => $row[5],
+            'koordinat' => $row[6],
+            'luasan' => $row[7],
+            'total_petugas'=> $row[8]
         ]);        
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_gedung')->nullable();
             $table->string('nama_area')->nullable();
             $table->string('nama_witel')->nullable();
+            $table->string('kelas')->nullable();
             $table->string('alamat')->nullable();
             $table->string('koordinat')->nullable();
             $table->string('total_petugas')->nullable();

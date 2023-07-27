@@ -153,9 +153,9 @@
                                                             value="{{ $m->domisili }}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="status" class="control-label">Kategori</label>
+                                                        <label for="status" class="control-label">Status</label>
                                                         <select class="form-control custom-select" id="status"
-                                                            name="kategori">
+                                                            name="status">
                                                             <option value="Eksisting"
                                                                 {{ $m->kategori == 'Eksisting' ? 'selected' : '' }}>
                                                                 Eksisting</option>
@@ -177,10 +177,10 @@
                                                             value="{{ $m->nilai_asses }}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="status">Status</label>
+                                                        <label for="status">Kategori</label>
                                                         <input type="text" class="form-control" id="status"
-                                                            name="status" placeholder="Masukkan status"
-                                                            value="{{ $m->status }}">
+                                                            name="kategori" placeholder="Masukkan kategori"
+                                                            value="{{ $m->kategori }}">
                                                     </div>
                                                     <!-- Tambahkan input lainnya sesuai kebutuhan -->
                                                     <div class="modal-footer">
@@ -245,8 +245,8 @@
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="status" class="control-label">Kategori</label>
-                                            <select class="form-control custom-select" id="status" name="kategori">
+                                            <label for="status" class="control-label">Status</label>
+                                            <select class="form-control custom-select" id="status" name="status">
                                                 <option value="Eksisting">EKSISTING</option>
                                                 <option value="Baru">Baru (BARU REGISTERED)</option>
                                             </select>
@@ -264,8 +264,8 @@
                                     <!--/row-->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">Status</label>
-                                            <input type="text" name="status" class="form-control">
+                                            <label class="control-label">Kategori</label>
+                                            <input type="text" name="kategori" class="form-control">
                                         </div>
                                     </div>
                                 </div>
