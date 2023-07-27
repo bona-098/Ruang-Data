@@ -7,6 +7,8 @@ use App\Models\Personil;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class GedungController extends Controller
 {
@@ -24,15 +26,8 @@ class GedungController extends Controller
         if ($request->witel && $request->witel != 'Pilih') {
             $gedung->where('witel', $request->witel);
         }    
-        // if ($request->kategori && $request->kategori != 'Pilih') {
-        //     $gedung->where('kategori', $request->kategori);
-        // }    
-        // if ($request->tahap && $request->tahap != 'Pilih') {
-        //     $gedung->where('tahap', $request->tahap);
-        // }
-        // dd($request);
         $gedung = $gedung->get();
-        // $gedung = Gedung->get();
+        
         return view('oms.gedung.index', compact('gedung'));
     }
 
@@ -77,6 +72,13 @@ class GedungController extends Controller
             'total_petugas' => $request->total_petugas,
             'luasan' => $request->luasan,
         ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Gedung', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -138,7 +140,13 @@ class GedungController extends Controller
             // 'total_petugas' => $request->total_petugas,
             'luasan' => $request->luasan,
         ]);
-
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Gedung', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -152,6 +160,13 @@ class GedungController extends Controller
     {
         $gedung = Gedung::findOrfail($id);
         $gedung->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menghapus Data Gedung', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('gedung.index');
     }
 

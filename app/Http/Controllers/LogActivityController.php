@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
-use App\Models\logActivities;
+use App\Models\LogActivities;
 class LogActivityController extends Controller
 {
     public function myTestAddToLog()

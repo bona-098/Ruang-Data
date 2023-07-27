@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->string('customer', 50)->nullable();
-            $table->string('witel', 50)->nullable();
-            $table->string('nama_project', 50)->nullable();
+            $table->string('customer', 255)->nullable();
+            $table->string('witel', 255)->nullable();
+            $table->string('nama_project', 255)->nullable();
             $table->string('kategori', 255)->nullable();
-            $table->string('skema', 50)->nullable();
+            $table->string('skema', 255)->nullable();
             $table->string('nilai_project', 255)->nullable();
             $table->string('sudah_akru', 255)->nullable();
             $table->string('sisa_belum_akru', 255)->nullable();

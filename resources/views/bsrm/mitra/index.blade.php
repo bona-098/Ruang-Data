@@ -154,7 +154,9 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="status" class="control-label">Status</label>
+                                                        <label for="status" class="control-label">Status</label>
                                                         <select class="form-control custom-select" id="status"
+                                                            name="status">
                                                             name="status">
                                                             <option value="Eksisting"
                                                                 {{ $m->kategori == 'Eksisting' ? 'selected' : '' }}>
@@ -177,7 +179,7 @@
                                                             value="{{ $m->nilai_asses }}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="status">Kategori</label>
+                                                        <label for="status">Status</label>
                                                         <input type="text" class="form-control" id="status"
                                                             name="kategori" placeholder="Masukkan kategori"
                                                             value="{{ $m->kategori }}">

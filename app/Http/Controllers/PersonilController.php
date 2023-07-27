@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Gedung;
 use App\Models\Personil;
 use Illuminate\Http\Request;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class PersonilController extends Controller
 {
@@ -49,7 +51,13 @@ class PersonilController extends Controller
             'jabatan' => 'required',
             'gedung_id' => 'required',
         ]);
-    
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Personil', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         try {
             Personil::create($validatedData);
             return redirect()->back();
@@ -111,13 +119,14 @@ class PersonilController extends Controller
         $personil->area = $request->area;
         $personil->witel = $request->witel;
         $personil->jabatan = $request->jabatan;
-        // $personil->gedung_id = $request->gedung_id;
-
-        // Cek apakah gedung_id yang baru valid dan ada dalam tabel gedung
-        
-
         $personil->save();
-
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Personil', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back()->with('success', 'Data personil berhasil diperbarui');
     }
 
@@ -131,6 +140,13 @@ class PersonilController extends Controller
     {
         $personil = Personil::findOrFail($id);
         $personil->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Mitra', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 }

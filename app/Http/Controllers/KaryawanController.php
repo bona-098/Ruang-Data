@@ -6,6 +6,8 @@ use Exception;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class KaryawanController extends Controller
 {
@@ -36,56 +38,8 @@ class KaryawanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // try {
-        // dd($request->all());
     public function store(Request $request)
-    {
-            // $this->validate($request, [
-            // 'nik' => 'required',
-        //     'nama_karyawan' => 'required',
-        //     'tgl_lahir'=> 'required',
-        //     'kota_lahir'=> 'required',
-        //     'agama'=> 'required',
-        //     'jenis_kelamin'=> 'required',
-        //     'jalan'=> 'required',
-        //     'nama_status_nikah'=> 'required',
-        //     'lokasi_kerja'=> 'required',
-        //     'tgl_mulai_bekerja'=> 'required',
-        //     'tgl_pegawai_perusahaan'=> 'required',
-        //     'tgl_perkiraan_pensiun'=> 'required',
-        //     'nama_divisi'=> 'required',
-        //     'tgl_divisi'=> 'required',
-        //     'kode_loker'=> 'required',
-        //     'unit_kerja'=> 'required',
-        //     'loker'=> 'required',
-        //     'tgl_loker'=> 'required',
-        //     'kode_posisi'=> 'required',
-        //     'jabatan'=> 'required',
-        //     'umur'=> 'required',
-        //     'kelompok_usia'=> 'required',
-        //     'nama_employee_group'=> 'required',
-        //     'employee_sub_group'=> 'required',
-        //     'level_pendidikan_terakhir'=> 'required',
-        //     'pendidikan'=> 'required',
-        //     'penyelenggara'=> 'required',
-        //     'jumlah_anak'=> 'required',
-        //     'adt_pajak'=> 'required',
-        //     'adt_kesehatan'=> 'required',
-        //     'jumlah_pasangan'=> 'required',
-        //     'band_kelas_posisi'=> 'required',
-        //     'kota'=> 'required',
-        //     'npwp'=> 'required',
-        //     'no_telkomedika'=> 'required',
-        //     'no_bpjs'=> 'required',
-        //     'no_jamsostek'=> 'required',
-        //     'email'=> 'required',
-        //     'no_hp'=> 'required',
-        //     'keterangan_lanjut_kuliah'=> 'required',
-        //     'pendidikan_lanjut'=> 'required',
-        //     'penyelenggara_lanjut'=> 'required',
-        //     'ukuran_baju'=> 'required'
-        // ]);
-        
+    {        
         Karyawan::create([
             'nik'=>$request->nik,
             'no_hp'=>$request->no_hp,            
@@ -99,7 +53,14 @@ class KaryawanController extends Controller
             'loker'=>$request->loker,            
             'jabatan'=>$request->jabatan,            
             'band_kelas_posisi'=>$request->band_kelas_posisi,
-        ]);        
+        ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Karyawan', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan        
         return redirect()->back();
     }
 
@@ -153,6 +114,13 @@ class KaryawanController extends Controller
             'jabatan'=>$request->jabatan,            
             'band_kelas_posisi'=>$request->band_kelas_posisi,            
         ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Karyawan', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -166,6 +134,13 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::findorFail($id);
         $karyawan->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'MEnghapus Data Karyawan', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('karyawan.index');
     }
 }

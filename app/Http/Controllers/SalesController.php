@@ -8,6 +8,8 @@ use App\Exports\CollectionExport;
 use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class SalesController extends Controller
 {
@@ -103,16 +105,6 @@ class SalesController extends Controller
         $validatedData = $request->validate([
             'drive_kontrak' => 'nullable|mimes:pdf|max:100480'
         ]);
-        // $file = $request->file('drive_kontrak');
-        // $file_kontrak = time()."_".$file->getClientOriginalName();
-        // $file->move(public_path('/drive'), $file_kontrak);
-
-        // $file_kontrak = null;
-        // if ($request->hasFile('drive_kontrak')) {
-        // $file = $request->file('drive_kontrak');
-        // $file_kontrak = time()."_".$file->getClientOriginalName();
-        // $file->move(public_path('/drive'), $file_kontrak);
-        // }
         if ($request->hasFile('drive_kontrak')) {
             $file = $request->file('drive_kontrak');
             $file_kontrak = time() . "_" . $file->getClientOriginalName();
@@ -154,6 +146,13 @@ class SalesController extends Controller
             'amandemen' => $request->amandemen,
             'keterangan' => $request->keterangan
         ]));
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah Data Sales', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back();
     }
 
@@ -198,15 +197,6 @@ class SalesController extends Controller
             'status_revenue' => 'required',
             // 'drive_kontrak' => 'required|mimes:pdf|max:100480'
         ]);
-        // $id = $sales->id;
-        // if ($drive_kotrak = $request->file('drive_kontrak')){
-        //     File::delete('drive/'. $sales->drive_kontrak);
-        //     $file_name = $request->drive_kontrak->getClientOriginalName();
-        //     $drive_kontrak->move(public_path('drive'), $file_name);
-        //     $sales['media'] = "$file_name";
-        // }else{
-        // unset ($sales['srive_kontrak']);
-        // }
         $sales->update([
             'unit_kerja' => $request->unit_kerja,
             'status_revenue' => $request->status_revenue,
@@ -242,6 +232,13 @@ class SalesController extends Controller
             'amandemen' => $request->amandemen,
             'keterangan' => $request->keterangan
         ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Mengubah Data Sales', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->back()->with('berhasil', 'data sales berhasil diubah');
     }
 
@@ -255,6 +252,13 @@ class SalesController extends Controller
     {
         $sales = Sales::findOrFail($id);
         $sales->delete();
+        // Catat aktivitas tambah data mitra ke dalam log
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menghapus Data Sales', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
         return redirect()->route('sales.index');
     }
 

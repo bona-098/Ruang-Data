@@ -6,6 +6,8 @@ use App\Models\Project;
 
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
+use App\Models\LogActivities; // Import model MitraActivityLog
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {

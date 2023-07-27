@@ -45,7 +45,7 @@
                 </li>
                 @endcanany
                 @canany(['admin', 'viewer'])
-                <li> <a class="" href="log-activity" aria-expanded="false"><i
+                <li> <a class="" href="{{ route('log-activity.logActivity') }}" aria-expanded="false"><i
                             class="fa fa-history"></i><span class="hide-menu">History</span></a>
                 </li>
                 @endcanany
