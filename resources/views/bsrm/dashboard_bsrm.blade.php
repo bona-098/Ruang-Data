@@ -198,26 +198,30 @@
 
 
 
-
         function setChartHeight() {
-            const chartCanvas = document.getElementById('myChart1');
-            const chartHeightMobile = 300; // Adjust the height as needed for mobile devices
-            const chartHeightDesktop = 240; // Adjust the height as needed for desktop devices
+            const chartCanvas1 = document.getElementById('myChart1');
+            const chartCanvas2 = document.getElementById('myChart2');
+            const chartCanvas3 = document.getElementById('myChart3');
+            const chartHeightMobile = 300; // Sesuaikan tinggi sesuai kebutuhan untuk perangkat mobile
+            const chartHeightDesktop = 240; // Sesuaikan tinggi sesuai kebutuhan untuk perangkat desktop
 
-            // Set the chart height based on the device width
+            // Set tinggi grafik berdasarkan lebar perangkat
             if (window.innerWidth <= 767) {
-                chartCanvas.style.height = chartHeightMobile + 'px';
+                chartCanvas1.style.height = chartHeightMobile + 'px';
+                chartCanvas2.style.height = chartHeightMobile + 'px';
+                chartCanvas3.style.height = chartHeightMobile + 'px';
             } else {
-                chartCanvas.style.height = chartHeightDesktop + 'px';
+                chartCanvas1.style.height = chartHeightDesktop + 'px';
+                chartCanvas2.style.height = chartHeightDesktop + 'px';
+                chartCanvas3.style.height = chartHeightDesktop + 'px';
             }
         }
 
-        // Call the function on page load
+        // Panggil fungsi pada saat halaman dimuat
         setChartHeight();
 
-        // Call the function whenever the window is resized
+        // Panggil fungsi setiap kali jendela diubah ukurannya
         window.addEventListener('resize', setChartHeight);
-
 
 
 
@@ -279,22 +283,7 @@
             }
         });
 
-        // document.getElementById('myChart1').addEventListener('click', function(event) {
-        //     const activePoints = chart1.getElementsAtEventForMode(event, 'nearest', {
-        //         intersect: true
-        //     }, true);
 
-        //     if (activePoints.length > 0) {
-        //         const firstPoint = activePoints[0];
-        //         const label = chart1.data.labels[firstPoint.index];
-        //         const category = chart1.data.datasets[firstPoint.datasetIndex].label;
-        //         console.log("Label: " + label + ", Category: " + category);
-        //         // Lakukan tindakan yang diinginkan berdasarkan label dan kategori yang diklik
-        //         // Misalnya, arahkan pengguna ke halaman baru dengan query parameter sesuai label dan kategori
-        //         const url = "?label=" + label + "&category=" + category;
-        //         window.open(url, "_blank");
-        //     }
-        // });
 
         function isMobileDevice() {
             return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
@@ -322,24 +311,6 @@
 
 
 
-        function setChartHeight() {
-            const chartCanvas = document.getElementById('myChart2');
-            const chartHeightMobile = 300; // Adjust the height as needed for mobile devices
-            const chartHeightDesktop = 240; // Adjust the height as needed for desktop devices
-
-            // Set the chart height based on the device width
-            if (window.innerWidth <= 767) {
-                chartCanvas.style.height = chartHeightMobile + 'px';
-            } else {
-                chartCanvas.style.height = chartHeightDesktop + 'px';
-            }
-        }
-
-        // Call the function on page load
-        setChartHeight();
-
-        // Call the function whenever the window is resized
-        window.addEventListener('resize', setChartHeight);
 
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         console.log(ctx2);
@@ -474,6 +445,10 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                categoryPercentage: 1,
+                barPercentage: 0.5,
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
