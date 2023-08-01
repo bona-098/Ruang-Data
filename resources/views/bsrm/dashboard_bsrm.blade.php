@@ -202,6 +202,10 @@
             const chartCanvas1 = document.getElementById('myChart1');
             const chartCanvas2 = document.getElementById('myChart2');
             const chartCanvas3 = document.getElementById('myChart3');
+            const chartCanvasManarBpp = document.getElementById('ManarBpp');
+            const chartCanvasManarKaltim = document.getElementById('ManarKaltim');
+            const chartCanvasManarKalselteng = document.getElementById('ManarKalselteng');
+            const chartCanvasManarKalbar = document.getElementById('ManarKalbar');
             const chartHeightMobile = 300; // Sesuaikan tinggi sesuai kebutuhan untuk perangkat mobile
             const chartHeightDesktop = 240; // Sesuaikan tinggi sesuai kebutuhan untuk perangkat desktop
 
@@ -210,10 +214,18 @@
                 chartCanvas1.style.height = chartHeightMobile + 'px';
                 chartCanvas2.style.height = chartHeightMobile + 'px';
                 chartCanvas3.style.height = chartHeightMobile + 'px';
+                chartCanvasManarBpp.style.height = chartHeightMobile + 'px';
+                chartCanvasManarKaltim.style.height = chartHeightMobile + 'px';
+                chartCanvasManarKalselteng.style.height = chartHeightMobile + 'px';
+                chartCanvasManarKalbar.style.height = chartHeightMobile + 'px';
             } else {
                 chartCanvas1.style.height = chartHeightDesktop + 'px';
                 chartCanvas2.style.height = chartHeightDesktop + 'px';
                 chartCanvas3.style.height = chartHeightDesktop + 'px';
+                chartCanvasManarBpp.style.height = chartHeightDesktop + 'px';
+                chartCanvasManarKaltim.style.height  = chartHeightDesktop + 'px';
+                chartCanvasManarKalselteng.style.height = chartHeightDesktop + 'px';
+                chartCanvasManarKalbar.style.height = chartHeightDesktop + 'px';
             }
         }
 
@@ -259,7 +271,7 @@
                 categoryPercentage: 1,
                 barPercentage: 0.3,
                 responsive: true, // Untuk membuat grafik responsif
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -285,9 +297,7 @@
 
 
 
-        function isMobileDevice() {
-            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-        }
+       
 
         const formatter = (value) => {
             if (isMobileDevice()) {
@@ -539,6 +549,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -631,6 +643,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -721,6 +735,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -811,6 +827,8 @@
             },
             plugins: [ChartDataLabels],
             options: {
+                responsive: true, // Untuk membuat grafik responsif
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
