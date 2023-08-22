@@ -30,12 +30,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="white-space: nowrap;">Fajriansyah</td>
-                                <td style="white-space: nowrap;">Institut Teknologi Kalimantan</td>
-                                <td style="white-space: nowrap;">Informatika</td>
-                                <td style="white-space: nowrap;">23</td>
-                            </tr>
+                            @foreach ($calonbpo as $o)
+                                <tr>
+                                    <td style="white-space: nowrap;">{{ $o->nama }}</td>
+                                    <td style="white-space: nowrap;">{{ $o->pendidikan }}</td>
+                                    <td style="white-space: nowrap;">{{ $o->jurusan }}</td>
+                                    <td style="white-space: nowrap;">{{ $o->umur }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -58,41 +60,58 @@
                             <div class="card-body">
                                 <div class="form-body">
                                     <div class="row p-t-20">
-
-
                                         <div class="col-md-6">
                                             <div class="form-group has-danger">
-                                                <label  class="control-label">Nama Calon Bpo</label>
+                                                <label class="control-label">Nama Calon Bpo</label>
                                                 <input type="text" id="nama"
                                                     class="form-control form-control-danger" name="nama">
                                             </div>
                                         </div>
-
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label >Pendidikan</label>
-                                                <input type="text" class="form-control"
-                                                    name="pendidikan">
+                                                <label>Pendidikan</label>
+                                                <input type="text" class="form-control" name="pendidikan">
                                             </div>
                                         </div>
-
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label >Jurusan</label>
-                                                <input type="text" class="form-control"
-                                                    name="jurusan">
+                                                <label>Jurusan</label>
+                                                <input type="text" class="form-control" name="jurusan">
                                             </div>
                                         </div>
-
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Umur</label>
-                                                <input type="number" min="0" name="umur"
-                                                    class="form-control">
+                                                <input type="number" min="0" name="umur" class="form-control">
                                                 <small class="form-control-feedback"> </small>
                                             </div>
                                         </div>
-                                       
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Domisili</label>
+                                                <input type="text" class="form-control" name="domisili">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nomor HP</label>
+                                                <input type="number" name="nomor_hp" class="form-control">
+                                                <small class="form-control-feedback"> </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">CV</label>
+                                                <input type="file" name="cv" class="form-control">
+                                                <small class="form-control-feedback"> </small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -108,30 +127,30 @@
         <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
 
         <!-- Modal Delete Mitra -->
-       
-                <div class="modal fade" id="ModalDeleteKaryawan" tabindex="-1"
-                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-                            </div>
-                            <div class="modal-body">
-                                Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan.
-                                Apakah
-                                Anda yakin ingin melanjutkan?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <form method="POST" action="{{ route('calon_bpo.destroy',1) }}" id="delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                            </div>
-                        </div>
+
+        <div class="modal fade" id="ModalDeleteKaryawan" tabindex="-1" aria-labelledby="staticBackdropLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
+                    </div>
+                    <div class="modal-body">
+                        Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan.
+                        Apakah
+                        Anda yakin ingin melanjutkan?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <form method="POST" action="{{ route('calon_bpo.destroy', 1) }}" id="delete-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
                     </div>
                 </div>
-        
+            </div>
+        </div>
+
     </div>
 @endsection
