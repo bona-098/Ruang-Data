@@ -92,7 +92,7 @@
                     </form>
                 </div>
             </div>
-
+            
             {{-- Akhir Filter Tabel --}}
 
             {{-- Filter Tabel --}}
@@ -204,8 +204,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Edit Data Performance</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -254,23 +253,14 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="control-label">Tahun</label>
-                                                                    <select name="tahun" id="tahun" required class="form-control">
-                                                                        <?php
-                                                                        // Ambil tahun saat ini
-                                                                        $tahun_sekarang = date('Y');
-                                                                        
-                                                                        // Opsi untuk pilihan tahun (2 tahun sebelumnya hingga 10 tahun ke depan)
-                                                                        for ($tahun = $tahun_sekarang - 2; $tahun <= $tahun_sekarang + 10; $tahun++) {
-                                                                            // Auto-select tahun saat ini
-                                                                            $selected = $tahun === $tahun_sekarang ? 'selected' : '';
-                                                                        
-                                                                            echo '<option value="' . $tahun . '" ' . $selected . '>' . $tahun . '</option>';
-                                                                        }
-                                                                        ?>
-                                                                    </select>
-                                                                    <small class="form-control-feedback">
-                                                                        <!-- Pesan error jika ada -->
-                                                                    </small>
+                                                                    <input name="tahun" id="tahun" required
+                                                                        type="number" class="form-control"
+                                                                        min="2022" max="{{ date('Y') }}"
+                                                                        value="{{ $p->tahun }}">
+                                                                    @error('tahun')
+                                                                        <small
+                                                                            class="form-text text-danger">{{ $message }}</small>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -337,27 +327,24 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="control-label">Target RKAP</label>
-                                                                    <input name="target_rkap"
-                                                                        value="{{ $p->target_rkap }}" min="0"
-                                                                        required type="number" class="form-control">
+                                                                    <input name="target_rkap" value="{{ $p->target_rkap }}" min="0" required type="number"
+                                                                        class="form-control" >
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="control-label">Target RKM</label>
-                                                                    <input name="target_rkm" value="{{ $p->target_rkm }}"
-                                                                        min="0" required type="number"
-                                                                        class="form-control">
+                                                                    <input name="target_rkm" value="{{ $p->target_rkm }}" min="0" required type="number"
+                                                                        class="form-control" >
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="control-label">ACH</label>
-                                                                    <input name="ach" value="{{ $p->ach }}"
-                                                                        min="0" required type="number"
-                                                                        class="form-control">
+                                                                    <input name="ach" value="{{ $p->ach }}" min="0" required type="number"
+                                                                        class="form-control" >
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
@@ -424,26 +411,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Tahun</label>
-                                                <select name="tahun" id="tahun" required class="form-control">
-                                                    <?php
-                                                    // Ambil tahun saat ini
-                                                    $tahun_sekarang = date('Y');
-                                                    
-                                                    // Opsi untuk pilihan tahun (2 tahun sebelumnya hingga 10 tahun ke depan)
-                                                    for ($tahun = $tahun_sekarang - 2; $tahun <= $tahun_sekarang + 10; $tahun++) {
-                                                        // Auto-select tahun saat ini
-                                                        $selected = $tahun === $tahun_sekarang ? 'selected' : '';
-                                                    
-                                                        echo '<option value="' . $tahun . '" ' . $selected . '>' . $tahun . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
+                                                <input name="tahun" id="tahun" required type="number"
+                                                    class="form-control" min="2020" max="{{ date('Y') }}">
                                                 <small class="form-control-feedback">
-                                                    <!-- Pesan error jika ada -->
+                                                    @error('tahun')
+                                                        {{ $message }}
+                                                    @enderror
                                                 </small>
                                             </div>
                                         </div>
-
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -477,37 +453,31 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Target RKAP</label>
-                                                <input name="target_rkap" value="0" min="0" required
-                                                    type="number" class="form-control">
+                                                <input name="target_rkap" min="0" required type="number"
+                                                    class="form-control" >
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Target RKM</label>
-                                                <input name="target_rkm" value="0" min="0" required
-                                                    type="number" class="form-control">
+                                                <input name="target_rkm" min="0" required type="number"
+                                                    class="form-control" >
                                             </div>
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">ACH</label>
-                                                <input name="ach" value="0" min="0" required
-                                                    type="number" class="form-control">
+                                                <input name="ach" min="0" required type="number"
+                                                    class="form-control" >
                                             </div>
                                         </div>
                                         <!--/span-->
-
+                                        
                                     </div>
                                     <!--/row-->
                                 </div>
-                                <!-- Tampilkan pesan error di dalam modal -->
-                                @if ($errors->has('modal'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('modal') }}
-                                    </div>
-                                @endif
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -547,6 +517,23 @@
                 </div>
             </div>
         @endforeach
-
     </section>
+
+    <script>
+        // Fungsi untuk menghasilkan pilihan tahun
+        function generateYearOptions(startYear, endYear) {
+            var options = "";
+            for (var year = startYear; year <= endYear; year++) {
+                options += "<option value='" + year + "'>" + year + "</option>";
+            }
+            return options;
+        }
+
+        // Mengisi elemen select dengan pilihan tahun
+        var filter3Select = document.getElementById("filter3");
+        var currentYear = new Date().getFullYear();
+        var startYear = 2023;
+        var endYear = currentYear + 10; // Misalnya, sampai 10 tahun ke depan
+        filter3Select.innerHTML = generateYearOptions(startYear, endYear);
+    </script>
 @endsection

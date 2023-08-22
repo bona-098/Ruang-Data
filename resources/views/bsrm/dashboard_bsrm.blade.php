@@ -66,7 +66,8 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Performansi Project Solution</h4>
+                                <h4 id="projectTitle" data-toggle="modal" data-target="#formModal">Performansi Project Solution
+                                </h4>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -77,6 +78,56 @@
             </div>
             <!-- /# column -->
         </div>
+
+        <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formModalLabel">Performansi Project Solution </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="month">Bulan:</label>
+                                <select id="month" name="month" class="form-control">
+                                    <option value="january">Januari</option>
+                                    <option value="february">Februari</option>
+                                    <option value="march">Maret</option>
+                                    <option value="april">April</option>
+                                    <option value="may">Mei</option>
+                                    <option value="june">Juni</option>
+                                    <option value="july">Juli</option>
+                                    <option value="august">Agustus</option>
+                                    <option value="september">September</option>
+                                    <option value="october">Oktober</option>
+                                    <option value="november">November</option>
+                                    <option value="december">Desember</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="target">Nilai Target:</label>
+                                <input type="number" id="target" name="target" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="realization">Nilai Realisasi:</label>
+                                <input type="number" id="realization" name="realization" class="form-control" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-lg-6">
@@ -223,7 +274,7 @@
                 chartCanvas2.style.height = chartHeightDesktop + 'px';
                 chartCanvas3.style.height = chartHeightDesktop + 'px';
                 chartCanvasManarBpp.style.height = chartHeightDesktop + 'px';
-                chartCanvasManarKaltim.style.height  = chartHeightDesktop + 'px';
+                chartCanvasManarKaltim.style.height = chartHeightDesktop + 'px';
                 chartCanvasManarKalselteng.style.height = chartHeightDesktop + 'px';
                 chartCanvasManarKalbar.style.height = chartHeightDesktop + 'px';
             }
@@ -297,7 +348,7 @@
 
 
 
-       
+
 
         const formatter = (value) => {
             if (isMobileDevice()) {

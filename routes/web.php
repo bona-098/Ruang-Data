@@ -25,10 +25,10 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KaryawanController;
-
+use App\Http\Controllers\BpoController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PerangkatController;
+// use App\Http\Controllers\PerangkatController;
 use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -110,7 +110,7 @@ Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name
 Route::resource('/pengguna', UserController::class)->middleware('auth');
 Route::resource('/personil', PersonilController::class);
 Route::resource('/gedung', GedungController::class);
-Route::resource('/perangkat', PerangkatController::class);
+// Route::resource('/perangkat', PerangkatController::class);
 Route::resource('/performance', PerformanceController::class);
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
@@ -209,6 +209,8 @@ Route::get('/testing', function () {
     return view('testing');
 });
 
+
+Route::resource('/calon_bpo', BpoController::class);
 
 Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
 Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
