@@ -15,9 +15,23 @@ class DashboardController extends Controller
         $karyawan = Karyawan::get();
         $project = Project::get();
 
+        //target vs realisasi
+        // $tjanuari = Project::whereRaw('LOWER(akru) = ?', ['januari'])->sum('nilai_project');
+        $tjanuari = Project::whereRaw('LOWER(akru) = ?', ['januari'])->sum('nilai_project');
+        $tfebruari = Project::whereRaw('LOWER(akru) = ?', ['februari'])->sum('nilai_project');
+        $tmaret = Project::whereRaw('LOWER(akru) = ?', ['maret'])->sum('nilai_project');
+        $tapril = Project::whereRaw('LOWER(akru) = ?', ['april'])->sum('nilai_project');
+        $tmei = Project::whereRaw('LOWER(akru) = ?', ['mei'])->sum('nilai_project');
+        $tjuni = Project::whereRaw('LOWER(akru) = ?', ['juni'])->sum('nilai_project');
+        $tjuli = Project::whereRaw('LOWER(akru) = ?', ['juli'])->sum('nilai_project');
+        $tagustus = Project::whereRaw('LOWER(akru) = ?', ['agustus'])->sum('nilai_project');
+        $tseptember = Project::whereRaw('LOWER(akru) = ?', ['september'])->sum('nilai_project');
+        $toktober = Project::whereRaw('LOWER(akru) = ?', ['oktober'])->sum('nilai_project');
+        $tnovember = Project::whereRaw('LOWER(akru) = ?', ['november'])->sum('nilai_project');
+        $tdesember = Project::whereRaw('LOWER(akru) = ?', ['desember'])->sum('nilai_project');
+        // dd($tjuni);
         // $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
         $telkomAkru = Project::where('kategori', 'Telkom')->get()->sum('nilai_project');
-        // dd($telkomAkru);
         $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('nilai_project');
         $enterpriseAkru = Project::where('kategori', 'Enterprise')->sum('nilai_project');
         $governanceAkru = Project::where('kategori', 'Governance')->sum('nilai_project');
@@ -72,13 +86,9 @@ class DashboardController extends Controller
             })
             ->sum('sisa_belum_akru');
 
-
-
-
         $telkomDone = Project::where('kategori', 'Telkom')
             ->where('tahap', 'Komersial')
             ->count();
-        // dd($telkomAkru);
         $telkomGroupDone = Project::where('kategori', 'Telkom Group')
             ->where('tahap', 'Komersial')
             ->count();
@@ -114,9 +124,6 @@ class DashboardController extends Controller
         $governanceBelumMulai =  Project::where('kategori', 'Governance')
             ->where('tahap', 'Co-OnHand')
             ->count();
-
-
-
 
         // salesbpp
         // Menghitung jumlah data untuk masing-masing status_project dan segment pada unit_kerja "Area Balikpapan"
@@ -573,7 +580,19 @@ class DashboardController extends Controller
             'telkomGroupBelumMulai' => $telkomGroupBelumMulai,
             'enterpriseBelumMulai' => $enterpriseBelumMulai,
             'governanceBelumMulai' => $governanceBelumMulai,
-
+            //target vs realisasi
+            'tjanuari' =>$tjanuari,
+            'tfebruari' => $tfebruari,
+            'tmaret' => $tmaret,
+            'tapril' => $tapril,
+            'tmei' => $tmei,
+            'tjuni' => $tjuni,
+            'tjuli' => $tjuli,
+            'tagustus' => $tagustus,
+            'tseptember' => $tseptember,
+            'toktober' => $toktober,
+            'tnovember' => $tnovember,
+            'tdesember' => $tdesember
         ];
         return view('bsrm.dashboard_bsrm', $data);
     }

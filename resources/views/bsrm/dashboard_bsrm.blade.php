@@ -1,66 +1,7 @@
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
-        {{-- <div class="row">
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-bar-chart-o f-s-40 color-primary"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>568120</h2>
-                            <a href="https://www.youtube.com/watch?v=6_UhNE5qVX4">
-                                <p class="m-b-0">Perfomance</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-handshake-o f-s-40 color-success"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>1178</h2>
-                            <p class="m-b-0">Mitra</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-users f-s-40 color-warning"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>1231</h2>
-                            <p class="m-b-0">Karyawan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card p-30">
-                    <div class="media">
-                        <div class="media-left meida media-middle">
-                            <span><i class="fa fa-users f-s-40 color-danger"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                            <h2>847</h2>
-                            <p class="m-b-0">Customer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- Selesai --}}
-
         <div class="row">
-            <!-- Bar Chart -->
             <div class="col-lg-12">
                 <div class="card">
                     <div class="panel">
@@ -76,9 +17,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /# column -->
         </div>
-
         <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -108,12 +47,10 @@
                                     <option value="december">Desember</option>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label for="target">Nilai Target:</label>
                                 <input type="number" id="target" name="target" class="form-control" required>
                             </div>
-
                             <div class="form-group">
                                 <label for="realization">Nilai Realisasi:</label>
                                 <input type="number" id="realization" name="realization" class="form-control" required>
@@ -127,12 +64,9 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
-                    <!-- Bar Chart -->
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -141,14 +75,12 @@
                         </div>
                         <div class="panel-body">
                             <canvas id="myChart2"></canvas>
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="card">
-                    <!-- Bar Chart -->
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -161,12 +93,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /# column -->
         </div>
-
-
-
-
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -282,14 +209,9 @@
 
         // Panggil fungsi pada saat halaman dimuat
         setChartHeight();
-
         // Panggil fungsi setiap kali jendela diubah ukurannya
         window.addEventListener('resize', setChartHeight);
-
-
-
-
-
+        //target vs realisasi
         const ctx1 = document.getElementById('myChart1').getContext('2d');
         const chart1 = new Chart(ctx1, {
             type: 'bar',
@@ -299,8 +221,8 @@
                 ],
                 datasets: [{
                         label: 'Target',
-                        data: [200000000, 2368000000, 6903000000, 13754000000, 19187000000, 25746000000,
-                            35271000000, 42273000000, 49091000000, 62615000000, 80553000000, 110512000000
+                        data: [{{ $tjanuari }}, {{ $tfebruari }}, {{ $tmaret }}, {{ $tapril }}, {{ $tmei }}, {{ $tjuni }},
+                        {{ $tjuli }}, {{ $tagustus }}, {{ $tseptember }}, {{ $toktober }}, {{ $tnovember }}, {{ $tdesember }}
                         ],
                         backgroundColor: 'rgba(0, 123, 255, 0.9)',
                         borderColor: 'rgba(0, 123, 255, 0.9)',
@@ -345,11 +267,6 @@
                 }
             }
         });
-
-
-
-
-
         const formatter = (value) => {
             if (isMobileDevice()) {
                 if (value >= 1000000000) {
@@ -369,10 +286,6 @@
                 }
             }
         };
-
-
-
-
         const ctx2 = document.getElementById('myChart2').getContext('2d');
         console.log(ctx2);
         const chart2 = new Chart(ctx2, {
