@@ -32,7 +32,7 @@
                         <tbody>
                             @foreach ($calonbpo as $o)
                                 <tr>
-                                    <td style="white-space: nowrap;">{{ $o->nama }}</td>
+                                    <td style="white-space: nowrap;"><a href="{{ route('calon_bpo.show', $o->id) }}" style="color: black;">{{ $o->nama }}</a></td>
                                     <td style="white-space: nowrap;">{{ $o->pendidikan }}</td>
                                     <td style="white-space: nowrap;">{{ $o->jurusan }}</td>
                                     <td style="white-space: nowrap;">{{ $o->umur }}</td>

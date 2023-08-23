@@ -77,9 +77,10 @@ class BpoController extends Controller
      * @param  \App\Models\Calonbpo  $calonbpo
      * @return \Illuminate\Http\Response
      */
-    public function show(Calonbpo $calonbpo)
+    public function show($calonbpo)
     {
-        //
+        $bpo = Calonbpo::find($calonbpo);
+        return view ('bsrm.calon_bpo.show', compact('bpo'));
     }
 
     /**
