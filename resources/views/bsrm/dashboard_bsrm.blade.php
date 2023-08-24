@@ -23,44 +23,41 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="formModalLabel">Performansi Project Solution </h5>
+                        <h5 class="modal-title" id="formModalLabel">Performansi Project Solution</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form method="POST" action="{{ route('dashboard.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
                             <div class="form-group">
-                                <label for="month">Bulan:</label>
-                                <select id="month" name="month" class="form-control">
-                                    <option value="january">Januari</option>
-                                    <option value="february">Februari</option>
-                                    <option value="march">Maret</option>
+                                <label for="bulan">Bulan:</label>
+                                <select id="bulan" name="bulan" class="form-control">
+                                    <option value="januari">Januari</option>
+                                    <option value="februari">Februari</option>
+                                    <option value="maret">Maret</option>
                                     <option value="april">April</option>
-                                    <option value="may">Mei</option>
-                                    <option value="june">Juni</option>
-                                    <option value="july">Juli</option>
-                                    <option value="august">Agustus</option>
+                                    <option value="mei">Mei</option>
+                                    <option value="juni">Juni</option>
+                                    <option value="juli">Juli</option>
+                                    <option value="agustus">Agustus</option>
                                     <option value="september">September</option>
-                                    <option value="october">Oktober</option>
+                                    <option value="oktober">Oktober</option>
                                     <option value="november">November</option>
-                                    <option value="december">Desember</option>
+                                    <option value="desember">Desember</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="target">Nilai Target:</label>
                                 <input type="number" id="target" name="target" class="form-control" required>
                             </div>
-                            <div class="form-group">
-                                <label for="realization">Nilai Realisasi:</label>
-                                <input type="number" id="realization" name="realization" class="form-control" required>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -221,8 +218,10 @@
                 ],
                 datasets: [{
                         label: 'Target',
-                        data: [{{ $tjanuari }}, {{ $tfebruari }}, {{ $tmaret }}, {{ $tapril }}, {{ $tmei }}, {{ $tjuni }},
-                        {{ $tjuli }}, {{ $tagustus }}, {{ $tseptember }}, {{ $toktober }}, {{ $tnovember }}, {{ $tdesember }}
+                        data: [{{ $tjanuari }}, {{ $tfebruari }}, {{ $tmaret }},
+                            {{ $tapril }}, {{ $tmei }}, {{ $tjuni }},
+                            {{ $tjuli }}, {{ $tagustus }}, {{ $tseptember }},
+                            {{ $toktober }}, {{ $tnovember }}, {{ $tdesember }}
                         ],
                         backgroundColor: 'rgba(0, 123, 255, 0.9)',
                         borderColor: 'rgba(0, 123, 255, 0.9)',
@@ -230,7 +229,7 @@
                     },
                     {
                         label: 'Realisasi',
-                        data: [710000000, 15115000000, 14856000000, 20572000000, 28117000000, 0, 0, 0, 0, 0, 0,
+                        data: [{{ $rjanuari }}, 15115000000, 14856000000, 20572000000, 28117000000, 0, 0, 0, 0, 0, 0,
                             0
                         ],
                         backgroundColor: 'rgba(64, 64, 64, 1.0)',
@@ -303,7 +302,8 @@
                     },
                     {
                         label: 'sudah_akru',
-                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }}, {{ $enterpriseSudahAkru }},
+                        data: [{{ $telkomSudahAkru }}, {{ $telkomGroupSudahAkru }},
+                            {{ $enterpriseSudahAkru }},
                             {{ $governanceSudahAkru }}
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
@@ -313,7 +313,8 @@
                     },
                     {
                         label: 'sisa_belum_akru',
-                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }}, {{ $enterpriseBelumAkru }},
+                        data: [{{ $telkomBelumAkru }}, {{ $telkomGroupBelumAkru }},
+                            {{ $enterpriseBelumAkru }},
                             {{ $governanceBelumAkru }}
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
