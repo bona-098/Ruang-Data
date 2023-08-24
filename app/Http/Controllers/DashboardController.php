@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ps;
+use Carbon\Carbon;
 use App\Models\Sales;
 use App\Models\Project;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use App\Models\LogActivities;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -15,8 +18,7 @@ class DashboardController extends Controller
         $karyawan = Karyawan::get();
         $project = Project::get();
 
-        //target vs realisasi
-        // $tjanuari = Project::whereRaw('LOWER(akru) = ?', ['januari'])->sum('nilai_project');
+        //target
         $tjanuari = Project::whereRaw('LOWER(akru) = ?', ['januari'])->sum('nilai_project');
         $tfebruari = Project::whereRaw('LOWER(akru) = ?', ['februari'])->sum('nilai_project');
         $tmaret = Project::whereRaw('LOWER(akru) = ?', ['maret'])->sum('nilai_project');
@@ -29,7 +31,20 @@ class DashboardController extends Controller
         $toktober = Project::whereRaw('LOWER(akru) = ?', ['oktober'])->sum('nilai_project');
         $tnovember = Project::whereRaw('LOWER(akru) = ?', ['november'])->sum('nilai_project');
         $tdesember = Project::whereRaw('LOWER(akru) = ?', ['desember'])->sum('nilai_project');
-        // dd($tjuni);
+        //realisasi
+        $rjanuari = Ps::whereRaw('LOWER(bulan) = ?', ['januari'])->sum('target');
+        $rfebruari = Ps::whereRaw('LOWER(bulan) = ?', ['februari'])->sum('target');
+        $rmaret = Ps::whereRaw('LOWER(bulan) = ?', ['maret'])->sum('target');
+        $rapril = Ps::whereRaw('LOWER(bulan) = ?', ['april'])->sum('target');
+        $rmei = Ps::whereRaw('LOWER(bulan) = ?', ['mei'])->sum('target');
+        $rjuni = Ps::whereRaw('LOWER(bulan) = ?', ['juni'])->sum('target');
+        $rjuli = Ps::whereRaw('LOWER(bulan) = ?', ['juli'])->sum('target');
+        $ragustus = Ps::whereRaw('LOWER(bulan) = ?', ['agustus'])->sum('target');
+        $rseptember = Ps::whereRaw('LOWER(bulan) = ?', ['september'])->sum('target');
+        $roktober = Ps::whereRaw('LOWER(bulan) = ?', ['oktober'])->sum('target');
+        $rnovember = Ps::whereRaw('LOWER(bulan) = ?', ['november'])->sum('target');
+        $rdesember = Ps::whereRaw('LOWER(bulan) = ?', ['desember'])->sum('target');
+        // dd($rjanuari);
         // $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
         $telkomAkru = Project::where('kategori', 'Telkom')->get()->sum('nilai_project');
         $telkomGroupAkru = Project::where('kategori', 'Telkom Group')->sum('nilai_project');
@@ -580,7 +595,7 @@ class DashboardController extends Controller
             'telkomGroupBelumMulai' => $telkomGroupBelumMulai,
             'enterpriseBelumMulai' => $enterpriseBelumMulai,
             'governanceBelumMulai' => $governanceBelumMulai,
-            //target vs realisasi
+            //target
             'tjanuari' =>$tjanuari,
             'tfebruari' => $tfebruari,
             'tmaret' => $tmaret,
@@ -592,8 +607,36 @@ class DashboardController extends Controller
             'tseptember' => $tseptember,
             'toktober' => $toktober,
             'tnovember' => $tnovember,
-            'tdesember' => $tdesember
+            'tdesember' => $tdesember,
+            //realisasi
+            'rjanuari' =>$rjanuari,
+            'rfebruari' => $rfebruari,
+            'rmaret' => $rmaret,
+            'rapril' => $rapril,
+            'rmei' => $rmei,
+            'rjuni' => $rjuni,
+            'rjuli' => $rjuli,
+            'ragustus' => $ragustus,
+            'rseptember' => $rseptember,
+            'roktober' => $roktober,
+            'rnovember' => $rnovember,
+            'rdesember' => $rdesember
         ];
         return view('bsrm.dashboard_bsrm', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $ps = Ps::create([
+            'target' => $request ->target,
+            'bulan' =>$request ->bulan
+        ]);
+        LogActivities::create([
+            'user_id' => auth()->id(), // ID pengguna yang melakukan aksi (jika menggunakan autentikasi)
+            'activity' => 'Menambah data target project solution', // Aktivitas yang dilakukan (misalnya 'tambah_mitra')
+            'login_at' => Carbon::now('Asia/Singapore'), // Waktu aktivitas dilakukan
+        ]);
+        // Redirect atau berikan respon sesuai kebutuhan
+        return redirect()->back();
     }
 }

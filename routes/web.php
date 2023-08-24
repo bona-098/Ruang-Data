@@ -55,52 +55,40 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')
     ->name('login');
-
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest');
-
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
-
 // Rute untuk pendaftaran pengguna baru
 Route::get('/register', [RegisteredUserController::class, 'create'])
     ->middleware('guest')
     ->name('register');
-
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
-
 // Rute untuk verifikasi email
 Route::get('/email/verify', [EmailVerificationPromptController::class, '__invoke'])
     ->middleware('auth')
     ->name('verification.notice');
-
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['auth', 'signed', 'throttle:6,1'])
     ->name('verification.verify');
-
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
-
 // Rute untuk reset password
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
     ->middleware('guest')
     ->name('password.request');
-
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
     ->name('password.email');
-
 Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
     ->middleware('guest')
     ->name('password.reset');
-
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->middleware('guest')
     ->name('password.update');
-
 // Rute untuk halaman beranda
 Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth')
@@ -110,13 +98,11 @@ Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name
 Route::resource('/pengguna', UserController::class)->middleware('auth');
 Route::resource('/personil', PersonilController::class);
 Route::resource('/gedung', GedungController::class);
-// Route::resource('/perangkat', PerangkatController::class);
 Route::resource('/performance', PerformanceController::class);
 Route::resource('/karyawan', KaryawanController::class);
 Route::resource('/mitra', MitraController::class);
 Route::resource('/sales', SalesController::class);
 Route::resource('/project', ProjectController::class);
-// Route::get('/project', [ProjectController::class], 'grafik');
 Route::resource('/dashboard', DashboardController::class);
 Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
 Route::get('/costumer', function () {
@@ -180,7 +166,6 @@ Route::post('/projek', function () {
     Excel::import(new ProjectImport, request()->file('file'));
     return back();
 });
-
 //import gedung
 Route::get('/gedung_import', function () {
     $gedung = Gedung::all();
@@ -190,31 +175,11 @@ Route::post('/gedung_import', function () {
     Excel::import(new GedungImport, request()->file('file'));
     return back();
 });
-
 Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
-
-
-// Auth::routes();
-// Route::get('/ ', function () {
-//     $sales = Sales::all();
-//     return view('sales',['sales'=>$sales]);
-// });
-// Route::post('/', function () {
-//     Excel::import(new SalesImport, request()->file('file'));
-//     return back();
-// });
-// require __DIR__.'/auth.php';
-
 Route::get('/testing', function () {
     return view('testing');
 });
-
-
 Route::resource('/calon_bpo', BpoController::class);
-
 Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
 Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
-// Route::get('/detail_chart_projek', function () {
-//     return view('project.detail_chart');
-// });
 Route::get('/detail_chart_sales', [SalesController::class, 'detailchartsales']);
