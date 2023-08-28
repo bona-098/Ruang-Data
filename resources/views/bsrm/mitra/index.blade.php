@@ -1,82 +1,18 @@
 @extends('layout.layout')
 @section('content')
-    <!-- End Bread crumb -->
-    <!-- Container fluid  -->
     <div class="container-fluid">
-
-        {{-- MEMFILTER DATA --}}
-        {{-- <div class="card">
-            <div class="card-body">
-                <form action="{{ route('mitra.index') }}" method="GET" id="form_1">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="filter1">Status :</label>
-                            <select name="kategori" class="form-control" onchange="handleCategoryChange(this)">
-                                <option value="">Semua Kategori</option>
-                                <option value="Eksisting"
-                                    {{ isset($_GET['status']) && $_GET['status'] == 'Eksisting' ? 'selected' : '' }}>
-                                    Eksisting</option>
-                                <option value="Registered"
-                                    {{ isset($_GET['status']) && $_GET['status'] == 'Registered' ? 'selected' : '' }}>
-                                    Registered</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="filter2">Domisili :</label>
-                            <select name="domisili" class="form-control">
-                                <option value="">Semua Domisili</option>
-                                <option value="Balikpapan"
-                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Balikpapan' ? 'selected' : '' }}>
-                                    Area Balikpapan</option>
-                                <option value="Kaltim"
-                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kaltim' ? 'selected' : '' }}>
-                                    Kalimantan Timur</option>
-                                <option value="Kalsel"
-                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalsel' ? 'selected' : '' }}>
-                                    Kalimantan Selatan</option>
-                                <option value="Kalbar"
-                                    {{ isset($_GET['domisili']) && $_GET['domisili'] == 'Kalbar' ? 'selected' : '' }}>
-                                    Kalimantan Barat</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="submit" class="form-control btn-success"> <i class="fa fa-search"></i>
-                                Search</button>
-                        </div>
-                    </div>
-                </form>
-                <script>
-                    function handleCategoryChange(select) {
-                        const allCategoryOption = select.querySelector('option[value=""]');
-                        if (select.value === 'Registered' || select.value === 'Eksisting') {
-                            allCategoryOption.removeAttribute('selected');
-                            allCategoryOption.disabled = true;
-                        } else {
-                            allCategoryOption.disabled = false;
-                        }
-                    }
-                </script>
-            </div>
-        </div> --}}
-        
-        {{-- MEMFILTER DATA --}}
-        {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Mitra</h4>
                 <br>
-                <!-- Button trigger modal -->
-                <!-- Button trigger modal -->
-                @canany(['bsrm', 'admin'])
+                {{-- @canany(['bsrm', 'admin']) --}}
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahMitra">
                     <i class="fa fa-user-plus"></i> Tambah Mitra
                 </button>
                 <a button type="button" class="btn btn-primary" href="/import-mitra">
                     <i class="fa fa-plus"></i> Import Mitra
                     </button> </a>
-                @endcanany
+                {{-- @endcanany --}}
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class="table-responsive ">
                     <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">
