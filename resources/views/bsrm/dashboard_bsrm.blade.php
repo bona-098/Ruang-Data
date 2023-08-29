@@ -218,10 +218,8 @@
                 ],
                 datasets: [{
                         label: 'Target',
-                        data: [{{ $tjanuari }}, {{ $tfebruari }}, {{ $tmaret }},
-                            {{ $tapril }}, {{ $tmei }}, {{ $tjuni }},
-                            {{ $tjuli }}, {{ $tagustus }}, {{ $tseptember }},
-                            {{ $toktober }}, {{ $tnovember }}, {{ $tdesember }}
+                        data: [{{ $rjanuari }}, 15115000000, 14856000000, 20572000000, 28117000000, 0, 0, 0, 0, 0, 0,
+                            0
                         ],
                         backgroundColor: 'rgba(0, 123, 255, 0.9)',
                         borderColor: 'rgba(0, 123, 255, 0.9)',
@@ -229,8 +227,10 @@
                     },
                     {
                         label: 'Realisasi',
-                        data: [{{ $rjanuari }}, 15115000000, 14856000000, 20572000000, 28117000000, 0, 0, 0, 0, 0, 0,
-                            0
+                        data: [{{ $tjanuari }}, {{ $tfebruari }}, {{ $tmaret }},
+                            {{ $tapril }}, {{ $tmei }}, {{ $tjuni }},
+                            {{ $tjuli }}, {{ $tagustus }}, {{ $tseptember }},
+                            {{ $toktober }}, {{ $tnovember }}, {{ $tdesember }}
                         ],
                         backgroundColor: 'rgba(64, 64, 64, 1.0)',
                         borderColor: 'rgba(64, 64, 64, 1.0)',
