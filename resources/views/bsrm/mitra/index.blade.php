@@ -5,14 +5,14 @@
             <div class="card-body">
                 <h4 class="card-title">Data Mitra</h4>
                 <br>
-                {{-- @canany(['bsrm', 'admin']) --}}
+                @canany(['bsrm', 'admin'])
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahMitra">
                     <i class="fa fa-user-plus"></i> Tambah Mitra
                 </button>
                 <a button type="button" class="btn btn-primary" href="/import-mitra">
                     <i class="fa fa-plus"></i> Import Mitra
                     </button> </a>
-                {{-- @endcanany --}}
+                @endcanany
                 {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class="table-responsive ">
                     <table text-align: left; id="myTable" class="table table-bordered table-striped" style="font-size: 14px;">

@@ -61,107 +61,106 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 // Rute untuk halaman beranda bisa diakses semua role
-Route::get('/', [DashboardController::class, 'index'])
-    ->middleware('auth')
-    ->name('dashboard');
-Route::resource('/dashboard', DashboardController::class);
-Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
-Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log-activity.logActivity');
-//hanya di akses oleh role admin
-Route::resource('/pengguna', UserController::class)->middleware('auth');
-Route::resource('/personil', PersonilController::class);
-//dapat dilihat oleh semua role tatapi crud hanya bisa dilakukan role oms
-Route::resource('/gedung', GedungController::class);
-//dapat dilihat oleh semua role tatapi crud hanya bisa dilakukan role bsrm
-Route::resource('/performance', PerformanceController::class);
-Route::resource('/karyawan', KaryawanController::class);
-Route::resource('/mitra', MitraController::class);
-//dapat dilihat oleh semua role tatapi crud hanya bisa dilakukan role marshal
-Route::resource('/sales', SalesController::class);
-//dapat dilihat oleh semua role tatapi crud hanya bisa dilakukan role psd
-Route::resource('/project', ProjectController::class);
 
-Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
-Route::get('/costumer', function () {
-    return view('Role BSRM.costumer');
-});
-Route::get('/lop', function () {
-    return view('psd.lop');
-});
-Route::get('/nlop', function () {
-    return view('psd.nlop');
-});
-//import mitra
-Route::get('/import-mitra', function () {
-    $mitra = Mitra::all();
-    return view('mitras', ['mitra' => $mitra]);
-});
-Route::post('/mitras', function () {
-    Excel::import(new MitraImport, request()->file('file'));
-    return back();
-});
-Route::get('/import-personil', function () {
-    $personil = Personil::all();
-    return view('personul', ['personil' => $personil]);
-});
-Route::post('/personul', function () {
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::resource('/dashboard', DashboardController::class);
+    Route::get('/add-to-log', [LogActivityController::class, 'myTestAddToLog']);
+    Route::get('/log-activity', [LogActivityController::class, 'logActivity'])->name('log-activity.logActivity');
+    //hanya di akses oleh role admin
+    Route::resource('/pengguna', UserController::class);
+    Route::resource('/personil', PersonilController::class);
+    //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role oms
+    Route::resource('/gedung', GedungController::class);
+    Route::resource('/calon_bpo', BpoController::class);
+    //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role bsrm
+    Route::resource('/performance', PerformanceController::class);
+    Route::resource('/karyawan', KaryawanController::class);
+    Route::resource('/mitra', MitraController::class);
+    //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role marshal
+    Route::resource('/sales', SalesController::class);
+    //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role psd
+    Route::resource('/project', ProjectController::class);
+    Route::get('/filter', [SalesController::class, 'resetFilter'])->name('resetFilter');
+    Route::get('/costumer', function () {
+        return view('Role BSRM.costumer');
+    });
+    Route::get('/lop', function () {
+        return view('psd.lop');
+    });
+    Route::get('/nlop', function () {
+        return view('psd.nlop');
+    });
+    //import mitra
+    Route::get('/import-mitra', function () {
+        $mitra = Mitra::all();
+        return view('mitras', ['mitra' => $mitra]);
+    });
+    Route::post('/mitras', function () {
+        Excel::import(new MitraImport, request()->file('file'));
+        return back();
+    });
+    Route::get('/import-personil', function () {
+        $personil = Personil::all();
+        return view('personul', ['personil' => $personil]);
+    });
+    Route::post('/personul', function () {
     Excel::import(new PersonilImport, request()->file('file'));
     return back();
-});
-Route::get('/import-perangkat', function () {
-    $perangkat = Perangkat::all();
-    return view('perang', ['perangkat' => $perangkat]);
-});
-Route::post('/perang', function () {
-    Excel::import(new PerangkatImport, request()->file('file'));
-    return back();
-});
-Route::get('/import-karyawan', function () {
-    $karyawan = Karyawan::all();
-    return view('karyawans', ['karyawan' => $karyawan]);
-});
-Route::post('/karyawans', function () {
-    Excel::import(new KaryawanImport, request()->file('file'));
-    return back();
-});
-//import sales
-Route::get('/salees', function () {
-    $sales = Sales::all();
-    return view('salees', ['sales' => $sales]);
-});
-Route::post('/salees', function () {
-    Excel::import(new SalesImport, request()->file('file'));
-    return back();
-});
-Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
-//import project
-Route::get('/projek', function () {
-    $project = Project::all();
-    return view('projek', ['project' => $project]);
-});
-Route::post('/projek', function () {
-    Excel::import(new ProjectImport, request()->file('file'));
-    return back();
-});
-//import gedung
-Route::get('/gedung_import', function () {
-    $gedung = Gedung::all();
-    return view('gedung', ['gedung' => $gedung]);
-});
-Route::post('/gedung_import', function () {
-    Excel::import(new GedungImport, request()->file('file'));
-    return back();
-});
-Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
-Route::get('/testing', function () {
-    return view('testing');
-});
-Route::resource('/calon_bpo', BpoController::class);
-Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
-Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
-Route::get('/detail_chart_sales', [SalesController::class, 'detailchartsales']);
-
-// // Rute untuk pendaftaran pengguna baru
+    });
+    Route::get('/import-perangkat', function () {
+        $perangkat = Perangkat::all();
+        return view('perang', ['perangkat' => $perangkat]);
+    });
+    Route::post('/perang', function () {
+        Excel::import(new PerangkatImport, request()->file('file'));
+        return back();
+    });
+    Route::get('/import-karyawan', function () {
+        $karyawan = Karyawan::all();
+        return view('karyawans', ['karyawan' => $karyawan]);
+    });
+    Route::post('/karyawans', function () {
+        Excel::import(new KaryawanImport, request()->file('file'));
+        return back();
+    });
+    //import sales
+    Route::get('/salees', function () {
+        $sales = Sales::all();
+        return view('salees', ['sales' => $sales]);
+    });
+    Route::post('/salees', function () {
+        Excel::import(new SalesImport, request()->file('file'));
+        return back();
+    });
+    Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
+    //import project
+    Route::get('/projek', function () {
+        $project = Project::all();
+        return view('projek', ['project' => $project]);
+    });
+    Route::post('/projek', function () {
+        Excel::import(new ProjectImport, request()->file('file'));
+        return back();
+    });
+    //import gedung
+    Route::get('/gedung_import', function () {
+        $gedung = Gedung::all();
+        return view('gedung', ['gedung' => $gedung]);
+    });
+    Route::post('/gedung_import', function () {
+        Excel::import(new GedungImport, request()->file('file'));
+        return back();
+    });
+    Route::get('/sales/export', [SalesController::class, 'export'])->name('sales.export');
+    Route::get('/testing', function () {
+        return view('testing');
+    });
+    Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
+    Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
+    Route::get('/detail_chart_sales', [SalesController::class, 'detailchartsales']);
+}); 
+    // // Rute untuk pendaftaran pengguna baru
 // Route::get('/register', [RegisteredUserController::class, 'create'])
 //     ->middleware('guest')
 //     ->name('register');
