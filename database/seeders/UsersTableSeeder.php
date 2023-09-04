@@ -70,6 +70,77 @@ class UsersTableSeeder extends Seeder
                 'email' => 'area_balikpapan@bsrm.com',
                 'password' => Hash::make('password'),
                 'role' => 'viewer',
+            ],[
+                'name' => 'OMS Kaltim',
+                'email' => 'area_kaltim@oms.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'PSD Balikpapan',
+                'email' => 'area_kaltim@psd.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'Marshal Kaltim',
+                'email' => 'area_kaltim@marshal.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'BSRM Kaltim',
+                'email' => 'area_kaltim@bsrm.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'OMS Kalsel',
+                'email' => 'area_kalsel@oms.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'PSD Kalsel',
+                'email' => 'area_kalsel@psd.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'Marshal Kalsel',
+                'email' => 'area_kalsel@marshal.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'BSRM Kalsel',
+                'email' => 'area_kalsel@bsrm.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'OMS Kalbar',
+                'email' => 'area_kalbar@oms.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'PSD Kalbar',
+                'email' => 'area_kalbar@psd.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'Marshal Kalbar',
+                'email' => 'area_kalbar@marshal.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
+            ],
+            [
+                'name' => 'BSRM Kalbar',
+                'email' => 'area_kalbar@bsrm.com',
+                'password' => Hash::make('password'),
+                'role' => 'viewer',
             ],
         ];
 

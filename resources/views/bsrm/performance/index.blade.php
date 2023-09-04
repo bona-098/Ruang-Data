@@ -5,8 +5,6 @@
     @endphp
     <section class="content">
         <div class="container-fluid">
-
-            {{-- Filter Tabel --}}
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('performance.index') }}" method="GET" id="form_1">
@@ -92,67 +90,15 @@
                     </form>
                 </div>
             </div>
-            
-            {{-- Akhir Filter Tabel --}}
-
-            {{-- Filter Tabel --}}
-            {{-- <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="filter3">Tahun:</label>
-                            <select id="filter3" class="form-control"></select>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="filter1">Area:</label>
-                            <select id="filter1" class="form-control">
-                                <option value="">Semua Area</option>
-                                <option value="regional konsolidasi">Regional Konsolidasi</option>
-                                <option value="regional only">Regional Only</option>
-                                <option value="balikpapan">Area Balikpapan</option>
-                                <option value="kalimantan timur">Area Kalimantan Timur</option>
-                                <option value="kalimantan selatan">Area Kalsel Kalteng</option>
-                                <option value="kalimantan barat">Area Kalbar</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="bulan">Bulan:</label>
-                            <select id="bulan" class="form-control">
-                                <option value="all">Semua Bulan</option>
-                                <option value="januari">Januari</option>
-                                <option value="februari">Februari</option>
-                                <option value="maret">Maret</option>
-                                <option value="april">April</option>
-                                <option value="mei">Mei</option>
-                                <option value="juni">Juni</option>
-                                <option value="juli">Juli</option>
-                                <option value="agustus">Agustus</option>
-                                <option value="september">September</option>
-                                <option value="oktober">Oktober</option>
-                                <option value="november">November</option>
-                                <option value="desember">Desember</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="submit" class=" form-control btn-success"> <i class="fa fa-filter"></i>
-                                Filter</button>
-                        </div>
-                        <div class="col-md-2" style="padding-top: 5px;">
-                            <label for="filter5"> </label>
-                            <button type="button" class=" form-control btn-success">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- Akhir Filter Tabel --}}
             <div class="card">
                 <div class="card-body">
                     <!-- Button trigger modal -->
+                    @canany(['bsrm', 'admin'])
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahPerformance"
                         style="margin-bottom: 10px">
                         <i class="fa fa-user-plus"></i> Tambah Data
                     </button>
+                    @endcanany
                     <table id="example23" class="table table-responsive table-bordered">
                         <thead>
                             <tr>

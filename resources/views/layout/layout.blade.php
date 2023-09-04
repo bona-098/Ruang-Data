@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="{{ asset('template/') }}/image/png" sizes="16x16" href="template/images/favicon.png">
-    <title>Projek Telkom</title>
+    <link rel="icon" type="{{ asset('template/') }}/image/png" sizes="16x16" href="template/images/icon.png">
+    <title>Telkom Property Regional 6</title>
     <!-- Bootstrap Core CSS -->
     {{-- <link href="template/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- Custom CSS -->
@@ -304,7 +304,7 @@
                                     alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="/profile"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="/profile"><i class="ti-user"></i> {{ Auth::user()->name }}</a></li>
                                     <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
                                     <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                     <li role="separator" class="divider"></li>
