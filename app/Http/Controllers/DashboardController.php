@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $toktober = Project::whereRaw('LOWER(akru) = ?', ['oktober'])->sum('nilai_project');
         $tnovember = Project::whereRaw('LOWER(akru) = ?', ['november'])->sum('nilai_project');
         $tdesember = Project::whereRaw('LOWER(akru) = ?', ['desember'])->sum('nilai_project');
-        // dd($tfebruari);
+        // dd($tjanuari);
         //realisasi
         $rjanuari = Ps::whereRaw('LOWER(bulan) = ?', ['januari'])->sum('target');
         $rfebruari = Ps::whereRaw('LOWER(bulan) = ?', ['februari'])->sum('target');
