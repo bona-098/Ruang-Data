@@ -9,6 +9,11 @@
                 <li> <a href="{{ route('dashboard.index') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span
                             class="hide-menu">Dashboard </span></a>
                 </li>
+                {{-- @canany(['bsrm', 'admin', 'viewer']) --}}
+                    <li> <a class="" href="{{ route('performance.index') }}" aria-expanded="false"><i
+                                class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
+                    </li>
+                {{-- @endcanany --}}
                 {{-- @canany(['bsrm', 'viewer', 'admin']) --}}
                     <li> <a class="" href="{{ route('mitra.index') }}" aria-expanded="false"><i
                                 class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
@@ -25,11 +30,6 @@
                 {{-- @canany(['project', 'admin', 'viewer']) --}}
                     <li> <a class="" href="{{ route('project.index') }}"aria-expanded="false"><i
                                 class="fa fa-wpforms"></i><span class="hide-menu">Project</span></a>
-                    </li>
-                {{-- @endcanany --}}
-                {{-- @canany(['bsrm', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('performance.index') }}" aria-expanded="false"><i
-                                class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
                     </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['marshal', 'admin', 'viewer']) --}}

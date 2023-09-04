@@ -10,7 +10,7 @@
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
-                @canany(['bsrm', 'admin'])
+                @canany(['oms', 'admin'])
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
                         <i class="fa fa-user-plus"></i> Tambah Calon Bpo
                     </button>
