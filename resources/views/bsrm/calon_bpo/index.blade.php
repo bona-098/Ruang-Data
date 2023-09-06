@@ -11,19 +11,19 @@
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
                 @canany(['oms', 'admin'])
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahCalonbpo">
                         <i class="fa fa-user-plus"></i> Tambah Calon Bpo
                     </button>
-                    <a button type="button" class="btn btn-primary" href="/import-karyawan">
+                    {{-- <a button type="button" class="btn btn-primary" href="/import-calonbpo">
                         <i class="fa fa-user-plus"></i> Import Calon Bpo
-                        </button></a>
+                        </button></a> --}}
                 @endcanany {{-- <h6 class="card-subtitle">Data table example</h6> --}}
                 <div class=" table-responsive">
                     <table text-align: left; id="myTable" class="table table-bordered table-striped"
                         style="font-size: 12px;">
                         <thead>
                             <tr>
-                                <th style="white-space: nowrap;">Nama Karyawan</th>
+                                <th style="white-space: nowrap;">Nama</th>
                                 <th style="white-space: nowrap;">Pendidikan</th>
                                 <th style="white-space: nowrap;">Jurusan</th>
                                 <th>Umur</th>
@@ -46,8 +46,8 @@
         {{-- Selesai --}}
 
 
-        <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
-        <div class="modal fade" id="ModalTambahKaryawan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <!-- KONTEN MODAL TAMBAH CALONBPO  -->
+        <div class="modal fade" id="ModalTambahCalonbpo" tabindex="-1" aria-labelledby="exampleModalLabel"
             data-backdrop="static" data-keyboard="false" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -82,7 +82,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Umur</label>
-                                                <input type="number" min="0" name="umur" class="form-control">
+                                                <input type="number" min="0" max="40" name="umur" class="form-control">
                                                 <small class="form-control-feedback"> </small>
                                             </div>
                                         </div>

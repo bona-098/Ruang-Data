@@ -1,90 +1,41 @@
 @extends('layout.layout')
 @section('content')
-    <section class="content">
+   
         <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Data Calon Bpo : {{ $bpo->nama }}</h4>
+                    <button type="button" class=" btn btn-primary " id="dropdownMenuButton" data-toggle="dropdown"><i
+                            class="fa fa-cog"></i>
+                        Action
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateKaryawan"
+                            href="#">Update</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteKaryawan"
+                            href="#">Delete</a>
+                    </div>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-sm-12 col-md-70">
-                    <div class="card  ">
-                        <div class="card-body ">
-                            <a href="{{ asset('images/calon_bpo/diedit-074152.jpg') }}" target="_blank">
-                                <img src="{{ asset('images/calon_bpo/diedit-074152.jpg') }}"
-                                    style="width: 100%; max-width: 100%;" alt="gambar"></a>
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body text-center"> <!-- Menambahkan kelas "text-center" -->
+                            <a href="{{ asset('images/calon_bpo/' . $bpo->cv) }}" target="_blank">
+                                <img src="{{ asset('images/calon_bpo/' . $bpo->cv) }}" class="mx-auto d-block img-fluid"
+                                    alt="gambar" style="max-width: 100%;">
+                            </a>
                             <br>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Data Karyawan : {{ $bpo->nama }}</h4>
-                <button type="button" class=" btn btn-primary " id="dropdownMenuButton" data-toggle="dropdown"><i
-                        class="fa fa-cog"></i>
-                    Action
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalUpdateKaryawan"
-                        href="#">Update</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#ModalDeleteKaryawan"
-                        href="#">Delete</a>
-                </div>
-                <div style="margin-top: 20px;">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
-                        <tbody>
-                            <tr>
-                                <th scope="row">NIK Telpro</th>
-                                <td>{{  $bpo->nama }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">NIK Telkom Grup</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Nama Karyawan</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Tanggal Lahir</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Kota Lahir</th>
-                                <td>{{ $bpo->nama }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Agama</th>
-                                <td>{{ $bpo->nama }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Jenis Kelamin</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Alamat</th>
-                                <td>{{ $bpo->nama }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Unit Kerja</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Loker</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Jabatan</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Band Kelas Posisi</th>
-                                <td>{{ $bpo->nama  }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
 
-                </div>
-            </div>
+
         </div>
+        <!-- /.container-fluid -->
+
         <!-- KONTEN MODAL UPDATE KARYAWAN  -->
         <div class="modal fade" id="ModalUpdateKaryawan" tabindex="-1" aria-labelledby="exampleModalLabel"
             data-backdrop="static" data-keyboard="false" aria-hidden="true">
@@ -94,40 +45,61 @@
                         <h5 class="modal-title" id="exampleModalLabel">Update Karyawan</h5>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('karyawan.update', 2) }}" method="POST">
+                        <form method="POST" action="{{ route('calon_bpo.store') }}" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-body">
                                     <div class="row p-t-20">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">NIK Telpro</label>
-                                                <input type="number" value={{ $bpo->nama }} name="nik_telpro"
-                                                    min="0" class="form-control" placeholder="12345">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">NIK Telkom Grup</label>
-                                                <input type="number" value={{ $bpo->nama  }} name="nik_telkom_grup"
-                                                    min="0" class="form-control" placeholder="12345">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group has-danger">
-                                                <label for="nama_karyawan" class="control-label">Nama Karyawan</label>
-                                                <input type="text" id="nama_karyawan"
-                                                    value="{{ $bpo->nama }}"
-                                                    class="form-control form-control-danger" name="nama_karyawan">
+                                                <label class="control-label">Nama Calon Bpo</label>
+                                                <input type="text" id="nama"
+                                                    class="form-control form-control-danger" name="nama">
                                             </div>
                                         </div>
-                                      
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="unit_kerja">Unit Kerja</label>
-                                                <input type="text" value="{{$bpo->nama }}"
-                                                    class="form-control" id="unit_kerja" name="unit_kerja">
+                                                <label>Pendidikan</label>
+                                                <input type="text" class="form-control" name="pendidikan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Jurusan</label>
+                                                <input type="text" class="form-control" name="jurusan">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Umur</label>
+                                                <input type="number" min="0" name="umur" class="form-control">
+                                                <small class="form-control-feedback"> </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Domisili</label>
+                                                <input type="text" class="form-control" name="domisili">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nomor HP</label>
+                                                <input type="number" name="nomor_hp" class="form-control">
+                                                <small class="form-control-feedback"> </small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" class="form-control" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">CV</label>
+                                                <input type="file" name="cv" class="form-control">
+                                                <small class="form-control-feedback"> </small>
                                             </div>
                                         </div>
                                     </div>
@@ -171,5 +143,5 @@
         </div>
         {{-- KONTEN MODAL DELETE KARYAWAN --}}
         </div>
-    </section>
+    
 @endsection
