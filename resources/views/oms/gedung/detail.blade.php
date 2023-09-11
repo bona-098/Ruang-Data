@@ -50,7 +50,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Total Petugas</th>
-                                    <td colspan="6">{{ $gedung->total_petugas }}</td>
+                                    <td colspan="6">{{ $tpetugas }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" style="text-align: center;"><strong>Daftar Petugas Gedung</strong>
@@ -63,7 +63,6 @@
                                     <th>Witel</th>
                                     <th>Jabatan</th>
                                 </tr>
-
                                 @foreach ($personil as $pe)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -80,34 +79,41 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" data-toggle="modal"
-                                                        data-target="#ModalUpdatePetugas{{ $pe->id }}" href="#">Edit</a>
+                                                        data-target="#ModalUpdatePetugas{{ $pe->id }}"
+                                                        href="#">Edit</a>
                                                     <a class="dropdown-item" data-toggle="modal"
                                                         data-target="#ModalDeletePetugas" href="#">Delete</a>
                                                 </div>
                                                 {{-- KONTEN MODAL DELETE Petugas --}}
-    <div class="modal fade" id="ModalDeletePetugas" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-            </div>
-            <div class="modal-body">
-                Tindakan ini akan menghapus data Petugas dan data yang dihapus tidak dapat di kembalikan, apakah anda
-                yakin ingin melanjutkan ?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <form action="{{ route('personil.destroy', $pe->id) }}" method="POST" id="delete-form">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- KONTEN MODAL DELETE Petugas --}}
+                                                <div class="modal fade" id="ModalDeletePetugas" data-backdrop="static"
+                                                    data-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi
+                                                                    Hapus Data</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Tindakan ini akan menghapus data Petugas dan data yang
+                                                                dihapus tidak dapat di kembalikan, apakah anda
+                                                                yakin ingin melanjutkan ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Batal</button>
+                                                                <form action="{{ route('personil.destroy', $pe->id) }}"
+                                                                    method="POST" id="delete-form">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger">Hapus</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- KONTEN MODAL DELETE Petugas --}}
                                             </td>
                                         </div>
                                         {{-- modalupdate petugas --}}
@@ -202,8 +208,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                @endforeach
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -451,7 +457,7 @@
     {{-- @endforeach --}}
     <!-- KONTEN MODAL Tambah Petugas -->
 
-    
+
 
 
     {{-- KONTEN MODAL DELETE Gedung --}}
