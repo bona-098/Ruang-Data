@@ -33,18 +33,18 @@ class DashboardController extends Controller
         $tdesember = Project::whereRaw('LOWER(akru) = ?', ['desember'])->sum('nilai_project');
         // dd($tjanuari);
         //realisasi
-        $rjanuari = Ps::whereRaw('LOWER(bulan) = ?', ['januari'])->sum('target');
-        $rfebruari = Ps::whereRaw('LOWER(bulan) = ?', ['februari'])->sum('target');
-        $rmaret = Ps::whereRaw('LOWER(bulan) = ?', ['maret'])->sum('target');
-        $rapril = Ps::whereRaw('LOWER(bulan) = ?', ['april'])->sum('target');
-        $rmei = Ps::whereRaw('LOWER(bulan) = ?', ['mei'])->sum('target');
-        $rjuni = Ps::whereRaw('LOWER(bulan) = ?', ['juni'])->sum('target');
-        $rjuli = Ps::whereRaw('LOWER(bulan) = ?', ['juli'])->sum('target');
-        $ragustus = Ps::whereRaw('LOWER(bulan) = ?', ['agustus'])->sum('target');
-        $rseptember = Ps::whereRaw('LOWER(bulan) = ?', ['september'])->sum('target');
-        $roktober = Ps::whereRaw('LOWER(bulan) = ?', ['oktober'])->sum('target');
-        $rnovember = Ps::whereRaw('LOWER(bulan) = ?', ['november'])->sum('target');
-        $rdesember = Ps::whereRaw('LOWER(bulan) = ?', ['desember'])->sum('target');
+        $rjanuari = Ps::whereRaw('LOWER(bulan) = ?', ['januari'])->latest()->value('target');
+        $rfebruari = Ps::whereRaw('LOWER(bulan) = ?', ['februari'])->latest()->value('target');
+        $rmaret = Ps::whereRaw('LOWER(bulan) = ?', ['maret'])->latest()->value('target');
+        $rapril = Ps::whereRaw('LOWER(bulan) = ?', ['april'])->latest()->value('target');
+        $rmei = Ps::whereRaw('LOWER(bulan) = ?', ['mei'])->latest()->value('target');
+        $rjuni = Ps::whereRaw('LOWER(bulan) = ?', ['juni'])->latest()->value('target');
+        $rjuli = Ps::whereRaw('LOWER(bulan) = ?', ['juli'])->latest()->value('target');
+        $ragustus = Ps::whereRaw('LOWER(bulan) = ?', ['agustus'])->latest()->value('target');
+        $rseptember = Ps::whereRaw('LOWER(bulan) = ?', ['september'])->latest()->value('target');
+        $roktober = Ps::whereRaw('LOWER(bulan) = ?', ['oktober'])->latest()->value('target');
+        $rnovember = Ps::whereRaw('LOWER(bulan) = ?', ['november'])->latest()->value('target');
+        $rdesember = Ps::whereRaw('LOWER(bulan) = ?', ['desember'])->latest()->value('target');
         // dd($rjanuari);
         // $telkomAkru = Project::where('kategori', 'Telkom')->sum('nilai_project');
         $telkomAkru = Project::where('kategori', 'Telkom')->get()->sum('nilai_project');
@@ -597,7 +597,7 @@ class DashboardController extends Controller
             'enterpriseBelumMulai' => $enterpriseBelumMulai,
             'governanceBelumMulai' => $governanceBelumMulai,
             //target
-            'tjanuari' =>$tjanuari,
+            'tjanuari' => $tjanuari,
             'tfebruari' => $tfebruari,
             'tmaret' => $tmaret,
             'tapril' => $tapril,
@@ -610,7 +610,7 @@ class DashboardController extends Controller
             'tnovember' => $tnovember,
             'tdesember' => $tdesember,
             //realisasi
-            'rjanuari' =>$rjanuari,
+            'rjanuari' => $rjanuari,
             'rfebruari' => $rfebruari,
             'rmaret' => $rmaret,
             'rapril' => $rapril,
