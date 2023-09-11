@@ -40,7 +40,7 @@
   <div class="container">
     <div class="glass-login-container mx-auto"> <!-- Menambahkan class mx-auto -->
       <img class="logo" src="https://source.unsplash.com/random" alt="Logo">
-      <h2 class="text-center">Sistem Informasi<br>Telkom Property</h2>
+      <h2 class="text-center">Dashboard</h2>
       <form>
         <div class="form-group">
           <label for="username">Username:</label>
