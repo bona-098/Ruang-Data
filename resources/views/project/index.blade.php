@@ -118,7 +118,7 @@
                                         {{ number_format(floatval($p->sudah_akru), 0, ',', '.') }}</td>
                                     <td style="white-space: nowrap; font-size: 12px;">Rp
                                         {{ number_format(floatval($p->sisa_belum_akru), 0, ',', '.') }}</td>
-                                    <td style="white-space: nowrap; font-size: 12px;">{{ $p->keterangan }} Keterangan Keterangan Keterangan</td>
+                                    <td style="white-space: nowrap; font-size: 12px;">{{ $p->keterangan }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
