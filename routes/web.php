@@ -38,6 +38,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\MonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 // Rute untuk halaman beranda bisa diakses semua role
-
+Route::resource('/monitoringpm', MonitoringController::class);
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::resource('/dashboard', DashboardController::class);
@@ -105,8 +106,8 @@ Route::middleware(['auth'])->group(function () {
         return view('personul', ['personil' => $personil]);
     });
     Route::post('/personul', function () {
-    Excel::import(new PersonilImport, request()->file('file'));
-    return back();
+        Excel::import(new PersonilImport, request()->file('file'));
+        return back();
     });
     Route::get('/import-perangkat', function () {
         $perangkat = Perangkat::all();

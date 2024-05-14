@@ -10,47 +10,52 @@
                             class="hide-menu">Dashboard </span></a>
                 </li>
                 {{-- @canany(['bsrm', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('performance.index') }}" aria-expanded="false"><i
-                                class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('performance.index') }}" aria-expanded="false"><i
+                            class="fa fa-bar-chart-o"></i><span class="hide-menu">Perfomance</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['bsrm', 'viewer', 'admin']) --}}
-                    <li> <a class="" href="{{ route('mitra.index') }}" aria-expanded="false"><i
-                                class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('mitra.index') }}" aria-expanded="false"><i
+                            class="fa fa-handshake-o"></i><span class="hide-menu">Mitra</span></a>
+                </li>
+                {{-- @endcanany --}}
+                {{-- @canany(['bsrm', 'viewer', 'admin']) --}}
+                <li> <a class="" href="{{ route('monitoringpm.index') }}" aria-expanded="false"><i
+                            class="fa fa-handshake-o"></i><span class="hide-menu">Monitoring PM</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['bsrm', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i
-                                class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
-                    </li>
-                    <li> <a class="" href="{{ route('calon_bpo.index') }}"aria-expanded="false"><i
-                                class="fa fa-users"></i><span class="hide-menu">Calon Bpo</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i
+                            class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
+                </li>
+                <li> <a class="" href="{{ route('calon_bpo.index') }}"aria-expanded="false"><i
+                            class="fa fa-users"></i><span class="hide-menu">Calon Bpo</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['project', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('project.index') }}"aria-expanded="false"><i
-                                class="fa fa-wpforms"></i><span class="hide-menu">Project</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('project.index') }}"aria-expanded="false"><i
+                            class="fa fa-wpforms"></i><span class="hide-menu">Project</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['marshal', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
-                                class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('sales.index') }}" aria-expanded="false"><i
+                            class="fa fa-tags"></i><span class="hide-menu">Sales</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['oms', 'admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('gedung.index') }}" aria-expanded="false"><i
-                                class="fa fa-building"></i><span class="hide-menu">Data Gedung</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('gedung.index') }}" aria-expanded="false"><i
+                            class="fa fa-building"></i><span class="hide-menu">Data Gedung</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('pengguna.index') }}" aria-expanded="false"><i
-                                class="fa fa-tv"></i><span class="hide-menu">Data Pengguna</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('pengguna.index') }}" aria-expanded="false"><i
+                            class="fa fa-tv"></i><span class="hide-menu">Data Pengguna</span></a>
+                </li>
                 {{-- @endcanany --}}
                 {{-- @canany(['admin', 'viewer']) --}}
-                    <li> <a class="" href="{{ route('log-activity.logActivity') }}" aria-expanded="false"><i
-                                class="fa fa-history"></i><span class="hide-menu">History</span></a>
-                    </li>
+                <li> <a class="" href="{{ route('log-activity.logActivity') }}" aria-expanded="false"><i
+                            class="fa fa-history"></i><span class="hide-menu">History</span></a>
+                </li>
                 {{-- @endcanany --}}
             </ul>
         </nav>

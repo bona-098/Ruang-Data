@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
-        "maatwebsite/excel": "^3.1",
+        "maatwebsite/excel": "^3.1.28",
+        "phpoffice/phpspreadsheet": "1.18.0",
         "realrashid/sweet-alert": "^7.0",
         "spatie/laravel-activitylog": "^4.7"
     },
