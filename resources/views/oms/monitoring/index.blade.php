@@ -79,42 +79,51 @@
                                                             </button>
 
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">BOQ</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">BAKN</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">JIB</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">KONTRAK</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">NODIN
                                                                 PENGAJUAN</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">NODIN
                                                                 PERSETUJUAN</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">PKWT</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">CRM</button>
                                                             >
-                                                            <button class="btn btn-danger" data-bs-toggle="popover"
-                                                                title="Popover title"
+                                                            <button
+                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                                                data-bs-toggle="popover" title="Popover title"
                                                                 data-bs-content="Popover body content is set in this attribute.">DONE</button>
                                                         </div>
 
