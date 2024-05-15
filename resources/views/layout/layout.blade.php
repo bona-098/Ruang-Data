@@ -356,7 +356,7 @@
     <!-- End Page wrapper  -->
     </div>
 
-
+    @stack('javascript')
     <!-- End Wrapper -->
     <!-- All Jquery -->
     {{-- <script src="{{ asset('template/') }}/js/lib/jquery/jquery.min.js"></script> --}}

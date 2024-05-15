@@ -20,6 +20,7 @@
                                 <th>Unit Kerja</th>
                                 <th>Customer</th>
                                 <th>Segmen</th>
+                                <th>Nama Proyek</th>
                                 <th>Tanggal Kontrak</th>
                                 <th>Status</th>
                             </tr>
@@ -27,31 +28,32 @@
                         <tbody>
                             @foreach ($monitoringpm as $m)
                                 <tr>
-                                    <td>{{ $m->unit_kerja }}</td>
+                                    <td>{{ $m->sph }}</td>
                                     <td>{{ $m->customer }}</td>
                                     <td>{{ $m->segmen }}</td>
+                                    <td>{{ $m->nama_project }}</td>
                                     <td>{{ $m->tanggal_kontrak }}</td>
                                     <td>
                                         <button type="button"
-                                            class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
+                                            class="btn {{ isset($m->kontrak) ? 'btn-success' : 'btn-danger' }}"
                                             data-toggle="modal" data-target="#detail-{{ $m->id }}">
-                                            {{ $m->unit_kerja == 1
+                                            {{ $m->sph == null
                                                 ? 'SPH'
-                                                : ($m->unit_kerja == 2
+                                                : ($m->boq == null
                                                     ? 'BOQ'
-                                                    : ($m->unit_kerja == 3
+                                                    : ($m->bakn == null
                                                         ? 'BAKN'
-                                                        : ($m->unit_kerja == 4
+                                                        : ($m->jib == null
                                                             ? 'JIB'
-                                                            : ($m->unit_kerja == 5
+                                                            : ($m->kontrak == null
                                                                 ? 'Kontrak'
-                                                                : ($m->unit_kerja == 6
+                                                                : ($m->nd_pengajuan == null
                                                                     ? 'ND Pengajuan'
-                                                                    : ($m->unit_kerja == 7
+                                                                    : ($m->nd_persetujuan == null
                                                                         ? 'ND Persetujuan'
-                                                                        : ($m->unit_kerja == 8
+                                                                        : ($m->pkwt == null
                                                                             ? 'PKWT'
-                                                                            : ($m->unit_kerja == 9
+                                                                            : ($m->crm == null
                                                                                 ? 'CRM'
                                                                                 : 'Unknown')))))))) }}
 
@@ -63,7 +65,7 @@
                                             <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Update Mitra</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Update Customer</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -72,66 +74,59 @@
                                                     <div class="modal-body ">
                                                         <div class="grid text-center">
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="{{ $m->unit_kerja ? '2' : 'SPH belum selesai.' }}">
+                                                                class="btn {{ $m->sph == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">
                                                                 SPH
                                                             </button>
 
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">BOQ</button>
+                                                                class="btn {{ $m->boq == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">BOQ</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">BAKN</button>
+                                                                class="btn {{ $m->bakn == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">BAKN</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">JIB</button>
+                                                                class="btn {{ $m->jib == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">JIB</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">KONTRAK</button>
+                                                                class="btn {{ $m->kontrak == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover"
+                                                                title="Popover title">KONTRAK</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">NODIN
+                                                                class="btn {{ $m->nd_pengajuan == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">NODIN
                                                                 PENGAJUAN</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">NODIN
+                                                                class="btn {{ $m->nd_persetujuan == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">NODIN
                                                                 PERSETUJUAN</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">PKWT</button>
+                                                                class="btn {{ $m->pkwt == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">PKWT</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">CRM</button>
+                                                                class="btn {{ $m->crm == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">CRM</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->unit_kerja == 1 ? 'btn-success' : ($m->unit_kerja == 2 ? 'btn-danger' : 'btn-secondary') }}"
-                                                                data-bs-toggle="popover" title="Popover title"
-                                                                data-bs-content="Popover body content is set in this attribute.">DONE</button>
+                                                                class="btn {{ $m->done == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-bs-toggle="popover" title="Popover title">DONE</button>
                                                         </div>
 
                                                         <hr>
 
-                                                        <form method="POST" action="{{ route('monitoringpm.store') }}"
+                                                        <form method="POST"
+                                                            action="{{ route('monitoringpm.update', $m->id) }}"
                                                             enctype="multipart/form-data">
                                                             @csrf
+                                                            @method('PUT')
                                                             <div class="form-body">
                                                                 <div class="row p-t-20">
                                                                     <div class="col-md-6">
@@ -147,7 +142,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Customer</label>
                                                                             <input type="text" id="customer"
-                                                                                name="customer" class="form-control">
+                                                                                value="{{ $m->customer }}" name="customer"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -156,7 +152,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Segmen</label>
                                                                             <input type="text" id="segmen"
-                                                                                name="segmen" class="form-control">
+                                                                                value="{{ $m->segmen }}" name="segmen"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -164,7 +161,8 @@
                                                                             <label class="control-label">Nama
                                                                                 Project</label>
                                                                             <input type="text" id="nama_project"
-                                                                                name="nama_project" class="form-control">
+                                                                                value="{{ $m->nama_project }}"name="nama_project"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -174,6 +172,7 @@
                                                                             <label class="control-label">Nilai
                                                                                 Kontrak</label>
                                                                             <input type="text" id="nilai_kontrak"
+                                                                                value="{{ $m->nilai_kontrak }}"
                                                                                 name="nilai_kontrak" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -182,6 +181,7 @@
                                                                             <label class="control-label">Nilai
                                                                                 Perbulan</label>
                                                                             <input type="text" id="nilai_perbulan"
+                                                                                value="{{ $m->nilai_perbulan }}"
                                                                                 name="nilai_perbulan"
                                                                                 class="form-control">
                                                                         </div>
@@ -192,6 +192,7 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Jumlah HK</label>
                                                                             <input type="text" id="jumlah_hk"
+                                                                                value="{{ $m->jumlah_hk }}"
                                                                                 name="jumlah_hk" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -200,7 +201,7 @@
                                                                             <label class="control-label">Jumlah
                                                                                 Security</label>
                                                                             <input type="text" id="jumlah_security"
-                                                                                name="jumlah_security"
+                                                                                value="{{ $m->jumlah_security }}"name="jumlah_security"
                                                                                 class="form-control">
                                                                         </div>
                                                                     </div>
@@ -210,6 +211,7 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Total PKWT</label>
                                                                             <input type="text" id="total_pkwt"
+                                                                                value="{{ $m->total_pkwt }}"
                                                                                 name="total_pkwt" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -218,6 +220,7 @@
                                                                             <label class="control-label">Periode
                                                                                 Kontrak</label>
                                                                             <input type="text" id="tanggal_kontrak"
+                                                                                value="{{ $m->periode }}"
                                                                                 name="tanggal_kontrak"
                                                                                 class="form-control">
                                                                         </div>
@@ -229,6 +232,7 @@
                                                                             <label class="control-label">Tahun
                                                                                 Pengadaan</label>
                                                                             <input type="text" id="tahun_pengadaan"
+                                                                                value="{{ $m->tahun_pengadaan }}"
                                                                                 name="tahun_pengadaan"
                                                                                 class="form-control">
                                                                         </div>
@@ -245,14 +249,14 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">BOQ</label>
-                                                                            <input type="text" id="boq"
+                                                                            <input type="file" id="boq"
                                                                                 name="boq" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">BAKN</label>
-                                                                            <input type="text" id="bakn"
+                                                                            <input type="file" id="bakn"
                                                                                 name="bakn" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -261,14 +265,14 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">JIB</label>
-                                                                            <input type="text" id="jib"
+                                                                            <input type="file" id="jib"
                                                                                 name="jib" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Kontrak</label>
-                                                                            <input type="text" id="kontrak"
+                                                                            <input type="file" id="kontrak"
                                                                                 name="kontrak" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -278,7 +282,7 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">ND
                                                                                 Pengajuan</label>
-                                                                            <input type="text" id="nd_pengajuan"
+                                                                            <input type="file" id="nd_pengajuan"
                                                                                 name="nd_pengajuan" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -286,7 +290,7 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">ND
                                                                                 Persetujuan</label>
-                                                                            <input type="text" id="nd_persetujuan"
+                                                                            <input type="file" id="nd_persetujuan"
                                                                                 name="nd_persetujuan"
                                                                                 class="form-control">
                                                                         </div>
@@ -296,7 +300,7 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">PKWT</label>
-                                                                            <input type="text" id="pkwt"
+                                                                            <input type="file" id="pkwt"
                                                                                 name="pkwt" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -375,7 +379,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Unit Kerja</label>
                                             <input type="text" id="unit_kerja" class="form-control"
-                                                value="{{ $m->unit_kerja }}" name="unit_kerja">
+                                                name="unit_kerja">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -406,7 +410,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Nilai
                                                 Kontrak</label>
-                                            <input type="text" id="nilai_kontrak" name="nilai_kontrak"
+                                            <input type-currency=”IDR” id="nilai_kontrak" name="nilai_kontrak"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -464,7 +468,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPH</label>
-                                            <input type="file" class="form-control" id="inputGroupFile02">
+                                            <input type="file" class="form-control" name="sph"
+                                                id="inputGroupFile02">
                                         </div>
                                     </div>
                                 </div>
@@ -472,13 +477,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BOQ</label>
-                                            <input type="text" id="boq" name="boq" class="form-control">
+                                            <input type="file" id="boq" name="boq" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BAKN</label>
-                                            <input type="text" id="bakn" name="bakn" class="form-control">
+                                            <input type="file" id="bakn" name="bakn" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -486,13 +491,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">JIB</label>
-                                            <input type="text" id="jib" name="jib" class="form-control">
+                                            <input type="file" id="jib" name="jib" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">Kontrak</label>
-                                            <input type="text" id="kontrak" name="kontrak" class="form-control">
+                                            <input type="file" id="kontrak" name="kontrak" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -501,7 +506,7 @@
                                         <div class="form-group">
                                             <label class="control-label">ND
                                                 Pengajuan</label>
-                                            <input type="text" id="nd_pengajuan" name="nd_pengajuan"
+                                            <input type="file" id="nd_pengajuan" name="nd_pengajuan"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -509,7 +514,7 @@
                                         <div class="form-group">
                                             <label class="control-label">ND
                                                 Persetujuan</label>
-                                            <input type="text" id="nd_persetujuan" name="nd_persetujuan"
+                                            <input type="file" id="nd_persetujuan" name="nd_persetujuan"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -518,7 +523,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">PKWT</label>
-                                            <input type="text" id="pkwt" name="pkwt" class="form-control">
+                                            <input type="file" id="pkwt" name="pkwt" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -668,5 +673,26 @@
             }
         }
     </script>
+
+
+
     {{-- Javascript Filter Mitra --}}
 @endsection
+@push('javascript')
+    <!-- Script untuk menangani unduhan file -->
+    <script>
+        function downloadFile(filePath) {
+            var link = document.createElement("a");
+            link.href = filePath;
+            link.download = getFileNameFromPath(filePath);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Fungsi untuk mendapatkan nama file dari jalur file
+        function getFileNameFromPath(filePath) {
+            return filePath.split("/").pop(); // Mengambil bagian terakhir setelah pemisah "/"
+        }
+    </script>
+@endpush

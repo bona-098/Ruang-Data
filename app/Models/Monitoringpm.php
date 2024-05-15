@@ -30,6 +30,8 @@ class Monitoringpm extends Model
         'nd_pengajuan',
         'nd_persetujuan',
         'pkwt',
-        'crm',
+        'crm_np',
+        'crm_nd',
+        'crm_cc',
     ];
 }

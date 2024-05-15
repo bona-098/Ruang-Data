@@ -26,15 +26,17 @@ return new class extends Migration
             $table->string('total_pkwt')->nullable();
             $table->string('tanggal_kontrak')->nullable();
             $table->string('tahun_pengadaan')->nullable();
-            $table->string('sph')->nullable();
-            $table->string('boq')->nullable();
-            $table->string('bakn')->nullable();
-            $table->string('jib')->nullable();
-            $table->string('kontrak')->nullable();
-            $table->string('nd_pengajuan')->nullable();
-            $table->string('nd_persetujuan')->nullable();
-            $table->string('pkwt')->nullable();
-            $table->string('crm')->nullable();
+            $table->text('sph')->nullable();
+            $table->text('boq')->nullable();
+            $table->text('bakn')->nullable();
+            $table->text('jib')->nullable();
+            $table->text('kontrak')->nullable();
+            $table->text('nd_pengajuan')->nullable();
+            $table->text('nd_persetujuan')->nullable();
+            $table->text('pkwt')->nullable();
+            $table->string('crm_np')->nullable();
+            $table->string('crm_nd')->nullable();
+            $table->string('crm_cc')->nullable();
             $table->timestamps();
         });
     }
