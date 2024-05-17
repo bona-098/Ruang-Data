@@ -1,3 +1,7 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
@@ -21,14 +25,14 @@
                                 <th>Customer</th>
                                 <th>Segmen</th>
                                 <th>Nama Proyek</th>
-                                <th>Tanggal Kontrak</th>
+                                <th>Periode Kontrak</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($monitoringpm as $m)
                                 <tr>
-                                    <td>{{ $m->sph }}</td>
+                                    <td>{{ $m->unit_kerja }}</td>
                                     <td>{{ $m->customer }}</td>
                                     <td>{{ $m->segmen }}</td>
                                     <td>{{ $m->nama_project }}</td>
@@ -53,9 +57,9 @@
                                                                         ? 'ND Persetujuan'
                                                                         : ($m->pkwt == null
                                                                             ? 'PKWT'
-                                                                            : ($m->crm == null
+                                                                            : ($m->crm_np == null || $m->crm_nd == null || $m->crm_cc == null
                                                                                 ? 'CRM'
-                                                                                : 'Unknown')))))))) }}
+                                                                                : 'Kontrak')))))))) }}
 
                                         </button>
 
@@ -75,48 +79,63 @@
                                                         <div class="grid text-center">
                                                             <button
                                                                 class="btn {{ $m->sph == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">
+                                                                data-file-path="{{ $m->sph ? asset('pdfs/monitoring/' . $m->sph) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">
                                                                 SPH
                                                             </button>
-
                                                             >
                                                             <button
                                                                 class="btn {{ $m->boq == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">BOQ</button>
+                                                                data-file-path="{{ $m->boq ? asset('pdfs/monitoring/' . $m->boq) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">BOQ</button>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->bakn == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">BAKN</button>
+                                                                data-file-path="{{ $m->bakn ? asset('pdfs/monitoring/' . $m->bakn) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">BAKN</button>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->jib == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">JIB</button>
+                                                                data-file-path="{{ $m->jib ? asset('pdfs/monitoring/' . $m->jib) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">JIB</button>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->kontrak == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover"
+                                                                data-file-path="{{ $m->kontrak ? asset('pdfs/monitoring/' . $m->kontrak) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
                                                                 title="Popover title">KONTRAK</button>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->nd_pengajuan == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">NODIN
+                                                                data-file-path="{{ $m->nd_pengajuan ? asset('pdfs/monitoring/' . $m->nd_pengajuan) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">NODIN
                                                                 PENGAJUAN</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->nd_persetujuan == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">NODIN
+                                                                class="btn {{ $m->nd_pengajuan == null ? 'btn-danger' : 'btn-success' }}"
+                                                                data-file-path="{{ $m->nd_persetujuan ? asset('pdfs/monitoring/' . $m->nd_persetujuan) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">NODIN
                                                                 PERSETUJUAN</button>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->pkwt == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-bs-toggle="popover" title="Popover title">PKWT</button>
+                                                                data-file-path="{{ $m->pkwt ? asset('pdfs/monitoring/' . $m->pkwt) : '#' }}"
+                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
+                                                                title="Popover title">PKWT</button>
                                                             >
                                                             <button
-                                                                class="btn {{ $m->crm == null ? 'btn-danger' : 'btn-success' }}"
+                                                                class="btn {{ $m->crm_np == null || $m->crm_nd == null || $m->crm_cc == null ? 'btn-danger' : 'btn-success' }}"
                                                                 data-bs-toggle="popover" title="Popover title">CRM</button>
+
                                                             >
                                                             <button
-                                                                class="btn {{ $m->done == null ? 'btn-danger' : 'btn-success' }}"
+                                                                class="btn {{ $m->sph == null || $m->boq == null || $m->bakn == null || $m->jib == null || $m->kontrak == null || $m->nd_pengajuan == null || $m->pkwt == null || $m->crm_np == null || $m->crm_nd == null || $m->crm_cc == null ? 'btn-danger' : 'btn-success' }}"
                                                                 data-bs-toggle="popover" title="Popover title">DONE</button>
                                                         </div>
 
@@ -128,22 +147,22 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="form-body">
+
                                                                 <div class="row p-t-20">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Unit Kerja</label>
                                                                             <input type="text" id="unit_kerja"
-                                                                                class="form-control"
                                                                                 value="{{ $m->unit_kerja }}"
-                                                                                name="unit_kerja">
+                                                                                class="form-control" name="unit_kerja">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Customer</label>
                                                                             <input type="text" id="customer"
-                                                                                value="{{ $m->customer }}" name="customer"
-                                                                                class="form-control">
+                                                                                value="{{ $m->customer }}"
+                                                                                name="customer" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -152,8 +171,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Segmen</label>
                                                                             <input type="text" id="segmen"
-                                                                                value="{{ $m->segmen }}" name="segmen"
-                                                                                class="form-control">
+                                                                                value="{{ $m->segmen }}"
+                                                                                name="segmen" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -161,8 +180,8 @@
                                                                             <label class="control-label">Nama
                                                                                 Project</label>
                                                                             <input type="text" id="nama_project"
-                                                                                value="{{ $m->nama_project }}"name="nama_project"
-                                                                                class="form-control">
+                                                                                value="{{ $m->nama_project }}"
+                                                                                name="nama_project" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -171,7 +190,7 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Nilai
                                                                                 Kontrak</label>
-                                                                            <input type="text" id="nilai_kontrak"
+                                                                            <input type-currency=”IDR” id="nilai_kontrak"
                                                                                 value="{{ $m->nilai_kontrak }}"
                                                                                 name="nilai_kontrak" class="form-control">
                                                                         </div>
@@ -188,64 +207,118 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row p-t-20">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Jumlah HK</label>
-                                                                            <input type="text" id="jumlah_hk"
+                                                                            <input type="text"
+                                                                                id="jumlah_hk_update_{{ $m->id }}"
                                                                                 value="{{ $m->jumlah_hk }}"
-                                                                                name="jumlah_hk" class="form-control">
+                                                                                name="jumlah_hk" class="form-control"
+                                                                                oninput="hitungTotalPKWTUpdate({{ $m->id }})">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Jumlah
                                                                                 Security</label>
-                                                                            <input type="text" id="jumlah_security"
-                                                                                value="{{ $m->jumlah_security }}"name="jumlah_security"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                id="jumlah_security_update_{{ $m->id }}"
+                                                                                value="{{ $m->jumlah_security }}"
+                                                                                name="jumlah_security"
+                                                                                class="form-control"
+                                                                                oninput="hitungTotalPKWTUpdate({{ $m->id }})">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Jumlah
+                                                                                Driver</label>
+                                                                            <input type="text"
+                                                                                id="jumlah_driver_update_{{ $m->id }}"
+                                                                                value="{{ $m->jumlah_driver }}"
+                                                                                name="jumlah_driver" class="form-control"
+                                                                                oninput="hitungTotalPKWTUpdate({{ $m->id }})">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Jumlah
+                                                                                Admin</label>
+                                                                            <input type="text"
+                                                                                id="jumlah_admin_update_{{ $m->id }}"
+                                                                                value="{{ $m->jumlah_admin }}"
+                                                                                name="jumlah_admin" class="form-control"
+                                                                                oninput="hitungTotalPKWTUpdate({{ $m->id }})">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Jumlah
+                                                                                Teknisi</label>
+                                                                            <input type="text"
+                                                                                id="jumlah_teknisi_update_{{ $m->id }}"
+                                                                                value="{{ $m->jumlah_teknisi }}"
+                                                                                name="jumlah_teknisi" class="form-control"
+                                                                                oninput="hitungTotalPKWTUpdate({{ $m->id }})">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Total PKWT</label>
-                                                                            <input type="text" id="total_pkwt"
-                                                                                value="{{ $m->total_pkwt }}"
-                                                                                name="total_pkwt" class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label">Periode
-                                                                                Kontrak</label>
-                                                                            <input type="text" id="tanggal_kontrak"
-                                                                                value="{{ $m->periode }}"
-                                                                                name="tanggal_kontrak"
-                                                                                class="form-control">
+                                                                            <input type="text"
+                                                                                id="total_pkwt_update_{{ $m->id }}"
+                                                                                name="total_pkwt_update"
+                                                                                class="form-control" readonly>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row p-t-20">
-                                                                    <div class="col-md-6">
+                                                                    <div class="col-md-4">
                                                                         <div class="form-group">
-                                                                            <label class="control-label">Tahun
-                                                                                Pengadaan</label>
-                                                                            <input type="text" id="tahun_pengadaan"
-                                                                                value="{{ $m->tahun_pengadaan }}"
-                                                                                name="tahun_pengadaan"
-                                                                                class="form-control">
+                                                                            <label class="control-label">Tanggal Awal
+                                                                                Kontrak</label>
+                                                                            <input type="date"
+                                                                                id="awal_kontrak_update_{{ $m->id }}"
+                                                                                value="{{ $m->awal_kontrak }}"
+                                                                                class="form-control" name="awal_kontrak"
+                                                                                onchange="calculateContractDurationUpdate({{ $m->id }})"
+                                                                                value="{{ date('Y-m-d') }}">
                                                                         </div>
                                                                     </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Tanggal Akhir
+                                                                                Kontrak</label>
+                                                                            <input type="date"
+                                                                                id="akhir_kontrak_update_{{ $m->id }}"
+                                                                                value="{{ $m->akhir_kontrak }}"
+                                                                                class="form-control" name="akhir_kontrak"
+                                                                                onchange="calculateContractDurationUpdate({{ $m->id }})">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Sisa Waktu
+                                                                                (bulan)
+                                                                            </label>
+                                                                            <input type="text"
+                                                                                id="sisa_waktu_update_{{ $m->id }}"
+                                                                                class="form-control" name="sisa_waktu"
+                                                                                readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row p-t-20">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">SPH</label>
                                                                             <input type="file" class="form-control"
-                                                                                id="inputGroupFile02">
+                                                                                name="sph" id="inputGroupFile02">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
+
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">BOQ</label>
@@ -260,8 +333,7 @@
                                                                                 name="bakn" class="form-control">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">JIB</label>
@@ -276,8 +348,7 @@
                                                                                 name="kontrak" class="form-control">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">ND
@@ -295,8 +366,7 @@
                                                                                 class="form-control">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">PKWT</label>
@@ -308,34 +378,35 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">CRM / NO
                                                                                 PID</label>
-                                                                            <input type="text" id="crm"
-                                                                                name="crm" class="form-control">
+                                                                            <input type="text" id="crm_np"
+                                                                                name="crm_np" class="form-control">
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row p-t-20">
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">CRM / NO
                                                                                 DRK</label>
-                                                                            <input type="text" id="pkwt"
-                                                                                name="pkwt" class="form-control">
+                                                                            <input type="text" id="crm_nd"
+                                                                                name="crm_nd" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">CRM / COST
                                                                                 CENTER</label>
-                                                                            <input type="text" id="crm"
-                                                                                name="crm" class="form-control">
+                                                                            <input type="text" id="crm_cc"
+                                                                                name="crm_cc" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Tutup</button>
+                                                                <a href="{{ route('monitoringpm.destroy', $m->id) }}"
+                                                                    class="btn btn-danger"
+                                                                    data-confirm-delete="true">Delete</a>
                                                                 <button type="submit"
                                                                     class="btn btn-primary">Simpan</button>
                                                             </div>
@@ -374,6 +445,7 @@
                         <form method="POST" action="{{ route('monitoringpm.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
+
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -424,47 +496,79 @@
                                     </div>
                                 </div>
                                 <div class="row p-t-20">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Jumlah HK</label>
-                                            <input type="text" id="jumlah_hk" name="jumlah_hk" class="form-control">
+                                            <input type="text" id="jumlah_hk" name="jumlah_hk" class="form-control"
+                                                oninput="hitungTotalPKWT()">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Jumlah
                                                 Security</label>
                                             <input type="text" id="jumlah_security" name="jumlah_security"
-                                                class="form-control">
+                                                class="form-control" oninput="hitungTotalPKWT()">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Jumlah
+                                                Driver</label>
+                                            <input type="text" id="jumlah_driver" name="jumlah_driver"
+                                                class="form-control" oninput="hitungTotalPKWT()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Jumlah
+                                                Admin</label>
+                                            <input type="text" id="jumlah_admin" name="jumlah_admin"
+                                                class="form-control" oninput="hitungTotalPKWT()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Jumlah
+                                                Teknisi</label>
+                                            <input type="text" id="jumlah_teknisi" name="jumlah_teknisi"
+                                                class="form-control" oninput="hitungTotalPKWT()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label">Total PKWT</label>
-                                            <input type="text" id="total_pkwt" name="total_pkwt"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Periode
-                                                Kontrak</label>
-                                            <input type="text" id="tanggal_kontrak" name="tanggal_kontrak"
+                                            <input type="text" id="total_pkwt" name="total_pkwt" readonly
                                                 class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row p-t-20">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="control-label">Tahun
-                                                Pengadaan</label>
-                                            <input type="text" id="tahun_pengadaan" name="tahun_pengadaan"
-                                                class="form-control">
+                                            <label class="control-label">Tanggal Awal Kontrak</label>
+                                            <input type="date" id="awal_kontrak" class="form-control"
+                                                name="awal_kontrak" value="{{ date('Y-m-d') }}"
+                                                onchange="calculateContractDuration()">
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal Akhir Kontrak</label>
+                                            <input type="date" id="akhir_kontrak" class="form-control"
+                                                name="akhir_kontrak" value="{{ date('Y-m-d') }}"
+                                                onchange="calculateContractDuration()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Sisa Kontrak</label>
+                                            <input type="text" id="sisa_kontrak" class="form-control" readonly
+                                                name="sisa_kontrak">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-t-20">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPH</label>
@@ -472,8 +576,8 @@
                                                 id="inputGroupFile02">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
+
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BOQ</label>
@@ -486,8 +590,7 @@
                                             <input type="file" id="bakn" name="bakn" class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">JIB</label>
@@ -500,8 +603,7 @@
                                             <input type="file" id="kontrak" name="kontrak" class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">ND
@@ -518,35 +620,34 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">PKWT</label>
-                                            <input type="file" id="pkwt" name="pkwt" class="form-control">
+                                            <input type="file" id="pkwt" name="pkwt" readonly
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">CRM / NO
                                                 PID</label>
-                                            <input type="text" id="crm" name="crm" class="form-control">
+                                            <input type="text" id="crm_np" name="crm_np" class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row p-t-20">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">CRM / NO
                                                 DRK</label>
-                                            <input type="text" id="pkwt" name="pkwt" class="form-control">
+                                            <input type="text" id="crm_nd" name="crm_nd" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">CRM / COST
                                                 CENTER</label>
-                                            <input type="text" id="crm" name="crm" class="form-control">
+                                            <input type="text" id="crm_cc" name="crm_cc" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -561,138 +662,89 @@
             </div>
         </div>
     </div>
-
-    <!-- KONTEN MODAL TAMBAH MITRA  -->
-
-
-    <!-- KONTEN MODAL Import MITRA  -->
-    {{-- <div class="modal fade" id="ModalImportMitra" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import Mitra</h5>
-                    <br>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('mitra.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-body">
-                                <div class="row ">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Import File</label>
-                                            <input type="file" class="form-control" name="file">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- KONTEN MODAL TAMBAH MITRA  -->
-    {{-- @foreach ($mitra as $m) --}}
-
-
-    {{-- @endforeach --}}
-
-
-    <!-- Modal Delete Mitra -->
-    {{-- @foreach ($mitra as $m)
-        @if (isset($m))
-            <div class="modal fade" id="ModalDeleteMitra{{ $m->id }}" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi Hapus Data</h5>
-                        </div>
-                        <div class="modal-body">
-                            Tindakan ini akan menghapus data tersebut dan data yang dihapus tidak dapat dikembalikan. Apakah
-                            Anda yakin ingin melanjutkan?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <form method="POST" action="{{ route('mitra.destroy', $m->id) }}" id="delete-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-    @endforeach --}}
-
-
-
-    {{-- KONTEN MODAL DELETE MITRA --}}
-    {{-- Javascript Filter Mitra --}}
+@endsection
+@push('javascript')
     <script>
-        function filterTable() {
-            var type = document.getElementById("filter-type").value;
-            var location = document.getElementById("filter-location").value;
+        function calculateContractDurationUpdate(id) {
+            var startDate = moment(document.getElementById('awal_kontrak_update_' + id).value, 'YYYY-MM-DD');
+            var endDate = moment(document.getElementById('akhir_kontrak_update_' + id).value, 'YYYY-MM-DD');
 
-            // Filter the table based on the selected values
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {
-                var typeCell = rows[i].getElementsByTagName("td")[0];
-                var locationCell = rows[i].getElementsByTagName("td")[1];
+            if (startDate.isValid() && endDate.isValid()) {
+                var duration = moment.duration(endDate.diff(startDate));
+                var months = duration.asMonths().toFixed(0); // Total bulan dibulatkan
 
-                if (type === "eksisting" && typeCell.innerHTML !== "eksisting") {
-                    rows[i].style.display = "none";
-                } else if (type === "register" && typeCell.innerHTML !== "BARU (BARU REGISTERED)") {
-                    rows[i].style.display = "none";
-                } else if (location !== "" && locationCell.innerHTML.toLowerCase() !== location.toLowerCase()) {
-                    rows[i].style.display = "none";
-                } else {
-                    rows[i].style.display = "";
-                }
-            }
-        }
+                var result = months + ' bulan';
 
-        function resetFilter() {
-            document.getElementById("filter-type").selectedIndex = 0;
-            document.getElementById("filter-location").value = "";
-
-            // Show all rows in the table
-            var table = document.getElementById("myTable");
-            var rows = table.getElementsByTagName("tr");
-            for (var i = 0; i < rows.length; i++) {
-                rows[i].style.display = "";
+                document.getElementById('sisa_waktu_update_' + id).value = result.trim();
             }
         }
     </script>
 
+    <script>
+        function hitungTotalPKWTUpdate(id) {
+            var jumlahHK_update = parseInt(document.getElementById('jumlah_hk_update_' + id).value) || 0;
+            var jumlahSecurity_update = parseInt(document.getElementById('jumlah_security_update_' + id).value) || 0;
+            var jumlahDriver_update = parseInt(document.getElementById('jumlah_driver_update_' + id).value) || 0;
+            var jumlahAdmin_update = parseInt(document.getElementById('jumlah_admin_update_' + id).value) || 0;
+            var jumlahTeknisi_update = parseInt(document.getElementById('jumlah_teknisi_update_' + id).value) || 0;
+
+            var totalPKWT = jumlahHK_update + jumlahSecurity_update + jumlahDriver_update + jumlahAdmin_update +
+                jumlahTeknisi_update;
+
+            document.getElementById('total_pkwt_update_' + id).value = totalPKWT;
+        }
+    </script>
+
+    <script>
+        function hitungTotalPKWT() {
+            var jumlahHK = parseInt(document.getElementById('jumlah_hk').value) || 0;
+            var jumlahSecurity = parseInt(document.getElementById('jumlah_security').value) || 0;
+            var jumlahDriver = parseInt(document.getElementById('jumlah_driver').value) || 0;
+            var jumlahAdmin = parseInt(document.getElementById('jumlah_admin').value) || 0;
+            var jumlahTeknisi = parseInt(document.getElementById('jumlah_teknisi').value) || 0;
+
+            var totalPKWT = jumlahHK + jumlahSecurity + jumlahDriver + jumlahAdmin + jumlahTeknisi;
+
+            document.getElementById('total_pkwt').value = totalPKWT;
+        }
+    </script>
 
 
-    {{-- Javascript Filter Mitra --}}
-@endsection
-@push('javascript')
     <!-- Script untuk menangani unduhan file -->
     <script>
-        function downloadFile(filePath) {
-            var link = document.createElement("a");
-            link.href = filePath;
-            link.download = getFileNameFromPath(filePath);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        function downloadFile(button) {
+            var filePath = button.getAttribute("data-file-path");
+            if (filePath && filePath !== '#') {
+                var link = document.createElement("a");
+                link.href = filePath;
+                link.download = getFileNameFromPath(filePath);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("File tidak tersedia untuk diunduh.");
+            }
         }
 
         // Fungsi untuk mendapatkan nama file dari jalur file
         function getFileNameFromPath(filePath) {
             return filePath.split("/").pop(); // Mengambil bagian terakhir setelah pemisah "/"
+        }
+    </script>
+
+    <script>
+        function calculateContractDuration() {
+            var startDate = moment(document.getElementById('awal_kontrak').value, 'YYYY-MM-DD');
+            var endDate = moment(document.getElementById('akhir_kontrak').value, 'YYYY-MM-DD');
+
+            if (startDate.isValid() && endDate.isValid()) {
+                var duration = moment.duration(endDate.diff(startDate));
+                var months = duration.asMonths().toFixed(0); // Total bulan dibulatkan
+
+                var result = months + ' bulan';
+
+                document.getElementById('sisa_kontrak').value = result.trim();
+            }
         }
     </script>
 @endpush

@@ -23,8 +23,13 @@ return new class extends Migration
             $table->string('nilai_perbulan')->nullable();
             $table->string('jumlah_hk')->nullable();
             $table->string('jumlah_security')->nullable();
+            $table->string('jumlah_driver')->nullable();
+            $table->string('jumlah_admin')->nullable();
+            $table->string('jumlah_teknisi')->nullable();
             $table->string('total_pkwt')->nullable();
-            $table->string('tanggal_kontrak')->nullable();
+            $table->date('awal_kontrak')->nullable();
+            $table->date('akhir_kontrak')->nullable();
+            $table->string('sisa_kontrak')->nullable();
             $table->string('tahun_pengadaan')->nullable();
             $table->text('sph')->nullable();
             $table->text('boq')->nullable();

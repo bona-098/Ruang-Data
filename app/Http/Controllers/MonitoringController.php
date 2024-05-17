@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Monitoringpm;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MonitoringController extends Controller
 {
@@ -47,11 +48,16 @@ class MonitoringController extends Controller
             'nilai_perbulan' => 'nullable|string',
             'jumlah_hk' => 'nullable|string',
             'jumlah_security' => 'nullable|string',
+            'jumlah_driver' => 'nullable|string',
+            'jumlah_admin' => 'nullable|string',
+            'jumlah_teknisi' => 'nullable|string',
             'total_pkwt' => 'nullable|string',
-            'tanggal_kontrak' => 'nullable|string',
+            'awal_kontrak' => 'nullable|string',
+            'akhir_kontrak' => 'nullable|string',
+            'sisa_kontrak' => 'nullable|string',
             'tahun_pengadaan' => 'nullable|string',
             'sph' => 'nullable|file|mimes:pdf|max:2048',
-            'boq' => 'nullable|file|mimes:pdf|max:2048',
+            'boq' => 'nullable|file|mimes:pdf,excel,xlsx|max:2048',
             'bakn' => 'nullable|file|mimes:pdf|max:2048',
             'jib' => 'nullable|file|mimes:pdf|max:2048',
             'kontrak' => 'nullable|file|mimes:pdf|max:2048',
@@ -112,6 +118,7 @@ class MonitoringController extends Controller
         $monitoringpm = Monitoringpm::create($data);
 
         // Redirect atau respon
+        Alert::success('Success ', 'Data berhasil ditambah');
         return redirect()->route('monitoringpm.index')->with('success', 'Data berhasil disimpan');
     }
 
@@ -164,52 +171,56 @@ class MonitoringController extends Controller
             'total_pkwt' => 'nullable|string',
             'tanggal_kontrak' => 'nullable|string',
             'tahun_pengadaan' => 'nullable|string',
-            'sph' => 'nullable|string',
-            'boq' => 'nullable|string',
-            'bakn' => 'nullable|string',
-            'jib' => 'nullable|string',
-            'kontrak' => 'nullable|string',
-            'nd_pengajuan' => 'nullable|string',
-            'nd_persetujuan' => 'nullable|string',
-            'pkwt' => 'nullable|string',
+            'sph' => 'nullable|file|mimes:pdf',
+            'boq' => 'nullable|file|mimes:pdf',
+            'bakn' => 'nullable|file|mimes:pdf',
+            'jib' => 'nullable|file|mimes:pdf',
+            'kontrak' => 'nullable|file|mimes:pdf',
+            'nd_pengajuan' => 'nullable|file|mimes:pdf',
+            'nd_persetujuan' => 'nullable|file|mimes:pdf',
+            'pkwt' => 'nullable|file|mimes:pdf',
             'crm_np' => 'nullable|string',
             'crm_nd' => 'nullable|string',
             'crm_cc' => 'nullable|string',
-
-            // Cari data yang akan di-update
         ]);
+
+        // Cari data yang akan di-update
         $monitoringpm = Monitoringpm::findOrFail($id);
 
-        // Update data
-        $monitoringpm->unit_kerja = $request->get('unit_kerja');
-        $monitoringpm->customer = $request->get('customer');
-        $monitoringpm->segmen = $request->get('segmen');
-        $monitoringpm->nama_project = $request->get('nama_project');
-        $monitoringpm->nilai_kontrak = $request->get('nilai_kontrak');
-        $monitoringpm->nilai_perbulan = $request->get('nilai_perbulan');
-        $monitoringpm->jumlah_hk = $request->get('jumlah_hk');
-        $monitoringpm->jumlah_security = $request->get('jumlah_security');
-        $monitoringpm->total_pkwt = $request->get('total_pkwt');
-        $monitoringpm->tanggal_kontrak = $request->get('tanggal_kontrak');
-        $monitoringpm->tahun_pengadaan = $request->get('tahun_pengadaan');
-        $monitoringpm->sph = $request->get('sph');
-        $monitoringpm->boq = $request->get('boq');
-        $monitoringpm->bakn = $request->get('bakn');
-        $monitoringpm->jib = $request->get('jib');
-        $monitoringpm->kontrak = $request->get('kontrak');
-        $monitoringpm->nd_pengajuan = $request->get('nd_pengajuan');
-        $monitoringpm->nd_persetujuan = $request->get('nd_persetujuan');
-        $monitoringpm->pkwt = $request->get('pkwt');
-        $monitoringpm->crm_np = $request->get('crm_np');
-        $monitoringpm->crm_nd = $request->get('crm_nd');
-        $monitoringpm->crm_cc = $request->get('crm_cc');
+        // Update hanya jika nilai tidak null
+        $fields = [
+            'unit_kerja', 'customer', 'segmen', 'nama_project', 'nilai_kontrak',
+            'nilai_perbulan', 'jumlah_hk', 'jumlah_security', 'total_pkwt',
+            'tanggal_kontrak', 'tahun_pengadaan', 'crm_np', 'crm_nd', 'crm_cc'
+        ];
+
+        foreach ($fields as $field) {
+            if ($request->has($field) && $request->get($field) !== null) {
+                $monitoringpm->$field = $request->get($field);
+            }
+        }
+
+        // Simpan file yang diunggah jika ada dan tambahkan ke array $data
+        $fileFields = [
+            'sph', 'boq', 'bakn', 'jib', 'kontrak', 'nd_pengajuan', 'nd_persetujuan', 'pkwt'
+        ];
+
+        foreach ($fileFields as $fileField) {
+            if ($request->hasFile($fileField)) {
+                $newName = $request->unit_kerja . '-' . date('His') . '-' . $fileField . '.' . $request->file($fileField)->extension();
+                $request->file($fileField)->move(public_path('pdfs/monitoring'), $newName);
+                $monitoringpm->$fileField = $newName;
+            }
+        }
 
         // Simpan perubahan
         $monitoringpm->save();
 
         // Redirect atau respon
+        Alert::success('Success ', 'Data berhasil update');
         return redirect()->route('monitoringpm.index')->with('success', 'Data berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -219,6 +230,9 @@ class MonitoringController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('users.index', compact('users'));
     }
 }
