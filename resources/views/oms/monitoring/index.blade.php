@@ -77,57 +77,39 @@
                                                     </div>
                                                     <div class="modal-body ">
                                                         <div class="grid text-center">
-                                                            <button
+                                                            <a href="{{ $m->sph ? $m->sph : '#' }}"
                                                                 class="btn {{ $m->sph == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->sph ? asset('pdfs/monitoring/' . $m->sph) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">
-                                                                SPH
-                                                            </button>
+                                                                target="_blank">SPH</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->boq ? $m->boq : '#' }}"
                                                                 class="btn {{ $m->boq == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->boq ? asset('pdfs/monitoring/' . $m->boq) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">BOQ</button>
+                                                                target="_blank">BOQ</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->bakn ? $m->bakn : '#' }}"
                                                                 class="btn {{ $m->bakn == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->bakn ? asset('pdfs/monitoring/' . $m->bakn) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">BAKN</button>
+                                                                target="_blank">BAKN</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->jib ? $m->jib : '#' }}"
                                                                 class="btn {{ $m->jib == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->jib ? asset('pdfs/monitoring/' . $m->jib) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">JIB</button>
+                                                                target="_blank">JIB</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->kontrak ? $m->kontrak : '#' }}"
                                                                 class="btn {{ $m->kontrak == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->kontrak ? asset('pdfs/monitoring/' . $m->kontrak) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">KONTRAK</button>
+                                                                target="_blank">KONTRAK</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->nd_pengajuan ? $m->nd_pengajuan : '#' }}"
                                                                 class="btn {{ $m->nd_pengajuan == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->nd_pengajuan ? asset('pdfs/monitoring/' . $m->nd_pengajuan) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">NODIN
-                                                                PENGAJUAN</button>
+                                                                target="_blank">NODIN
+                                                                PENGAJUAN</a>
                                                             >
-                                                            <button
-                                                                class="btn {{ $m->nd_pengajuan == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->nd_persetujuan ? asset('pdfs/monitoring/' . $m->nd_persetujuan) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">NODIN
-                                                                PERSETUJUAN</button>
+                                                            <a href="{{ $m->nd_persetujuan ? $m->nd_persetujuan : '#' }}"
+                                                                class="btn {{ $m->nd_persetujuan == null ? 'btn-danger' : 'btn-success' }}"
+                                                                target="_blank">NODIN
+                                                                PERSETUJUAN</a>
                                                             >
-                                                            <button
+                                                            <a href="{{ $m->pkwt ? $m->pkwt : '#' }}"
                                                                 class="btn {{ $m->pkwt == null ? 'btn-danger' : 'btn-success' }}"
-                                                                data-file-path="{{ $m->pkwt ? asset('pdfs/monitoring/' . $m->pkwt) : '#' }}"
-                                                                onclick="downloadFile(this)" data-bs-toggle="popover"
-                                                                title="Popover title">PKWT</button>
+                                                                target="_blank">PKWT</a>
                                                             >
                                                             <button
                                                                 class="btn {{ $m->crm_np == null || $m->crm_nd == null || $m->crm_cc == null ? 'btn-danger' : 'btn-success' }}"
@@ -161,8 +143,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Customer</label>
                                                                             <input type="text" id="customer"
-                                                                                value="{{ $m->customer }}"
-                                                                                name="customer" class="form-control">
+                                                                                value="{{ $m->customer }}" name="customer"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -171,8 +153,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">Segmen</label>
                                                                             <input type="text" id="segmen"
-                                                                                value="{{ $m->segmen }}"
-                                                                                name="segmen" class="form-control">
+                                                                                value="{{ $m->segmen }}" name="segmen"
+                                                                                class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -313,39 +295,45 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">SPH</label>
-                                                                            <input type="file" class="form-control"
-                                                                                name="sph" id="inputGroupFile02">
+                                                                            <input type="url" class="form-control"
+                                                                                name="sph"
+                                                                                placeholder="Masukkan link SPH">
                                                                         </div>
                                                                     </div>
-
 
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">BOQ</label>
-                                                                            <input type="file" id="boq"
-                                                                                name="boq" class="form-control">
+                                                                            <input type="url" name="boq"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link BOQ">
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">BAKN</label>
-                                                                            <input type="file" id="bakn"
-                                                                                name="bakn" class="form-control">
+                                                                            <input type="url" name="bakn"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link BAKN">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">JIB</label>
-                                                                            <input type="file" id="jib"
-                                                                                name="jib" class="form-control">
+                                                                            <input type="url" name="jib"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link JIB">
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">Kontrak</label>
-                                                                            <input type="file" id="kontrak"
-                                                                                name="kontrak" class="form-control">
+                                                                            <input type="url" name="kontrak"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link Kontrak">
                                                                         </div>
                                                                     </div>
 
@@ -353,25 +341,28 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">ND
                                                                                 Pengajuan</label>
-                                                                            <input type="file" id="nd_pengajuan"
-                                                                                name="nd_pengajuan" class="form-control">
+                                                                            <input type="url" name="nd_pengajuan"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link ND Pengajuan">
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">ND
                                                                                 Persetujuan</label>
-                                                                            <input type="file" id="nd_persetujuan"
-                                                                                name="nd_persetujuan"
-                                                                                class="form-control">
+                                                                            <input type="url" name="nd_persetujuan"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link ND Persetujuan">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label class="control-label">PKWT</label>
-                                                                            <input type="file" id="pkwt"
-                                                                                name="pkwt" class="form-control">
+                                                                            <input type="url" name="pkwt"
+                                                                                class="form-control"
+                                                                                placeholder="Masukkan link PKWT">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
@@ -445,6 +436,15 @@
                         <form method="POST" action="{{ route('monitoringpm.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 <div class="row p-t-20">
                                     <div class="col-md-6">
@@ -572,62 +572,67 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">SPH</label>
-                                            <input type="file" class="form-control" name="sph"
-                                                id="inputGroupFile02">
+                                            <input type="url" class="form-control" name="sph"
+                                                placeholder="Masukkan link SPH">
                                         </div>
                                     </div>
-
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BOQ</label>
-                                            <input type="file" id="boq" name="boq" class="form-control">
+                                            <input type="url" name="boq" class="form-control"
+                                                placeholder="Masukkan link BOQ">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">BAKN</label>
-                                            <input type="file" id="bakn" name="bakn" class="form-control">
+                                            <input type="url" name="bakn" class="form-control"
+                                                placeholder="Masukkan link BAKN">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">JIB</label>
-                                            <input type="file" id="jib" name="jib" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kontrak</label>
-                                            <input type="file" id="kontrak" name="kontrak" class="form-control">
+                                            <input type="url" name="jib" class="form-control"
+                                                placeholder="Masukkan link JIB">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">ND
-                                                Pengajuan</label>
-                                            <input type="file" id="nd_pengajuan" name="nd_pengajuan"
-                                                class="form-control">
+                                            <label class="control-label">Kontrak</label>
+                                            <input type="url" name="kontrak" class="form-control"
+                                                placeholder="Masukkan link Kontrak">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label">ND
-                                                Persetujuan</label>
-                                            <input type="file" id="nd_persetujuan" name="nd_persetujuan"
-                                                class="form-control">
+                                            <label class="control-label">ND Pengajuan</label>
+                                            <input type="url" name="nd_pengajuan" class="form-control"
+                                                placeholder="Masukkan link ND Pengajuan">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">ND Persetujuan</label>
+                                            <input type="url" name="nd_persetujuan" class="form-control"
+                                                placeholder="Masukkan link ND Persetujuan">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">PKWT</label>
-                                            <input type="file" id="pkwt" name="pkwt" readonly
-                                                class="form-control">
+                                            <input type="url" name="pkwt" class="form-control"
+                                                placeholder="Masukkan link PKWT">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">CRM / NO
@@ -664,6 +669,15 @@
     </div>
 @endsection
 @push('javascript')
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '{!! implode('<br>', $errors->all()) !!}',
+            });
+        </script>
+    @endif
     <script>
         function calculateContractDurationUpdate(id) {
             var startDate = moment(document.getElementById('awal_kontrak_update_' + id).value, 'YYYY-MM-DD');
