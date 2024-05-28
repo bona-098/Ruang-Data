@@ -25,7 +25,8 @@
                                 <th>Customer</th>
                                 <th>Segmen</th>
                                 <th>Nama Proyek</th>
-                                <th>Periode Kontrak</th>
+                                <th>Jenis Pengelolaan</th>
+                                <th>Mitra Pengelolaan</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -36,7 +37,8 @@
                                     <td>{{ $m->customer }}</td>
                                     <td>{{ $m->segmen }}</td>
                                     <td>{{ $m->nama_project }}</td>
-                                    <td>{{ $m->tanggal_kontrak }}</td>
+                                    <td>{{ $m->jenis_pengelolaan }}</td>
+                                    <td>{{ $m->mitra_pengelolaan }}</td>
                                     <td>
                                         <button type="button"
                                             class="btn {{ isset($m->kontrak) ? 'btn-success' : 'btn-danger' }}"
@@ -188,6 +190,51 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row p-t-20">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Jenis
+                                                                                Pengelolaan</label>
+                                                                            <select id="jenis_pengelolaan"
+                                                                                name="jenis_pengelolaan"
+                                                                                class="form-control">
+                                                                                <option value="Direct"
+                                                                                    {{ $m->jenis_pengelolaan == 'Direct' ? 'selected' : '' }}>
+                                                                                    Direct</option>
+                                                                                <option value="Non Direct"
+                                                                                    {{ $m->jenis_pengelolaan == 'Non Direct' ? 'selected' : '' }}>
+                                                                                    Non Direct</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">Mitra
+                                                                                Pengelolaan</label>
+                                                                            <select id="mitra_pengelolaan"
+                                                                                name="mitra_pengelolaan"
+                                                                                class="form-control">
+                                                                                <option value="PT Humanika Sarana Mandiri"
+                                                                                    {{ $m->mitra_pengelolaan == 'PT Humanika Sarana Mandiri' ? 'selected' : '' }}>
+                                                                                    PT Humanika Sarana Mandiri</option>
+                                                                                <option value="PT Panah Dunia Perkasa"
+                                                                                    {{ $m->mitra_pengelolaan == 'PT Panah Dunia Perkasa' ? 'selected' : '' }}>
+                                                                                    PT Panah Dunia Perkasa</option>
+                                                                                <option
+                                                                                    value="PT Sinergi Integral Manunggal"
+                                                                                    {{ $m->mitra_pengelolaan == 'PT Sinergi Integral Manunggal' ? 'selected' : '' }}>
+                                                                                    PT Sinergi Integral Manunggal</option>
+                                                                                <option value="PT Semanggi 3"
+                                                                                    {{ $m->mitra_pengelolaan == 'PT Semanggi 3' ? 'selected' : '' }}>
+                                                                                    PT Semanggi 3</option>
+                                                                                <option value="PT Graha Sarana Duta"
+                                                                                    {{ $m->mitra_pengelolaan == 'PT Graha Sarana Duta' ? 'selected' : '' }}>
+                                                                                    PT Graha Sarana Duta</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="row p-t-20">
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
@@ -369,7 +416,8 @@
                                                                         <div class="form-group">
                                                                             <label class="control-label">CRM / NO
                                                                                 PID</label>
-                                                                            <input type="text" id="crm_np"
+                                                                            <input value="{{ $m->crm_np }}"
+                                                                                type="text" id="crm_np"
                                                                                 name="crm_np" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -379,6 +427,7 @@
                                                                             <label class="control-label">CRM / NO
                                                                                 DRK</label>
                                                                             <input type="text" id="crm_nd"
+                                                                                value="{{ $m->crm_nd }}"
                                                                                 name="crm_nd" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -387,6 +436,7 @@
                                                                             <label class="control-label">CRM / COST
                                                                                 CENTER</label>
                                                                             <input type="text" id="crm_cc"
+                                                                                value="{{ $m->crm_cc }}"
                                                                                 name="crm_cc" class="form-control">
                                                                         </div>
                                                                     </div>
@@ -495,6 +545,32 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Jenis Pengelolaan</label>
+                                            <select id="jenis_pengelolaan" name="jenis_pengelolaan" class="form-control">
+                                                <option value="Direct">Direct</option>
+                                                <option value="Non Direct">Non Direct</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Mitra Pengelolaan</label>
+                                            <select id="mitra_pengelolaan" name="mitra_pengelolaan" class="form-control">
+                                                <option value="PT Humanika Sarana Mandiri">PT Humanika Sarana Mandiri
+                                                </option>
+                                                <option value="PT Panah Dunia Perkasa">PT Panah Dunia Perkasa</option>
+                                                <option value="PT Sinergi Integral Manunggal">PT Sinergi Integral Manunggal
+                                                </option>
+                                                <option value="PT Semanggi 3">PT Semanggi 3</option>
+                                                <option value="PT Graha Sarana Duta">PT Graha Sarana Duta</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row p-t-20">
                                     <div class="col-md-4">
                                         <div class="form-group">

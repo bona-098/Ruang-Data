@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('nama_project', 255)->nullable();
             $table->string('nilai_kontrak', 255)->nullable();
             $table->string('nilai_perbulan', 255)->nullable();
+            $table->string('jenis_pengelolaan', 255)->nullable();
+            $table->string('mitra_pengelolaan', 255)->nullable();
             $table->string('jumlah_hk', 255)->nullable();
             $table->string('jumlah_security', 255)->nullable();
             $table->string('jumlah_driver', 255)->nullable();

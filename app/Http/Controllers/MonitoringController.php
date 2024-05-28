@@ -46,6 +46,8 @@ class MonitoringController extends Controller
             'nama_project' => 'nullable|string',
             'nilai_kontrak' => 'nullable|string',
             'nilai_perbulan' => 'nullable|string',
+            'jenis_pengelolaan' => 'nullable|string',
+            'mitra_pengelolaan' => 'nullable|string',
             'jumlah_hk' => 'nullable|string',
             'jumlah_security' => 'nullable|string',
             'jumlah_driver' => 'nullable|string',
@@ -167,6 +169,8 @@ class MonitoringController extends Controller
             'nama_project' => 'nullable|string',
             'nilai_kontrak' => 'nullable|string',
             'nilai_perbulan' => 'nullable|string',
+            'jenis_pengelolaan' => 'nullable|string',
+            'mitra_pengelolaan' => 'nullable|string',
             'jumlah_hk' => 'nullable|string',
             'jumlah_security' => 'nullable|string',
             'jumlah_driver' => 'nullable|string',
@@ -195,7 +199,7 @@ class MonitoringController extends Controller
 
         // Update hanya jika nilai tidak null
         $fields = [
-            'unit_kerja', 'customer', 'segmen', 'nama_project', 'nilai_kontrak',
+            'unit_kerja', 'customer', 'segmen', 'nama_project', 'nilai_kontrak', 'jenis_pengelolaan', 'mitra_pengelolaan',
             'nilai_perbulan', 'jumlah_hk', 'jumlah_security', 'total_pkwt', 'sph', 'boq', 'bakn', 'jib', 'kontrak', 'nd_pengajuan', 'nd_persetujuan', 'pkwt',
             'tanggal_kontrak', 'tahun_pengadaan', 'crm_np', 'crm_nd', 'crm_cc'
         ];

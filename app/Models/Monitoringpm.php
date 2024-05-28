@@ -17,6 +17,8 @@ class Monitoringpm extends Model
         'nama_project',
         'nilai_kontrak',
         'nilai_perbulan',
+        'jenis_pengelolaan',
+        'mitra_pengelolaan',
         'jumlah_hk',
         'jumlah_security',
         'jumlah_driver',
