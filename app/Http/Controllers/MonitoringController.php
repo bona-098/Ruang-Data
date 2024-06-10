@@ -240,9 +240,13 @@ class MonitoringController extends Controller
      */
     public function destroy($id)
     {
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
-        return view('users.index', compact('users'));
+        // Find the record by id
+        $monitoringPm = MonitoringPm::findOrFail($id);
+
+        // Delete the record
+        $monitoringPm->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('monitoringpm.index')->with('success', 'Record deleted successfully');
     }
 }
