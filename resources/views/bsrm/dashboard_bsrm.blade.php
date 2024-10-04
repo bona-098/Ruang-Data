@@ -251,7 +251,7 @@
                         beginAtZero: true,
                         grace: '5%',
                         ticks: {
-                            callback: function(value, index, values) {
+                            callback: function(value,   index, values) {
                                 return formatterchart1(value);
                             }
                         }

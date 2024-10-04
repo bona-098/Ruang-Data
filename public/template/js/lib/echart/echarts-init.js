@@ -291,7 +291,7 @@ $(document).ready(function() {
                     {value:335, name:'Direct'},
                     {value:310, name:'Mail'},
                     {value:234, name:'Affiliate'},
-                    {value:135, name:'AD'},
+                    {value:135, name:'ADssssssss'},
                     {value:1548, name:'Search'}
                 ]
             }

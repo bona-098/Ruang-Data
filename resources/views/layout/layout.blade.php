@@ -2,25 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="{{ asset('template/') }}/image/png" sizes="16x16" href="template/images/icon.png">
-    <title>Telkom Property Regional 6</title>
-    <!-- Bootstrap Core CSS -->
-    {{-- <link href="template/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet"> --}}
-    <!-- Custom CSS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('template/') }}/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('template/') }}/dist/css/adminlte.min.css">
     <link href="{{ asset('template/') }}/css/helper.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/style.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css"  >
+    <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
 
@@ -185,8 +190,8 @@
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-danger btn-circle m-r-10"><i
-                                                        class="fa fa-link"></i></div>
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i>
+                                                </div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">Just see the my new
                                                         admin!</span> <span class="time">9:30 AM</span>
@@ -204,8 +209,8 @@
                                             </a>
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="btn btn-info btn-circle m-r-10"><i
-                                                        class="ti-settings"></i></div>
+                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i>
+                                                </div>
                                                 <div class="mail-contnet">
                                                     <h5>This is title</h5> <span class="mail-desc">You can customize
                                                         this template as you want</span> <span class="time">9:08
@@ -311,11 +316,13 @@
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
                                     <li></li>
                                 </ul>
                             </div>
@@ -344,9 +351,9 @@
             </div>
 
 
-             @yield('content')
+            @yield('content')
         </div>
-       
+
         <!-- End Container fluid  -->
         <!-- footer -->
         <footer class="footer"> © 2018 All rights reserved. Template designed by <a
@@ -360,7 +367,14 @@
     <!-- End Wrapper -->
     <!-- All Jquery -->
     {{-- <script src="{{ asset('template/') }}/js/lib/jquery/jquery.min.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    <script src="{{ asset('template/') }}/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('template/') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('template/') }}/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    {{-- <script src="{{ asset('template/') }}/dist/js/demo.js"></script> --}}
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('template/') }}/js/lib/bootstrap/js/popper.min.js"></script>
     {{-- <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script> --}}
@@ -377,14 +391,23 @@
     <!--Custom JavaScript -->
     <script src="{{ asset('template/') }}/js/custom.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js">
+    </script>
+    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js">
+    </script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables-init.js"></script>
+
+
 
     <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.min.js"></script>
     <!-- scripit init-->
@@ -404,20 +427,21 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>  --}}
 
-     {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script> --}}
 
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script> 
+    </script>
 
-{{-- Gak bisa klik modal dropdown tapi bisa nutup modal --}}
+    {{-- Gak bisa klik modal dropdown tapi bisa nutup modal --}}
 
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
-   {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
- {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
+    {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
 </body>
 {{-- @include('layout.grafik') --}}
+
 </html>

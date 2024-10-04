@@ -1,10 +1,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
 
 @extends('layout.layout')
 @section('content')
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Tahapan Belum di isi</h4>
+                    </div>
+                    <div class="card-content">
+                        <div id="basic-Pie1" style="height: 370px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Tahapan Sudah di isi</h4>
+                    </div>
+                    <div class="card-content">
+                        <div id="basic-Pie2" style="height: 370px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Monitoring Property Managemant</h4>
@@ -229,7 +251,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="row p-t-20">
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
@@ -331,7 +352,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="row p-t-20">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
@@ -422,15 +442,6 @@
                                                                             DRK</label>
                                                                         <input type="text" id="crm_nd"
                                                                             value="{{ $m->crm_nd }}" name="crm_nd"
-                                                                            class="form-control">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">CRM / COST
-                                                                            CENTER</label>
-                                                                        <input type="text" id="crm_cc"
-                                                                            value="{{ $m->crm_cc }}" name="crm_cc"
                                                                             class="form-control">
                                                                     </div>
                                                                 </div>
@@ -764,20 +775,42 @@
             });
         </script>
     @endif
+
+
     <script>
         function calculateContractDurationUpdate(id) {
-            var startDate = moment(document.getElementById('awal_kontrak_update_' + id).value, 'YYYY-MM-DD');
-            var endDate = moment(document.getElementById('akhir_kontrak_update_' + id).value, 'YYYY-MM-DD');
+            var startDateInput = document.getElementById("awal_kontrak_update_" + id).value;
+            var endDateInput = document.getElementById("akhir_kontrak_update_" + id).value;
 
-            if (startDate.isValid() && endDate.isValid()) {
-                var duration = moment.duration(endDate.diff(startDate));
-                var months = duration.asMonths().toFixed(0); // Total bulan dibulatkan
+            var startDate = new Date(startDateInput);
+            var endDate = new Date(endDateInput);
 
+            var diffMonths = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+            diffMonths -= startDate.getMonth() + 1;
+            diffMonths += endDate.getMonth() + 1;
+
+            document.getElementById("sisa_waktu_update_" + id).value = diffMonths;
+
+            // Moment.js calculations
+            var momentStartDate = moment(startDateInput, 'YYYY-MM-DD');
+            var momentEndDate = moment(endDateInput, 'YYYY-MM-DD');
+
+            if (momentStartDate.isValid() && momentEndDate.isValid()) {
+                var duration = moment.duration(momentEndDate.diff(momentStartDate));
+                var months = duration.asMonths().toFixed(0);
                 var result = months + ' bulan';
 
                 document.getElementById('sisa_waktu_update_' + id).value = result.trim();
             }
         }
+
+        window.onload = function() {
+            var inputs = document.querySelectorAll('[id^="awal_kontrak_update_"]');
+            inputs.forEach(function(input) {
+                var id = input.id.split('_')[3];
+                calculateContractDurationUpdate(id);
+            });
+        };
     </script>
 
     <script>
@@ -810,20 +843,142 @@
     </script>
 
 
-    <!-- Script untuk menangani unduhan file -->
+
+    </script>
+    <!-- Echart -->
+
     <script>
-        function calculateContractDuration() {
-            var startDate = moment(document.getElementById('awal_kontrak').value, 'YYYY-MM-DD');
-            var endDate = moment(document.getElementById('akhir_kontrak').value, 'YYYY-MM-DD');
+        var dom = document.getElementById("basic-Pie1");
+        var bpChart = echarts.init(dom);
 
-            if (startDate.isValid() && endDate.isValid()) {
-                var duration = moment.duration(endDate.diff(startDate));
-                var months = duration.asMonths().toFixed(0); // Total bulan dibulatkan
+        var app = {};
+        option = null;
+        option = {
+            color: ['#62549a', '#4aa9e9', '#ff6c60', '#eac459', '#25c3b2', '#9bca63', '#ffcc00', '#99cccc', '#9999cc'],
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left', // Mengubah posisi legenda menjadi sebelah kiri
+                data: ['SPH', 'BOQ', 'BAKN', 'JIB', 'KONTRAK', 'ND AJUAN', 'ND SETUJU', 'PKWT', 'CRM']
+            },
+            calculable: true,
+            series: [{
+                name: 'Source',
+                type: 'pie',
+                radius: ['50%', '70%'], // Mengubah radius menjadi lebih besar
+                center: ['50%', '50%'], // Mengubah posisi pusat grafik
+                data: [{
+                        value: {{ $totalNullSph }},
+                        name: 'SPH'
+                    },
+                    {
+                        value: {{ $totalNullBoq }},
+                        name: 'BOQ'
+                    },
+                    {
+                        value: {{ $totalNullBakn }},
+                        name: 'BAKN'
+                    },
+                    {
+                        value: {{ $totalNullJib }},
+                        name: 'JIB'
+                    },
+                    {
+                        value: {{ $totalNullKontrak }},
+                        name: 'KONTRAK'
+                    },
+                    {
+                        value: {{ $totalNullNdPengajuan }},
+                        name: 'ND AJUAN'
+                    },
+                    {
+                        value: {{ $totalNullNdPersetujuan }},
+                        name: 'ND SETUJU'
+                    },
+                    {
+                        value: {{ $totalNullPkwt }},
+                        name: 'PKWT'
+                    },
+                    {
+                        value: 5,
+                        name: 'CRM'
+                    }
+                ]
+            }]
+        };
 
-                var result = months + ' bulan';
+        if (option && typeof option === "object") {
+            bpChart.setOption(option, false);
+        }
 
-                document.getElementById('sisa_kontrak').value = result.trim();
-            }
+        var dom2 = document.getElementById("basic-Pie2");
+        var bpChart = echarts.init(dom2);
+
+        var app = {};
+        option = null;
+        option = {
+            color: ['#62549a', '#4aa9e9', '#ff6c60', '#eac459', '#25c3b2', '#9bca63', '#ffcc00', '#99cccc', '#9999cc'],
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left', // Mengubah posisi legenda menjadi sebelah kiri
+                data: ['SPH', 'BOQ', 'BAKN', 'JIB', 'KONTRAK', 'ND AJUAN', 'ND SETUJU', 'PKWT', 'CRM']
+            },
+            calculable: true,
+            series: [{
+                name: 'Source',
+                type: 'pie',
+                radius: ['50%', '70%'], // Mengubah radius menjadi lebih besar
+                center: ['50%', '50%'], // Mengubah posisi pusat grafik
+                data: [{
+                        value: {{ $totalNotNullSph }},
+                        name: 'SPH'
+                    },
+                    {
+                        value: {{ $totalNotNullBoq }},
+                        name: 'BOQ'
+                    },
+                    {
+                        value: {{ $totalNotNullBakn }},
+                        name: 'BAKN'
+                    },
+                    {
+                        value: {{ $totalNotNullJib }},
+                        name: 'JIB'
+                    },
+                    {
+                        value: {{ $totalNotNullKontrak }},
+                        name: 'KONTRAK'
+                    },
+                    {
+                        value: {{ $totalNotNullNdPengajuan }},
+                        name: 'ND AJUAN'
+                    },
+                    {
+                        value: {{ $totalNotNullNdPersetujuan }},
+                        name: 'ND SETUJU'
+                    },
+                    {
+                        value: {{ $totalNotNullPkwt }},
+                        name: 'PKWT'
+                    },
+                    {
+                        value: 5,
+                        name: 'CRM'
+                    }
+                ]
+            }]
+        };
+
+        if (option && typeof option === "object") {
+            bpChart.setOption(option, false);
         }
     </script>
+
 @endpush

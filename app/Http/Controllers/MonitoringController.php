@@ -15,9 +15,31 @@ class MonitoringController extends Controller
      */
     public function index()
     {
+        // Menghitung total nilai kolom 'sph' dari tabel 'monitoringpm'
+        $totalNotNullSph = Monitoringpm::whereNotNull('sph')->count();
+        $totalNotNullBoq = Monitoringpm::whereNotNull('boq')->count();
+        $totalNotNullBakn = Monitoringpm::whereNotNull('bakn')->count();
+        $totalNotNullJib = Monitoringpm::whereNotNull('jib')->count();
+        $totalNotNullKontrak = Monitoringpm::whereNotNull('kontrak')->count();
+        $totalNotNullNdPengajuan = Monitoringpm::whereNotNull('nd_pengajuan')->count();
+        $totalNotNullNdPersetujuan = Monitoringpm::whereNotNull('nd_persetujuan')->count();
+        $totalNotNullPkwt = Monitoringpm::whereNotNull('pkwt')->count();
+        // Menghitung total nilai kolom 'sph' dari tabel 'monitoringpm'
+        $totalNullSph = Monitoringpm::whereNull('sph')->count();
+        $totalNullBoq = Monitoringpm::whereNull('boq')->count();
+        $totalNullBakn = Monitoringpm::whereNull('bakn')->count();
+        $totalNullJib = Monitoringpm::whereNull('jib')->count();
+        $totalNullKontrak = Monitoringpm::whereNull('kontrak')->count();
+        $totalNullNdPengajuan = Monitoringpm::whereNull('nd_pengajuan')->count();
+        $totalNullNdPersetujuan = Monitoringpm::whereNull('nd_persetujuan')->count();
+        $totalNullPkwt = Monitoringpm::whereNotNull('pkwt')->count();
+        // Mengambil semua data dari tabel 'monitoringpm'
         $monitoringpm = Monitoringpm::get();
-        // dd($monitoringpm);
-        return view('oms.monitoring.index', compact('monitoringpm'));
+
+        // dd($monitoringpm); // Uncomment ini jika Anda ingin melihat data $monitoringpm di debug mode
+
+        // Mengirimkan data ke view
+        return view('oms.monitoring.index', compact('monitoringpm', 'totalNotNullSph', 'totalNotNullBoq', 'totalNotNullBakn', 'totalNotNullJib', 'totalNotNullKontrak', 'totalNotNullNdPengajuan', 'totalNotNullNdPersetujuan', 'totalNotNullPkwt', 'totalNullSph', 'totalNullBoq', 'totalNullBakn', 'totalNullJib', 'totalNullKontrak', 'totalNullNdPengajuan', 'totalNullNdPersetujuan', 'totalNullPkwt'));
     }
 
     /**

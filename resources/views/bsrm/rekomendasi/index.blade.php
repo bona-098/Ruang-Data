@@ -4,111 +4,52 @@
     <!-- Container fluid  -->
     <div class="container-fluid">
 
-
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Widget: user widget style 2 -->
-                <div class="card card-widget ">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="card-header">
-                        <!-- /.widget-user-image -->
-                        <h3 class="card-title">Karyawan Tetap - {{ $jumlahKaryawan }} Aktif</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-footer p-0">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#ModalKaryawanOrganik">
-                                    Organik <span data-toggle="modal" data-target="#ModalKaryawanTetap"
-                                        class="float-right badge bg-primary">1</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanRegional6">
-                                    Regional 6 <span data-toggle="modal" data-target="#ModalKaryawanTetap"
-                                        class="float-right badge bg-info">{{ $jumlah_karyawan_regional6 }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanAreaKaltimtara">
-                                    Area Kalimantan Timur dan Utara <span data-toggle="modal"
-                                        data-target="#ModalKaryawanAreaKaltimtara"
-                                        class="float-right badge bg-primary">{{ $jumlah_karyawan_areakaltimtara }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanAreaKalselteng">
-                                    Area Kalimantan Selatan dan Tengah <span data-toggle="modal"
-                                        data-target="#ModalKaryawanAreaKalselteng"
-                                        class="float-right badge bg-warning">{{ $jumlah_karyawan_areakalselteng }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanAreaKalbar">
-                                    Area Kalimantan Barat <span data-toggle="modal" data-target="#ModalKaryawanAreaKalbar"
-                                        class="float-right badge bg-danger">{{ $jumlah_karyawan_areakalbar }}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Promosi</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <!-- /.widget-user -->
             </div>
 
-            <div class="col-md-6">
-                <!-- Widget: user widget style 2 -->
-                <div class="card card-widget ">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="card-header">
-                        <!-- /.widget-user-image -->
-                        <h3 class="card-title">Pendidikan</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                    class="fas fa-minus"></i>
-                            </button>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Posisi Band yang dicari</label>
+                            <select class="form-control select2" style="width: 100%;">
+                                <option selected="selected">Pilih Band</option>
+                                <option>Band I</option>
+                                <option>Band II</option>
+                                <option>Band III</option>
+                                <option>Band IV</option>
+                                <option>Band V</option>
+                                <option>Band VI</option>
+                                <option>Band VII</option>
+                                <option>Band VIII</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="card-footer p-0">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#ModalKaryawanS2">
-                                    S-2<span class="float-right badge bg-primary">{{ $jumlah_karyawan_s2 }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#ModalKaryawanS1">
-                                    S-1/Sarjana <span class="float-right badge bg-info">{{ $jumlah_karyawan_s1 }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanDiplomaIII">
-                                    Diploma III/Sarjana Muda <span
-                                        class="float-right badge bg-success">{{ $jumlah_karyawan_DIII }}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#ModalKaryawanSekolah">
-                                    SMK/SLTA Kejuruan <span
-                                        class="float-right badge bg-danger">{{ $jumlah_karyawan_sekolah }}</span>
-                                </a>
-                            </li>
-                        </ul>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Pilih Lama Jabatan Terakhir</label>
+                            <select class="form-control select2" style="width: 100%;">
+                                <option selected="selected">Pilih lama jabatan terakhir</option>
+                                <option>Kurang 1 Tahun</option>
+                                <option>Antara 1-2 Tahun</option>
+                                <option>Lebih 2 Tahun</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <!-- /.widget-user -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
         {{-- Data Tabel mulai baru --}}
         <div class="card">
             <div class="card-body">
@@ -117,14 +58,7 @@
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
-                @canany(['bsrm', 'admin'])
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTambahKaryawan">
-                        <i class="fa fa-user-plus"></i> Tambah Karyawan
-                    </button>
-                    {{-- <a button type="button" class="btn btn-primary" href="/import-karyawan">
-                        <i class="fa fa-user-plus"></i> Import Karyawan
-                        </button></a> --}}
-                @endcanany {{-- <h6 class="card-subtitle">Data table example</h6> --}}
+             
                 <div class=" table-responsive">
                     <table text-align: left; id="myTable" class="table table-bordered table-striped">
                         <thead>
@@ -1022,288 +956,11 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="text-align: center; vertical-align: middle;">{{ $k->nik }} / {{ $k->telkomgroup }}
                                             </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td style="text-align: center; vertical-align: middle;"><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanRegional6" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Regional VI</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_regional6 as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanAreaKaltimtara" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kaltimtara</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_areakaltimtara as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanAreaKalselteng" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalselteng</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_areakalselteng as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanAreaKalbar" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalbar</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_areakalbar as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}</td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 @if (
                                                     $k->unit_kerja == 'General Manager Regional' ||
@@ -1340,284 +997,6 @@
         </div>
 
 
-        <div class="modal fade" id="ModalKaryawanS2" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_s2 as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanS1" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Regional VI</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_s1 as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanDiplomaIII" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kaltimtara</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_diploma as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="ModalKaryawanSekolah" tabindex="-1" aria-labelledby="exampleModalLabel"
-            data-backdrop="static" data-keyboard="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalselteng</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
-                                <thead>
-                                    <tr>
-                                        <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
-                                        {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
-                                        <th style="white-space: nowrap;">Nama Karyawan</th>
-                                        {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($karyawan_sekolah as $k)
-                                        <tr>
-                                            <td>
-                                                <div class="round-img">
-                                                    <a href=""><img
-                                                            src="{{ asset('storage/foto/' . ($k->foto ? $k->foto : 'default.jpg')) }}"
-                                                            alt=""></a>
-                                                </div>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
-                                            </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
-                                                    style="color: black; white-space:
-                                                    nowrap;">{{ $k->nama_karyawan }}</a>
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        @csrf
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 @endsection

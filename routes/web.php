@@ -25,6 +25,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\BpoController;
 use App\Http\Controllers\PersonilController;
 use App\Http\Controllers\DashboardController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\MonitoringController;
+use App\Models\Rekomendasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +78,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/calon_bpo', BpoController::class);
     //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role bsrm
     Route::resource('/performance', PerformanceController::class);
+
     Route::resource('/karyawan', KaryawanController::class);
+    // Tambahkan route untuk metode khusus
+    Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
+    Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga']);
+    Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
+    Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory']);
+    Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan']);
+    Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan']);
+    Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan']);
+
+
+    Route::resource('/rekomendasi', RekomendasiController::class);
     Route::resource('/mitra', MitraController::class);
     //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role marshal
     Route::resource('/sales', SalesController::class);
