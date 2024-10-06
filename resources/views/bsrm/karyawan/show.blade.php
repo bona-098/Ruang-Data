@@ -733,7 +733,7 @@
                                                                     TelkomProperty</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-bold fs-6 text-gray-800">73000511</span>
+                                                                        class="fw-bold fs-6 text-gray-800">{{ $karyawan->nik }}</span>
                                                                 </div>
                                                             </div>
 
@@ -743,7 +743,7 @@
                                                                     TelkomGroup</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">735124</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->telkomgroup }}</span>
                                                                 </div>
                                                             </div>
 
@@ -752,8 +752,7 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Posisi (Jabatan)</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">ASMAN
-                                                                        QUALITY CONTROL</span>
+                                                                    <span class="fw-semibold text-gray-800 fs-6">{{ $karyawan->jabatan }}</span>
                                                                 </div>
                                                             </div>
 
@@ -773,20 +772,33 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Lokasi
                                                                     Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">Area
-                                                                        SULSEL</span>
+                                                                    <span class="fw-semibold text-gray-800 fs-6">{{ $karyawan->unit_kerja }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <!-- Unit Kerja -->
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
-                                                                    Kerja</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">Unit Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">KANTOR
-                                                                        REGIONAL VII</span>
+                                                                    <span class="fw-semibold text-gray-800 fs-6">
+                                                                        @if ($karyawan->unit_kerja == 'General Manager Regional' ||
+                                                                              $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution' ||
+                                                                              $karyawan->unit_kerja == 'Manager Planning & Delivery' ||
+                                                                              $karyawan->unit_kerja == 'Manager Operation & Maintenance' ||
+                                                                              $karyawan->unit_kerja == 'Manager Business Support & Risk Management' ||
+                                                                              $karyawan->unit_kerja == 'Area Kaltimtara')
+                                                                            Balikpapan
+                                                                        @elseif ($karyawan->unit_kerja == 'Area Kalselteng')
+                                                                            Banjarmasin
+                                                                        @elseif ($karyawan->unit_kerja == 'Area Kalbar')
+                                                                            Pontianak
+                                                                        @else
+                                                                            Tidak Diketahui
+                                                                        @endif
+                                                                    </span>
                                                                 </div>
                                                             </div>
+                                                            
 
                                                             <!-- PSA -->
                                                             <div class="row mb-7">
