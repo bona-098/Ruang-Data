@@ -84,10 +84,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
     Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga']);
     Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
-    Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory']);
+    Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
     Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan']);
     Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan']);
     Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan']);
+    Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
 
 
     Route::resource('/rekomendasi', RekomendasiController::class);

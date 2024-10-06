@@ -587,7 +587,7 @@
                                                                     Nikah</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-bold fs-6 text-gray-800">Menikah</span>
+                                                                        class="fw-bold fs-6 text-gray-800">{{ $karyawan->status_nikah }}</span>
                                                                 </div>
                                                             </div>
 
@@ -624,8 +624,7 @@
                                                                     Pasangan (Suami/Istri)</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">ARWINNI
-                                                                        ANWAR</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_pasangan }}</span>
                                                                 </div>
                                                             </div>
 
@@ -633,8 +632,8 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Anak Pertama</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">AMANDA
-                                                                        ATALIA ZAFIRA</span>
+                                                                    <span
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_pertama }}</span>
                                                                 </div>
                                                             </div>
 
@@ -643,7 +642,7 @@
                                                                     Lahir Anak Pertama</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2005-02-09</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_pertama }}</span>
                                                                 </div>
                                                             </div>
 
@@ -651,8 +650,8 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Anak Kedua</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">MUH.
-                                                                        NABIL QASTARI</span>
+                                                                    <span
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_kedua }}</span>
                                                                 </div>
                                                             </div>
 
@@ -661,7 +660,7 @@
                                                                     Lahir Anak Kedua</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2006-06-23</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_kedua }}</span>
                                                                 </div>
                                                             </div>
 
@@ -669,8 +668,8 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Anak Ketiga</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">MUH.
-                                                                        ZAKI MAULANA</span>
+                                                                    <span
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_ketiga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -679,11 +678,11 @@
                                                                     Lahir Anak Ketiga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2007-09-17</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_ketiga }}</span>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Ayah Kandung Karyawan</label>
                                                                 <div class="col-lg-8">
@@ -699,7 +698,7 @@
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6"></span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
 
                                                     </div>
@@ -752,12 +751,13 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Posisi (Jabatan)</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">{{ $karyawan->jabatan }}</span>
+                                                                    <span
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->jabatan }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <!-- Klasifikasi Jabatan -->
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label
                                                                     class="col-lg-4 fw-semibold text-muted">Klasifikasi
                                                                     Jabatan</label>
@@ -765,28 +765,31 @@
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6"></span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <!-- Lokasi Kerja -->
                                                             <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Lokasi
                                                                     Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">{{ $karyawan->unit_kerja }}</span>
+                                                                    <span
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->unit_kerja }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <!-- Unit Kerja -->
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Unit Kerja</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
+                                                                    Kerja</label>
                                                                 <div class="col-lg-8">
                                                                     <span class="fw-semibold text-gray-800 fs-6">
-                                                                        @if ($karyawan->unit_kerja == 'General Manager Regional' ||
-                                                                              $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                                              $karyawan->unit_kerja == 'Manager Planning & Delivery' ||
-                                                                              $karyawan->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                                              $karyawan->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                                              $karyawan->unit_kerja == 'Area Kaltimtara')
+                                                                        @if (
+                                                                            $karyawan->unit_kerja == 'General Manager Regional' ||
+                                                                                $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution' ||
+                                                                                $karyawan->unit_kerja == 'Manager Planning & Delivery' ||
+                                                                                $karyawan->unit_kerja == 'Manager Operation & Maintenance' ||
+                                                                                $karyawan->unit_kerja == 'Manager Business Support & Risk Management' ||
+                                                                                $karyawan->unit_kerja == 'Area Kaltimtara')
                                                                             Balikpapan
                                                                         @elseif ($karyawan->unit_kerja == 'Area Kalselteng')
                                                                             Banjarmasin
@@ -798,17 +801,17 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                             <!-- PSA -->
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label
                                                                     class="col-lg-4 fw-semibold text-muted">PSA</label>
                                                                 <div class="col-lg-8">
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">Makassar</span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <!-- Band Position -->
                                                             <div class="row mb-7">
@@ -816,7 +819,7 @@
                                                                     Position</label>
                                                                 <div class="col-lg-8">
                                                                     <span class="fw-semibold text-gray-800 fs-6">Band
-                                                                        IV</span>
+                                                                        {{ $karyawan->band_kelas_posisi }}</span>
                                                                 </div>
                                                             </div>
 
@@ -835,8 +838,8 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Tanggal
                                                                     Mulai Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2006-01-02</span>
+                                                                    <span class="fw-semibold text-gray-800 fs-6">
+                                                                        {{ $karyawan->tgl_bergabung }}</span>
                                                                 </div>
                                                             </div>
 
@@ -856,39 +859,39 @@
                                                                     Pengangkatan Karyawan Tetap</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">SK.169/PS740/GSD-000/2011</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nomor_sk }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <!-- Tanggal Karyawan Tetap -->
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Tanggal
                                                                     Karyawan Tetap</label>
                                                                 <div class="col-lg-8">
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">2011-05-01</span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <!-- No. SK PROMUT -->
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">No. SK
                                                                     PROMUT</label>
                                                                 <div class="col-lg-8">
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">SK.131/PS720/GSD-200/2023</span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <!-- Tanggal PROMUT -->
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Tanggal
                                                                     PROMUT</label>
                                                                 <div class="col-lg-8">
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">2023-06-01</span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
 
                                                             <!-- No. Kontrak -->
                                                             <div class="row mb-7">
@@ -964,8 +967,8 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
-                                                                    Edit Job
+                                                                    data-target="#ModalAddJobHistory">
+                                                                    Tambah Job History
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
@@ -983,153 +986,58 @@
                                                                             <th>Lokasi Penempatan</th>
                                                                             <th>Band Posisi</th>
                                                                             <th>Lampiran Jabatan</th>
-                                                                            <th>Action</th>
+                                                                            <th>Actionss</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td>375MANAGER AREA MALUKU</td>
-                                                                            <td>2022-12-01</td>
-                                                                            <td>AREA MALUKU REGIONAL VII (AMBON)</td>
-                                                                            <td>IV</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/SK8_1682504627.pdf"
-                                                                                    class="btn btn-secondary btn-sm"
-                                                                                    download="SK Pendukung">Download</a>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-light btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton1"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
+                                                                        @forelse($jobHistories as $history)
+                                                                            <tr>
+                                                                                <td>{{ $history->nama }}</td>
+                                                                                <td>{{ $history->tgl_jabat }}</td>
+                                                                                <td>{{ $history->lokasi }}</td>
+                                                                                <td>{{ $history->band }}</td>
+                                                                                <td>
+                                                                                    @if ($history->lampiran)
+                                                                                        <a href="{{ asset('storage/' . $history->lampiran) }}"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            download>Download</a>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge bg-warning text-dark">Belum
+                                                                                            ada file</span>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-light btn-sm"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#ModalEditJobHistory">
+                                                                                        Edit
                                                                                     </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton1">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_job_history/375/8/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('375','riawayat_jabatan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>703facility manager</td>
-                                                                            <td>2020-03-01</td>
-                                                                            <td>FM MALUKU</td>
-                                                                            <td>C.3</td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="badge bg-warning text-dark">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
+
+
                                                                                     <button
-                                                                                        class="btn btn-light btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton2"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
+                                                                                        class="btn btn-danger btn-sm"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#commonDelete"
+                                                                                        onclick="set_common_delete('{{ $history->id }}','riwayat_jabatan');">
+                                                                                        Delete
                                                                                     </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton2">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_job_history/703/8/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('703','riawayat_jabatan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>658facility manager</td>
-                                                                            <td>2017-02-01</td>
-                                                                            <td>FM MALUKU</td>
-                                                                            <td>D.2</td>
-                                                                            <td>
-                                                                                <span
-                                                                                    class="badge bg-warning text-dark">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-light btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton3"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton3">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_job_history/658/8/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('658','riawayat_jabatan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>374 BUILDING MANAGER TTC MAKASSAR 1</td>
-                                                                            <td>2016-01-01</td>
-                                                                            <td>BM TTC MAKASSAR 1</td>
-                                                                            <td>D</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/SK8_1675694864.pdf"
-                                                                                    class="btn btn-secondary btn-sm"
-                                                                                    download="SK Pendukung">Download</a>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-light btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton4"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton4">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_job_history/374/8/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('374','riawayat_jabatan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        @empty
+                                                                            <tr>
+                                                                                <td colspan="6"
+                                                                                    class="text-center">Tidak ada data
+                                                                                    riwayat jabatan.</td>
+                                                                            </tr>
+                                                                        @endforelse
                                                                     </tbody>
+
                                                                 </table>
                                                             </div>
+
                                                         </div>
 
 
@@ -1173,10 +1081,12 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>S1</td>
-                                                                            <td>UNIVERSITAS SATRIA MAKASSAR</td>
-                                                                            <td>TEKNIK INFORMATIKA</td>
-                                                                            <td>2012</td>
+                                                                            <td>{{ $karyawan->jenjang_pendidikan }}
+                                                                            </td>
+                                                                            <td>{{ $karyawan->penyelenggara_pendidikan }}
+                                                                            </td>
+                                                                            <td>{{ $karyawan->program_studi }}</td>
+                                                                            <td>{{ $karyawan->tahun_lulus }}</td>
                                                                             <td>
                                                                                 <a href="https://karyawan.telpro7.org/uploads/photo/pendidikan_8_1666883665.pdf"
                                                                                     class="btn btn-secondary btn-sm"
@@ -1750,65 +1660,56 @@
                                                 <div class="col-12">
                                                     <div class="card ">
                                                         <div class="card-header">
-                                                            <h3 class="card-title">Pribadi</h3>
+                                                            <h3 class="card-title">Other</h3>
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
                                                                     data-target="#ModalTambahKaryawan">
-                                                                    Edit Profile
+                                                                    Edit Other
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Lahir</label>
+                                                                <label
+                                                                    class="col-lg-4 fw-semibold text-muted">NPWP</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->npwp }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Kota
-                                                                    Lahir</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">BPJS
+                                                                    Kesehatan</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->kota_lahir }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->bpjs_kesehatan }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Jenis
-                                                                    Kelamin</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">BPJS
+                                                                    Ketenagakerjaan</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->jenis_kelamin }}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Alamat
-                                                                    Domisili</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->alamat }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->bpjs_ketenagakerjaan }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row mb-7">
                                                                 <label
-                                                                    class="col-lg-4 fw-semibold text-muted">Agama</label>
+                                                                    class="col-lg-4 fw-semibold text-muted">Telkomedika</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->agama }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->telkomedika }}</span>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row mb-7">
-                                                                <label
-                                                                    class="col-lg-4 fw-semibold text-muted">Suku</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
+                                                                    Bank</label>
                                                                 <div class="col-lg-8">
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">{{ $karyawan->suku }}</span>
@@ -1816,20 +1717,11 @@
                                                             </div>
 
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Golongan
-                                                                    Darah</label>
+                                                                <label class="col-lg-4 fw-semibold text-muted">Rekening
+                                                                    Bank</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->golongan_darah }}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Kontak
-                                                                    Darurat</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->kontak_darurat }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->rekening_bank }}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2213,6 +2105,258 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ModalAddJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
+                                            <input type="date" name="tgl_jabat" class="form-control"
+                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
+                                                value="{{ old('tgl_jabat') }}">
+                                            @error('tgl_jabat')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
+                                            <input type="text" name="nama" class="form-control"
+                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="lokasi">Lokasi Penempatan</label>
+                                            <input type="text" class="form-control"
+                                                name="lokasi"@error('lokasi') is-invalid @enderror
+                                                value="{{ old('lokasi') }}">
+                                            @error('lokasi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
+                                                </option>
+                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                    II
+                                                </option>
+                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                    III
+                                                </option>
+                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                    IV
+                                                </option>
+                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
+                                                </option>
+                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                    VI
+                                                </option>
+                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                    VII
+                                                </option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="file_rekening_bank">Lampiran Sk</label>
+                                            <input type="file" class="form-control" id="lampiran"
+                                                name="lampiran">
+                                            @error('lampiran')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalEditJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
+                                            <input type="date" name="tgl_jabat" class="form-control"
+                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
+                                                value="{{ old('tgl_jabat') }}">
+                                            @error('tgl_jabat')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
+                                            <input type="text" name="nama" class="form-control"
+                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="lokasi">Lokasi Penempatan</label>
+                                            <input type="text" class="form-control"
+                                                name="lokasi"@error('lokasi') is-invalid @enderror
+                                                value="{{ old('lokasi') }}">
+                                            @error('lokasi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
+                                                </option>
+                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                    II
+                                                </option>
+                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                    III
+                                                </option>
+                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                    IV
+                                                </option>
+                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
+                                                </option>
+                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                    VI
+                                                </option>
+                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                    VII
+                                                </option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="file_rekening_bank">Lampiran Sk</label>
+                                            <input type="file" class="form-control" id="lampiran"
+                                                name="lampiran">
+                                            @error('lampiran')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
 </body>
 

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Karyawan extends Model
 {
     use HasFactory;
-    public $table = 'karyawan';
+
+    protected $table = 'karyawan';
+
     protected $fillable = [
         'nik',
         'telkomgroup',            
@@ -44,4 +46,9 @@ class Karyawan extends Model
         'loker',      
         'foto',      
     ];
+
+    public function jobHistories()
+    {
+        return $this->hasMany(JobHistory::class, 'karyawan_id');
+    }
 }

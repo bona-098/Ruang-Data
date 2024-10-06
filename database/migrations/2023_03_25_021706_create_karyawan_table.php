@@ -10,32 +10,50 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
-            $table->string('nik', 50)->nullable();
-            $table->string('telkomgroup', 50)->nullable();   //Kontak Darurat         
-            $table->string('nama_karyawan', 100)->nullable();
-            $table->string('jenis_kelamin', 10)->nullable();
+            // PRIBADI
             $table->date('tgl_lahir')->nullable();
             $table->string('kota_lahir', 100)->nullable();
-            $table->string('agama', 50)->nullable();
+            $table->string('jenis_kelamin', 10)->nullable();
             $table->text('alamat')->nullable();
-            $table->string('unit_kerja', 100)->nullable();
-            $table->string('jabatan', 100)->nullable();
-            $table->string('band_kelas_posisi', 50)->nullable();
-            $table->string('no_hp', 15)->nullable();   //Kontak Darurat 
-            $table->string('kontak_darurat', 15)->nullable();   //Kontak Darurat 
-            $table->string('status_nikah', 100)->nullable();
-            $table->string('nama_pasangan', 100)->nullable();
+            $table->string('agama', 50)->nullable();
             $table->string('suku', 50)->nullable();
             $table->string('golongan_darah', 5)->nullable();
+            $table->string('kontak_darurat', 15)->nullable();   //Kontak Darurat 
+            // KELUARGA
+            $table->string('status_nikah', 100)->nullable();
+            $table->date('tgl_nikah')->nullable();
+            $table->string('tanggungan_keluarga', 100)->nullable();
             $table->integer('jumlah_anak')->nullable();
+            $table->string('nomor_keluarga', 100)->nullable();
+            $table->string('nomor_kartu_keluarga', 100)->nullable();
+            $table->string('nama_pasangan', 100)->nullable();
+            $table->string('nama_anak_pertama', 100)->nullable();
+            $table->string('tgl_lahir_anak_pertama', 100)->nullable();
+            $table->string('nama_anak_kedua', 100)->nullable();
+            $table->string('tgl_lahir_anak_kedua', 100)->nullable();
+            $table->string('nama_anak_ketiga', 100)->nullable();
+            $table->string('tgl_lahir_anak_ketiga', 100)->nullable();
+            //JOB
+            $table->string('nik', 50)->nullable();
+            $table->string('telkomgroup', 50)->nullable();
+            $table->string('jabatan', 100)->nullable();
+            $table->string('unit_kerja', 100)->nullable();
+            $table->string('band_kelas_posisi', 50)->nullable();
             $table->date('tgl_bergabung')->nullable();
-            $table->string('status_kepegawaian', 50)->nullable();
+            $table->string('nama_karyawan', 100)->nullable();
             $table->string('nomor_sk', 50)->nullable();
             $table->text('surat_sk')->nullable();
+            $table->string('status_kepegawaian', 50)->nullable();
+            //JOB HISRTORY DI TABEL BARU
+            //PENDIDIKAN
             $table->string('jenjang_pendidikan', 100)->nullable();
-            $table->string('program_studi', 100)->nullable();
             $table->string('penyelenggara_pendidikan', 100)->nullable();
+            $table->string('program_studi', 100)->nullable();
+            $table->string('tahun_lulus', 100)->nullable();
             $table->text('ijazah')->nullable();
+            //PELATIHAN DI TABEL BARU
+            //Lain lain
+            $table->string('no_hp', 15)->nullable();
             $table->string('bpjs_kesehatan', 50)->nullable();
             $table->string('bpjs_ketenagakerjaan', 50)->nullable();
             $table->string('telkomedika', 50)->nullable();

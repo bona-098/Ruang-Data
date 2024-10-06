@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Karyawan;
+use App\Models\JobHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\LogActivities; // Import model MitraActivityLog
@@ -92,6 +93,7 @@ class KaryawanController extends Controller
         $jumlah_karyawan_sekolah = Karyawan::whereIn('jenjang_pendidikan', [
             'SMK/SLTA Kejuruan'
         ])->count();
+
 
         return view('bsrm.karyawan.karyawan', compact(
             'karyawan',
@@ -243,8 +245,24 @@ class KaryawanController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::find($id);
-        return view('bsrm.karyawan.show', compact('karyawan'));
+
+        if (!$karyawan) {
+            return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
+        }
+
+        // Ambil riwayat jabatan yang terkait dengan karyawan
+        $jobHistories = JobHistory::where('karyawan_id', $id)->get();
+
+        // Debug variabel
+        // dd($karyawan, $jobHistories);
+
+        // Kirim kedua variabel ke view
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories'));
     }
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -363,10 +381,81 @@ class KaryawanController extends Controller
         // Logika untuk memperbarui data pekerjaan karyawan
     }
 
+    public function add_jobhistory(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama' => 'required|string|max:50',
+            'tgl_jabat' => 'required|date',
+            'lokasi' => 'nullable|string|max:50',
+            'band' => 'nullable|string|max:50',
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        // Ambil data dari request
+        $karyawan_id = $request->karyawan_id;
+        $lokasi = $request->lokasi;
+
+        // Simpan lampiran ke folder 'public/lampiran'
+        $lampiranPath = null; // Inisialisasi path
+        if ($request->hasFile('lampiran')) {
+            $lampiran = $request->file('lampiran');
+            $filename = $karyawan_id . '_' . $lokasi . '.' . $lampiran->getClientOriginalExtension();
+            $lampiranPath = $lampiran->storeAs('lampiran', $filename, 'public'); // Simpan lampiran dan dapatkan path
+        }
+
+        // Buat riwayat pekerjaan baru
+        $jobHistory = JobHistory::create([
+            'karyawan_id' => $karyawan_id,
+            'nama' => $request->nama,
+            'tgl_jabat' => $request->tgl_jabat,
+            'lokasi' => $lokasi,
+            'band' => $request->band,
+            'lampiran' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
+    }
+
+
+
+
+
     public function update_jobhistory(Request $request, $id)
     {
-        // Logika untuk memperbarui riwayat pekerjaan karyawan
+        // Validasi data yang diterima
+        $request->validate([
+            'nama' => 'required|string|max:50',
+            'tgl_jabat' => 'required|date',
+            'lokasi' => 'nullable|string|max:50',
+            'band' => 'nullable|string|max:50',
+            'lampiran' => 'nullable|string|max:50',
+            // Tambahkan validasi lainnya sesuai kebutuhan
+        ]);
+
+        // Temukan job history berdasarkan ID
+        $jobHistory = JobHistory::find($id);
+
+        // Cek apakah job history ditemukan
+        if (!$jobHistory) {
+            return response()->json(['message' => 'Job history not found'], 404);
+        }
+
+        // Perbarui job history dengan data yang baru
+        $jobHistory->update([
+            'nama' => $request->input('nama'),
+            'tgl_jabat' => $request->input('tgl_jabat'),
+            'lokasi' => $request->input('lokasi'),
+            'band' => $request->input('band'),
+            'lampiran' => $request->input('lampiran'),
+            // Tambahkan kolom lainnya sesuai kebutuhan
+        ]);
+
+        return response()->json(['message' => 'Job history updated successfully', 'data' => $jobHistory], 200);
     }
+
 
     public function update_pendidikan(Request $request, $id)
     {

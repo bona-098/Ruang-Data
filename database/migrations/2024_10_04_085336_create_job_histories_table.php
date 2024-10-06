@@ -1,31 +1,27 @@
-<?php
+    <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+    use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    return new class extends Migration
     {
-        Schema::create('job_histories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+        public function up()
+        {
+            Schema::create('job_histories', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Pastikan tabel karyawan sesuai
+                $table->string('nama', 50)->nullable();
+                $table->date('tgl_jabat')->nullable();
+                $table->string('lokasi', 50)->nullable();
+                $table->string('band', 50)->nullable();
+                $table->string('lampiran', 50)->nullable();
+                $table->timestamps();
+            });
+        }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('job_histories');
-    }
-};
+        public function down()
+        {
+            Schema::dropIfExists('job_histories');
+        }
+    };

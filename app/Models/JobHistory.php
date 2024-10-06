@@ -9,6 +9,8 @@ class JobHistory extends Model
 {
     use HasFactory;
 
+    protected $table = 'job_histories';
+
     protected $fillable = [
         'karyawan_id',
         'nama',
@@ -18,6 +20,9 @@ class JobHistory extends Model
         'lampiran',
     ];
 
+    /**
+     * Relasi dengan model Karyawan.
+     */
     public function karyawan()
     {
         return $this->belongsTo(Karyawan::class, 'karyawan_id');
