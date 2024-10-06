@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobHistory;
 use App\Models\Rekomendasi;
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
@@ -122,10 +123,56 @@ class RekomendasiController extends Controller
      * @param  \App\Models\Rekomendasi  $rekomendasi
      * @return \Illuminate\Http\Response
      */
-    public function show(Rekomendasi $rekomendasi)
+    public function filter(Request $request)
     {
-        //
+        // Ambil parameter dari request
+        $band = $request->input('band');
+        $lamaJabatan = $request->input('lama_jabatan');
+
+        // Dapatkan tanggal jabatan terbaru untuk setiap karyawan
+        $subQuery = JobHistory::selectRaw('MAX(tgl_jabat) as latest_date, karyawan_id')
+            ->groupBy('karyawan_id');
+
+        // Ambil data berdasarkan subquery dan muat relasi karyawan
+        $query = JobHistory::with('karyawan')
+            ->joinSub($subQuery, 'latest_job', function ($join) {
+                $join->on('job_histories.tgl_jabat', '=', 'latest_job.latest_date')
+                    ->on('job_histories.karyawan_id', '=', 'latest_job.karyawan_id');
+            });
+
+        // Jika band dipilih, tambahkan ke query
+        if ($band) {
+            $query->where('job_histories.band', $band);
+        }
+
+        // Jika lama jabatan dipilih, tambahkan ke query
+        if ($lamaJabatan) {
+            switch ($lamaJabatan) {
+                case 'Kurang 1 Tahun':
+                    $query->whereDate('job_histories.tgl_jabat', '>=', now()->subYear());
+                    break;
+                case 'Antara 1-2 Tahun':
+                    $query->whereDate('job_histories.tgl_jabat', '<', now()->subYear())
+                        ->whereDate('job_histories.tgl_jabat', '>=', now()->subYears(2));
+                    break;
+                case 'Lebih 2 Tahun':
+                    $query->whereDate('job_histories.tgl_jabat', '<', now()->subYears(2));
+                    break;
+            }
+        }
+
+        // Ambil data yang telah difilter
+        $jobHistories = $query->orderBy('job_histories.tgl_jabat', 'desc')->get();
+
+        // Kembalikan view dengan data yang difilter
+        return view('bsrm.rekomendasi.show', compact('jobHistories'));
     }
+
+
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.

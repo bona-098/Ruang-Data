@@ -16,39 +16,48 @@
                     </button>
                 </div>
             </div>
+            <form method="GET" action="{{ route('rekomendasi.filter') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Posisi Band yang dicari</label>
+                                <select class="form-control select2" name="band" style="width: 100%;">
+                                    <option value="">Pilih Band</option>
+                                    <option value="I"> I</option>
+                                    <option value="II"> II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                    <option value="VI">VI</option>
+                                    <option value="VII">VII</option>
+                                    <option value="VIII">VIII</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Posisi Band yang dicari</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">Pilih Band</option>
-                                <option>Band I</option>
-                                <option>Band II</option>
-                                <option>Band III</option>
-                                <option>Band IV</option>
-                                <option>Band V</option>
-                                <option>Band VI</option>
-                                <option>Band VII</option>
-                                <option>Band VIII</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pilih Lama Jabatan Terakhir</label>
+                                <select class="form-control select2" name="lama_jabatan" style="width: 100%;">
+                                    <option value="">Pilih lama jabatan terakhir</option>
+                                    <option value="Kurang 1 Tahun">Kurang 1 Tahun</option>
+                                    <option value="Antara 1-2 Tahun">Antara 1-2 Tahun</option>
+                                    <option value="Lebih 2 Tahun">Lebih 2 Tahun</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Pilih Lama Jabatan Terakhir</label>
-                            <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">Pilih lama jabatan terakhir</option>
-                                <option>Kurang 1 Tahun</option>
-                                <option>Antara 1-2 Tahun</option>
-                                <option>Lebih 2 Tahun</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Filter</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
+
         </div>
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -58,7 +67,7 @@
                 <br>
                 <!-- Button trigger modal -->
                 <!-- Button trigger modal -->
-             
+
                 <div class=" table-responsive">
                     <table text-align: left; id="myTable" class="table table-bordered table-striped">
                         <thead>
@@ -956,11 +965,14 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="text-align: center; vertical-align: middle;">{{ $k->nik }} / {{ $k->telkomgroup }}
+                                            <td style="text-align: center; vertical-align: middle;">{{ $k->nik }} /
+                                                {{ $k->telkomgroup }}
                                             </td>
-                                            <td style="text-align: center; vertical-align: middle;"><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td style="text-align: center; vertical-align: middle;"><a
+                                                    href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}
+                                            </td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 @if (
                                                     $k->unit_kerja == 'General Manager Regional' ||

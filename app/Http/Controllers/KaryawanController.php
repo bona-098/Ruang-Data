@@ -250,15 +250,16 @@ class KaryawanController extends Controller
             return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
         }
 
-        // Ambil riwayat jabatan yang terkait dengan karyawan
-        $jobHistories = JobHistory::where('karyawan_id', $id)->get();
+        // Ambil riwayat jabatan yang terkait dengan karyawan dan urutkan berdasarkan tanggal terbaru
+        $jobHistories = JobHistory::where('karyawan_id', $id)->orderBy('tgl_jabat', 'desc')->get();
 
-        // Debug variabel
-        // dd($karyawan, $jobHistories);
+        // Ambil tanggal terbaru
+        $latestJobHistoryDate = $jobHistories->isNotEmpty() ? $jobHistories->first()->tgl_jabat : null;
 
         // Kirim kedua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate'));
     }
+
 
 
 
@@ -373,7 +374,24 @@ class KaryawanController extends Controller
 
     public function update_keluarga(Request $request, $id)
     {
-        // Logika untuk memperbarui data keluarga karyawan
+        $karya = $request->all();
+        $karyawan = Karyawan::find($id);
+        $karyawan->update([
+            'status_nikah' => $request->status_nikah,
+            'tgl_nikah' => $request->tgl_nikah,
+            'jumlah_anak' => $request->jumlah_anak,
+            'nomor_kartu_keluarga' => $request->nomor_kartu_keluarga,
+            'nama_pasangan' => $request->nama_pasangan,
+            'nama_anak_pertama' => $request->nama_anak_pertama,
+            'tgl_lahir_anak_pertama' => $request->tgl_lahir_anak_pertama,
+            'nama_anak_kedua' => $request->nama_anak_kedua,
+            'tgl_lahir_anak_kedua' => $request->tgl_lahir_anak_kedua,
+            'nama_anak_ketiga' => $request->nama_anak_ketiga,
+            'tgl_lahir_anak_ketiga' => $request->tgl_lahir_anak_ketiga,
+        ]);
+        // Catat aktivitas tambah data mitra ke dalam log
+        // Redirect atau berikan respon sesuai kebutuhan
+        return redirect()->back();
     }
 
     public function update_job(Request $request, $id)

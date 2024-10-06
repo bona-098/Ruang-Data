@@ -1006,10 +1006,11 @@
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
                                         <th style="white-space: nowrap;">Loker</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
+                                        {{--  <th style="white-space: nowrap;">Unit Kerja</th>
+                                      
+                                       <th>Jabatan</th>
+                                        <th>Band</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1026,27 +1027,22 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
+                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+
+                                            {{-- <td style="text-align: center; vertical-align: middle;">
+                                                @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
                                                     Balikpapan
                                                 @elseif($k->unit_kerja == 'Area Kalselteng')
                                                     Banjarmasin
                                                 @elseif($k->unit_kerja == 'Area Kalbar')
                                                     Pontianak
                                                 @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
+                                                    
                                                     Tidak Diketahui
                                                 @endif
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
+                                              <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -1080,9 +1076,9 @@
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
-                                        <th>Jabatan</th>
-                                        <th>Band</th>
+                                        <th style="white-space: nowrap;">Loker</th>
+                                        {{-- <th>Jabatan</th>
+                                        <th>Band</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1099,9 +1095,9 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                             <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
+                                            {{-- <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -1135,10 +1131,11 @@
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
                                         <th style="white-space: nowrap;">Loker</th>
+                                        {{-- <th style="white-space: nowrap;">Unit Kerja</th>
+                                         
                                         <th>Jabatan</th>
-                                        <th>Band</th>
+                                        <th>Band</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1155,27 +1152,21 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
+                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                            {{-- <td style="text-align: center; vertical-align: middle;">
+                                                @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
                                                     Balikpapan
                                                 @elseif($k->unit_kerja == 'Area Kalselteng')
                                                     Banjarmasin
                                                 @elseif($k->unit_kerja == 'Area Kalbar')
                                                     Pontianak
                                                 @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
+                                                    
                                                     Tidak Diketahui
                                                 @endif
                                             </td>
                                             <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -1209,10 +1200,10 @@
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
                                         <th style="white-space: nowrap;">Loker</th>
+                                        {{-- <th style="white-space: nowrap;"></th>
                                         <th>Jabatan</th>
-                                        <th>Band</th>
+                                        <th>Band</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1229,27 +1220,21 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
+                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                            {{-- <td style="text-align: center; vertical-align: middle;">
+                                                @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
                                                     Balikpapan
                                                 @elseif($k->unit_kerja == 'Area Kalselteng')
                                                     Banjarmasin
                                                 @elseif($k->unit_kerja == 'Area Kalbar')
                                                     Pontianak
                                                 @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
+                                                
                                                     Tidak Diketahui
                                                 @endif
                                             </td>
                                             <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -1283,10 +1268,10 @@
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                        <th style="white-space: nowrap;">Unit Kerja</th>
                                         <th style="white-space: nowrap;">Loker</th>
+                                        {{-- <th style="white-space: nowrap;">Loker</th>
                                         <th>Jabatan</th>
-                                        <th>Band</th>
+                                        <th>Band</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1303,27 +1288,21 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                @if (
-                                                    $k->unit_kerja == 'General Manager Regional' ||
-                                                        $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                        $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                        $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                        $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                        $k->unit_kerja == 'Area Kaltimtara')
+                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                            {{-- <td style="text-align: center; vertical-align: middle;">
+                                                @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
                                                     Balikpapan
                                                 @elseif($k->unit_kerja == 'Area Kalselteng')
                                                     Banjarmasin
                                                 @elseif($k->unit_kerja == 'Area Kalbar')
                                                     Pontianak
                                                 @else
-                                                    {{-- Tambahkan opsi default jika diperlukan --}}
+                                                  
                                                     Tidak Diketahui
                                                 @endif
                                             </td>
                                             <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>

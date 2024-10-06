@@ -24,7 +24,6 @@ return new class extends Migration
             $table->date('tgl_nikah')->nullable();
             $table->string('tanggungan_keluarga', 100)->nullable();
             $table->integer('jumlah_anak')->nullable();
-            $table->string('nomor_keluarga', 100)->nullable();
             $table->string('nomor_kartu_keluarga', 100)->nullable();
             $table->string('nama_pasangan', 100)->nullable();
             $table->string('nama_anak_pertama', 100)->nullable();

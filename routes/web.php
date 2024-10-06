@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/karyawan', KaryawanController::class);
     // Tambahkan route untuk metode khusus
     Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
-    Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga']);
+    Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga'])->name('karyawan.update_keluarga');
     Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
     Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
     Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan']);
@@ -91,7 +91,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
 
 
-    Route::resource('/rekomendasi', RekomendasiController::class);
+    Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
+    Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');
+    Route::get('rekomendasi/{rekomendasi}', [RekomendasiController::class, 'show'])->name('rekomendasi.show');
+    Route::get('/rekomendasi/promosi', [RekomendasiController::class, 'rekomendasiPromosi'])->name('rekomendasi.promosi');
+
+
     Route::resource('/mitra', MitraController::class);
     //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role marshal
     Route::resource('/sales', SalesController::class);

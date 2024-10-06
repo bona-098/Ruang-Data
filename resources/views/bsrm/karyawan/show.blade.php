@@ -378,7 +378,11 @@
                                                 class="float-right">{{ $karyawan->band_kelas_posisi }} </a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Masa Kerja</b> <a class="float-right" id="masa-kerja"></a>
+                                            <b>Masa Band</b>
+                                            <a class="float-right" id="masa-band"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Masa Awal Kerja</b> <a class="float-right" id="masa-kerja"></a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Masa Pensiun</b> <a class="float-right" id="masa-pensiun"></a>
@@ -387,6 +391,7 @@
                                             <b>Umur</b> <a class="float-right" id="umur"></a>
                                         </li>
                                     </ul>
+
 
 
                                     {{-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> --}}
@@ -573,7 +578,7 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
+                                                                    data-target="#ModalEditKeluarga">
                                                                     Edit Keluarga
                                                                 </button>
                                                             </div>
@@ -596,7 +601,7 @@
                                                                     Nikah</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2007-01-01</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_nikah }}</span>
                                                                 </div>
                                                             </div>
 
@@ -606,7 +611,7 @@
                                                                     Keluarga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">K/3</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tanggungan_keluarga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -615,7 +620,7 @@
                                                                     Kartu Keluarga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nomor_kartu_keluarga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -818,7 +823,7 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Band
                                                                     Position</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">Band
+                                                                    <span class="fw-semibold text-gray-800 fs-6">
                                                                         {{ $karyawan->band_kelas_posisi }}</span>
                                                                 </div>
                                                             </div>
@@ -986,11 +991,12 @@
                                                                             <th>Lokasi Penempatan</th>
                                                                             <th>Band Posisi</th>
                                                                             <th>Lampiran Jabatan</th>
-                                                                            <th>Actionss</th>
+                                                                            <th>Actions</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @forelse($jobHistories as $history)
+                                                                        @forelse($jobHistories->sortByDesc('tgl_jabat') as $history)
+                                                                            <!-- Mengurutkan berdasarkan tanggal terbaru -->
                                                                             <tr>
                                                                                 <td>{{ $history->nama }}</td>
                                                                                 <td>{{ $history->tgl_jabat }}</td>
@@ -1015,7 +1021,6 @@
                                                                                         Edit
                                                                                     </button>
 
-
                                                                                     <button
                                                                                         class="btn btn-danger btn-sm"
                                                                                         data-bs-toggle="modal"
@@ -1024,7 +1029,6 @@
                                                                                         Delete
                                                                                     </button>
                                                                                 </td>
-
                                                                             </tr>
                                                                         @empty
                                                                             <tr>
@@ -1034,8 +1038,8 @@
                                                                             </tr>
                                                                         @endforelse
                                                                     </tbody>
-
                                                                 </table>
+
                                                             </div>
 
                                                         </div>
@@ -1909,6 +1913,46 @@
             document.getElementById("umur").innerText = umur;
             document.getElementById("masa-pensiun").innerText = masaPensiun;
         });
+
+        // Ambil tanggal terbaru dari variabel PHP
+        const latestJobDate = @json($latestJobHistoryDate);
+
+        function calculateDuration(startDate) {
+            const start = new Date(startDate);
+            const end = new Date(); // Hari ini
+
+            let years = end.getFullYear() - start.getFullYear();
+            let months = end.getMonth() - start.getMonth();
+            let days = end.getDate() - start.getDate();
+
+            // Jika hari negatif, kurangi bulan
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+
+            // Jika bulan negatif, kurangi tahun
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            return {
+                years,
+                months,
+                days
+            };
+        }
+
+        // Hitung masa jabatan
+        const masaJabatan = calculateDuration(latestJobDate);
+
+        console.log(`Masa Jabatan: ${masaJabatan.years} tahun, ${masaJabatan.months} bulan, ${masaJabatan.days} hari`);
+
+        // Menampilkan hasil di HTML
+        document.getElementById('masa-band').innerText =
+            `${masaJabatan.years} tahun, ${masaJabatan.months} bulan, ${masaJabatan.days} hari`;
     </script>
     <div class="modal fade" id="ModalEditPribadi" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
@@ -2053,8 +2097,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="suku">suku</label>
-                                            <input type="text" value="{{ $karyawan->suku }}" class="form-control"
-                                                id="suku" name="suku">
+                                            <input type="text" value="{{ $karyawan->suku }}"
+                                                class="form-control" id="suku" name="suku">
                                             @error('suku')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}
@@ -2106,6 +2150,225 @@
         </div>
     </div>
 
+    <div class="modal fade" id="ModalEditKeluarga" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Keluarga</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.update_keluarga', $karyawan->id) }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="status_nikah" class="control-label">Status Menikah</label>
+                                            <select class="form-control custom-select" id="status_nikah"
+                                                name="status_nikah">
+                                                <option value="">Pilih Status Menikah</option>
+                                                <option value="Menikah"
+                                                    {{ $karyawan->status_nikah == 'Menikah' ? 'selected' : '' }}>
+                                                    Menikah</option>
+                                                <option value="Belum Menikah"
+                                                    {{ $karyawan->status_nikah == 'Belum Menikah' ? 'selected' : '' }}>
+                                                    Belum Menikah</option>
+                                            </select>
+                                            @error('status_nikah')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Nikah</label>
+                                            <input type="date" id="tgl_nikah" value="{{ $karyawan->tgl_nikah }}"
+                                                name="tgl_nikah" class="form-control" placeholder="dd/mm/yyyy"
+                                                @error('tgl_nikah') is-invalid @enderror
+                                                value="{{ old('tgl_nikah') }}">
+                                            @error('tgl_nikah')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="jumlah_anak">Jumlah Anak</label>
+                                            <input type="number" min="0" class="form-control"
+                                                id="jumlah_anak" name="jumlah_anak">
+                                            @error('jumlah_anak')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="alamat">Nomor Kartu keluarga</label>
+                                            <input type="text" value="{{ $karyawan->nomor_kartu_keluarga }}"
+                                                class="form-control"
+                                                name="nomor_kartu_keluarga"@error('nomor_kartu_keluarga') is-invalid @enderror
+                                                value="{{ old('nomor_kartu_keluarga') }}">
+                                            @error('nomor_kartu_keluarga')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nama_pasangan">Nama Pasangan</label>
+                                            <input type="text" class="form-control" id="nama_pasangan"
+                                                name="nama_pasangan">
+                                            @error('nama_pasangan')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Anak Pertama</label>
+                                            <input type="text" value="{{ $karyawan->nama_anak_pertama }}"
+                                                name="nama_anak_pertama" class="form-control"
+                                                @error('nama_anak_pertama') is-invalid @enderror
+                                                value="{{ old('nama_anak_pertama') }}">
+                                            @error('nama_anak_pertama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
+                                                Pertama</label>
+                                            <input type="date" id="tgl_lahir_anak_pertama"
+                                                value="{{ $karyawan->tgl_lahir_anak_pertama }}"
+                                                name="tgl_lahir_anak_pertama" class="form-control"
+                                                placeholder="dd/mm/yyyy"
+                                                @error('tgl_lahir_anak_pertama') is-invalid @enderror
+                                                value="{{ old('tgl_lahir_anak_pertama') }}">
+                                            @error('tgl_lahir_anak_pertama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Anak Kedua</label>
+                                            <input type="text" value="{{ $karyawan->nama_anak_kedua }}"
+                                                name="nama_anak_kedua" class="form-control"
+                                                @error('nama_anak_kedua') is-invalid @enderror
+                                                value="{{ old('nama_anak_kedua') }}">
+                                            @error('nama_anak_kedua')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
+                                                Kedua</label>
+                                            <input type="date" id="tgl_lahir_anak_kedua"
+                                                value="{{ $karyawan->tgl_lahir_anak_kedua }}"
+                                                name="tgl_lahir_anak_kedua" class="form-control"
+                                                placeholder="dd/mm/yyyy"
+                                                @error('tgl_lahir_anak_kedua') is-invalid @enderror
+                                                value="{{ old('tgl_lahir_anak_kedua') }}">
+                                            @error('tgl_lahir_anak_kedua')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Anak Ketiga</label>
+                                            <input type="text" value="{{ $karyawan->nama_anak_ketiga }}"
+                                                name="nama_anak_ketiga" class="form-control"
+                                                @error('nama_anak_ketiga') is-invalid @enderror
+                                                value="{{ old('nama_anak_ketiga') }}">
+                                            @error('nama_anak_ketiga')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
+                                                Ketiga</label>
+                                            <input type="date" id="tgl_lahir_anak_ketiga"
+                                                value="{{ $karyawan->tgl_lahir_anak_ketiga }}"
+                                                name="tgl_lahir_anak_ketiga" class="form-control"
+                                                placeholder="dd/mm/yyyy"
+                                                @error('tgl_lahir_anak_ketiga') is-invalid @enderror
+                                                value="{{ old('tgl_lahir_anak_ketiga') }}">
+                                            @error('tgl_lahir_anak_ketiga')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="ModalAddJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -2122,7 +2385,7 @@
                     <form method="POST" action="{{ route('karyawan.add_job_history') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $karyawan->id }}">
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
                         <div class="card-body">
                             <div class="form-body">
                                 <div class="row p-t-20">
