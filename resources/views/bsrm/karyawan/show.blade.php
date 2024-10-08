@@ -721,8 +721,7 @@
                                                             <h3 class="card-title">Job</h3>
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
-                                                                    data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
+                                                                    data-toggle="modal" data-target="#ModalEditJob">
                                                                     Edit Job
                                                                 </button>
                                                             </div>
@@ -774,7 +773,8 @@
 
                                                             <!-- Lokasi Kerja -->
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Lokasi
+                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
+                                                                    Kerja
                                                                     Kerja</label>
                                                                 <div class="col-lg-8">
                                                                     <span
@@ -784,7 +784,7 @@
 
                                                             <!-- Unit Kerja -->
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
+                                                                <label class="col-lg-4 fw-semibold text-muted">Lokasi
                                                                     Kerja</label>
                                                                 <div class="col-lg-8">
                                                                     <span class="fw-semibold text-gray-800 fs-6">
@@ -2012,11 +2012,11 @@
                                                 class="form-control custom-select @error('jenis_kelamin') is-invalid @enderror"
                                                 id="jenis_kelamin" name="jenis_kelamin">
                                                 <option value="">Pilih Jenis Kelamin</option>
-                                                <option value="laki-laki"
-                                                    {{ old('jenis_kelamin') == 'laki-laki' ? 'selected' : '' }}>
+                                                <option value="Laki-laki"
+                                                    {{ old('jenis_kelamin') == 'Laki-laki' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Laki-laki') ? 'selected' : '' }}>
                                                     Laki-laki</option>
-                                                <option value="perempuan"
-                                                    {{ old('jenis_kelamin') == 'perempuan' ? 'selected' : '' }}>
+                                                <option value="Perempuan"
+                                                    {{ old('jenis_kelamin') == 'Perempuan' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Perempuan') ? 'selected' : '' }}>
                                                     Perempuan</option>
                                             </select>
                                             @error('jenis_kelamin')
@@ -2024,8 +2024,15 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+
+                                            @error('jenis_kelamin')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
+
 
                                     <div class="col-md-6 ">
                                         <div class="form-group">
@@ -2049,23 +2056,23 @@
                                                 class="form-control custom-select @error('agama') is-invalid @enderror"
                                                 id="agama" name="agama">
                                                 <option value="">Pilih Agama</option>
-                                                <option value="islam"
-                                                    {{ old('agama') == 'islam' || $karyawan->agama == 'Islam' ? 'selected' : '' }}>
+                                                <option value="Islam"
+                                                    {{ old('agama') == 'Islam' || $karyawan->agama == 'Islam' ? 'selected' : '' }}>
                                                     Islam</option>
                                                 <option value="katolik"
-                                                    {{ old('agama') == 'katolik' || $karyawan->agama == 'Katolik' ? 'selected' : '' }}>
+                                                    {{ old('agama') == 'Katolik' || $karyawan->agama == 'Katolik' ? 'selected' : '' }}>
                                                     Kristen Katolik</option>
                                                 <option value="kristen protestan"
-                                                    {{ old('agama') == 'kristen protestan' || $karyawan->agama == 'Kristen protestan' ? 'selected' : '' }}>
+                                                    {{ old('agama') == 'Kristen protestan' || $karyawan->agama == 'Kristen protestan' ? 'selected' : '' }}>
                                                     Kristen Protestan</option>
                                                 <option value="hindu"
-                                                    {{ old('agama') == 'hindu' || $karyawan->agama == 'Hindu' ? 'selected' : '' }}>
+                                                    {{ old('agama') == 'Hindu' || $karyawan->agama == 'Hindu' ? 'selected' : '' }}>
                                                     Hindu</option>
                                                 <option value="budha"
-                                                    {{ old('agama') == 'budha' || $karyawan->agama == 'Budha' ? 'selected' : '' }}>
+                                                    {{ old('agama') == 'Budha' || $karyawan->agama == 'Budha' ? 'selected' : '' }}>
                                                     Budha</option>
                                                 <option value="kong hucuh"
-                                                    {{ old('agama') == 'kong hucuh' || $karyawan->agama == 'Kong Hucuh' ? 'selected' : '' }}>
+                                                    {{ old('agama') == 'Kong hucuh' || $karyawan->agama == 'Kong Hucuh' ? 'selected' : '' }}>
                                                     Kong Hucu</option>
                                             </select>
                                             @error('agama')
@@ -2369,6 +2376,191 @@
         </div>
     </div>
 
+    <div class="modal fade" id="ModalEditJob" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">NIK Telpro</label>
+                                            <input type="number" name="nik" min="0"
+                                                class="form-control" @error('nik') is-invalid @enderror
+                                                value="{{ $karyawan->nik }}">
+                                            @error('nik')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">NIK Telkom Group</label>
+                                            <input type="text" name="nik_telpro" class="form-control"
+                                                @error('nik_telpro') is-invalid @enderror
+                                                value="{{ $karyawan->telkomgroup }}">
+                                            @error('nik_telpro')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="jabatan">Nama Jabatan</label>
+                                            <input type="text" class="form-control" id="jabatan"
+                                                name="jabatan"@error('jabatan') is-invalid @enderror
+                                                value="{{ $karyawan->jabatan }}">
+                                            @error('jabatan')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="unit_kerja" class="control-label">Unit Kerja</label>
+                                            <select
+                                                class="form-control custom-select @error('unit_kerja') is-invalid @enderror"
+                                                id="unit_kerja" name="unit_kerja">
+                                                <option value="">Pilih Unit Kerja</option>
+                                                <option value="General Manager Regional"
+                                                    {{ old('unit_kerja') == 'General Manager Regional' || (isset($karyawan) && $karyawan->unit_kerja == 'General Manager Regional') ? 'selected' : '' }}>
+                                                    General Manager Regional</option>
+                                                <option value="Manager Marketing, Sales & Solution"
+                                                    {{ old('unit_kerja') == 'Manager Marketing, Sales & Solution' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution') ? 'selected' : '' }}>
+                                                    Manager Marketing, Sales & Solution</option>
+                                                <option value="Manager Planning & Delivery"
+                                                    {{ old('unit_kerja') == 'Manager Planning & Delivery' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Planning & Delivery') ? 'selected' : '' }}>
+                                                    Manager Planning & Delivery</option>
+                                                <option value="Manager Operation & Maintenance"
+                                                    {{ old('unit_kerja') == 'Manager Operation & Maintenance' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Operation & Maintenance') ? 'selected' : '' }}>
+                                                    Manager Operation & Maintenance</option>
+                                                <option value="Manager Business Support & Risk Management"
+                                                    {{ old('unit_kerja') == 'Manager Business Support & Risk Management' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Business Support & Risk Management') ? 'selected' : '' }}>
+                                                    Manager Business Support & Risk Management</option>
+                                                <option value="Area Kaltimtara"
+                                                    {{ old('unit_kerja') == 'Area Kaltimtara' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kaltimtara') ? 'selected' : '' }}>
+                                                    Area Kaltimtara</option>
+                                                <option value="Area Kalselteng"
+                                                    {{ old('unit_kerja') == 'Area Kalselteng' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalselteng') ? 'selected' : '' }}>
+                                                    Area Kalselteng</option>
+                                                <option value="Area Kalbar"
+                                                    {{ old('unit_kerja') == 'Area Kalbar' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalbar') ? 'selected' : '' }}>
+                                                    Area Kalbar</option>
+                                            </select>
+                                            @error('unit_kerja')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select
+                                                class="form-control custom-select @error('band_kelas_posisi') is-invalid @enderror"
+                                                name="band_kelas_posisi">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I"
+                                                    {{ old('band_kelas_posisi') == 'I' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'I') ? 'selected' : '' }}>
+                                                    I</option>
+                                                <option value="II"
+                                                    {{ old('band_kelas_posisi') == 'II' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'II') ? 'selected' : '' }}>
+                                                    II</option>
+                                                <option value="III"
+                                                    {{ old('band_kelas_posisi') == 'III' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'III') ? 'selected' : '' }}>
+                                                    III</option>
+                                                <option value="IV"
+                                                    {{ old('band_kelas_posisi') == 'IV' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'IV') ? 'selected' : '' }}>
+                                                    IV</option>
+                                                <option value="V"
+                                                    {{ old('band_kelas_posisi') == 'V' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'V') ? 'selected' : '' }}>
+                                                    V</option>
+                                                <option value="VI"
+                                                    {{ old('band_kelas_posisi') == 'VI' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VI') ? 'selected' : '' }}>
+                                                    VI</option>
+                                                <option value="VII"
+                                                    {{ old('band_kelas_posisi') == 'VII' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VII') ? 'selected' : '' }}>
+                                                    VII</option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_bergabung">tgl_bergabung</label>
+                                            <input type="date" class="form-control" id="tgl_bergabung"
+                                                value="{{ $karyawan->tgl_bergabung }}" name="tgl_bergabung">
+                                            @error('tgl_bergabung')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nomor_sk">Nomor Surat Keputusan</label>
+                                            <input type="text" class="form-control" id="suku" value="{{ $karyawan->nomor_sk }}"
+                                                name="nomor_sk">
+                                            @error('nomor_sk')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="ModalAddJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
         data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -2476,11 +2668,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
-
-
-
-
                                 </div>
                             </div>
                         </div>

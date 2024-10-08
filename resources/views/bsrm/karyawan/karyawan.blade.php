@@ -57,6 +57,13 @@
                                         class="float-right badge bg-danger">{{ $jumlah_karyawan_areakalbar }}</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal"
+                                    data-target="#ModalKaryawanAreaKalbar">
+                                    Formasi Kosong <span data-toggle="modal" data-target="#ModalKaryawanAreaKalbar"
+                                        class="float-right badge bg-danger">{{ $jumlah_karyawan_areakalbar }}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -993,7 +1000,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan Organik</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1063,7 +1070,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Regional VI</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan Regional VI</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1118,7 +1125,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kaltimtara</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan Area Kaltimtara</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1187,7 +1194,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalselteng</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan Area Kalselteng</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1255,7 +1262,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalbar</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan Area Kalbar</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1324,7 +1331,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Karyawan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan S2</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1392,7 +1399,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Regional VI</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">karyawan S1</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1447,7 +1454,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kaltimtara</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan DIII</h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
@@ -1515,7 +1522,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Area Kalselteng</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Karyawan SLTA </h5>
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
