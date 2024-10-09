@@ -100,14 +100,14 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $job->karyawan->nik }} / {{ $job->karyawan->telkomgroup }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            <a href="{{ route('karyawan.edit', $job->karyawan->id) }}"
+                                            <a href="{{ route('karyawan.show', $job->karyawan->id) }}"
                                                 style="color: black;">{{ $job->karyawan->nama_karyawan }}</a>
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $job->karyawan->unit_kerja }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $job->lokasi }}</td>
-                                        <td style="white-space: nowrap;">{{ $job->nama_jabatan }}</td>
+                                        <td style="white-space: nowrap;">{{ $job->nama }}</td>
                                         <td style="white-space: nowrap;">{{ $job->band }}</td>
                                     </tr>
                                 @endforeach

@@ -1841,7 +1841,8 @@
     {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
     <script>
         // Ambil data tanggal dari PHP ke JavaScript
-        const tanggalMulaiKerja = new Date("{{ $karyawan->tgl_bergabung }}");
+        const tglBergabung = "{{ $karyawan->tgl_bergabung }}";
+        const tanggalMulaiKerja = tglBergabung ? new Date(tglBergabung) : null;
         const tanggalLahir = new Date("{{ $karyawan->tgl_lahir }}");
 
         // Fungsi untuk menghitung masa kerja
@@ -1863,6 +1864,9 @@
 
             return `${years} Tahun ${months} Bulan ${days} Hari`;
         }
+
+        // Cek apakah tanggal mulai kerja ada
+        const masaKerja = tanggalMulaiKerja ? hitungMasaKerja(tanggalMulaiKerja) : '-';
 
         // Fungsi untuk menghitung umur
         function hitungUmur(birthDate) {
@@ -1890,7 +1894,6 @@
             const retirementDate = new Date(birthDate);
             retirementDate.setFullYear(retirementDate.getFullYear() + retirementAge);
 
-            // Format tanggal dengan bulan sebagai nama
             const bulan = [
                 "Januari", "Februari", "Maret", "April", "Mei", "Juni",
                 "Juli", "Agustus", "September", "Oktober", "November", "Desember"
@@ -1902,8 +1905,7 @@
             return `${day} ${month} ${year}`; // Format: DD NamaBulan YYYY
         }
 
-        // Menghitung masa kerja, umur, dan masa pensiun
-        const masaKerja = hitungMasaKerja(tanggalMulaiKerja);
+        // Menghitung umur dan masa pensiun
         const umur = hitungUmur(tanggalLahir);
         const masaPensiun = hitungMasaPensiun(tanggalLahir);
 
@@ -1946,9 +1948,11 @@
         }
 
         // Hitung masa jabatan
-        const masaJabatan = calculateDuration(latestJobDate);
-
-        console.log(`Masa Jabatan: ${masaJabatan.years} tahun, ${masaJabatan.months} bulan, ${masaJabatan.days} hari`);
+        const masaJabatan = latestJobDate ? calculateDuration(latestJobDate) : {
+            years: 0,
+            months: 0,
+            days: 0
+        };
 
         // Menampilkan hasil di HTML
         document.getElementById('masa-band').innerText =
@@ -2533,8 +2537,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nomor_sk">Nomor Surat Keputusan</label>
-                                            <input type="text" class="form-control" id="suku" value="{{ $karyawan->nomor_sk }}"
-                                                name="nomor_sk">
+                                            <input type="text" class="form-control" id="suku"
+                                                value="{{ $karyawan->nomor_sk }}" name="nomor_sk">
                                             @error('nomor_sk')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}

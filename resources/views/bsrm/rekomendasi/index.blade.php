@@ -98,7 +98,7 @@
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->nik }} /
                                         {{ $k->telkomgroup }}</td>
                                     <td style="text-align: center; vertical-align: middle;"><a
-                                            href="{{ route('karyawan.edit', $k->id) }}"
+                                            href="{{ route('karyawan.show', $k->id) }}"
                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}</td>
                                     <td style="text-align: center; vertical-align: middle;">

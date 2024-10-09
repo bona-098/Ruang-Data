@@ -43,6 +43,104 @@ class KaryawanController extends Controller
             'Area Kalbar'
         ])->get();
 
+        // Formasi yang ada di database
+        $formasiAda = Karyawan::pluck('unit_kerja')->toArray(); // Mengambil semua kode formasi dari database
+
+        // Formasi yang seharusnya ada
+        $formasiSemua = [
+            'General Manager Regional',
+            'Manager Marketing, Sales & Solution',
+            'Senior Officer Sales Support & Customer Care',
+            'Officer Sales Support & Customer Care',
+            'Junior Officer Sales Administration & Support',
+            'Account Manager',
+            'Junior Account Manager 1',
+            'Manager Planning & Delivery',
+            'Junior Officer Project Solution & Delivery',
+            'Senior Officer Planning & Design',
+            'Engineer Design & Quality Surveyor',
+            'Senior Officer Project, Product & Service Delivery',
+            'Officer Project Delivery, Administration & Controlling',
+            'Officer Product & Service Delivery',
+            'Manager Operation & Maintenance',
+            'Junior Officer Operation & Maintenance',
+            'Senior Officer Smart Building & Outsourcing Operation',
+            'Engineer Quality Control & Managed Service',
+            'Engineer MEP, MSAP & IoT',
+            'Senior Officer Smart Fleet Operation',
+            'Officer Smart Fleet Operation',
+            'Senior Officer Defa & Managed Service',
+            'Officer Defa & Managed Service',
+            'Manager Business Support & Risk Management',
+            'Junior Officer Business Support & Risk Management',
+            'Senior Officer Legal & Procurement',
+            'Officer Legal & Procurement',
+            'Senior Officer Shared Service & Performance Management',
+            'Officer Shared Service & Performance Management',
+            'Manager Area Kaltimtara',
+            'Junior Account Manager 1',
+            'Junior Account Manager 2',
+            'Senior Officer Sales & Operation Support',
+            'Officer Sales & Operation Support',
+            'Junior Officer Sales & Operation Support',
+            'Senior Officer Quality Control & Managed Service',
+            'Engineer Quality Control & Managed Service',
+            'Junior Engineer Quality Control & Managed Service',
+            'Senior Officer Technical Support & Project Delivery',
+            'Officer Project Administration & Controlling',
+            'Technician',
+            'Territory Manager (TARAKAN)',
+            'Junior Officer Marketing, Sales & General Support',
+            'Junior Officer Operation & Project Delivery',
+            'Territory Manager (KALTIM)',
+            'Junior Officer Marketing, Sales & General Support',
+            'Junior Officer Operation & Project Delivery',
+            'Territory Representative Officer (TANAH GROGOT)',
+            'Territory Representative Officer (BALIKPAPAN)',
+            'Territory Representative Officer (SAMARINDA)',
+            'Territory Representative Officer (TENGGARONG)',
+            'Territory Representative Officer (BONTANG)',
+            'Territory Representative Officer (BERAU)',
+            'Territory Representative Officer (NUNUKAN)',
+            'Territory Representative Officer Managed Service Operation',
+            'Territory Representative Officer Managed Service Operation',
+            'Manager Area KALSELTENG',
+            'Junior Account Manager 1',
+            'Junior Account Manager 2',
+            'Senior Officer Sales & Operation Support',
+            'Junior Officer Sales & Operation Support',
+            'Senior Officer Operation & Project Delivery',
+            'Engineer Quality Control & Managed Service',
+            'Officer Project Administration & Controlling',
+            'Junior Officer Operation & Project Delivery',
+            'Territory Manager (PALANGKARAYA)',
+            'Junior Officer Marketing, Sales & General Support',
+            'Junior Officer Operation & Project Delivery',
+            'Territory Representative Officer (BANJARMASIN)',
+            'Territory Representative Officer (BANJAR BARU)',
+            'Territory Representative Officer (BATU LICIN)',
+            'Territory Representative Officer (TANJUNG)',
+            'Territory Representative Officer (SAMPIT)',
+            'Territory Representative Officer (MUARA TEWEH)',
+            'Territory Representative Officer Managed Service Operation',
+            'Manager Area Kalbar',
+            'Junior Account Manager 2',
+            'Officer Sales & Operation Support',
+            'Junior Officer Sales & Operation Support',
+            'Officer Operation & Project Delivery',
+            'Junior Engineer Quality Control & Managed Service',
+            'Junior Officer Project Administration & Controlling',
+            'Territory Representative Officer (PONTIANAK)',
+            'Territory Representative Officer (SINTANG)',
+            'Territory Representative Officer (SINGKAWANG)',
+            'Territory Representative Officer Managed Service Operation'
+        ];
+
+        // Mencari formasi kosong
+        $formasi_kosong = array_diff($formasiSemua, $formasiAda);
+
+        $jumlah_formasi_kosong = count($formasi_kosong);
+
         // Menyaring karyawan berdasarkan pendidikan
         $karyawan_s2 = Karyawan::whereIn('jenjang_pendidikan', [
             'S2'
@@ -78,6 +176,10 @@ class KaryawanController extends Controller
             'Area Kalbar'
         ])->count();
 
+        $jumlah_karyawan_formasi_kosong = Karyawan::whereIn('unit_kerja', [
+            'Area Kalbar'
+        ])->count();
+
         $jumlah_karyawan_s2 = Karyawan::whereIn('jenjang_pendidikan', [
             'S2'
         ])->count();
@@ -107,6 +209,7 @@ class KaryawanController extends Controller
             'karyawan_s1',
             'karyawan_diploma',
             'karyawan_sekolah',
+            'formasi_kosong',
             'jumlah_karyawan_regional6',
             'jumlah_karyawan_areakaltimtara',
             'jumlah_karyawan_areakalselteng',
@@ -115,6 +218,8 @@ class KaryawanController extends Controller
             'jumlah_karyawan_s1',
             'jumlah_karyawan_DIII',
             'jumlah_karyawan_sekolah',
+            'jumlah_formasi_kosong',
+
         ));
     }
 
@@ -404,7 +509,7 @@ class KaryawanController extends Controller
         // Validasi data yang diterima
         $request->validate([
             'karyawan_id' => 'required|exists:karyawan,id',
-            'nama' => 'required|string|max:50',
+            'nama' => 'required|string|max:100',
             'tgl_jabat' => 'required|date',
             'lokasi' => 'nullable|string|max:50',
             'band' => 'nullable|string|max:50',

@@ -59,9 +59,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal"
-                                    data-target="#ModalKaryawanAreaKalbar">
-                                    Formasi Kosong <span data-toggle="modal" data-target="#ModalKaryawanAreaKalbar"
-                                        class="float-right badge bg-danger">{{ $jumlah_karyawan_areakalbar }}</span>
+                                    data-target="#ModalKaryawanFormasiKosong">
+                                    Formasi Kosong <span data-toggle="modal" data-target="#ModalKaryawanFormasiKosong"
+                                        class="float-right badge bg-danger">{{ $jumlah_formasi_kosong }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -1325,6 +1325,47 @@
             </div>
         </div>
 
+        <div class="modal fade" id="ModalKaryawanFormasiKosong" tabindex="-1" aria-labelledby="exampleModalLabel"
+            data-backdrop="static" data-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Formasi Kosong</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class=" table-responsive">
+                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
+                                style="font-size: 12px;">
+                                <thead>
+                                    <tr>
+                                        <th style="white-space: nowrap;">Nama Formasi</th>
+                                        <th style="white-space: nowrap;">Loker</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($formasi_kosong as $formasi)
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                            <td style="white-space: nowrap;">{{ $formasi }}</td>
+                                            <!-- Tampilkan nama formasi -->
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+                        @csrf
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="modal fade" id="ModalKaryawanS2" tabindex="-1" aria-labelledby="exampleModalLabel"
             data-backdrop="static" data-keyboard="false" aria-hidden="true">
@@ -1553,7 +1594,7 @@
                                             </td>
                                             <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                     style="color: black; white-space:
                                                     nowrap;">{{ $k->nama_karyawan }}</a>
                                             </td>
