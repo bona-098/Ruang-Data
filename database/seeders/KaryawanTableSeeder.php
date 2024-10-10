@@ -332,7 +332,7 @@ class KaryawanTableSeeder extends Seeder
                 'rekening_bank' => 'Rekening123456',
                 'foto' => 'default.jpg' // Atau nama file foto yang sesuai
             ],
-             
+
             [
                 'nik' => '99515119',
                 'telkomgroup' => '995151',
@@ -366,7 +366,7 @@ class KaryawanTableSeeder extends Seeder
                 'npwp' => '92.991.174.1-802.000',
                 'rekening_bank' => '0',
                 'foto' => 'default.jpg' // Atau nama file foto yang sesuai
-            ],          
+            ],
             [
                 'nik' => '94526317',
                 'telkomgroup' => '945263',
@@ -435,7 +435,7 @@ class KaryawanTableSeeder extends Seeder
                 'rekening_bank' => 'Rekening123456',
                 'foto' => 'default.jpg' // Atau nama file foto yang sesuai
             ],
-           
+
             //  Manager Business Support & Risk Management
 
             [
@@ -588,7 +588,7 @@ class KaryawanTableSeeder extends Seeder
                 'alamat' => 'Jl. Mt Haryono Gg Wilis RT.12 No.78',
                 'unit_kerja' => 'Area Kaltimtara',
                 'jabatan' => 'Officer Sales & Operation Support  ',
-                'band_kelas_posisi' => 'VI',
+                'band_kelas_posisi' => 'V',
                 'no_hp' => '00000',
                 'kontak_darurat' => '0000',
                 'status_nikah' => 'Belum Menikah',
@@ -622,7 +622,7 @@ class KaryawanTableSeeder extends Seeder
                 'alamat' => 'Jl. Karang Joang Lestari Blok CC no.62 RT.50',
                 'unit_kerja' => 'Area Kaltimtara',
                 'jabatan' => 'Junior Officer Sales & Operation Support ',
-                'band_kelas_posisi' => 'IV',
+                'band_kelas_posisi' => 'VI',
                 'no_hp' => '00000',
                 'kontak_darurat' => '0000',
                 'status_nikah' => 'Belum Menikah',
@@ -792,7 +792,7 @@ class KaryawanTableSeeder extends Seeder
                 'alamat' => 'Jl P Diponegoro No.24, Rt.001/Rw.000, Kel.Pamusian, Kec. Tarakan Tengah',
                 'unit_kerja' => 'Area Kaltimtara',
                 'jabatan' => 'Territory Manager (TARAKAN)',
-                'band_kelas_posisi' => 'VII',
+                'band_kelas_posisi' => 'V',
                 'no_hp' => '00000',
                 'kontak_darurat' => '0000',
                 'status_nikah' => 'Belum Menikah',
@@ -826,7 +826,7 @@ class KaryawanTableSeeder extends Seeder
                 'alamat' => 'Jl KS Tubun Dalam GG. Jabal Noor II, Rt.010/Rw-, Kel. Sidodadi, Kec. Samarinda Ulu',
                 'unit_kerja' => 'Area Kaltimtara',
                 'jabatan' => 'Territory Manager (TARAKAN)',
-                'band_kelas_posisi' => 'VII',
+                'band_kelas_posisi' => 'V',
                 'no_hp' => '00000',
                 'kontak_darurat' => '0000',
                 'status_nikah' => 'Belum Menikah',
@@ -860,7 +860,7 @@ class KaryawanTableSeeder extends Seeder
                 'alamat' => 'Jl. Tiga, Rt.002/Rw.000, Kel. GunungSamarinda Baru, Kec. Balikpapan Utara',
                 'unit_kerja' => 'Area Kaltimtara',
                 'jabatan' => 'Territory Representative Officer (SAMARINDA)',
-                'band_kelas_posisi' => 'VII',
+                'band_kelas_posisi' => 'VI',
                 'no_hp' => '6285346166266',
                 'kontak_darurat' => '6285346166266',
                 'status_nikah' => 'Belum Menikah',
