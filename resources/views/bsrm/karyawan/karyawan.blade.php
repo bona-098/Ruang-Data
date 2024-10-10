@@ -1009,7 +1009,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                        <th style="white-space: nowrap;">NIK</th>
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
@@ -1030,7 +1030,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
@@ -1079,7 +1079,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                        <th style="white-space: nowrap;">NIK</th>
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
@@ -1098,7 +1098,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
@@ -1134,7 +1134,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                        <th style="white-space: nowrap;">NIK</th>
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
@@ -1155,7 +1155,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
@@ -1203,7 +1203,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                        <th style="white-space: nowrap;">NIK</th>
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
@@ -1223,7 +1223,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
@@ -1271,7 +1271,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap;">Foto</th>
-                                        <th style="white-space: nowrap;">NIK Telpro / Group</th>
+                                        <th style="white-space: nowrap;">NIK</th>
                                         {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                         <th style="white-space: nowrap;">Nama Karyawan</th>
                                         {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
@@ -1291,7 +1291,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td style="white-space: nowrap;">{{ $k->nik }} / {{ $k->no_hp }}
+                                            <td style="white-space: nowrap;">{{ $k->nik }}
                                             </td>
                                             <td><a href="{{ route('karyawan.edit', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
