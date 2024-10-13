@@ -32,20 +32,30 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-        $request->session()->regenerate();
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
 
-        // Rekam aktivitas login ke dalam database
-        LogActivities::create([
-            'user_id' => auth()->user()->id,
-            'activity' => 'login',
-            'login_at' => Carbon::now('Asia/Singapore'), // Sesuaikan dengan timezone yang diinginkan
-        ]);
+            // Rekam aktivitas login ke dalam database
+            LogActivities::create([
+                'user_id' => auth()->user()->id,
+                'activity' => 'login',
+                'login_at' => Carbon::now('Asia/Singapore'), // Sesuaikan dengan timezone yang diinginkan
+            ]);
 
-        Alert::toast('Berhasil Login', 'success');
+            Alert::toast('Berhasil Login', 'success');
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } catch (\Exception $e) {
+            // Menangkap kesalahan dan memberikan alert toast
+            Alert::toast('Gagal Login: ' . $e->getMessage(), 'error');
+
+            return back()->withInput($request->only('email'))->withErrors([
+                'email' => 'Email atau password salah.',
+            ]);
+        }
     }
+
 
     /**
      * Destroy an authenticated session.

@@ -466,6 +466,10 @@
                                                 data-toggle="tab">Hobi</a></li>
                                         <li class="nav-item"><a class="nav-link " href="#prestasi"
                                                 data-toggle="tab">Prestasi</a></li>
+                                        <li class="nav-item"><a class="nav-link " href="#talent_review"
+                                                data-toggle="tab">Talent Review</a></li>
+                                        <li class="nav-item"><a class="nav-link " href="#catatan"
+                                                data-toggle="tab">Catatan</a></li>
                                         <li class="nav-item"><a class="nav-link " href="#other"
                                                 data-toggle="tab">Lain-lain</a></li>
                                     </ul>
@@ -1061,8 +1065,8 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
-                                                                    Edit Pendidikan
+                                                                    data-target="#ModalAddPendidikan">
+                                                                    Tambah Pendidikan
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
@@ -1084,46 +1088,40 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td>{{ $karyawan->jenjang_pendidikan }}
-                                                                            </td>
-                                                                            <td>{{ $karyawan->penyelenggara_pendidikan }}
-                                                                            </td>
-                                                                            <td>{{ $karyawan->program_studi }}</td>
-                                                                            <td>{{ $karyawan->tahun_lulus }}</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/pendidikan_8_1666883665.pdf"
-                                                                                    class="btn btn-secondary btn-sm"
-                                                                                    download="File Pendukung">Download</a>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-light btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton1"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton1">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_education_history/75/8/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('75','pendidikan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
+                                                                        @foreach ($pendidikan as $edu)
+                                                                            <tr>
+                                                                                <td>{{ $edu->jenjang_pendidikan }}</td>
+                                                                                <td>{{ $edu->nama_institusi }}</td>
+                                                                                <td>{{ $edu->jurusan }}</td>
+                                                                                <td>{{ $edu->tahun_lulus == '0000' ? 'Tidak Diketahui' : $edu->tahun_lulus }}
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    {{-- @if ($edu->lampiran_pendukung)
+                                                                                        <a href="{{ asset('uploads/' . $edu->lampiran_pendukung) }}"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            download="File Pendukung">Download</a>
+                                                                                    @else
+                                                                                        -
+                                                                                    @endif --}}
+                                                                                    <span
+                                                                                        class="badge badge-warning">Belum
+                                                                                        ada file</span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
+                                                                                        class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
+                                                                                    <a class="btn btn-danger btn-flex btn-center btn-sm"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#commonDelete"
+                                                                                        onclick="set_common_delete('35','skill');">Delete</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
                                                                         <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
                                                                     </tbody>
                                                                 </table>
+
                                                             </div>
                                                         </div>
 
@@ -1144,7 +1142,7 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
+                                                                    data-target="#ModalTambahPelatihan">
                                                                     Tambah Pelatihan
                                                                 </button>
                                                             </div>
@@ -1167,249 +1165,40 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
+                                                                        <!-- Contoh baris pelatihan, ini bisa diganti dengan data dinamis -->
+                                                                        {{-- <tr>
                                                                             <td>PELATIHAN MANAGER AREA</td>
                                                                             <td>2022-11-28</td>
                                                                             <td>2022-12-02</td>
                                                                             <td>HR TELKOM PROPERTY</td>
                                                                             <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
+                                                                                <span class="badge badge-warning">Belum ada file</span>
                                                                             </td>
                                                                             <td class="text-center">
                                                                                 <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton1"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
+                                                                                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                                                        data-bs-toggle="dropdown" aria-expanded="false">
                                                                                         Actions
                                                                                     </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton1">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/371/62/">Edit</a>
+                                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                                        <li><a class="dropdown-item" href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/371/62/">Edit</a>
                                                                                         </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
+                                                                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#commonDelete"
                                                                                                 onclick="set_common_delete('371','pelatihan');">Delete</a>
                                                                                         </li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Pembinaan Mental dan Kepemimpinan
-                                                                                Karyawan</td>
-                                                                            <td>2022-01-03</td>
-                                                                            <td>2022-01-07</td>
-                                                                            <td>HC GSD & PUSDIKOPAM</td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton2"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton2">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/201/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('201','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Living The Grand Why (#Batch 3)</td>
-                                                                            <td>2020-10-07</td>
-                                                                            <td>2020-10-09</td>
-                                                                            <td></td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton3"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton3">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/200/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('200','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Ahli K3 Umum</td>
-                                                                            <td>2019-07-08</td>
-                                                                            <td>2019-07-10</td>
-                                                                            <td></td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton4"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton4">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/199/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('199','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Property Management Course (Basic Level)
-                                                                            </td>
-                                                                            <td>2019-03-06</td>
-                                                                            <td>2019-03-08</td>
-                                                                            <td></td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton5"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton5">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/198/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('198','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Start Development Program</td>
-                                                                            <td>2017-08-07</td>
-                                                                            <td>2017-08-11</td>
-                                                                            <td>INSAN PERFORMA</td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton6"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton6">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/197/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('197','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Pelatihan P3K (Pertolongan Pertama Pada
-                                                                                Kecelakaan)</td>
-                                                                            <td>2016-05-04</td>
-                                                                            <td>2016-05-06</td>
-                                                                            <td></td>
-                                                                            <td>
-                                                                                <span class="badge badge-warning">Belum
-                                                                                    ada file</span>
-                                                                            </td>
-                                                                            <td class="text-center">
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-info btn-sm dropdown-toggle"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton7"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Actions
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu"
-                                                                                        aria-labelledby="dropdownMenuButton7">
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="https://karyawan.telpro7.org/data_karyawan/edit_training_history/196/62/">Edit</a>
-                                                                                        </li>
-                                                                                        <li><a class="dropdown-item"
-                                                                                                href="#"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#commonDelete"
-                                                                                                onclick="set_common_delete('196','pelatihan');">Delete</a>
-                                                                                        </li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
+                                                                        </tr> --}}
+                                                                        <!-- Tambahkan baris lain di sini sesuai dengan data yang ada -->
+                                                                        <!-- TODO: Data pelatihan berikutnya akan ditambahkan di sini -->
                                                                     </tbody>
                                                                 </table>
+
+                                                                <!-- Keterangan: Tabel ini masih dalam pengerjaan. -->
+                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                    pengerjaan.</p>
+
                                                             </div>
                                                         </div>
 
@@ -1450,7 +1239,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody class="table-group-divider">
-                                                                        <tr>
+                                                                        {{-- <tr>
                                                                             <td>SISTEM INFORMATIKA</td>
                                                                             <td>
                                                                                 <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/76/62/"
@@ -1493,9 +1282,11 @@
                                                                                     data-bs-target="#commonDelete"
                                                                                     onclick="set_common_delete('35','skill');">Delete</a>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr> --}}
                                                                     </tbody>
                                                                 </table>
+                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                    pengerjaan.</p>
                                                             </div>
                                                         </div>
 
@@ -1536,7 +1327,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody class="table-group-divider">
-                                                                        <tr>
+                                                                        {{-- <tr>
                                                                             <td>SISTEM INFORMATIKA</td>
                                                                             <td>
                                                                                 <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/76/62/"
@@ -1579,9 +1370,11 @@
                                                                                     data-bs-target="#commonDelete"
                                                                                     onclick="set_common_delete('35','skill');">Delete</a>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr> --}}
                                                                     </tbody>
                                                                 </table>
+                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                    pengerjaan.</p>
                                                             </div>
                                                         </div>
 
@@ -1624,7 +1417,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
+                                                                        {{-- <tr>
                                                                             <td>UNIVERSITAS SATRIA MAKASSAR</td>
                                                                             <td>TEKNIK INFORMATIKA</td>
                                                                             <td>2012</td>
@@ -1641,10 +1434,12 @@
                                                                                     data-bs-target="#commonDelete"
                                                                                     onclick="set_common_delete('35','skill');">Delete</a>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr> --}}
                                                                         <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
                                                                     </tbody>
                                                                 </table>
+                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                    pengerjaan.</p>
                                                             </div>
                                                         </div>
 
@@ -1656,6 +1451,176 @@
                                                 </div>
                                             </div>
 
+                                        </div>
+
+                                        <div class="tab-pane" id="talent_review">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card ">
+                                                        <div class="card-header">
+                                                            <h3 class="card-title">Talent Review</h3>
+                                                            <div class="card-tools">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ModalTambahKaryawan">
+                                                                    Tambah Prestasi
+                                                                </button>
+                                                            </div>
+                                                            <!-- /.card-tools -->
+                                                        </div>
+                                                        <!-- /.card-header -->
+
+                                                        <div class="card-body p-9">
+                                                            <div class="table-responsive">
+                                                                <table
+                                                                    class="table table-hover table-bordered table-striped">
+                                                                    <thead>
+                                                                        <tr class="text-center">
+                                                                            <th>Nama Event</th>
+                                                                            <th>Nama Penghargaan</th>
+                                                                            <th>Tahun Penghargaan</th>
+                                                                            <th>Lampiran Penghargaan</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {{-- <tr>
+                                                                            <td>UNIVERSITAS SATRIA MAKASSAR</td>
+                                                                            <td>TEKNIK INFORMATIKA</td>
+                                                                            <td>2012</td>
+                                                                            <td>
+                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/pendidikan_8_1666883665.pdf"
+                                                                                    class="btn btn-secondary btn-sm"
+                                                                                    download="File Pendukung">Download</a>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
+                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
+                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target="#commonDelete"
+                                                                                    onclick="set_common_delete('35','skill');">Delete</a>
+                                                                            </td>
+                                                                        </tr> --}}
+                                                                        <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
+                                                                    </tbody>
+                                                                </table>
+                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                    pengerjaan.</p>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="tab-pane" id="catatan">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card ">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title">Catatan</h4>
+                                                            <div class="card-tools">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ModalTambahKaryawan">
+                                                                    Tambah catatan
+                                                                </button>
+                                                            </div>
+                                                            <!-- /.card-tools -->
+                                                        </div>
+                                                        <!-- /.card-header -->
+                                                        <div class="post">
+                                                            <br>
+                                                            <div class="user-block">
+                                                                <img class="img-circle img-bordered-sm"
+                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
+                                                                    alt="user image">
+                                                                <span class="username">
+                                                                    <a href="#">Jonathan Burke Jr.</a>
+                                                                </span>
+                                                                <span class="description">Shared publicly - 7:45 PM
+                                                                    today</span>
+                                                            </div>
+
+                                                            <p>
+                                                                Lorem ipsum represents a long-held tradition for
+                                                                designers,
+                                                                typographers and the like. Some people hate it and argue
+                                                                for
+                                                                its demise, but others ignore.
+                                                            </p>
+                                                            <p>
+                                                                <a href="#" class="link-black text-sm"><i
+                                                                        class="fas fa-link mr-1"></i> Demo File 1
+                                                                    v2</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="post clearfix">
+                                                            <div class="user-block">
+                                                                <img class="img-circle img-bordered-sm"
+                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
+                                                                    alt="User Image">
+                                                                <span class="username">
+                                                                    <a href="#">Sarah Ross</a>
+                                                                </span>
+                                                                <span class="description">Sent you a message - 3 days
+                                                                    ago</span>
+                                                            </div>
+
+                                                            <p>
+                                                                Lorem ipsum represents a long-held tradition for
+                                                                designers,
+                                                                typographers and the like. Some people hate it and argue
+                                                                for
+                                                                its demise, but others ignore.
+                                                            </p>
+                                                            <p>
+                                                                <a href="#" class="link-black text-sm"><i
+                                                                        class="fas fa-link mr-1"></i> Demo File 2</a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="post">
+                                                            <div class="user-block">
+                                                                <img class="img-circle img-bordered-sm"
+                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
+                                                                    alt="user image">
+                                                                <span class="username">
+                                                                    <a href="#">Jonathan Burke Jr.</a>
+                                                                </span>
+                                                                <span class="description">Shared publicly - 5 days
+                                                                    ago</span>
+                                                            </div>
+
+                                                            <p>
+                                                                Lorem ipsum represents a long-held tradition for
+                                                                designers,
+                                                                typographers and the like. Some people hate it and argue
+                                                                for
+                                                                its demise, but others ignore.
+                                                            </p>
+                                                            <p>
+                                                                <a href="#" class="link-black text-sm"><i
+                                                                        class="fas fa-link mr-1"></i> Demo File 1
+                                                                    v1</a>
+                                                            </p>
+
+
+
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
 
                                         <div class="tab-pane" id="other">
@@ -2403,9 +2368,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="control-label">NIK Telpro</label>
-                                            <input type="number" name="nik" min="0"
-                                                class="form-control" @error('nik') is-invalid @enderror
-                                                value="{{ $karyawan->nik }}">
+                                            <input type="number" name="nik" min="0" class="form-control"
+                                                @error('nik') is-invalid @enderror value="{{ $karyawan->nik }}">
                                             @error('nik')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}
@@ -2546,12 +2510,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -2809,6 +2767,485 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="ModalAddPendidikan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pendidikan</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_pendidikan') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Institusi</label>
+                                            <input required type="text" name="nama_institusi"
+                                                class="form-control" @error('nama_institusi') is-invalid @enderror
+                                                value="{{ old('nama_institusi') }}">
+                                            @error('nama_institusi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Jenjang
+                                                Pendidikan</label>
+                                            <select class="form-control custom-select" name="jenjang_pendidikan">
+                                                <option value="">Pilih Jenjang Pendidikan</option>
+                                                <option value="S2">S2</option>
+                                                <option value="S1">S1</option>
+                                                <option value="Diploma III">Diploma III</option>
+                                                <option value="SMK/SLTA Kejuruan">SMK/SLTA Kejuruan</option>
+                                            </select>
+                                            @error('jenjang_pendidikan')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label>Jurusan</label>
+                                            <input required type="text" class="form-control"
+                                                name="jurusan"@error('jurusan') is-invalid @enderror
+                                                value="{{ old('jurusan') }}">
+                                            @error('jurusan')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tahun Lulus</label>
+                                            <input required type="number" class="form-control" name="tahun_lulus"
+                                                min="1900" max="{{ date('Y') }}"
+                                                placeholder="Masukkan tahun lulus">
+                                            @error('tahun_lulus')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Lampiran Sk</label>
+                                            <input type="file" class="form-control" name="lampiran_pendukung">
+                                            @error('lampiran_pendukung')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalEditPendidikan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
+                                            <input type="date" name="tgl_jabat" class="form-control"
+                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
+                                                value="{{ old('tgl_jabat') }}">
+                                            @error('tgl_jabat')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
+                                            <input type="text" name="nama" class="form-control"
+                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="lokasi">Lokasi Penempatan</label>
+                                            <input type="text" class="form-control"
+                                                name="lokasi"@error('lokasi') is-invalid @enderror
+                                                value="{{ old('lokasi') }}">
+                                            @error('lokasi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
+                                                </option>
+                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                    II
+                                                </option>
+                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                    III
+                                                </option>
+                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                    IV
+                                                </option>
+                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
+                                                </option>
+                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                    VI
+                                                </option>
+                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                    VII
+                                                </option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="file_rekening_bank">Lampiran Sk</label>
+                                            <input type="file" class="form-control" id="lampiran"
+                                                name="lampiran">
+                                            @error('lampiran')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalAddPelatihan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
+                                            <input type="date" name="tgl_jabat" class="form-control"
+                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
+                                                value="{{ old('tgl_jabat') }}">
+                                            @error('tgl_jabat')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
+                                            <input type="text" name="nama" class="form-control"
+                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="lokasi">Lokasi Penempatan</label>
+                                            <input type="text" class="form-control"
+                                                name="lokasi"@error('lokasi') is-invalid @enderror
+                                                value="{{ old('lokasi') }}">
+                                            @error('lokasi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
+                                                </option>
+                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                    II
+                                                </option>
+                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                    III
+                                                </option>
+                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                    IV
+                                                </option>
+                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
+                                                </option>
+                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                    VI
+                                                </option>
+                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                    VII
+                                                </option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="file_rekening_bank">Lampiran Sk</label>
+                                            <input type="file" class="form-control" id="lampiran"
+                                                name="lampiran">
+                                            @error('lampiran')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalEditPelatihan" tabindex="-1" aria-labelledby="exampleModalLabel"
+        data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
+                    @if ($errors->any())
+                        <span class="text-danger" style="font-size: 0.9em;">
+                            {{ $errors->first() }}
+                        </span>
+                    @endif
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                        <div class="card-body">
+                            <div class="form-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
+                                            <input type="date" name="tgl_jabat" class="form-control"
+                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
+                                                value="{{ old('tgl_jabat') }}">
+                                            @error('tgl_jabat')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
+                                            <input type="text" name="nama" class="form-control"
+                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
+                                            @error('nama')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <small class="form-control-feedback"> </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 ">
+                                        <div class="form-group">
+                                            <label for="lokasi">Lokasi Penempatan</label>
+                                            <input type="text" class="form-control"
+                                                name="lokasi"@error('lokasi') is-invalid @enderror
+                                                value="{{ old('lokasi') }}">
+                                            @error('lokasi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Kelas Band Posisi</label>
+                                            <select class="form-control custom-select" name="band">
+                                                <option value="">Pilih Kelas Band Posisi</option>
+                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
+                                                </option>
+                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                    II
+                                                </option>
+                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                    III
+                                                </option>
+                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                    IV
+                                                </option>
+                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
+                                                </option>
+                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                    VI
+                                                </option>
+                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                    VII
+                                                </option>
+                                            </select>
+                                            @error('band_kelas_posisi')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="file_rekening_bank">Lampiran Sk</label>
+                                            <input type="file" class="form-control" id="lampiran"
+                                                name="lampiran">
+                                            @error('lampiran')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 
 

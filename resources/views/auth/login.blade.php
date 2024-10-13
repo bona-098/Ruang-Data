@@ -52,6 +52,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Font Awesome -->
     <title>Login</title>
     <style>
         body {
@@ -87,9 +91,8 @@
     @include('sweetalert::alert')
     <div class="container">
         <div class="glass-login-container mx-auto">
-            {{-- <img class="logo" src="https://source.unsplash.com/random" alt="Logo"> --}}
             <img class="logo" src="{{ asset('template/images/logo_reborn_edit.png') }}" alt="Logo">
-            <h2 class="text-center mt-4">Dashboard Telkom <br>Property Regional 6</h2>        
+            <h2 class="text-center mt-4">Dashboard Telkom <br>Property Regional 6</h2>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @method('POST')
@@ -99,7 +102,15 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter password">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                <span id="toggleIcon" class="fas fa-eye"></span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex items-center justify-end mt-4">
                     @if (Route::has('password.request'))
@@ -112,14 +123,10 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </div>
-                    {{-- <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
-                    </x-primary-button> --}}
                 </div>
             </form>
             <div class="form-group">
                 <p class="text-center">Don't have an account? <a href="/register">Register</a></p>
-                <!-- Tambahkan tautan Register -->
             </div>
             <div class="form-group text-center">
                 <a href="#">Forgot password?</a>
@@ -129,6 +136,21 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.min.js"></script>
+    <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.init.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            // Toggle the type attribute
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            // Toggle the eye slash icon
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 
 </html>

@@ -30,7 +30,7 @@ class JobHistorysedder extends Seeder
                 'id' => '2',
                 'karyawan_id' => '2',
                 'nama' => 'Manager Marketing, Sales & Solution',
-                'tgl_jabat' => '2024-08-01',
+                'tgl_jabat' => '2023-03-01',
                 'lokasi' => 'Regional VI',
                 'band' => 'III',
                 'lampiran' => Null,

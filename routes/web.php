@@ -84,12 +84,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
     Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga'])->name('karyawan.update_keluarga');
     Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
+    Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
     Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
-    Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan']);
+    Route::post('/karyawan/add_pendidikan', [KaryawanController::class, 'add_pendidikan'])->name('karyawan.add_pendidikan');
+    Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan'])->name('karyawan.update_pendidikan');;
     Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan']);
     Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan']);
-    Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
 
+    
 
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');

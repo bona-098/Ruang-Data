@@ -65,4 +65,8 @@ class Karyawan extends Model
     {
         return $this->hasMany(JobHistory::class, 'karyawan_id');
     }
+    public function pendidikan()
+    {
+        return $this->hasMany(Pendidikan::class, 'karyawan_id');
+    }
 }
