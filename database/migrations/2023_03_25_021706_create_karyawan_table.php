@@ -20,18 +20,18 @@ return new class extends Migration
             $table->string('golongan_darah', 5)->nullable();
             $table->string('kontak_darurat', 15)->nullable();   //Kontak Darurat 
             // KELUARGA
-            $table->string('status_nikah', 100)->nullable();
-            $table->date('tgl_nikah')->nullable();
-            $table->string('tanggungan_keluarga', 100)->nullable();
-            $table->integer('jumlah_anak')->nullable();
-            $table->string('nomor_kartu_keluarga', 100)->nullable();
-            $table->string('nama_pasangan', 100)->nullable();
-            $table->string('nama_anak_pertama', 100)->nullable();
-            $table->string('tgl_lahir_anak_pertama', 100)->nullable();
-            $table->string('nama_anak_kedua', 100)->nullable();
-            $table->string('tgl_lahir_anak_kedua', 100)->nullable();
-            $table->string('nama_anak_ketiga', 100)->nullable();
-            $table->string('tgl_lahir_anak_ketiga', 100)->nullable();
+            // $table->string('status_nikah', 100)->nullable();
+            // $table->date('tgl_nikah')->nullable();
+            // $table->string('tanggungan_keluarga', 100)->nullable();
+            // $table->integer('jumlah_anak')->nullable();
+            // $table->string('nomor_kartu_keluarga', 100)->nullable();
+            // $table->string('nama_pasangan', 100)->nullable();
+            // $table->string('nama_anak_pertama', 100)->nullable();
+            // $table->string('tgl_lahir_anak_pertama', 100)->nullable();
+            // $table->string('nama_anak_kedua', 100)->nullable();
+            // $table->string('tgl_lahir_anak_kedua', 100)->nullable();
+            // $table->string('nama_anak_ketiga', 100)->nullable();
+            // $table->string('tgl_lahir_anak_ketiga', 100)->nullable();
             //JOB
             $table->string('nik', 50)->nullable();
             $table->string('telkomgroup', 50)->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->string('nama_karyawan', 100)->nullable();
             $table->string('nomor_sk', 50)->nullable();
             $table->text('surat_sk')->nullable();
-            $table->string('status_kepegawaian', 50)->nullable();
+            // $table->string('status_kepegawaian', 50)->nullable();
             //JOB HISRTORY DI TABEL BARU
             //PENDIDIKAN
             $table->string('jenjang_pendidikan', 100)->nullable();

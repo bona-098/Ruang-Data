@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Karyawan;
 use App\Models\JobHistory;
+use App\Models\Keterampilan;
 use App\Models\Pendidikan;
+use App\Models\Pelatihan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\LogActivities; // Import model MitraActivityLog
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class KaryawanController extends Controller
@@ -377,6 +380,7 @@ class KaryawanController extends Controller
 
         // Ambil pendidikan yang terkait dengan karyawan dan urutkan berdasarkan tahun lulus terbaru
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
+        $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
 
         // Ambil tanggal terbaru untuk riwayat jabatan
         $latestJobHistoryDate = $jobHistories->isNotEmpty() ? $jobHistories->first()->tgl_jabat : null;
@@ -385,14 +389,8 @@ class KaryawanController extends Controller
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
 
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan'));
     }
-
-
-
-
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -566,10 +564,6 @@ class KaryawanController extends Controller
         return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
     }
 
-
-
-
-
     public function update_jobhistory(Request $request, $id)
     {
         // Validasi data yang diterima
@@ -602,7 +596,6 @@ class KaryawanController extends Controller
 
         return response()->json(['message' => 'Job history updated successfully', 'data' => $jobHistory], 200);
     }
-
 
     public function add_pendidikan(Request $request)
     {
@@ -642,7 +635,7 @@ class KaryawanController extends Controller
         return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
     }
 
-    public function destroy_pendidikan(Request $request)
+    public function update_pendidikan(Request $request, $id)
     {
         // Validasi data yang diterima
         $request->validate([
@@ -654,25 +647,83 @@ class KaryawanController extends Controller
             'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
+        // Temukan job history berdasarkan ID
+        $pendidikan = Pendidikan::find($id);
+
+        // Cek apakah job history ditemukan
+        if (!$pendidikan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Perbarui job history dengan data yang baru
+        $pendidikan->update([
+            'jenjang_pendidikan' => $request->input('jenjang_pendidikan'),
+            'nama_institusi' => $request->input('nama_institusi'),
+            'jurusan' => $request->input('jurusan'),
+            'tahun_lulus' => $request->input('tahun_lulus'),
+            'lampiran' => $request->input('lampiran'),
+            // Tambahkan kolom lainnya sesuai kebutuhan
+        ]);
+
+        return redirect()->back()->with('success', 'Pendidikan berhasil diubah!');
+        //  return response()->json(['message' => 'Job history updated successfully', 'data' => $pendidikan], 200);
+    }
+
+    public function destroy_pendidikan($id)
+    {
+        // Temukan pendidikan berdasarkan ID
+        $pendidikan = Pendidikan::find($id);
+
+        // Cek apakah pendidikan ditemukan
+        if (!$pendidikan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Hapus lampiran dari storage jika ada
+        if ($pendidikan->lampiran) {
+            Storage::disk('public')->delete($pendidikan->lampiran);
+        }
+
+        // Hapus entri pendidikan dari database
+        $pendidikan->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Riwayat pendidikan berhasil dihapus!');
+    }
+
+
+    public function add_pelatihan(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama_pelatihan' => 'required|string|max:100',
+            'nama_penyelenggara' => 'required|string|max:100',
+            'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+
         // Ambil data dari request
         $karyawan_id = $request->karyawan_id;
-        $jenjang = $request->jenjang_pendidikan;
+        $pelatihan = $request->pelatihan;
 
         // Simpan lampiran ke folder 'public/lampiran'
         $lampiranPath = null; // Inisialisasi path
         if ($request->hasFile('lampiran')) {
             $lampiran = $request->file('lampiran');
-            $filename = $karyawan_id . '_' . $jenjang . '.' . $lampiran->getClientOriginalExtension();
-            $lampiranPath = $lampiran->storeAs('lampiran_pendidikan', $filename, 'public'); // Simpan lampiran dan dapatkan path
+            $filename = $karyawan_id . '_' . $pelatihan . '.' . $lampiran->getClientOriginalExtension();
+            $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
         }
 
         // Buat riwayat pekerjaan baru
-        $jobHistory = Pendidikan::create([
+        $pelatihan = Pelatihan::create([
             'karyawan_id' => $karyawan_id,
-            'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'nama_institusi' => $request->nama_institusi,
-            'jurusan' => $request->jurusan,
-            'tahun_lulus' => $request->tahun_lulus,
+            'nama_pelatihan' => $request->nama_pelatihan,
+            'nama_penyelenggara' => $request->nama_penyelenggara,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,
             'lampiran' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
         ]);
 
@@ -680,18 +731,125 @@ class KaryawanController extends Controller
         return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
     }
 
-    public function update_pendidikan(Request $request, $id)
-    {
-        // Logika untuk memperbarui data pendidikan karyawan
-    }
-
     public function update_pelatihan(Request $request, $id)
     {
-        // Logika untuk memperbarui data pelatihan karyawan
+        // Validasi data yang diterima
+        $request->validate([
+            'nama_pelatihan' => 'required|string|max:100',
+            'nama_penyelenggara' => 'required|string|max:100',
+            'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        // Temukan job history berdasarkan ID
+        $pelatihan = Pelatihan::find($id);
+
+        // Cek apakah job history ditemukan
+        if (!$pelatihan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Perbarui job history dengan data yang baru
+        $pelatihan->update([
+            'nama_pelatihan' => $request->input('nama_pelatihan'),
+            'nama_penyelenggara' => $request->input('nama_penyelenggara'),
+            'jurusan' => $request->input('jurusan'),
+            'tanggal_mulai' => $request->input('tanggal_mulai'),
+            'tanggal_akhir' => $request->input('tanggal_akhir'),
+            'lampiran' => $request->input('lampiran'),
+            // Tambahkan kolom lainnya sesuai kebutuhan
+        ]);
+
+        return redirect()->back()->with('success', 'pelatihan berhasil diubah!');
+        //  return response()->json(['message' => 'Job history updated successfully', 'data' => $pendidikan], 200);
+    }
+
+    public function destroy_pelatihan($id)
+    {
+        // Temukan pendidikan berdasarkan ID
+        $pelatihan = Pelatihan::find($id);
+
+        // Cek apakah pendidikan ditemukan
+        if (!$pelatihan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Hapus lampiran dari storage jika ada
+        if ($pelatihan->lampiran) {
+            Storage::disk('public')->delete($pelatihan->lampiran);
+        }
+
+        // Hapus entri pendidikan dari database
+        $pelatihan->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Pelatihan berhasil dihapus!');
+    }
+
+    public function add_keterampilan(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama_keterampilan' => 'required|string|max:100',
+        ]);
+
+        // Buat riwayat pekerjaan baru
+        $keterampilan = Keterampilan::create([
+            'karyawan_id' => $karyawan_id,
+            'nama_keterampilan' => $request->nama_keterampilan,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
     }
 
     public function update_keterampilan(Request $request, $id)
     {
-        // Logika untuk memperbarui keterampilan karyawan
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama_keterampilan' => 'required|string|max:100',
+        ]);
+
+        // Temukan job history berdasarkan ID
+        $keterampilan = Keterampilan::find($id);
+
+        // Cek apakah job history ditemukan
+        if (!$keterampilan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Perbarui job history dengan data yang baru
+        $keterampilan->update([
+            'nama_keterampilan' => $request->input('nama_keterampilan'),
+            // Tambahkan kolom lainnya sesuai kebutuhan
+        ]);
+
+        return redirect()->back()->with('success', 'keterampilan berhasil diubah!');
+        //  return response()->json(['message' => 'Job history updated successfully', 'data' => $pendidikan], 200);
+    }
+
+    public function destroy_keterampilan($id)
+    {
+        // Temukan pendidikan berdasarkan ID
+        $keterampilan = Keterampilan::find($id);
+
+        // Cek apakah pendidikan ditemukan
+        if (!$keterampilan) {
+            return response()->json(['message' => 'Pendidikan not found'], 404);
+        }
+
+        // Hapus lampiran dari storage jika ada
+        if ($keterampilan->lampiran) {
+            Storage::disk('public')->delete($keterampilan->lampiran);
+        }
+
+        // Hapus entri pendidikan dari database
+        $keterampilan->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Pelatihan berhasil dihapus!');
     }
 }

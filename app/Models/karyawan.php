@@ -69,4 +69,9 @@ class Karyawan extends Model
     {
         return $this->hasMany(Pendidikan::class, 'karyawan_id');
     }
+
+    public function pelatihan()
+    {
+        return $this->hasMany(Pelatihan::class, 'karyawan_id');
+    }
 }

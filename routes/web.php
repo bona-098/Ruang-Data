@@ -87,11 +87,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
     Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
     Route::post('/karyawan/add_pendidikan', [KaryawanController::class, 'add_pendidikan'])->name('karyawan.add_pendidikan');
-    Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan'])->name('karyawan.update_pendidikan');;
-    Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan']);
-    Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan']);
+    Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan'])->name('karyawan.update_pendidikan');
+    Route::delete('pendidikan/{id}', [KaryawanController::class, 'destroy_pendidikan'])->name('karyawan.destroy_pendidikan');
+    Route::post('/karyawan/add_pelatihan', [KaryawanController::class, 'add_pelatihan'])->name('karyawan.add_pelatihan');
+    Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan'])->name('karyawan.update_pelatihan');
+    Route::delete('pelatihan/{id}', [KaryawanController::class, 'destroy_pelatihan'])->name('karyawan.destroy_pelatihan');
+    Route::post('/karyawan/add_keterampilan', [KaryawanController::class, 'add_keterampilan'])->name('karyawan.add_keterampilan');
+    Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan'])->name('karyawan.update_keterampilan');
+    Route::delete('keterampilan/{id}', [KaryawanController::class, 'destroy_keterampilan'])->name('karyawan.destroy_keterampilan');
 
-    
+
 
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');
