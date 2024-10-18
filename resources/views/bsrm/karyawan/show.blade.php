@@ -373,9 +373,15 @@
 
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
-                                            <b>Band Kelas</b> <a
-                                                class="float-right">{{ $karyawan->band_kelas_posisi }} </a>
+                                            <b>Band Kelas</b> <a class="float-right">
+                                                @forelse($jobHistories->sortByDesc('tgl_jabat') as $history)
+                                                    {{ $history->band }}
+                                                @empty
+                                                    No job histories available
+                                                @endforelse
+                                            </a>
                                         </li>
+
                                         <li class="list-group-item">
                                             <b>Masa Band</b>
                                             <a class="float-right" id="masa-band"></a>
@@ -596,7 +602,7 @@
                                                                     Nikah</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-bold fs-6 text-gray-800">{{ $karyawan->status_nikah }}</span>
+                                                                        class="fw-bold fs-6 text-gray-800">{{ $data_keluarga->status_nikah }}</span>
                                                                 </div>
                                                             </div>
 
@@ -605,7 +611,7 @@
                                                                     Nikah</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_nikah }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_nikah }}</span>
                                                                 </div>
                                                             </div>
 
@@ -615,7 +621,7 @@
                                                                     Keluarga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tanggungan_keluarga }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tanggungan_keluarga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -624,7 +630,7 @@
                                                                     Kartu Keluarga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nomor_kartu_keluarga }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nomor_kartu_keluarga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -633,7 +639,7 @@
                                                                     Pasangan (Suami/Istri)</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_pasangan }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_pasangan }}</span>
                                                                 </div>
                                                             </div>
 
@@ -642,7 +648,7 @@
                                                                     Anak Pertama</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_pertama }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_pertama }}</span>
                                                                 </div>
                                                             </div>
 
@@ -651,7 +657,7 @@
                                                                     Lahir Anak Pertama</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_pertama }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_pertama }}</span>
                                                                 </div>
                                                             </div>
 
@@ -660,7 +666,7 @@
                                                                     Anak Kedua</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_kedua }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_kedua }}</span>
                                                                 </div>
                                                             </div>
 
@@ -669,7 +675,7 @@
                                                                     Lahir Anak Kedua</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_kedua }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_kedua }}</span>
                                                                 </div>
                                                             </div>
 
@@ -678,7 +684,7 @@
                                                                     Anak Ketiga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nama_anak_ketiga }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_ketiga }}</span>
                                                                 </div>
                                                             </div>
 
@@ -687,7 +693,7 @@
                                                                     Lahir Anak Ketiga</label>
                                                                 <div class="col-lg-8">
                                                                     <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->tgl_lahir_anak_ketiga }}</span>
+                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_ketiga }}</span>
                                                                 </div>
                                                             </div>
 

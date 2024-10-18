@@ -20,9 +20,11 @@ class RekomendasiController extends Controller
         $jumlahKaryawan = Karyawan::count();
 
         // Menyaring karyawan berdasarkan unit kerja
-        $karyawan_organik = Karyawan::whereIn('unit_kerja', [
-            'General Manager Regional'
-        ])->get();
+        $karyawan_organik = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
+            ->select('karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
         $karyawan_regional6 = Karyawan::whereIn('unit_kerja', [
             'General Manager Regional',
             'Manager Marketing, Sales & Solution',

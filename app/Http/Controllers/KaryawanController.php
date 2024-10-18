@@ -8,6 +8,9 @@ use App\Models\JobHistory;
 use App\Models\Keterampilan;
 use App\Models\Pendidikan;
 use App\Models\Pelatihan;
+use App\Models\Keluarga;
+use App\Models\DataKerja;
+use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\LogActivities; // Import model MitraActivityLog
@@ -23,181 +26,151 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::orderBy('band_kelas_posisi')->get();
+        $karyawan = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
+            ->get();
+
+
 
         $jumlahKaryawan = Karyawan::count();
 
         // Menyaring karyawan berdasarkan unit kerja
-        $karyawan_organik = Karyawan::whereIn('unit_kerja', [
-            'General Manager Regional'
-        ])->get();
-        $karyawan_regional6 = Karyawan::whereIn('unit_kerja', [
-            'General Manager Regional',
-            'Manager Marketing, Sales & Solution',
-            'Marketing, Sales & Solution',
-            'Manager Planning & Delivery',
-            'Planning & Delivery',
-            'Manager Operation & Maintenance',
-            'Operation & Maintenance',
-            'Manager Business Support & Risk Management',
-            'Business Support & Risk Management'
-        ])->orderBy('band_kelas_posisi')->get();
+        $karyawan_organik = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
+            ->select('karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
 
-        $karyawan_areakaltimtara = Karyawan::whereIn('unit_kerja', [
-            'Area Kaltimtara'
-        ])->orderBy('band_kelas_posisi')->get();
-        $karyawan_areakalselteng = Karyawan::whereIn('unit_kerja', [
-            'Area Kalselteng'
-        ])->orderBy('band_kelas_posisi')->get();
-        $karyawan_areakalbar = Karyawan::whereIn('unit_kerja', [
-            'Area Kalbar'
-        ])->orderBy('band_kelas_posisi')->get();
 
-        // Formasi yang ada di database
-        $formasiAda = Karyawan::pluck('unit_kerja')->toArray(); // Mengambil semua kode formasi dari database
 
-        // Formasi yang seharusnya ada
-        $formasiSemua = [
-            'General Manager Regional',
-            'Manager Marketing, Sales & Solution',
-            'Senior Officer Sales Support & Customer Care',
-            'Officer Sales Support & Customer Care',
-            'Junior Officer Sales Administration & Support',
-            'Account Manager',
-            'Junior Account Manager 1',
-            'Manager Planning & Delivery',
-            'Junior Officer Project Solution & Delivery',
-            'Senior Officer Planning & Design',
-            'Engineer Design & Quality Surveyor',
-            'Senior Officer Project, Product & Service Delivery',
-            'Officer Project Delivery, Administration & Controlling',
-            'Officer Product & Service Delivery',
-            'Manager Operation & Maintenance',
-            'Junior Officer Operation & Maintenance',
-            'Senior Officer Smart Building & Outsourcing Operation',
-            'Engineer Quality Control & Managed Service',
-            'Engineer MEP, MSAP & IoT',
-            'Senior Officer Smart Fleet Operation',
-            'Officer Smart Fleet Operation',
-            'Senior Officer Defa & Managed Service',
-            'Officer Defa & Managed Service',
-            'Manager Business Support & Risk Management',
-            'Junior Officer Business Support & Risk Management',
-            'Senior Officer Legal & Procurement',
-            'Officer Legal & Procurement',
-            'Senior Officer Shared Service & Performance Management',
-            'Officer Shared Service & Performance Management',
-            'Manager Area Kaltimtara',
-            'Junior Account Manager 1',
-            'Junior Account Manager 2',
-            'Senior Officer Sales & Operation Support',
-            'Officer Sales & Operation Support',
-            'Junior Officer Sales & Operation Support',
-            'Senior Officer Quality Control & Managed Service',
-            'Engineer Quality Control & Managed Service',
-            'Junior Engineer Quality Control & Managed Service',
-            'Senior Officer Technical Support & Project Delivery',
-            'Officer Project Administration & Controlling',
-            'Technician',
-            'Territory Manager (TARAKAN)',
-            'Junior Officer Marketing, Sales & General Support',
-            'Junior Officer Operation & Project Delivery',
-            'Territory Manager (KALTIM)',
-            'Junior Officer Marketing, Sales & General Support',
-            'Junior Officer Operation & Project Delivery',
-            'Territory Representative Officer (TANAH GROGOT)',
-            'Territory Representative Officer (BALIKPAPAN)',
-            'Territory Representative Officer (SAMARINDA)',
-            'Territory Representative Officer (TENGGARONG)',
-            'Territory Representative Officer (BONTANG)',
-            'Territory Representative Officer (BERAU)',
-            'Territory Representative Officer (NUNUKAN)',
-            'Territory Representative Officer Managed Service Operation',
-            'Territory Representative Officer Managed Service Operation',
-            'Manager Area KALSELTENG',
-            'Junior Account Manager 1',
-            'Junior Account Manager 2',
-            'Senior Officer Sales & Operation Support',
-            'Junior Officer Sales & Operation Support',
-            'Senior Officer Operation & Project Delivery',
-            'Engineer Quality Control & Managed Service',
-            'Officer Project Administration & Controlling',
-            'Junior Officer Operation & Project Delivery',
-            'Territory Manager (PALANGKARAYA)',
-            'Junior Officer Marketing, Sales & General Support',
-            'Junior Officer Operation & Project Delivery',
-            'Territory Representative Officer (BANJARMASIN)',
-            'Territory Representative Officer (BANJAR BARU)',
-            'Territory Representative Officer (BATU LICIN)',
-            'Territory Representative Officer (TANJUNG)',
-            'Territory Representative Officer (SAMPIT)',
-            'Territory Representative Officer (MUARA TEWEH)',
-            'Territory Representative Officer Managed Service Operation',
-            'Manager Area Kalbar',
-            'Junior Account Manager 2',
-            'Officer Sales & Operation Support',
-            'Junior Officer Sales & Operation Support',
-            'Officer Operation & Project Delivery',
-            'Junior Engineer Quality Control & Managed Service',
-            'Junior Officer Project Administration & Controlling',
-            'Territory Representative Officer (PONTIANAK)',
-            'Territory Representative Officer (SINTANG)',
-            'Territory Representative Officer (SINGKAWANG)',
-            'Territory Representative Officer Managed Service Operation'
-        ];
+        $karyawan_regional6 = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->whereIn('data_kerja_karyawan.unit_kerja', [
+                'General Manager Regional',
+                'Manager Marketing, Sales & Solution',
+                'Marketing, Sales & Solution',
+                'Manager Planning & Delivery',
+                'Planning & Delivery',
+                'Manager Operation & Maintenance',
+                'Operation & Maintenance',
+                'Manager Business Support & Risk Management',
+                'Business Support & Risk Management'
+            ]) // Kondisi unit_kerja
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
 
-        // Mencari formasi kosong
-        $formasi_kosong = array_diff($formasiSemua, $formasiAda);
 
-        $jumlah_formasi_kosong = count($formasi_kosong);
+
+        $karyawan_areakaltimtara = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
+
+        $karyawan_areakalselteng = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng') // Kondisi unit_kerja
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
+
+        $karyawan_areakalbar = Karyawan::with('dataKerja') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar') // Kondisi unit_kerja
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+            ->get();
+
+
+
+        $jabatanList = Jabatan::whereNull('karyawan_id')
+            ->with('unit') // Mengambil relasi 'unit'
+            ->get();
+
+
+        // Ensure jabatanList is always a collection (even if empty)
+        if ($jabatanList === null) {
+            $jabatanList = collect(); // If null, convert it to an empty collection
+        }
+
+        // You can now safely count it
+        $jumlahJabatan = $jabatanList->count();
+
 
         // Menyaring karyawan berdasarkan pendidikan
+        $karyawan_s2 = Karyawan::with('pendidikan') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+            ->where('pendidikan.jenjang_pendidikan', 'S2') // Kondisi jenjang pendidikan
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+            ->get();
 
-        $karyawan_s2 = Karyawan::whereHas('pendidikan', function ($query) {
-            $query->where('jenjang_pendidikan', 'S2');
-        })->get();
+        $karyawan_s1 = Karyawan::with('pendidikan') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+            ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+            ->get();
 
-        $karyawan_s1 = Karyawan::whereHas('pendidikan', function ($query) {
-            $query->where('jenjang_pendidikan', 'S1');
-        })->get();
+        $karyawan_diploma = Karyawan::with('pendidikan') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+            ->where('pendidikan.jenjang_pendidikan', 'Diploma III') // Kondisi jenjang pendidikan
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+            ->get();
 
-        $karyawan_diploma = Karyawan::whereHas('pendidikan', function ($query) {
-            $query->where('jenjang_pendidikan', 'Diploma III');
-        })->get();
+        $karyawan_sekolah = Karyawan::with('pendidikan') // Eager loading relasi
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+            ->where('pendidikan.jenjang_pendidikan', 'SMK/SLTA Kejuruan') // Kondisi jenjang pendidikan
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+            ->get();
 
-        $karyawan_sekolah = Karyawan::whereHas('pendidikan', function ($query) {
-            $query->where('jenjang_pendidikan', 'SMK/SLTA Kejuruan');
-        })->get();
+
+
+
+
 
         // Menghitung jumlah karyawan di Regional 6
         $jumlah_seluruh_karyawan = Karyawan::count();
-        $jumlah_karyawan_regional6 = Karyawan::whereIn('unit_kerja', [
-            'General Manager Regional',
-            'Manager Marketing, Sales & Solution',
-            'Marketing, Sales & Solution',
-            'Manager Planning & Delivery',
-            'Planning & Delivery',
-            'Manager Operation & Maintenance',
-            'Operation & Maintenance',
-            'Manager Business Support & Risk Management',
-            'Business Support & Risk Management'
-        ])->count();
+        $jumlah_karyawan_regional6 = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+            ->whereIn('data_kerja_karyawan.unit_kerja', [
+                'General Manager Regional',
+                'Manager Marketing, Sales & Solution',
+                'Marketing, Sales & Solution',
+                'Manager Planning & Delivery',
+                'Planning & Delivery',
+                'Manager Operation & Maintenance',
+                'Operation & Maintenance',
+                'Manager Business Support & Risk Management',
+                'Business Support & Risk Management'
+            ])
+            ->count();
 
-        $jumlah_karyawan_areakaltimtara = Karyawan::whereIn('unit_kerja', [
-            'Area Kaltimtara'
-        ])->count();
+        $jumlah_karyawan_areakaltimtara = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara')
+            ->count();
 
-        $jumlah_karyawan_areakalselteng = Karyawan::whereIn('unit_kerja', [
-            'Area Kalselteng'
-        ])->count();
+        $jumlah_karyawan_areakalselteng = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng')
+            ->count();
 
-        $jumlah_karyawan_areakalbar = Karyawan::whereIn('unit_kerja', [
-            'Area Kalbar'
-        ])->count();
+        $jumlah_karyawan_areakalbar = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar')
+            ->count();
 
-        $jumlah_karyawan_formasi_kosong = Karyawan::whereIn('unit_kerja', [
-            'Area Kalbar'
-        ])->count();
+
+        // $jumlah_karyawan_formasi_kosong  'jumlah_formasi_kosong', = Karyawan::whereIn('unit_kerja', [
+        //     'Area Kalbar'
+        // ])->count();
 
         $jumlah_karyawan_s2 = Pendidikan::whereIn('jenjang_pendidikan', [
             'S2'
@@ -228,7 +201,6 @@ class KaryawanController extends Controller
             'karyawan_s1',
             'karyawan_diploma',
             'karyawan_sekolah',
-            'formasi_kosong',
             'jumlah_seluruh_karyawan',
             'jumlah_karyawan_regional6',
             'jumlah_karyawan_areakaltimtara',
@@ -238,8 +210,8 @@ class KaryawanController extends Controller
             'jumlah_karyawan_s1',
             'jumlah_karyawan_DIII',
             'jumlah_karyawan_sekolah',
-            'jumlah_formasi_kosong',
-
+            'jumlahJabatan',
+            'jabatanList',
         ));
     }
 
@@ -381,6 +353,16 @@ class KaryawanController extends Controller
         // Ambil pendidikan yang terkait dengan karyawan dan urutkan berdasarkan tahun lulus terbaru
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
+        $data_keluarga = Karyawan::with('keluarga')
+            ->join('data_keluarga', 'karyawan.id', '=', 'data_keluarga.karyawan_id')
+            ->select('karyawan.*', 'data_keluarga.*')
+            ->firstOrFail(); // Akan menghasilkan error 404 jika data tidak ditemukan
+
+        // Pastikan data ada sebelum dikirim
+        if (!$data_keluarga) {
+            // Menangani kasus ketika data tidak ditemukan, bisa redirect atau tampilkan pesan error
+            return redirect()->route('karyawan.index')->with('error', 'Data tidak ditemukan');
+        }
 
         // Ambil tanggal terbaru untuk riwayat jabatan
         $latestJobHistoryDate = $jobHistories->isNotEmpty() ? $jobHistories->first()->tgl_jabat : null;
@@ -389,7 +371,7 @@ class KaryawanController extends Controller
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
 
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga'));
     }
 
     /**

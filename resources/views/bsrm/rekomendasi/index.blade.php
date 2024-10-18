@@ -102,22 +102,7 @@
                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}</td>
                                     <td style="text-align: center; vertical-align: middle;">
-                                        @if (
-                                            $k->unit_kerja == 'General Manager Regional' ||
-                                                $k->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                $k->unit_kerja == 'Manager Planning & Delivery' ||
-                                                $k->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                $k->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                $k->unit_kerja == 'Area Kaltimtara')
-                                            Balikpapan
-                                        @elseif($k->unit_kerja == 'Area Kalselteng')
-                                            Banjarmasin
-                                        @elseif($k->unit_kerja == 'Area Kalbar')
-                                            Pontianak
-                                        @else
-                                            {{-- Tambahkan opsi default jika diperlukan --}}
-                                            Tidak Diketahui
-                                        @endif
+                                       
                                     </td>
 
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->jabatan }}</td>

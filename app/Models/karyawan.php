@@ -74,4 +74,14 @@ class Karyawan extends Model
     {
         return $this->hasMany(Pelatihan::class, 'karyawan_id');
     }
+
+    public function keluarga()
+    {
+        return $this->hasMany(Keluarga::class, 'karyawan_id');
+    }
+
+    public function dataKerja()
+    {
+        return $this->hasMany(DataKerja::class);
+    }
 }

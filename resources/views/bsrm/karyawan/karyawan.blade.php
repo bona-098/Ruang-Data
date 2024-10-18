@@ -60,8 +60,8 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-toggle="modal"
                                     data-target="#ModalKaryawanFormasiKosong">
-                                    Formasi Kosong <span data-toggle="modal" data-target="#ModalKaryawanFormasiKosong"
-                                        class="float-right badge bg-danger">{{ $jumlah_formasi_kosong }}</span>
+                                    Formasi Kosong <span data-toggle="modal"
+                                        class="float-right badge bg-danger">{{ $jumlahJabatan }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -166,22 +166,7 @@
                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->unit_kerja }}</td>
                                     <td style="text-align: center; vertical-align: middle;">
-                                        @if (
-                                            $k->unit_kerja == 'General Manager Regional' ||
-                                                $k->unit_kerja == 'Marketing, Sales & Solution' ||
-                                                $k->unit_kerja == 'Planning & Delivery' ||
-                                                $k->unit_kerja == 'Operation & Maintenance' ||
-                                                $k->unit_kerja == 'Business Support & Risk Management' ||
-                                                $k->unit_kerja == 'Area Kaltimtara')
-                                            Balikpapan
-                                        @elseif($k->unit_kerja == 'Area Kalselteng')
-                                            Banjarmasin
-                                        @elseif($k->unit_kerja == 'Area Kalbar')
-                                            Pontianak
-                                        @else
-                                            {{-- Tambahkan opsi default jika diperlukan --}}
-                                            Tidak Diketahui
-                                        @endif
+                                        {{ $k->lokasi_kerja }}
                                     </td>
 
                                     <td style="text-align: center; vertical-align: middle;">{{ $k->jabatan }}</td>
@@ -1285,7 +1270,7 @@
                                             </td>
                                             <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
+                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                             {{-- <td style="text-align: center; vertical-align: middle;">
                                                 @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
                                                     Balikpapan
@@ -1324,27 +1309,39 @@
                     </div>
                     <div class="modal-body">
                         <div class=" table-responsive">
-                            <table text-align: left; id="myTable" class="table table-bordered table-striped"
-                                style="font-size: 12px;">
+                            <table id="myTable" class="table table-bordered table-striped" style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th style="white-space: nowrap;">Unit Kerja </th>
+                                        <th style="white-space: nowrap;">Unit</th>
                                         <th style="white-space: nowrap;">Jabatan</th>
-                                        <th style="white-space: nowrap;">Loker</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($formasi_kosong as $formasi) --}}
-                                    <tr>
-                                        <td style="white-space: nowrap;">Halaman Ini Sedang dalam Pengerjaan</td>
-                                        {{-- <td style="white-space: nowrap;">{{ $formasi }}</td> --}}
-                                        <td style="white-space: nowrap;">Halaman Ini Sedang dalam Pengerjaan</td>
-                                        <td style="white-space: nowrap;">Halaman Ini Sedang dalam Pengerjaan</td>
-                                        <!-- Tampilkan nama formasi -->
-                                    </tr>
-                                    {{-- @endforeach --}}
+                                    @if ($jabatanList && $jabatanList->count() > 0)
+                                        @foreach ($jabatanList as $formasi)
+                                            <tr>
+                                                <!-- Akses nama unit yang ter-relasi -->
+                                                <td style="white-space: nowrap;">
+                                                    {{ $formasi->unit ? $formasi->unit->nama : 'Unit Tidak Ditemukan' }}
+                                                </td>
+                                                <td style="white-space: nowrap;">{{ $formasi->nama }}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="2" style="white-space: nowrap; text-align: center;">Semua
+                                                formasi tersedia.</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
+
+
+
                             </table>
+
+
+
+
 
                         </div>
                         @csrf
@@ -1390,25 +1387,10 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            {{-- <td style="white-space: nowrap;">{{ $k->nik }} --}}
                                             </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
-                                            <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                            {{-- <td style="text-align: center; vertical-align: middle;">
-                                                @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
-                                                    Balikpapan
-                                                @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                    Banjarmasin
-                                                @elseif($k->unit_kerja == 'Area Kalbar')
-                                                    Pontianak
-                                                @else
-                                                   
-                                                    Tidak Diketahui
-                                                @endif
-                                            </td>
-                                            <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                            <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
+                                            <td>{{ $k->unit_kerja }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -1456,7 +1438,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                             <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                             {{--  <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
@@ -1508,7 +1490,7 @@
                                                             alt=""></a>
                                                 </div>
                                             </td>
-                                            <td><a href="{{ route('karyawan.edit', $k->id) }}"
+                                            <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                     style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                             <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
                                             {{--   <td style="text-align: center; vertical-align: middle;">

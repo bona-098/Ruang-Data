@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id();
             // PRIBADI
+            $table->string('nama_karyawan', 100)->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->string('kota_lahir', 100)->nullable();
             $table->string('jenis_kelamin', 10)->nullable();
@@ -33,23 +34,15 @@ return new class extends Migration
             // $table->string('nama_anak_ketiga', 100)->nullable();
             // $table->string('tgl_lahir_anak_ketiga', 100)->nullable();
             //JOB
-            $table->string('nik', 50)->nullable();
-            $table->string('telkomgroup', 50)->nullable();
-            $table->string('jabatan', 100)->nullable();
-            $table->string('unit_kerja', 100)->nullable();
-            $table->string('band_kelas_posisi', 50)->nullable();
-            $table->date('tgl_bergabung')->nullable();
-            $table->string('nama_karyawan', 100)->nullable();
-            $table->string('nomor_sk', 50)->nullable();
-            $table->text('surat_sk')->nullable();
+           
             // $table->string('status_kepegawaian', 50)->nullable();
             //JOB HISRTORY DI TABEL BARU
             //PENDIDIKAN
-            $table->string('jenjang_pendidikan', 100)->nullable();
-            $table->string('penyelenggara_pendidikan', 100)->nullable();
-            $table->string('program_studi', 100)->nullable();
-            $table->string('tahun_lulus', 100)->nullable();
-            $table->text('ijazah')->nullable();
+            // $table->string('jenjang_pendidikan', 100)->nullable();
+            // $table->string('penyelenggara_pendidikan', 100)->nullable();
+            // $table->string('program_studi', 100)->nullable();
+            // $table->string('tahun_lulus', 100)->nullable();
+            // $table->text('ijazah')->nullable();
             //PELATIHAN DI TABEL BARU
             //Lain lain
             $table->string('no_hp', 15)->nullable();
