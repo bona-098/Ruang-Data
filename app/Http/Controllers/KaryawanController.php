@@ -353,6 +353,7 @@ class KaryawanController extends Controller
         // Ambil pendidikan yang terkait dengan karyawan dan urutkan berdasarkan tahun lulus terbaru
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
+        $keterampilan = Keterampilan::where('karyawan_id', $id)->get();
         $data_keluarga = Karyawan::with('keluarga')
             ->join('data_keluarga', 'karyawan.id', '=', 'data_keluarga.karyawan_id')
             ->select('karyawan.*', 'data_keluarga.*')
@@ -371,7 +372,7 @@ class KaryawanController extends Controller
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
 
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan'));
     }
 
     /**
@@ -484,7 +485,7 @@ class KaryawanController extends Controller
     public function update_keluarga(Request $request, $id)
     {
         $karya = $request->all();
-        $karyawan = Karyawan::find($id);
+        $karyawan = Keluarga::find($id);
         $karyawan->update([
             'status_nikah' => $request->status_nikah,
             'tgl_nikah' => $request->tgl_nikah,

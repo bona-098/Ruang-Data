@@ -480,7 +480,7 @@
                                     </ul>
                                 </div><!-- /.card-header -->
                                 <div class="card-body">
-                                    <div class="tab-content">.
+                                    <div class="tab-content">
 
                                         <div class="active tab-pane" id="pribadi">
                                             <div class="row">
@@ -575,9 +575,241 @@
                                                 </div>
                                                 <!-- /# column -->
                                             </div>
-
                                         </div>
-                                        <!-- /.tab-pane -->
+
+                                        <div class="modal fade" id="ModalEditPribadi" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Data
+                                                            Pribadi</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.update_pribadi', $karyawan->id) }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal
+                                                                                    Lahir</label>
+                                                                                <input type="date" id="tgl_lahir"
+                                                                                    value="{{ $karyawan->tgl_lahir }}"
+                                                                                    name="tgl_lahir"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_lahir') is-invalid @enderror
+                                                                                    value="{{ old('tgl_lahir') }}">
+                                                                                @error('tgl_lahir')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="kota_lahir"
+                                                                                    class="control-label">Kota
+                                                                                    Lahir</label>
+                                                                                <input type="text" id="kota_lahir"
+                                                                                    value="{{ $karyawan->kota_lahir }}"
+                                                                                    name="kota_lahir"
+                                                                                    class="form-control"
+                                                                                    @error('kota_lahir') is-invalid @enderror
+                                                                                    value="{{ old('kota_lahir') }}">
+                                                                                @error('kota_lahir')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="jenis_kelamin"
+                                                                                    class="control-label">Jenis
+                                                                                    Kelamin</label>
+                                                                                <select
+                                                                                    class="form-control custom-select @error('jenis_kelamin') is-invalid @enderror"
+                                                                                    id="jenis_kelamin"
+                                                                                    name="jenis_kelamin">
+                                                                                    <option value="">Pilih Jenis
+                                                                                        Kelamin</option>
+                                                                                    <option value="Laki-laki"
+                                                                                        {{ old('jenis_kelamin') == 'Laki-laki' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Laki-laki') ? 'selected' : '' }}>
+                                                                                        Laki-laki</option>
+                                                                                    <option value="Perempuan"
+                                                                                        {{ old('jenis_kelamin') == 'Perempuan' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Perempuan') ? 'selected' : '' }}>
+                                                                                        Perempuan</option>
+                                                                                </select>
+                                                                                @error('jenis_kelamin')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+
+                                                                                @error('jenis_kelamin')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <label for="alamat">Alamat</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->alamat }}"
+                                                                                    class="form-control"
+                                                                                    name="alamat"@error('alamat') is-invalid @enderror
+                                                                                    value="{{ old('alamat') }}">
+                                                                                @error('alamat')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="agama"
+                                                                                    class="control-label">Agama</label>
+                                                                                <select
+                                                                                    class="form-control custom-select @error('agama') is-invalid @enderror"
+                                                                                    id="agama" name="agama">
+                                                                                    <option value="">Pilih Agama
+                                                                                    </option>
+                                                                                    <option value="Islam"
+                                                                                        {{ old('agama') == 'Islam' || $karyawan->agama == 'Islam' ? 'selected' : '' }}>
+                                                                                        Islam</option>
+                                                                                    <option value="katolik"
+                                                                                        {{ old('agama') == 'Katolik' || $karyawan->agama == 'Katolik' ? 'selected' : '' }}>
+                                                                                        Kristen Katolik</option>
+                                                                                    <option value="kristen protestan"
+                                                                                        {{ old('agama') == 'Kristen protestan' || $karyawan->agama == 'Kristen protestan' ? 'selected' : '' }}>
+                                                                                        Kristen Protestan</option>
+                                                                                    <option value="hindu"
+                                                                                        {{ old('agama') == 'Hindu' || $karyawan->agama == 'Hindu' ? 'selected' : '' }}>
+                                                                                        Hindu</option>
+                                                                                    <option value="budha"
+                                                                                        {{ old('agama') == 'Budha' || $karyawan->agama == 'Budha' ? 'selected' : '' }}>
+                                                                                        Budha</option>
+                                                                                    <option value="kong hucuh"
+                                                                                        {{ old('agama') == 'Kong hucuh' || $karyawan->agama == 'Kong Hucuh' ? 'selected' : '' }}>
+                                                                                        Kong Hucu</option>
+                                                                                </select>
+                                                                                @error('agama')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Kontak
+                                                                                    Darurat</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->kontak_darurat }}"
+                                                                                    name="kontak_darurat"
+                                                                                    class="form-control"
+                                                                                    @error('kontak_darurat') is-invalid @enderror
+                                                                                    value="{{ old('kontak_darurat') }}">
+                                                                                @error('kontak_darurat')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="suku">suku</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->suku }}"
+                                                                                    class="form-control"
+                                                                                    id="suku" name="suku">
+                                                                                @error('suku')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="golongan_darah"
+                                                                                    class="control-label">Golongan
+                                                                                    Darah</label>
+                                                                                <select
+                                                                                    class="form-control custom-select @error('golongan_darah') is-invalid @enderror"
+                                                                                    id="golongan_darah"
+                                                                                    name="golongan_darah">
+                                                                                    <option value="">Pilih
+                                                                                        Golongan Darah</option>
+                                                                                    <option value="A"
+                                                                                        {{ old('golongan_darah') == 'A' || $karyawan->golongan_darah == 'A' ? 'selected' : '' }}>
+                                                                                        A</option>
+                                                                                    <option value="AB"
+                                                                                        {{ old('golongan_darah') == 'AB' || $karyawan->golongan_darah == 'AB' ? 'selected' : '' }}>
+                                                                                        AB</option>
+                                                                                    <option value="B"
+                                                                                        {{ old('golongan_darah') == 'B' || $karyawan->golongan_darah == 'B' ? 'selected' : '' }}>
+                                                                                        B</option>
+                                                                                    <option value="O"
+                                                                                        {{ old('golongan_darah') == 'O' || $karyawan->golongan_darah == 'O' ? 'selected' : '' }}>
+                                                                                        O</option>
+                                                                                </select>
+                                                                                @error('golongan_darah')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="tab-pane" id="keluarga">
                                             <div class="row">
@@ -696,32 +928,274 @@
                                                                         class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_ketiga }}</span>
                                                                 </div>
                                                             </div>
-
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
-                                                                    Ayah Kandung Karyawan</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama Ibu
-                                                                    Kandung Karyawan</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
-                                                                </div>
-                                                            </div> --}}
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
+                                        <div class="modal fade" id="ModalEditKeluarga" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Data
+                                                            Keluarga</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.update_keluarga', $karyawan->id) }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="status_nikah"
+                                                                                    class="control-label">Status
+                                                                                    Menikah</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    id="status_nikah"
+                                                                                    name="status_nikah">
+                                                                                    <option value="">Pilih Status
+                                                                                        Menikah</option>
+                                                                                    <option value="Menikah"
+                                                                                        {{ $karyawan->status_nikah == 'Menikah' ? 'selected' : '' }}>
+                                                                                        Menikah</option>
+                                                                                    <option value="Belum Menikah"
+                                                                                        {{ $karyawan->status_nikah == 'Belum Menikah' ? 'selected' : '' }}>
+                                                                                        Belum Menikah</option>
+                                                                                </select>
+                                                                                @error('status_nikah')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal
+                                                                                    Nikah</label>
+                                                                                <input type="date" id="tgl_nikah"
+                                                                                    value="{{ $karyawan->tgl_nikah }}"
+                                                                                    name="tgl_nikah"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_nikah') is-invalid @enderror
+                                                                                    value="{{ old('tgl_nikah') }}">
+                                                                                @error('tgl_nikah')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="jumlah_anak">Jumlah
+                                                                                    Anak</label>
+                                                                                <input type="number" min="0"
+                                                                                    class="form-control"
+                                                                                    id="jumlah_anak"
+                                                                                    name="jumlah_anak">
+                                                                                @error('jumlah_anak')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <label for="alamat">Nomor Kartu
+                                                                                    keluarga</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->nomor_kartu_keluarga }}"
+                                                                                    class="form-control"
+                                                                                    name="nomor_kartu_keluarga"@error('nomor_kartu_keluarga') is-invalid @enderror
+                                                                                    value="{{ old('nomor_kartu_keluarga') }}">
+                                                                                @error('nomor_kartu_keluarga')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="nama_pasangan">Nama
+                                                                                    Pasangan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="nama_pasangan"
+                                                                                    name="nama_pasangan">
+                                                                                @error('nama_pasangan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama Anak
+                                                                                    Pertama</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->nama_anak_pertama }}"
+                                                                                    name="nama_anak_pertama"
+                                                                                    class="form-control"
+                                                                                    @error('nama_anak_pertama') is-invalid @enderror
+                                                                                    value="{{ old('nama_anak_pertama') }}">
+                                                                                @error('nama_anak_pertama')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal Lahir
+                                                                                    Anak
+                                                                                    Pertama</label>
+                                                                                <input type="date"
+                                                                                    id="tgl_lahir_anak_pertama"
+                                                                                    value="{{ $karyawan->tgl_lahir_anak_pertama }}"
+                                                                                    name="tgl_lahir_anak_pertama"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_lahir_anak_pertama') is-invalid @enderror
+                                                                                    value="{{ old('tgl_lahir_anak_pertama') }}">
+                                                                                @error('tgl_lahir_anak_pertama')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama Anak
+                                                                                    Kedua</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->nama_anak_kedua }}"
+                                                                                    name="nama_anak_kedua"
+                                                                                    class="form-control"
+                                                                                    @error('nama_anak_kedua') is-invalid @enderror
+                                                                                    value="{{ old('nama_anak_kedua') }}">
+                                                                                @error('nama_anak_kedua')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal Lahir
+                                                                                    Anak
+                                                                                    Kedua</label>
+                                                                                <input type="date"
+                                                                                    id="tgl_lahir_anak_kedua"
+                                                                                    value="{{ $karyawan->tgl_lahir_anak_kedua }}"
+                                                                                    name="tgl_lahir_anak_kedua"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_lahir_anak_kedua') is-invalid @enderror
+                                                                                    value="{{ old('tgl_lahir_anak_kedua') }}">
+                                                                                @error('tgl_lahir_anak_kedua')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama Anak
+                                                                                    Ketiga</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $karyawan->nama_anak_ketiga }}"
+                                                                                    name="nama_anak_ketiga"
+                                                                                    class="form-control"
+                                                                                    @error('nama_anak_ketiga') is-invalid @enderror
+                                                                                    value="{{ old('nama_anak_ketiga') }}">
+                                                                                @error('nama_anak_ketiga')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal Lahir
+                                                                                    Anak
+                                                                                    Ketiga</label>
+                                                                                <input type="date"
+                                                                                    id="tgl_lahir_anak_ketiga"
+                                                                                    value="{{ $karyawan->tgl_lahir_anak_ketiga }}"
+                                                                                    name="tgl_lahir_anak_ketiga"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_lahir_anak_ketiga') is-invalid @enderror
+                                                                                    value="{{ old('tgl_lahir_anak_ketiga') }}">
+                                                                                @error('tgl_lahir_anak_ketiga')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="tab-pane" id="job">
                                             <div class="row">
@@ -770,17 +1244,6 @@
                                                                 </div>
                                                             </div>
 
-                                                            <!-- Klasifikasi Jabatan -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label
-                                                                    class="col-lg-4 fw-semibold text-muted">Klasifikasi
-                                                                    Jabatan</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
-                                                                </div>
-                                                            </div> --}}
-
                                                             <!-- Lokasi Kerja -->
                                                             <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Unit
@@ -816,17 +1279,6 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-
-
-                                                            <!-- PSA -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label
-                                                                    class="col-lg-4 fw-semibold text-muted">PSA</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">Makassar</span>
-                                                                </div>
-                                                            </div> --}}
 
                                                             <!-- Band Position -->
                                                             <div class="row mb-7">
@@ -877,36 +1329,6 @@
                                                                         class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nomor_sk }}</span>
                                                                 </div>
                                                             </div>
-
-                                                            <!-- Tanggal Karyawan Tetap -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Karyawan Tetap</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2011-05-01</span>
-                                                                </div>
-                                                            </div> --}}
-
-                                                            <!-- No. SK PROMUT -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">No. SK
-                                                                    PROMUT</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">SK.131/PS720/GSD-200/2023</span>
-                                                                </div>
-                                                            </div> --}}
-
-                                                            <!-- Tanggal PROMUT -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    PROMUT</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">2023-06-01</span>
-                                                                </div>
-                                                            </div> --}}
 
                                                             <!-- No. Kontrak -->
                                                             <div class="row mb-7">
@@ -971,6 +1393,225 @@
                                                 </div>
                                             </div>
 
+                                        </div>
+
+                                        <div class="modal fade" id="ModalEditJob" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Job
+                                                            History</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_job_history') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">NIK
+                                                                                    Telpro</label>
+                                                                                <input type="number" name="nik"
+                                                                                    min="0"
+                                                                                    class="form-control"
+                                                                                    @error('nik') is-invalid @enderror
+                                                                                    value="{{ $karyawan->nik }}">
+                                                                                @error('nik')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="kota_lahir"
+                                                                                    class="control-label">NIK Telkom
+                                                                                    Group</label>
+                                                                                <input type="text"
+                                                                                    name="nik_telpro"
+                                                                                    class="form-control"
+                                                                                    @error('nik_telpro') is-invalid @enderror
+                                                                                    value="{{ $karyawan->telkomgroup }}">
+                                                                                @error('nik_telpro')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="jabatan">Nama
+                                                                                    Jabatan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="jabatan"
+                                                                                    name="jabatan"@error('jabatan') is-invalid @enderror
+                                                                                    value="{{ $karyawan->jabatan }}">
+                                                                                @error('jabatan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="unit_kerja"
+                                                                                    class="control-label">Unit
+                                                                                    Kerja</label>
+                                                                                <select
+                                                                                    class="form-control custom-select @error('unit_kerja') is-invalid @enderror"
+                                                                                    id="unit_kerja" name="unit_kerja">
+                                                                                    <option value="">Pilih Unit
+                                                                                        Kerja</option>
+                                                                                    <option
+                                                                                        value="General Manager Regional"
+                                                                                        {{ old('unit_kerja') == 'General Manager Regional' || (isset($karyawan) && $karyawan->unit_kerja == 'General Manager Regional') ? 'selected' : '' }}>
+                                                                                        General Manager Regional
+                                                                                    </option>
+                                                                                    <option
+                                                                                        value="Manager Marketing, Sales & Solution"
+                                                                                        {{ old('unit_kerja') == 'Manager Marketing, Sales & Solution' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution') ? 'selected' : '' }}>
+                                                                                        Manager Marketing, Sales &
+                                                                                        Solution</option>
+                                                                                    <option
+                                                                                        value="Manager Planning & Delivery"
+                                                                                        {{ old('unit_kerja') == 'Manager Planning & Delivery' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Planning & Delivery') ? 'selected' : '' }}>
+                                                                                        Manager Planning & Delivery
+                                                                                    </option>
+                                                                                    <option
+                                                                                        value="Manager Operation & Maintenance"
+                                                                                        {{ old('unit_kerja') == 'Manager Operation & Maintenance' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Operation & Maintenance') ? 'selected' : '' }}>
+                                                                                        Manager Operation & Maintenance
+                                                                                    </option>
+                                                                                    <option
+                                                                                        value="Manager Business Support & Risk Management"
+                                                                                        {{ old('unit_kerja') == 'Manager Business Support & Risk Management' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Business Support & Risk Management') ? 'selected' : '' }}>
+                                                                                        Manager Business Support & Risk
+                                                                                        Management</option>
+                                                                                    <option value="Area Kaltimtara"
+                                                                                        {{ old('unit_kerja') == 'Area Kaltimtara' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kaltimtara') ? 'selected' : '' }}>
+                                                                                        Area Kaltimtara</option>
+                                                                                    <option value="Area Kalselteng"
+                                                                                        {{ old('unit_kerja') == 'Area Kalselteng' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalselteng') ? 'selected' : '' }}>
+                                                                                        Area Kalselteng</option>
+                                                                                    <option value="Area Kalbar"
+                                                                                        {{ old('unit_kerja') == 'Area Kalbar' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalbar') ? 'selected' : '' }}>
+                                                                                        Area Kalbar</option>
+                                                                                </select>
+                                                                                @error('unit_kerja')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Kelas Band
+                                                                                    Posisi</label>
+                                                                                <select
+                                                                                    class="form-control custom-select @error('band_kelas_posisi') is-invalid @enderror"
+                                                                                    name="band_kelas_posisi">
+                                                                                    <option value="">Pilih Kelas
+                                                                                        Band Posisi</option>
+                                                                                    <option value="I"
+                                                                                        {{ old('band_kelas_posisi') == 'I' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'I') ? 'selected' : '' }}>
+                                                                                        I</option>
+                                                                                    <option value="II"
+                                                                                        {{ old('band_kelas_posisi') == 'II' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'II') ? 'selected' : '' }}>
+                                                                                        II</option>
+                                                                                    <option value="III"
+                                                                                        {{ old('band_kelas_posisi') == 'III' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'III') ? 'selected' : '' }}>
+                                                                                        III</option>
+                                                                                    <option value="IV"
+                                                                                        {{ old('band_kelas_posisi') == 'IV' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'IV') ? 'selected' : '' }}>
+                                                                                        IV</option>
+                                                                                    <option value="V"
+                                                                                        {{ old('band_kelas_posisi') == 'V' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'V') ? 'selected' : '' }}>
+                                                                                        V</option>
+                                                                                    <option value="VI"
+                                                                                        {{ old('band_kelas_posisi') == 'VI' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VI') ? 'selected' : '' }}>
+                                                                                        VI</option>
+                                                                                    <option value="VII"
+                                                                                        {{ old('band_kelas_posisi') == 'VII' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VII') ? 'selected' : '' }}>
+                                                                                        VII</option>
+                                                                                </select>
+                                                                                @error('band_kelas_posisi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="tgl_bergabung">tgl_bergabung</label>
+                                                                                <input type="date"
+                                                                                    class="form-control"
+                                                                                    id="tgl_bergabung"
+                                                                                    value="{{ $karyawan->tgl_bergabung }}"
+                                                                                    name="tgl_bergabung">
+                                                                                @error('tgl_bergabung')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="nomor_sk">Nomor Surat
+                                                                                    Keputusan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    id="suku"
+                                                                                    value="{{ $karyawan->nomor_sk }}"
+                                                                                    name="nomor_sk">
+                                                                                @error('nomor_sk')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="tab-pane" id="job_history">
@@ -1062,6 +1703,312 @@
 
                                         </div>
 
+                                        <div class="modal fade" id="ModalAddJobHistory" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Job
+                                                            History</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_job_history') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal
+                                                                                    Menjabat</label>
+                                                                                <input type="date" name="tgl_jabat"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_jabat') is-invalid @enderror
+                                                                                    value="{{ old('tgl_jabat') }}">
+                                                                                @error('tgl_jabat')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="kota_lahir"
+                                                                                    class="control-label">Nama
+                                                                                    Jabatan</label>
+                                                                                <input type="text" name="nama"
+                                                                                    class="form-control"
+                                                                                    @error('nama') is-invalid @enderror
+                                                                                    value="{{ old('nama') }}">
+                                                                                @error('nama')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <label for="lokasi">Lokasi
+                                                                                    Penempatan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="lokasi"@error('lokasi') is-invalid @enderror
+                                                                                    value="{{ old('lokasi') }}">
+                                                                                @error('lokasi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Kelas Band
+                                                                                    Posisi</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="band">
+                                                                                    <option value="">Pilih Kelas
+                                                                                        Band Posisi</option>
+                                                                                    <option value="I"
+                                                                                        {{ old('band') == 'I' ? 'selected' : '' }}>
+                                                                                        I
+                                                                                    </option>
+                                                                                    <option value="II"
+                                                                                        {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                                                        II
+                                                                                    </option>
+                                                                                    <option value="III"
+                                                                                        {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                                                        III
+                                                                                    </option>
+                                                                                    <option value="IV"
+                                                                                        {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                                                        IV
+                                                                                    </option>
+                                                                                    <option value="V"
+                                                                                        {{ old('band') == 'V' ? 'selected' : '' }}>
+                                                                                        V
+                                                                                    </option>
+                                                                                    <option value="VI"
+                                                                                        {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                                                        VI
+                                                                                    </option>
+                                                                                    <option value="VII"
+                                                                                        {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                                                        VII
+                                                                                    </option>
+                                                                                </select>
+                                                                                @error('band_kelas_posisi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="file_rekening_bank">Lampiran
+                                                                                    Sk</label>
+                                                                                <input type="file"
+                                                                                    class="form-control"
+                                                                                    id="lampiran" name="lampiran">
+                                                                                @error('lampiran')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="ModalEditJobHistory" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Job
+                                                            History</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_job_history') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="tgl_lahir"
+                                                                                    class="control-label">Tanggal
+                                                                                    Menjabat</label>
+                                                                                <input type="date" name="tgl_jabat"
+                                                                                    class="form-control"
+                                                                                    placeholder="dd/mm/yyyy"
+                                                                                    @error('tgl_jabat') is-invalid @enderror
+                                                                                    value="{{ old('tgl_jabat') }}">
+                                                                                @error('tgl_jabat')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="kota_lahir"
+                                                                                    class="control-label">Nama
+                                                                                    Jabatan</label>
+                                                                                <input type="text" name="nama"
+                                                                                    class="form-control"
+                                                                                    @error('nama') is-invalid @enderror
+                                                                                    value="{{ old('nama') }}">
+                                                                                @error('nama')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <label for="lokasi">Lokasi
+                                                                                    Penempatan</label>
+                                                                                <input type="text"
+                                                                                    class="form-control"
+                                                                                    name="lokasi"@error('lokasi') is-invalid @enderror
+                                                                                    value="{{ old('lokasi') }}">
+                                                                                @error('lokasi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Kelas Band
+                                                                                    Posisi</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="band">
+                                                                                    <option value="">Pilih Kelas
+                                                                                        Band Posisi</option>
+                                                                                    <option value="I"
+                                                                                        {{ old('band') == 'I' ? 'selected' : '' }}>
+                                                                                        I
+                                                                                    </option>
+                                                                                    <option value="II"
+                                                                                        {{ old('band') == 'II' ? 'selected' : '' }}>
+                                                                                        II
+                                                                                    </option>
+                                                                                    <option value="III"
+                                                                                        {{ old('band') == 'III' ? 'selected' : '' }}>
+                                                                                        III
+                                                                                    </option>
+                                                                                    <option value="IV"
+                                                                                        {{ old('band') == 'IV' ? 'selected' : '' }}>
+                                                                                        IV
+                                                                                    </option>
+                                                                                    <option value="V"
+                                                                                        {{ old('band') == 'V' ? 'selected' : '' }}>
+                                                                                        V
+                                                                                    </option>
+                                                                                    <option value="VI"
+                                                                                        {{ old('band') == 'VI' ? 'selected' : '' }}>
+                                                                                        VI
+                                                                                    </option>
+                                                                                    <option value="VII"
+                                                                                        {{ old('band') == 'VII' ? 'selected' : '' }}>
+                                                                                        VII
+                                                                                    </option>
+                                                                                </select>
+                                                                                @error('band_kelas_posisi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="file_rekening_bank">Lampiran
+                                                                                    Sk</label>
+                                                                                <input type="file"
+                                                                                    class="form-control"
+                                                                                    id="lampiran" name="lampiran">
+                                                                                @error('lampiran')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="tab-pane" id="pendidikan">
                                             <div class="row">
                                                 <div class="col-12">
@@ -1096,20 +2043,14 @@
                                                                     <tbody>
                                                                         @foreach ($pendidikan as $edu)
                                                                             <tr>
-                                                                                <td>{{ $edu->jenjang_pendidikan }}</td>
+                                                                                <td>{{ $edu->jenjang_pendidikan }}
+                                                                                </td>
                                                                                 <td>{{ $edu->nama_institusi }}</td>
                                                                                 <td>{{ $edu->jurusan }}</td>
                                                                                 <td>{{ $edu->tahun_lulus == '0000' ? 'Tidak Diketahui' : $edu->tahun_lulus }}
                                                                                 </td>
 
                                                                                 <td>
-                                                                                    {{-- @if ($edu->lampiran_pendukung)
-                                                                                        <a href="{{ asset('uploads/' . $edu->lampiran_pendukung) }}"
-                                                                                            class="btn btn-secondary btn-sm"
-                                                                                            download="File Pendukung">Download</a>
-                                                                                    @else
-                                                                                        -
-                                                                                    @endif --}}
                                                                                     <span
                                                                                         class="badge badge-warning">Belum
                                                                                         ada file</span>
@@ -1141,6 +2082,321 @@
 
                                         </div>
 
+                                        <div class="modal fade" id="ModalAddPendidikan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                            Pendidikan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_pendidikan') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="kota_lahir"
+                                                                                    class="control-label">Nama
+                                                                                    Institusi</label>
+                                                                                <input required type="text"
+                                                                                    name="nama_institusi"
+                                                                                    class="form-control"
+                                                                                    @error('nama_institusi') is-invalid @enderror
+                                                                                    value="{{ old('nama_institusi') }}">
+                                                                                @error('nama_institusi')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Jenjang
+                                                                                    Pendidikan</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="jenjang_pendidikan">
+                                                                                    <option value="">Pilih
+                                                                                        Jenjang Pendidikan</option>
+                                                                                    <option value="S2">S2</option>
+                                                                                    <option value="S1">S1</option>
+                                                                                    <option value="Diploma III">Diploma
+                                                                                        III</option>
+                                                                                    <option value="SMK/SLTA Kejuruan">
+                                                                                        SMK/SLTA Kejuruan</option>
+                                                                                </select>
+                                                                                @error('jenjang_pendidikan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <label>Jurusan</label>
+                                                                                <input required type="text"
+                                                                                    class="form-control"
+                                                                                    name="jurusan"@error('jurusan') is-invalid @enderror
+                                                                                    value="{{ old('jurusan') }}">
+                                                                                @error('jurusan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Tahun Lulus</label>
+                                                                                <input required type="number"
+                                                                                    class="form-control"
+                                                                                    name="tahun_lulus" min="1900"
+                                                                                    max="{{ date('Y') }}"
+                                                                                    placeholder="Masukkan tahun lulus">
+                                                                                @error('tahun_lulus')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Lampiran Sk</label>
+                                                                                <input type="file"
+                                                                                    class="form-control"
+                                                                                    name="lampiran_pendukung">
+                                                                                @error('lampiran_pendukung')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="modal fade" id="ModalEditPendidikan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                            Pendidikan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @foreach ($pendidikan as $edu)
+                                                            <form method="POST"
+                                                                action="{{ route('karyawan.update_pendidikan', $edu->id) }}"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="karyawan_id"
+                                                                    value="{{ $edu->id }}">
+                                                                <div class="card-body">
+                                                                    <div class="form-body">
+                                                                        <div class="row p-t-20">
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="kota_lahir"
+                                                                                        class="control-label">Nama
+                                                                                        Institusi</label>
+                                                                                    <input required type="text"
+                                                                                        name="nama_institusi"
+                                                                                        class="form-control"
+                                                                                        @error('nama_institusi') is-invalid @enderror
+                                                                                        value="{{ $edu->nama_institusi }}">
+                                                                                    @error('nama_institusi')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                    <small
+                                                                                        class="form-control-feedback">
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        class="control-label">Jenjang
+                                                                                        Pendidikan</label>
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        name="jenjang_pendidikan">
+                                                                                        <option value="">Pilih
+                                                                                            Jenjang Pendidikan</option>
+                                                                                        <option value="S2"
+                                                                                            {{ $edu->jenjang_pendidikan == 'S2' ? 'selected' : '' }}>
+                                                                                            S2
+                                                                                        </option>
+                                                                                        <option value="S1"
+                                                                                            {{ $edu->jenjang_pendidikan == 'S1' ? 'selected' : '' }}>
+                                                                                            S1
+                                                                                        </option>
+                                                                                        <option value="Diploma III"
+                                                                                            {{ $edu->jenjang_pendidikan == 'Diploma III' ? 'selected' : '' }}>
+                                                                                            Diploma III</option>
+                                                                                        <option
+                                                                                            value="SMK/SLTA Kejuruan"
+                                                                                            {{ $edu->jenjang_pendidikan == 'SMK/SLTA Kejuruan' ? 'selected' : '' }}>
+                                                                                            SMK/SLTA Kejuruan</option>
+                                                                                    </select>
+                                                                                    @error('jenjang_pendidikan')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-md-6 ">
+                                                                                <div class="form-group">
+                                                                                    <label>Jurusan</label>
+                                                                                    <input required type="text"
+                                                                                        class="form-control"
+                                                                                        name="jurusan"@error('jurusan') is-invalid @enderror
+                                                                                        value="{{ $edu->jurusan }}">
+                                                                                    @error('jurusan')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Tahun Lulus</label>
+                                                                                    <input required type="number"
+                                                                                        class="form-control"
+                                                                                        name="tahun_lulus"
+                                                                                        min="0000"
+                                                                                        max="{{ date('Y') }}"
+                                                                                        placeholder="Masukkan tahun lulus">
+                                                                                    @error('tahun_lulus')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Lampiran Sk</label>
+                                                                                    <input type="file"
+                                                                                        class="form-control"
+                                                                                        name="lampiran_pendukung">
+                                                                                    @error('lampiran_pendukung')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="ModalDeletePendidikan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
+                                                            Hapus</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
+                                                        @foreach ($pendidikan as $edu)
+                                                            <form id="deleteForm" method="POST"
+                                                                action="{{ route('karyawan.destroy_pendidikan', $edu->id) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+
                                         <div class="tab-pane" id="pelatihan">
                                             <div class="row">
                                                 <div class="col-12">
@@ -1154,9 +2410,7 @@
                                                                     Tambah Pelatihan
                                                                 </button>
                                                             </div>
-                                                            <!-- /.card-tools -->
                                                         </div>
-                                                        <!-- /.card-header -->
 
                                                         <div class="card-body p-9">
                                                             <div class="table-responsive">
@@ -1173,13 +2427,13 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <!-- Contoh baris pelatihan, ini bisa diganti dengan data dinamis -->
                                                                         @foreach ($pelatihan as $pel)
                                                                             <tr>
                                                                                 <td>{{ $pel->nama_pelatihan }}</td>
                                                                                 <td>{{ $pel->tanggal_mulai }}</td>
                                                                                 <td>{{ $pel->tanggal_akhir }}</td>
-                                                                                <td>{{ $pel->nama_penyelenggara }}</td>
+                                                                                <td>{{ $pel->nama_penyelenggara }}
+                                                                                </td>
                                                                                 <td>
                                                                                     @if ($pel->lampiran_pendukung)
                                                                                         <a href="{{ asset('storage/' . $pel->lampiran_pendukung) }}"
@@ -1191,11 +2445,324 @@
                                                                                             ada file</span>
                                                                                     @endif
                                                                                 </td>
+                                                                                <td>
+                                                                                    <button
+                                                                                        class="btn btn-warning btn-flex btn-center btn-sm edit-btn"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#ModalEditPelatihan"
+                                                                                        data-id="{{ $pel->id }}"
+                                                                                        data-nama="{{ $pel->nama_pelatihan }}"
+                                                                                        data-penyelenggara="{{ $pel->nama_penyelenggara }}"
+                                                                                        data-tanggal_mulai="{{ $pel->tanggal_mulai }}"
+                                                                                        data-tanggal_akhir="{{ $pel->tanggal_akhir }}">
+                                                                                        Edit
+                                                                                    </button>
+                                                                                    <a class="btn btn-danger btn-flex btn-center btn-sm"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#ModalDeletePelatihan">Delete</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam pengerjaan.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+                                        <div class="modal fade" id="ModalAddPelatihan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                            Pelatihan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_pelatihan') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama
+                                                                                    Pelatihan</label>
+                                                                                <input required type="text"
+                                                                                    name="nama_pelatihan"
+                                                                                    class="form-control @error('nama_pelatihan') is-invalid @enderror"
+                                                                                    value="{{ old('nama_pelatihan') }}">
+                                                                                @error('nama_pelatihan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama
+                                                                                    Penyelenggara</label>
+                                                                                <input required type="text"
+                                                                                    name="nama_penyelenggara"
+                                                                                    class="form-control @error('nama_penyelenggara') is-invalid @enderror"
+                                                                                    value="{{ old('nama_penyelenggara') }}">
+                                                                                @error('nama_penyelenggara')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Tanggal Mulai</label>
+                                                                                <input required type="date"
+                                                                                    class="form-control"
+                                                                                    name="tanggal_mulai"
+                                                                                    placeholder="Masukkan tanggal mulai">
+                                                                                @error('tanggal_mulai')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Tanggal Akhir</label>
+                                                                                <input required type="date"
+                                                                                    class="form-control"
+                                                                                    name="tanggal_akhir"
+                                                                                    placeholder="Masukkan tanggal akhir">
+                                                                                @error('tanggal_akhir')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Lampiran Sertifikat</label>
+                                                                                <input type="file"
+                                                                                    class="form-control"
+                                                                                    name="lampiran_pendukung">
+                                                                                @error('lampiran_pendukung')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Tutup</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="modal fade" id="ModalEditPelatihan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                            Pelatihan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @foreach ($pelatihan as $pel)
+                                                            <form method="POST"
+                                                                action="{{ route('karyawan.update_pelatihan', $pel->id) }}"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="karyawan_id"
+                                                                    value="{{ $pel->id }}">
+                                                                <div class="card-body">
+                                                                    <div class="form-body">
+                                                                        <div class="row p-t-20">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Nama
+                                                                                        Pelatihan</label>
+                                                                                    <input required type="text"
+                                                                                        name="nama_pelatihan"
+                                                                                        class="form-control @error('nama_pelatihan') is-invalid @enderror"
+                                                                                        value="{{ $pel->nama_pelatihan }}">
+                                                                                    @error('nama_pelatihan')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}</div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Nama
+                                                                                        Penyelenggara</label>
+                                                                                    <input required type="text"
+                                                                                        name="nama_penyelenggara"
+                                                                                        class="form-control @error('nama_penyelenggara') is-invalid @enderror"
+                                                                                        value="{{ $pel->nama_penyelenggara }}">
+                                                                                    @error('nama_penyelenggara')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}</div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Tanggal Mulai</label>
+                                                                                    <input required type="date"
+                                                                                        class="form-control"
+                                                                                        name="tanggal_mulai"
+                                                                                        placeholder="Masukkan tanggal mulai">
+                                                                                    @error('tanggal_mulai')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}</div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Tanggal Akhir</label>
+                                                                                    <input required type="date"
+                                                                                        class="form-control"
+                                                                                        name="tanggal_akhir"
+                                                                                        placeholder="Masukkan tanggal akhir">
+                                                                                    @error('tanggal_akhir')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}</div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Lampiran Sertifikat</label>
+                                                                                    <input type="file"
+                                                                                        class="form-control"
+                                                                                        name="lampiran_pendukung">
+                                                                                    @error('lampiran_pendukung')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}</div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <div class="modal fade" id="ModalDeletePelatihan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
+                                                            Hapus</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin ingin menghapus data pelatihan ini?</p>
+                                                        @foreach ($pelatihan as $pel)
+                                                            <form id="deleteForm" method="POST"
+                                                                action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="keterampilan">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card ">
+                                                        <div class="card-header">
+                                                            <h3 class="card-title">Keterampilan</h3>
+                                                            <div class="card-tools">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ModalAddKeterampilan">
+                                                                    Tambah Keterampilan
+                                                                </button>
+                                                            </div>
+                                                            <!-- /.card-tools -->
+                                                        </div>
+                                                        <!-- /.card-header -->
+
+                                                        <div class="card-body p-9">
+                                                            <div class="table-responsive">
+                                                                <table
+                                                                    class="table table-hover table-bordered table-striped">
+                                                                    <thead>
+                                                                        <tr class="text-center">
+                                                                            <th>Nama Keterampilan</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <!-- Contoh baris pelatihan, ini bisa diganti dengan data dinamis -->
+                                                                        @foreach ($keterampilan as $terampil)
+                                                                            <tr>
+                                                                                <td>{{ $terampil->nama_keterampilan }}
+                                                                                </td>
                                                                                 <td>
                                                                                     <a class="btn btn-warning btn-flex btn-center btn-sm"
                                                                                         data-toggle="modal"
-                                                                                        data-target="#ModalEditPelatihan"
+                                                                                        data-target="#ModalEditKeterampilan"
                                                                                         onclick="set_common_delete('35','skill');">Edit</a>
                                                                                     <a class="btn btn-danger btn-flex btn-center btn-sm"
                                                                                         data-toggle="modal"
@@ -1210,106 +2777,14 @@
                                                                 </table>
 
                                                                 <!-- Keterangan: Tabel ini masih dalam pengerjaan. -->
-                                                                <p class="text-muted text-center">Tabel ini masih dalam
-                                                                    pengerjaan.</p>
-
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="tab-pane" id="keterampilan">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="card ">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">Keterampilan</h3>
-                                                            <div class="card-tools">
-                                                                <button type="button" class="btn btn-primary"
-                                                                    data-toggle="modal"
-                                                                    data-target="#ModalAddKeterampilan">
-                                                                    Tambah keterampilan
-                                                                </button>
-                                                            </div>
-                                                            <!-- /.card-tools -->
-                                                        </div>
-                                                        <!-- /.card-header -->
-
-                                                        <div class="card-body p-9">
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table table-hover table-rounded table-striped border gy-7 gs-7">
-                                                                    <thead>
-                                                                        <tr
-                                                                            class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                                                                            <th>Nama Keterampilan</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="table-group-divider">
-                                                                        {{-- <tr>
-                                                                            <td>SISTEM INFORMATIKA</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/76/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('76','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>BUAT RAB</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/75/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('75','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>ANALISA RENCANA</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/74/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('74','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>MANAGEMENT PERSONAL</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('35','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr> --}}
-                                                                    </tbody>
-                                                                </table>
-                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam
                                                                     pengerjaan.</p>
                                                             </div>
                                                         </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="tab-pane" id="hobi">
@@ -1341,53 +2816,11 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody class="table-group-divider">
-                                                                        {{-- <tr>
-                                                                            <td>SISTEM INFORMATIKA</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/76/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('76','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>BUAT RAB</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/75/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('75','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>ANALISA RENCANA</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/74/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('74','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>MANAGEMENT PERSONAL</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('35','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr> --}}
+
                                                                     </tbody>
                                                                 </table>
-                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam
                                                                     pengerjaan.</p>
                                                             </div>
                                                         </div>
@@ -1397,7 +2830,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="tab-pane" id="prestasi">
@@ -1431,41 +2863,176 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        {{-- <tr>
-                                                                            <td>UNIVERSITAS SATRIA MAKASSAR</td>
-                                                                            <td>TEKNIK INFORMATIKA</td>
-                                                                            <td>2012</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/pendidikan_8_1666883665.pdf"
-                                                                                    class="btn btn-secondary btn-sm"
-                                                                                    download="File Pendukung">Download</a>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('35','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr> --}}
                                                                         <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
                                                                     </tbody>
                                                                 </table>
-                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam
                                                                     pengerjaan.</p>
                                                             </div>
                                                         </div>
-
-
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
+
+
+                                        {{--   <div class="modal fade" id="ModalAddPrestasi" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                            Keterampilan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_keterampilan') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama
+                                                                                    Keterampilan</label>
+                                                                                <input required type="text"
+                                                                                    name="nama_keterampilan"
+                                                                                    class="form-control"
+                                                                                    @error('nama_keterampilan') is-invalid @enderror
+                                                                                    value="{{ old('nama_keterampilan') }}">
+                                                                                @error('nama_keterampilan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="ModalEditPrestasi" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                            Keterampilan
+                                                        </h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @foreach ($keterampilan as $terampil)
+                                                            <form method="POST"
+                                                                action="{{ route('karyawan.update_keterampilan', $terampil->id) }}"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="karyawan_id"
+                                                                    value="{{ $karyawan->id }}">
+                                                                <div class="card-body">
+                                                                    <div class="form-body">
+                                                                        <div class="row p-t-20">
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">Nama
+                                                                                        Keterampilan</label>
+                                                                                    <input required type="text"
+                                                                                        name="nama_pelatihan"
+                                                                                        class="form-control"
+                                                                                        @error('nama_pelatihan') is-invalid @enderror
+                                                                                        value="{{ $terampil->nama_keterampilan }}">
+                                                                                    @error('nama_keterampilan')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                    <small
+                                                                                        class="form-control-feedback">
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
+                                                            Hapus
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
+                                                        @foreach ($pelatihan as $pel)
+                                                            <form id="deleteForm" method="POST"
+                                                                action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div> --}}
 
                                         <div class="tab-pane" id="talent_review">
                                             <div class="row">
@@ -1477,7 +3044,7 @@
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
                                                                     data-target="#ModalTambahKaryawan">
-                                                                    Tambah Prestasi
+                                                                    Tambah Talent
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
@@ -1490,43 +3057,22 @@
                                                                     class="table table-hover table-bordered table-striped">
                                                                     <thead>
                                                                         <tr class="text-center">
-                                                                            <th>Nama Event</th>
-                                                                            <th>Nama Penghargaan</th>
-                                                                            <th>Tahun Penghargaan</th>
-                                                                            <th>Lampiran Penghargaan</th>
+                                                                            <th>Tanggal Talent</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        {{-- <tr>
-                                                                            <td>UNIVERSITAS SATRIA MAKASSAR</td>
-                                                                            <td>TEKNIK INFORMATIKA</td>
-                                                                            <td>2012</td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/uploads/photo/pendidikan_8_1666883665.pdf"
-                                                                                    class="btn btn-secondary btn-sm"
-                                                                                    download="File Pendukung">Download</a>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a href="https://karyawan.telpro7.org/data_karyawan/edit_skill/35/62/"
-                                                                                    class="btn btn-info btn-flex btn-center btn-sm">Edit</a>
-                                                                                <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#commonDelete"
-                                                                                    onclick="set_common_delete('35','skill');">Delete</a>
-                                                                            </td>
-                                                                        </tr> --}}
                                                                         <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
                                                                     </tbody>
                                                                 </table>
-                                                                <p class="text-muted text-center">Tabel ini masih dalam
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam
                                                                     pengerjaan.</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="tab-pane" id="catatan">
@@ -1689,7 +3235,8 @@
                                                             </div>
 
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Rekening
+                                                                <label
+                                                                    class="col-lg-4 fw-semibold text-muted">Rekening
                                                                     Bank</label>
                                                                 <div class="col-lg-8">
                                                                     <span
@@ -1757,7 +3304,8 @@
     <!--Custom JavaScript -->
     <script src="{{ asset('template/') }}/js/custom.min.js"></script>
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables.min.js"></script>
-    <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
+    <script
+        src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
     </script>
     <script src="{{ asset('template/') }}/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js">
     </script>
@@ -1921,1530 +3469,22 @@
         document.getElementById('masa-band').innerText =
             `${masaJabatan.years} tahun, ${masaJabatan.months} bulan, ${masaJabatan.days} hari`;
     </script>
-    <div class="modal fade" id="ModalEditPribadi" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Pribadi</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.update_pribadi', $karyawan->id) }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir</label>
-                                            <input type="date" id="tgl_lahir" value="{{ $karyawan->tgl_lahir }}"
-                                                name="tgl_lahir" class="form-control" placeholder="dd/mm/yyyy"
-                                                @error('tgl_lahir') is-invalid @enderror
-                                                value="{{ old('tgl_lahir') }}">
-                                            @error('tgl_lahir')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="kota_lahir" class="control-label">Kota Lahir</label>
-                                            <input type="text" id="kota_lahir"
-                                                value="{{ $karyawan->kota_lahir }}" name="kota_lahir"
-                                                class="form-control" @error('kota_lahir') is-invalid @enderror
-                                                value="{{ old('kota_lahir') }}">
-                                            @error('kota_lahir')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jenis_kelamin" class="control-label">Jenis Kelamin</label>
-                                            <select
-                                                class="form-control custom-select @error('jenis_kelamin') is-invalid @enderror"
-                                                id="jenis_kelamin" name="jenis_kelamin">
-                                                <option value="">Pilih Jenis Kelamin</option>
-                                                <option value="Laki-laki"
-                                                    {{ old('jenis_kelamin') == 'Laki-laki' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Laki-laki') ? 'selected' : '' }}>
-                                                    Laki-laki</option>
-                                                <option value="Perempuan"
-                                                    {{ old('jenis_kelamin') == 'Perempuan' || (isset($karyawan) && $karyawan->jenis_kelamin == 'Perempuan') ? 'selected' : '' }}>
-                                                    Perempuan</option>
-                                            </select>
-                                            @error('jenis_kelamin')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
 
-                                            @error('jenis_kelamin')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
 
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label for="alamat">Alamat</label>
-                                            <input type="text" value="{{ $karyawan->alamat }}"
-                                                class="form-control"
-                                                name="alamat"@error('alamat') is-invalid @enderror
-                                                value="{{ old('alamat') }}">
-                                            @error('alamat')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="agama" class="control-label">Agama</label>
-                                            <select
-                                                class="form-control custom-select @error('agama') is-invalid @enderror"
-                                                id="agama" name="agama">
-                                                <option value="">Pilih Agama</option>
-                                                <option value="Islam"
-                                                    {{ old('agama') == 'Islam' || $karyawan->agama == 'Islam' ? 'selected' : '' }}>
-                                                    Islam</option>
-                                                <option value="katolik"
-                                                    {{ old('agama') == 'Katolik' || $karyawan->agama == 'Katolik' ? 'selected' : '' }}>
-                                                    Kristen Katolik</option>
-                                                <option value="kristen protestan"
-                                                    {{ old('agama') == 'Kristen protestan' || $karyawan->agama == 'Kristen protestan' ? 'selected' : '' }}>
-                                                    Kristen Protestan</option>
-                                                <option value="hindu"
-                                                    {{ old('agama') == 'Hindu' || $karyawan->agama == 'Hindu' ? 'selected' : '' }}>
-                                                    Hindu</option>
-                                                <option value="budha"
-                                                    {{ old('agama') == 'Budha' || $karyawan->agama == 'Budha' ? 'selected' : '' }}>
-                                                    Budha</option>
-                                                <option value="kong hucuh"
-                                                    {{ old('agama') == 'Kong hucuh' || $karyawan->agama == 'Kong Hucuh' ? 'selected' : '' }}>
-                                                    Kong Hucu</option>
-                                            </select>
-                                            @error('agama')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
 
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kontak Darurat</label>
-                                            <input type="text" value="{{ $karyawan->kontak_darurat }}"
-                                                name="kontak_darurat" class="form-control"
-                                                @error('kontak_darurat') is-invalid @enderror
-                                                value="{{ old('kontak_darurat') }}">
-                                            @error('kontak_darurat')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="suku">suku</label>
-                                            <input type="text" value="{{ $karyawan->suku }}"
-                                                class="form-control" id="suku" name="suku">
-                                            @error('suku')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="golongan_darah" class="control-label">Golongan Darah</label>
-                                            <select
-                                                class="form-control custom-select @error('golongan_darah') is-invalid @enderror"
-                                                id="golongan_darah" name="golongan_darah">
-                                                <option value="">Pilih Golongan Darah</option>
-                                                <option value="A"
-                                                    {{ old('golongan_darah') == 'A' || $karyawan->golongan_darah == 'A' ? 'selected' : '' }}>
-                                                    A</option>
-                                                <option value="AB"
-                                                    {{ old('golongan_darah') == 'AB' || $karyawan->golongan_darah == 'AB' ? 'selected' : '' }}>
-                                                    AB</option>
-                                                <option value="B"
-                                                    {{ old('golongan_darah') == 'B' || $karyawan->golongan_darah == 'B' ? 'selected' : '' }}>
-                                                    B</option>
-                                                <option value="O"
-                                                    {{ old('golongan_darah') == 'O' || $karyawan->golongan_darah == 'O' ? 'selected' : '' }}>
-                                                    O</option>
-                                            </select>
-                                            @error('golongan_darah')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
 
 
 
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="ModalEditKeluarga" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Keluarga</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.update_keluarga', $karyawan->id) }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="status_nikah" class="control-label">Status Menikah</label>
-                                            <select class="form-control custom-select" id="status_nikah"
-                                                name="status_nikah">
-                                                <option value="">Pilih Status Menikah</option>
-                                                <option value="Menikah"
-                                                    {{ $karyawan->status_nikah == 'Menikah' ? 'selected' : '' }}>
-                                                    Menikah</option>
-                                                <option value="Belum Menikah"
-                                                    {{ $karyawan->status_nikah == 'Belum Menikah' ? 'selected' : '' }}>
-                                                    Belum Menikah</option>
-                                            </select>
-                                            @error('status_nikah')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Nikah</label>
-                                            <input type="date" id="tgl_nikah" value="{{ $karyawan->tgl_nikah }}"
-                                                name="tgl_nikah" class="form-control" placeholder="dd/mm/yyyy"
-                                                @error('tgl_nikah') is-invalid @enderror
-                                                value="{{ old('tgl_nikah') }}">
-                                            @error('tgl_nikah')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jumlah_anak">Jumlah Anak</label>
-                                            <input type="number" min="0" class="form-control"
-                                                id="jumlah_anak" name="jumlah_anak">
-                                            @error('jumlah_anak')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label for="alamat">Nomor Kartu keluarga</label>
-                                            <input type="text" value="{{ $karyawan->nomor_kartu_keluarga }}"
-                                                class="form-control"
-                                                name="nomor_kartu_keluarga"@error('nomor_kartu_keluarga') is-invalid @enderror
-                                                value="{{ old('nomor_kartu_keluarga') }}">
-                                            @error('nomor_kartu_keluarga')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nama_pasangan">Nama Pasangan</label>
-                                            <input type="text" class="form-control" id="nama_pasangan"
-                                                name="nama_pasangan">
-                                            @error('nama_pasangan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Anak Pertama</label>
-                                            <input type="text" value="{{ $karyawan->nama_anak_pertama }}"
-                                                name="nama_anak_pertama" class="form-control"
-                                                @error('nama_anak_pertama') is-invalid @enderror
-                                                value="{{ old('nama_anak_pertama') }}">
-                                            @error('nama_anak_pertama')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
-                                                Pertama</label>
-                                            <input type="date" id="tgl_lahir_anak_pertama"
-                                                value="{{ $karyawan->tgl_lahir_anak_pertama }}"
-                                                name="tgl_lahir_anak_pertama" class="form-control"
-                                                placeholder="dd/mm/yyyy"
-                                                @error('tgl_lahir_anak_pertama') is-invalid @enderror
-                                                value="{{ old('tgl_lahir_anak_pertama') }}">
-                                            @error('tgl_lahir_anak_pertama')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Anak Kedua</label>
-                                            <input type="text" value="{{ $karyawan->nama_anak_kedua }}"
-                                                name="nama_anak_kedua" class="form-control"
-                                                @error('nama_anak_kedua') is-invalid @enderror
-                                                value="{{ old('nama_anak_kedua') }}">
-                                            @error('nama_anak_kedua')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
-                                                Kedua</label>
-                                            <input type="date" id="tgl_lahir_anak_kedua"
-                                                value="{{ $karyawan->tgl_lahir_anak_kedua }}"
-                                                name="tgl_lahir_anak_kedua" class="form-control"
-                                                placeholder="dd/mm/yyyy"
-                                                @error('tgl_lahir_anak_kedua') is-invalid @enderror
-                                                value="{{ old('tgl_lahir_anak_kedua') }}">
-                                            @error('tgl_lahir_anak_kedua')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Anak Ketiga</label>
-                                            <input type="text" value="{{ $karyawan->nama_anak_ketiga }}"
-                                                name="nama_anak_ketiga" class="form-control"
-                                                @error('nama_anak_ketiga') is-invalid @enderror
-                                                value="{{ old('nama_anak_ketiga') }}">
-                                            @error('nama_anak_ketiga')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Lahir Anak
-                                                Ketiga</label>
-                                            <input type="date" id="tgl_lahir_anak_ketiga"
-                                                value="{{ $karyawan->tgl_lahir_anak_ketiga }}"
-                                                name="tgl_lahir_anak_ketiga" class="form-control"
-                                                placeholder="dd/mm/yyyy"
-                                                @error('tgl_lahir_anak_ketiga') is-invalid @enderror
-                                                value="{{ old('tgl_lahir_anak_ketiga') }}">
-                                            @error('tgl_lahir_anak_ketiga')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalEditJob" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">NIK Telpro</label>
-                                            <input type="number" name="nik" min="0" class="form-control"
-                                                @error('nik') is-invalid @enderror value="{{ $karyawan->nik }}">
-                                            @error('nik')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="kota_lahir" class="control-label">NIK Telkom Group</label>
-                                            <input type="text" name="nik_telpro" class="form-control"
-                                                @error('nik_telpro') is-invalid @enderror
-                                                value="{{ $karyawan->telkomgroup }}">
-                                            @error('nik_telpro')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jabatan">Nama Jabatan</label>
-                                            <input type="text" class="form-control" id="jabatan"
-                                                name="jabatan"@error('jabatan') is-invalid @enderror
-                                                value="{{ $karyawan->jabatan }}">
-                                            @error('jabatan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="unit_kerja" class="control-label">Unit Kerja</label>
-                                            <select
-                                                class="form-control custom-select @error('unit_kerja') is-invalid @enderror"
-                                                id="unit_kerja" name="unit_kerja">
-                                                <option value="">Pilih Unit Kerja</option>
-                                                <option value="General Manager Regional"
-                                                    {{ old('unit_kerja') == 'General Manager Regional' || (isset($karyawan) && $karyawan->unit_kerja == 'General Manager Regional') ? 'selected' : '' }}>
-                                                    General Manager Regional</option>
-                                                <option value="Manager Marketing, Sales & Solution"
-                                                    {{ old('unit_kerja') == 'Manager Marketing, Sales & Solution' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution') ? 'selected' : '' }}>
-                                                    Manager Marketing, Sales & Solution</option>
-                                                <option value="Manager Planning & Delivery"
-                                                    {{ old('unit_kerja') == 'Manager Planning & Delivery' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Planning & Delivery') ? 'selected' : '' }}>
-                                                    Manager Planning & Delivery</option>
-                                                <option value="Manager Operation & Maintenance"
-                                                    {{ old('unit_kerja') == 'Manager Operation & Maintenance' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Operation & Maintenance') ? 'selected' : '' }}>
-                                                    Manager Operation & Maintenance</option>
-                                                <option value="Manager Business Support & Risk Management"
-                                                    {{ old('unit_kerja') == 'Manager Business Support & Risk Management' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Business Support & Risk Management') ? 'selected' : '' }}>
-                                                    Manager Business Support & Risk Management</option>
-                                                <option value="Area Kaltimtara"
-                                                    {{ old('unit_kerja') == 'Area Kaltimtara' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kaltimtara') ? 'selected' : '' }}>
-                                                    Area Kaltimtara</option>
-                                                <option value="Area Kalselteng"
-                                                    {{ old('unit_kerja') == 'Area Kalselteng' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalselteng') ? 'selected' : '' }}>
-                                                    Area Kalselteng</option>
-                                                <option value="Area Kalbar"
-                                                    {{ old('unit_kerja') == 'Area Kalbar' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalbar') ? 'selected' : '' }}>
-                                                    Area Kalbar</option>
-                                            </select>
-                                            @error('unit_kerja')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kelas Band Posisi</label>
-                                            <select
-                                                class="form-control custom-select @error('band_kelas_posisi') is-invalid @enderror"
-                                                name="band_kelas_posisi">
-                                                <option value="">Pilih Kelas Band Posisi</option>
-                                                <option value="I"
-                                                    {{ old('band_kelas_posisi') == 'I' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'I') ? 'selected' : '' }}>
-                                                    I</option>
-                                                <option value="II"
-                                                    {{ old('band_kelas_posisi') == 'II' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'II') ? 'selected' : '' }}>
-                                                    II</option>
-                                                <option value="III"
-                                                    {{ old('band_kelas_posisi') == 'III' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'III') ? 'selected' : '' }}>
-                                                    III</option>
-                                                <option value="IV"
-                                                    {{ old('band_kelas_posisi') == 'IV' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'IV') ? 'selected' : '' }}>
-                                                    IV</option>
-                                                <option value="V"
-                                                    {{ old('band_kelas_posisi') == 'V' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'V') ? 'selected' : '' }}>
-                                                    V</option>
-                                                <option value="VI"
-                                                    {{ old('band_kelas_posisi') == 'VI' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VI') ? 'selected' : '' }}>
-                                                    VI</option>
-                                                <option value="VII"
-                                                    {{ old('band_kelas_posisi') == 'VII' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VII') ? 'selected' : '' }}>
-                                                    VII</option>
-                                            </select>
-                                            @error('band_kelas_posisi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_bergabung">tgl_bergabung</label>
-                                            <input type="date" class="form-control" id="tgl_bergabung"
-                                                value="{{ $karyawan->tgl_bergabung }}" name="tgl_bergabung">
-                                            @error('tgl_bergabung')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="nomor_sk">Nomor Surat Keputusan</label>
-                                            <input type="text" class="form-control" id="suku"
-                                                value="{{ $karyawan->nomor_sk }}" name="nomor_sk">
-                                            @error('nomor_sk')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalAddJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Job History</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
-                                            <input type="date" name="tgl_jabat" class="form-control"
-                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
-                                                value="{{ old('tgl_jabat') }}">
-                                            @error('tgl_jabat')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
-                                            <input type="text" name="nama" class="form-control"
-                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
-                                            @error('nama')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label for="lokasi">Lokasi Penempatan</label>
-                                            <input type="text" class="form-control"
-                                                name="lokasi"@error('lokasi') is-invalid @enderror
-                                                value="{{ old('lokasi') }}">
-                                            @error('lokasi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kelas Band Posisi</label>
-                                            <select class="form-control custom-select" name="band">
-                                                <option value="">Pilih Kelas Band Posisi</option>
-                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
-                                                </option>
-                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
-                                                    II
-                                                </option>
-                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
-                                                    III
-                                                </option>
-                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
-                                                    IV
-                                                </option>
-                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
-                                                </option>
-                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
-                                                    VI
-                                                </option>
-                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
-                                                    VII
-                                                </option>
-                                            </select>
-                                            @error('band_kelas_posisi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="file_rekening_bank">Lampiran Sk</label>
-                                            <input type="file" class="form-control" id="lampiran"
-                                                name="lampiran">
-                                            @error('lampiran')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalEditJobHistory" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Job History</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_job_history') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="tgl_lahir" class="control-label">Tanggal Menjabat</label>
-                                            <input type="date" name="tgl_jabat" class="form-control"
-                                                placeholder="dd/mm/yyyy" @error('tgl_jabat') is-invalid @enderror
-                                                value="{{ old('tgl_jabat') }}">
-                                            @error('tgl_jabat')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="kota_lahir" class="control-label">Nama Jabatan</label>
-                                            <input type="text" name="nama" class="form-control"
-                                                @error('nama') is-invalid @enderror value="{{ old('nama') }}">
-                                            @error('nama')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label for="lokasi">Lokasi Penempatan</label>
-                                            <input type="text" class="form-control"
-                                                name="lokasi"@error('lokasi') is-invalid @enderror
-                                                value="{{ old('lokasi') }}">
-                                            @error('lokasi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Kelas Band Posisi</label>
-                                            <select class="form-control custom-select" name="band">
-                                                <option value="">Pilih Kelas Band Posisi</option>
-                                                <option value="I" {{ old('band') == 'I' ? 'selected' : '' }}>I
-                                                </option>
-                                                <option value="II" {{ old('band') == 'II' ? 'selected' : '' }}>
-                                                    II
-                                                </option>
-                                                <option value="III" {{ old('band') == 'III' ? 'selected' : '' }}>
-                                                    III
-                                                </option>
-                                                <option value="IV" {{ old('band') == 'IV' ? 'selected' : '' }}>
-                                                    IV
-                                                </option>
-                                                <option value="V" {{ old('band') == 'V' ? 'selected' : '' }}>V
-                                                </option>
-                                                <option value="VI" {{ old('band') == 'VI' ? 'selected' : '' }}>
-                                                    VI
-                                                </option>
-                                                <option value="VII" {{ old('band') == 'VII' ? 'selected' : '' }}>
-                                                    VII
-                                                </option>
-                                            </select>
-                                            @error('band_kelas_posisi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="file_rekening_bank">Lampiran Sk</label>
-                                            <input type="file" class="form-control" id="lampiran"
-                                                name="lampiran">
-                                            @error('lampiran')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalAddPendidikan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pendidikan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_pendidikan') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="kota_lahir" class="control-label">Nama Institusi</label>
-                                            <input required type="text" name="nama_institusi"
-                                                class="form-control" @error('nama_institusi') is-invalid @enderror
-                                                value="{{ old('nama_institusi') }}">
-                                            @error('nama_institusi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Jenjang
-                                                Pendidikan</label>
-                                            <select class="form-control custom-select" name="jenjang_pendidikan">
-                                                <option value="">Pilih Jenjang Pendidikan</option>
-                                                <option value="S2">S2</option>
-                                                <option value="S1">S1</option>
-                                                <option value="Diploma III">Diploma III</option>
-                                                <option value="SMK/SLTA Kejuruan">SMK/SLTA Kejuruan</option>
-                                            </select>
-                                            @error('jenjang_pendidikan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <div class="form-group">
-                                            <label>Jurusan</label>
-                                            <input required type="text" class="form-control"
-                                                name="jurusan"@error('jurusan') is-invalid @enderror
-                                                value="{{ old('jurusan') }}">
-                                            @error('jurusan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tahun Lulus</label>
-                                            <input required type="number" class="form-control" name="tahun_lulus"
-                                                min="1900" max="{{ date('Y') }}"
-                                                placeholder="Masukkan tahun lulus">
-                                            @error('tahun_lulus')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Lampiran Sk</label>
-                                            <input type="file" class="form-control" name="lampiran_pendukung">
-                                            @error('lampiran_pendukung')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalEditPendidikan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Pendidikan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    @foreach ($pendidikan as $edu)
-                        <form method="POST" action="{{ route('karyawan.update_pendidikan', $edu->id) }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="karyawan_id" value="{{ $edu->id }}">
-                            <div class="card-body">
-                                <div class="form-body">
-                                    <div class="row p-t-20">
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="kota_lahir" class="control-label">Nama Institusi</label>
-                                                <input required type="text" name="nama_institusi"
-                                                    class="form-control"
-                                                    @error('nama_institusi') is-invalid @enderror
-                                                    value="{{ $edu->nama_institusi }}">
-                                                @error('nama_institusi')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <small class="form-control-feedback"> </small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Jenjang Pendidikan</label>
-                                                <select class="form-control custom-select"
-                                                    name="jenjang_pendidikan">
-                                                    <option value="">Pilih Jenjang Pendidikan</option>
-                                                    <option value="S2"
-                                                        {{ $edu->jenjang_pendidikan == 'S2' ? 'selected' : '' }}>S2
-                                                    </option>
-                                                    <option value="S1"
-                                                        {{ $edu->jenjang_pendidikan == 'S1' ? 'selected' : '' }}>S1
-                                                    </option>
-                                                    <option value="Diploma III"
-                                                        {{ $edu->jenjang_pendidikan == 'Diploma III' ? 'selected' : '' }}>
-                                                        Diploma III</option>
-                                                    <option value="SMK/SLTA Kejuruan"
-                                                        {{ $edu->jenjang_pendidikan == 'SMK/SLTA Kejuruan' ? 'selected' : '' }}>
-                                                        SMK/SLTA Kejuruan</option>
-                                                </select>
-                                                @error('jenjang_pendidikan')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-6 ">
-                                            <div class="form-group">
-                                                <label>Jurusan</label>
-                                                <input required type="text" class="form-control"
-                                                    name="jurusan"@error('jurusan') is-invalid @enderror
-                                                    value="{{ $edu->jurusan }}">
-                                                @error('jurusan')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tahun Lulus</label>
-                                                <input required type="number" class="form-control"
-                                                    name="tahun_lulus" min="0000" max="{{ date('Y') }}"
-                                                    placeholder="Masukkan tahun lulus">
-                                                @error('tahun_lulus')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Lampiran Sk</label>
-                                                <input type="file" class="form-control"
-                                                    name="lampiran_pendukung">
-                                                @error('lampiran_pendukung')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalDeletePendidikan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
-                    @foreach ($pendidikan as $edu)
-                        <form id="deleteForm" method="POST"
-                            action="{{ route('karyawan.destroy_pendidikan', $edu->id) }}">
-                            @csrf
-                            @method('DELETE')
-                    @endforeach
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalAddPelatihan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pelatihan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_pelatihan') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Pelatihan</label>
-                                            <input required type="text" name="nama_pelatihan"
-                                                class="form-control" @error('nama_pelatihan') is-invalid @enderror
-                                                value="{{ old('nama_pelatihan') }}">
-                                            @error('nama_pelatihan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Penyelenggara</label>
-                                            <input required type="text" name="nama_penyelenggara"
-                                                class="form-control"
-                                                @error('nama_penyelenggara') is-invalid @enderror
-                                                value="{{ old('nama_penyelenggara') }}">
-                                            @error('nama_penyelenggara')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tanggal Mulai</label>
-                                            <input required type="date" class="form-control"
-                                                name="tanggal_mulai" placeholder="Masukkan tanggal mulai">
-                                            @error('tanggal_mulai')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tanggal Akhir</label>
-                                            <input required type="date" class="form-control"
-                                                name="tanggal_akhir" placeholder="Masukkan tanggal akhir">
-                                            @error('tanggal_akhir')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Lampiran Sertifikat</label>
-                                            <input type="file" class="form-control" name="lampiran_pendukung">
-                                            @error('lampiran_pendukung')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalEditPelatihan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Pelatihan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    @foreach ($pelatihan as $pel)
-                        <form method="POST" action="{{ route('karyawan.update_pelatihan', $pel->id) }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                            <div class="card-body">
-                                <div class="form-body">
-                                    <div class="row p-t-20">
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Nama Pelatihan</label>
-                                                <input required type="text" name="nama_pelatihan"
-                                                    class="form-control"
-                                                    @error('nama_pelatihan') is-invalid @enderror
-                                                    value="{{ $pel->nama_pelatihan }}">
-                                                @error('nama_pelatihan')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <small class="form-control-feedback"> </small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Nama Penyelenggara</label>
-                                                <input required type="text" name="nama_penyelenggara"
-                                                    class="form-control"
-                                                    @error('nama_penyelenggara') is-invalid @enderror
-                                                    value="{{ $pel->nama_penyelenggara }}">
-                                                @error('nama_penyelenggara')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <small class="form-control-feedback"> </small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Mulai</label>
-                                                <input required type="date" class="form-control"
-                                                    name="tanggal_mulai" placeholder="Masukkan tanggal mulai"
-                                                    value="{{ $pel->tanggal_mulai }}">
-                                                @error('tanggal_mulai')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Akhir</label>
-                                                <input required type="date" class="form-control"
-                                                    name="tanggal_akhir" placeholder="Masukkan tanggal akhir"
-                                                    value="{{ $pel->tanggal_akhir }}">
-                                                @error('tanggal_akhir')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Lampiran Sertifikat</label>
-                                                <input type="file" class="form-control"
-                                                    name="lampiran_pendukung">
-                                                @error('lampiran_pendukung')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalDeletePelatihan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
-                    @foreach ($pelatihan as $pel)
-                        <form id="deleteForm" method="POST"
-                            action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
-                            @csrf
-                            @method('DELETE')
-                    @endforeach
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalAddKeterampilan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Keterampilan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('karyawan.add_keterampilan') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row p-t-20">
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label">Nama Keterampilan</label>
-                                            <input required type="text" name="nama_keterampilan"
-                                                class="form-control" @error('nama_keterampilan') is-invalid @enderror
-                                                value="{{ old('nama_keterampilan') }}">
-                                            @error('nama_keterampilan')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            <small class="form-control-feedback"> </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalEditKeterampilan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Pelatihan</h5>
-                    @if ($errors->any())
-                        <span class="text-danger" style="font-size: 0.9em;">
-                            {{ $errors->first() }}
-                        </span>
-                    @endif
-                </div>
-                <div class="modal-body">
-                    @foreach ($pelatihan as $pel)
-                        <form method="POST" action="{{ route('karyawan.update_pelatihan', $pel->id) }}"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
-                            <div class="card-body">
-                                <div class="form-body">
-                                    <div class="row p-t-20">
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Nama Pelatihan</label>
-                                                <input required type="text" name="nama_pelatihan"
-                                                    class="form-control"
-                                                    @error('nama_pelatihan') is-invalid @enderror
-                                                    value="{{ $pel->nama_pelatihan }}">
-                                                @error('nama_pelatihan')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <small class="form-control-feedback"> </small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Nama Penyelenggara</label>
-                                                <input required type="text" name="nama_penyelenggara"
-                                                    class="form-control"
-                                                    @error('nama_penyelenggara') is-invalid @enderror
-                                                    value="{{ $pel->nama_penyelenggara }}">
-                                                @error('nama_penyelenggara')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <small class="form-control-feedback"> </small>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Mulai</label>
-                                                <input required type="date" class="form-control"
-                                                    name="tanggal_mulai" placeholder="Masukkan tanggal mulai"
-                                                    value="{{ $pel->tanggal_mulai }}">
-                                                @error('tanggal_mulai')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Tanggal Akhir</label>
-                                                <input required type="date" class="form-control"
-                                                    name="tanggal_akhir" placeholder="Masukkan tanggal akhir"
-                                                    value="{{ $pel->tanggal_akhir }}">
-                                                @error('tanggal_akhir')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Lampiran Sertifikat</label>
-                                                <input type="file" class="form-control"
-                                                    name="lampiran_pendukung">
-                                                @error('lampiran_pendukung')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ModalDeleteKeterampilan" tabindex="-1" aria-labelledby="exampleModalLabel"
-        data-backdrop="static" data-keyboard="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
-                    @foreach ($pelatihan as $pel)
-                        <form id="deleteForm" method="POST"
-                            action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
-                            @csrf
-                            @method('DELETE')
-                    @endforeach
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
 
 
 
