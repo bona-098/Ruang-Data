@@ -26,7 +26,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
@@ -37,7 +37,7 @@ class KaryawanController extends Controller
         $jumlahKaryawan = Karyawan::count();
 
         // Menyaring karyawan berdasarkan unit kerja
-        $karyawan_organik = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan_organik = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
             ->select('karyawan.*') // Memilih kolom dari tabel karyawan
@@ -45,7 +45,7 @@ class KaryawanController extends Controller
 
 
 
-        $karyawan_regional6 = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan_regional6 = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->whereIn('data_kerja_karyawan.unit_kerja', [
                 'General Manager Regional',
@@ -64,21 +64,21 @@ class KaryawanController extends Controller
 
 
 
-        $karyawan_areakaltimtara = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan_areakaltimtara = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
             ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
             ->get();
 
-        $karyawan_areakalselteng = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan_areakalselteng = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng') // Kondisi unit_kerja
             ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
             ->get();
 
-        $karyawan_areakalbar = Karyawan::with('dataKerja') // Eager loading relasi
+        $karyawan_areakalbar = Karyawan::with('datakerja') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar') // Kondisi unit_kerja
             ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
