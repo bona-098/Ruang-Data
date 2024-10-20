@@ -27,4 +27,9 @@ class JobHistory extends Model
     {
         return $this->belongsTo(Karyawan::class, 'karyawan_id');
     }
+
+    public function datakerjakaryawans()
+    {
+        return $this->hasMany(DataKerja::class, 'karyawan_id');
+    }
 }

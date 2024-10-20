@@ -98,13 +98,15 @@
                                             </div>
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $job->karyawan->nik }} / {{ $job->karyawan->telkomgroup }}</td>
+                                            {{ $job->karyawan->datakerjakaryawans->first()->nik }} /
+                                            {{ $job->karyawan->datakerjakaryawans->first()->telkomgroup }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             <a href="{{ route('karyawan.show', $job->karyawan->id) }}"
                                                 style="color: black;">{{ $job->karyawan->nama_karyawan }}</a>
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $job->karyawan->unit_kerja }}</td>
+                                            {{ $job->karyawan->datakerjakaryawans->first()->unit_kerja ?? 'N/A' }}
+                                        </td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $job->lokasi }}</td>
                                         <td style="white-space: nowrap;">{{ $job->nama }}</td>
