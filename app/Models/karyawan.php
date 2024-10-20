@@ -80,7 +80,7 @@ class Karyawan extends Model
         return $this->hasMany(Keluarga::class, 'karyawan_id');
     }
 
-    public function datakerja()
+    public function datakerjakaryawans()
     {
         return $this->hasMany(DataKerja::class);
     }
