@@ -84,4 +84,9 @@ class Karyawan extends Model
     {
         return $this->hasMany(DataKerja::class);
     }
+
+    public function talent()
+    {
+        return $this->hasMany(Talent::class);
+    }
 }

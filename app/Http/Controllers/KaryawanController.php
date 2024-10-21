@@ -11,6 +11,8 @@ use App\Models\Pelatihan;
 use App\Models\Keluarga;
 use App\Models\datakerjakaryawans;
 use App\Models\Jabatan;
+use App\Models\Prestasi;
+use App\Models\Talent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\LogActivities; // Import model MitraActivityLog
@@ -189,6 +191,7 @@ class KaryawanController extends Controller
         ])->count();
 
 
+
         return view('bsrm.karyawan.karyawan', compact(
             'karyawan',
             'jumlahKaryawan',
@@ -354,6 +357,7 @@ class KaryawanController extends Controller
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
         $keterampilan = Keterampilan::where('karyawan_id', $id)->get();
+        $talent = Talent::where('karyawan_id', $id)->get();
         $data_keluarga = Karyawan::with('keluarga')
             ->join('data_keluarga', 'karyawan.id', '=', 'data_keluarga.karyawan_id')
             ->select('karyawan.*', 'data_keluarga.*')
@@ -372,7 +376,7 @@ class KaryawanController extends Controller
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
 
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent'));
     }
 
     /**
@@ -684,7 +688,7 @@ class KaryawanController extends Controller
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
-            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
 
@@ -694,8 +698,8 @@ class KaryawanController extends Controller
 
         // Simpan lampiran ke folder 'public/lampiran'
         $lampiranPath = null; // Inisialisasi path
-        if ($request->hasFile('lampiran')) {
-            $lampiran = $request->file('lampiran');
+        if ($request->hasFile('lampiran_pendukung')) {
+            $lampiran = $request->file('lampiran_pendukung');
             $filename = $karyawan_id . '_' . $pelatihan . '.' . $lampiran->getClientOriginalExtension();
             $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
         }
@@ -707,7 +711,7 @@ class KaryawanController extends Controller
             'nama_penyelenggara' => $request->nama_penyelenggara,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_akhir' => $request->tanggal_akhir,
-            'lampiran' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
+            'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
         ]);
 
         // Redirect dengan pesan sukses
@@ -750,20 +754,20 @@ class KaryawanController extends Controller
 
     public function destroy_pelatihan($id)
     {
-        // Temukan pendidikan berdasarkan ID
+        // Temukan pelatihan berdasarkan ID
         $pelatihan = Pelatihan::find($id);
 
-        // Cek apakah pendidikan ditemukan
+        // Cek apakah pelatihan ditemukan
         if (!$pelatihan) {
-            return response()->json(['message' => 'Pendidikan not found'], 404);
+            return response()->json(['message' => 'Pelatihan not found'], 404);
         }
 
         // Hapus lampiran dari storage jika ada
-        if ($pelatihan->lampiran) {
-            Storage::disk('public')->delete($pelatihan->lampiran);
+        if ($pelatihan->lampiran_pendukung) {
+            Storage::disk('public')->delete($pelatihan->lampiran_pendukung);
         }
 
-        // Hapus entri pendidikan dari database
+        // Hapus entri pelatihan dari database
         $pelatihan->delete();
 
         // Redirect dengan pesan sukses
@@ -834,5 +838,158 @@ class KaryawanController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Pelatihan berhasil dihapus!');
+    }
+
+    public function add_prestasi(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama_event' => 'required|string|max:100',
+            'nama_penghargaan' => 'required|string|max:100',
+            'tahun_penghargaan' => 'required|string|max:100',
+            'lampiran_penghargaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        // Ambil data dari request
+        $karyawan_id = $request->karyawan_id;
+
+        // Simpan lampiran ke folder 'public/lampiran'
+        $lampiranPath = null; // Inisialisasi path
+        if ($request->hasFile('lampiran_penghargaan')) {
+            $lampiran = $request->file('lampiran_penghargaan');
+            $filename = $karyawan_id . '_' . time() . '.' . $lampiran->getClientOriginalExtension(); // Menggunakan time() untuk nama unik
+            $lampiranPath = $lampiran->storeAs('lampiran_prestasi', $filename, 'public'); // Simpan lampiran dan dapatkan path
+        }
+
+        // Buat riwayat prestasi baru
+        $prestasi = Prestasi::create([
+            'karyawan_id' => $karyawan_id,
+            'nama_event' => $request->nama_event,
+            'nama_penghargaan' => $request->nama_penghargaan,
+            'tahun_penghargaan' => $request->tahun_penghargaan,
+            'lampiran_penghargaan' => $lampiranPath, // Menggunakan $lampiranPath
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil ditambahkan!');
+    }
+
+    public function update_prestasi(Request $request, $id)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'nama_event' => 'required|string|max:100',
+            'nama_penghargaan' => 'required|string|max:100',
+            'tahun_penghargaan' => 'required|string|max:100',
+            'lampiran_penghargaan' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        // Cari prestasi berdasarkan ID
+        $prestasi = Prestasi::findOrFail($id);
+
+        // Ambil data dari request
+        $karyawan_id = $request->karyawan_id;
+
+        // Simpan lampiran ke folder 'public/lampiran' jika ada file baru
+        $lampiranPath = $prestasi->lampiran_penghargaan; // Simpan path lama
+        if ($request->hasFile('lampiran_penghargaan')) {
+            // Hapus file lama jika perlu (pastikan Anda sudah mengatur hak akses file)
+            if ($lampiranPath) {
+                Storage::disk('public')->delete($lampiranPath);
+            }
+
+            $lampiran = $request->file('lampiran_penghargaan');
+            $filename = $karyawan_id . '_' . time() . '.' . $lampiran->getClientOriginalExtension(); // Menggunakan time() untuk nama unik
+            $lampiranPath = $lampiran->storeAs('lampiran_prestasi', $filename, 'public'); // Simpan lampiran dan dapatkan path
+        }
+
+        // Perbarui data prestasi
+        $prestasi->update([
+            'karyawan_id' => $karyawan_id,
+            'nama_event' => $request->nama_event,
+            'nama_penghargaan' => $request->nama_penghargaan,
+            'tahun_penghargaan' => $request->tahun_penghargaan,
+            'lampiran_penghargaan' => $lampiranPath, // Menggunakan $lampiranPath yang baru
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil diperbarui!');
+    }
+
+    public function destroy_prestasi($id)
+    {
+        // Cari prestasi berdasarkan ID
+        $prestasi = Prestasi::findOrFail($id);
+
+        // Hapus lampiran jika ada
+        if ($prestasi->lampiran_penghargaan) {
+            Storage::disk('public')->delete($prestasi->lampiran_penghargaan);
+        }
+
+        // Hapus data prestasi dari database
+        $prestasi->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil dihapus!');
+    }
+
+    public function add_talent(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'tanggal_talent' => 'required|string|max:100',
+            'status' => 'required|in:LULUS,TIDAK LULUS', // Memastikan status hanya 'lulus' atau 'tidak'
+        ]);
+
+        // Ambil data dari request
+        $karyawan_id = $request->karyawan_id;  // Ini memperbaiki error undefined variable
+
+        // Buat riwayat prestasi baru
+        $prestasi = Talent::create([
+            'karyawan_id' => $karyawan_id,
+            'tanggal_talent' => $request->tanggal_talent,
+            'status' => $request->status,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil ditambahkan!');
+    }
+
+
+    public function update_talent(Request $request, $id)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'tanggal_talent' => 'required|string|max:100',
+            'status' => 'required|in:LULUS,TIDAK LULUS', // Memastikan status hanya 'lulus' atau 'tidak'
+        ]);
+
+        // Cari prestasi berdasarkan ID
+        $prestasi = Talent::findOrFail($id);
+
+        // Update data prestasi
+        $prestasi->update([
+            'tanggal_talent' => $request->tanggal_talent,
+            'status' => $request->status,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil diperbarui!');
+    }
+
+
+    public function destroy_talent($id)
+    {
+        // Cari prestasi berdasarkan ID
+        $prestasi = Talent::findOrFail($id);
+
+        // Hapus prestasi
+        $prestasi->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil dihapus!');
     }
 }

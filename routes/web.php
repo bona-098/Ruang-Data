@@ -95,8 +95,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/karyawan/add_keterampilan', [KaryawanController::class, 'add_keterampilan'])->name('karyawan.add_keterampilan');
     Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan'])->name('karyawan.update_keterampilan');
     Route::delete('keterampilan/{id}', [KaryawanController::class, 'destroy_keterampilan'])->name('karyawan.destroy_keterampilan');
-
-
+    Route::post('/karyawan/add_talent', [KaryawanController::class, 'add_talent'])->name('karyawan.add_talent');
+    Route::put('/karyawan/{id}/update-talent', [KaryawanController::class, 'update_talent'])->name('karyawan.update_talent');
+    Route::delete('talent/{id}', [KaryawanController::class, 'destroy_talent'])->name('karyawan.destroy_talent');
 
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');

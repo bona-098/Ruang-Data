@@ -216,6 +216,9 @@ class RekomendasiController extends Controller
         // Ambil parameter dari request
         $band = $request->input('band');
         $lamaJabatan = $request->input('lama_jabatan');
+        $talent = $request->input('talent');
+        $lamaTalent = $request->input('lama_talent');
+        
 
         // Dapatkan tanggal jabatan terbaru untuk setiap karyawan
         $subQuery = JobHistory::selectRaw('MAX(tgl_jabat) as latest_date, karyawan_id')

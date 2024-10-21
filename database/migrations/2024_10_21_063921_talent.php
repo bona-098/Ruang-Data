@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
+        Schema::create('talent', function (Blueprint $table) {
             $table->id(); // Kolom id
-            $table->foreignId('unit_id')->nullable()->constrained('unit_kerja')->onDelete('set null'); // Relasi ke tabel karyawan.
-            $table->unsignedBigInteger('karyawan_id')->nullable(); // Mengizinkan NULL
-            $table->string('nama', 100)->nullable();
-            $table->string('wilayah_kerja', 50)->nullable();
+            $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Relasi ke tabel karyawan
+            $table->date('tanggal_talent'); // Tanggal Mulai Pelatihan
+            $table->string('status', 50)->nullable();
             $table->timestamps(); // Kolom created_at dan updated_at
 
             // Menambahkan foreign key jika id_unit_kerja berelasi dengan tabel lain
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::dropIfExists('talent');
     }
 };

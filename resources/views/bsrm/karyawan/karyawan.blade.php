@@ -1314,6 +1314,7 @@
                                     <tr>
                                         <th style="white-space: nowrap;">Unit</th>
                                         <th style="white-space: nowrap;">Jabatan</th>
+                                        <th style="white-space: nowrap;">Wilayah Kerja</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1325,6 +1326,7 @@
                                                     {{ $formasi->unit ? $formasi->unit->nama : 'Unit Tidak Ditemukan' }}
                                                 </td>
                                                 <td style="white-space: nowrap;">{{ $formasi->nama }}</td>
+                                                <td style="white-space: nowrap;">{{ $formasi->wilayah_kerja }}</td>
                                             </tr>
                                         @endforeach
                                     @else

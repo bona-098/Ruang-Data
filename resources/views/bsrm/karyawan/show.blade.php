@@ -467,8 +467,6 @@
                                                 data-toggle="tab">Pelatihan</a></li>
                                         <li class="nav-item"><a class="nav-link " href="#keterampilan"
                                                 data-toggle="tab">Keterampilan</a></li>
-                                        <li class="nav-item"><a class="nav-link " href="#hobi"
-                                                data-toggle="tab">Hobi</a></li>
                                         <li class="nav-item"><a class="nav-link " href="#prestasi"
                                                 data-toggle="tab">Prestasi</a></li>
                                         <li class="nav-item"><a class="nav-link " href="#talent_review"
@@ -1700,7 +1698,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="modal fade" id="ModalAddJobHistory" tabindex="-1"
@@ -2212,7 +2209,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="modal fade" id="ModalEditPendidikan" tabindex="-1"
+                                        <div class="modal fade" id="ModalEditPendidikan" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
                                             <div
@@ -2304,7 +2301,7 @@
                                                                                     <input required type="text"
                                                                                         class="form-control"
                                                                                         name="jurusan"@error('jurusan') is-invalid @enderror
-                                                                                        value="{{ $edu->jurusan }}">
+                                                                                        value="{{ $edu->jurusan }} ">
                                                                                     @error('jurusan')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
@@ -2322,7 +2319,8 @@
                                                                                         name="tahun_lulus"
                                                                                         min="0000"
                                                                                         max="{{ date('Y') }}"
-                                                                                        placeholder="Masukkan tahun lulus">
+                                                                                        placeholder="Masukkan tahun lulus"
+                                                                                        value="{{ $edu->tahun_lulus }}">
                                                                                     @error('tahun_lulus')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
@@ -2331,8 +2329,6 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
-
-
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label>Lampiran Sk</label>
@@ -2394,8 +2390,7 @@
 
                                                 </div>
                                             </div>
-                                        </div> --}}
-
+                                        </div>
 
                                         <div class="tab-pane" id="pelatihan">
                                             <div class="row">
@@ -2411,7 +2406,6 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-
                                                         <div class="card-body p-9">
                                                             <div class="table-responsive">
                                                                 <table
@@ -2427,43 +2421,55 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach ($pelatihan as $pel)
+                                                                        @if ($pelatihan->isEmpty())
                                                                             <tr>
-                                                                                <td>{{ $pel->nama_pelatihan }}</td>
-                                                                                <td>{{ $pel->tanggal_mulai }}</td>
-                                                                                <td>{{ $pel->tanggal_akhir }}</td>
-                                                                                <td>{{ $pel->nama_penyelenggara }}
-                                                                                </td>
-                                                                                <td>
-                                                                                    @if ($pel->lampiran_pendukung)
-                                                                                        <a href="{{ asset('storage/' . $pel->lampiran_pendukung) }}"
-                                                                                            class="badge badge-success">Lihat
-                                                                                            File</a>
-                                                                                    @else
-                                                                                        <span
-                                                                                            class="badge badge-warning">Belum
-                                                                                            ada file</span>
-                                                                                    @endif
-                                                                                </td>
-                                                                                <td>
-                                                                                    <button
-                                                                                        class="btn btn-warning btn-flex btn-center btn-sm edit-btn"
-                                                                                        data-toggle="modal"
-                                                                                        data-target="#ModalEditPelatihan"
-                                                                                        data-id="{{ $pel->id }}"
-                                                                                        data-nama="{{ $pel->nama_pelatihan }}"
-                                                                                        data-penyelenggara="{{ $pel->nama_penyelenggara }}"
-                                                                                        data-tanggal_mulai="{{ $pel->tanggal_mulai }}"
-                                                                                        data-tanggal_akhir="{{ $pel->tanggal_akhir }}">
-                                                                                        Edit
-                                                                                    </button>
-                                                                                    <a class="btn btn-danger btn-flex btn-center btn-sm"
-                                                                                        data-toggle="modal"
-                                                                                        data-target="#ModalDeletePelatihan">Delete</a>
-                                                                                </td>
+                                                                                <td colspan="6"
+                                                                                    style="text-align: center;">Belum
+                                                                                    ada data pelatihan.</td>
                                                                             </tr>
-                                                                        @endforeach
+                                                                        @else
+                                                                            @foreach ($pelatihan as $pel)
+                                                                                <tr>
+                                                                                    <td>{{ $pel->nama_pelatihan }}
+                                                                                    </td>
+                                                                                    <td>{{ $pel->tanggal_mulai }}</td>
+                                                                                    <td>{{ $pel->tanggal_akhir }}</td>
+                                                                                    <td>{{ $pel->nama_penyelenggara }}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @if ($pel->lampiran_pendukung)
+                                                                                            <a href="{{ asset('storage/' . $pel->lampiran_pendukung) }}"
+                                                                                                class="badge badge-success"
+                                                                                                target="_blank">Lihat
+                                                                                                File</a>
+                                                                                        @else
+                                                                                            <span
+                                                                                                class="badge badge-warning">Belum
+                                                                                                ada file</span>
+                                                                                        @endif
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        <button
+                                                                                            class="btn btn-warning btn-flex btn-center btn-sm edit-btn"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#ModalEditPelatihan"
+                                                                                            data-id="{{ $pel->id }}"
+                                                                                            data-nama="{{ $pel->nama_pelatihan }}"
+                                                                                            data-penyelenggara="{{ $pel->nama_penyelenggara }}"
+                                                                                            data-tanggal_mulai="{{ $pel->tanggal_mulai }}"
+                                                                                            data-tanggal_akhir="{{ $pel->tanggal_akhir }}">
+                                                                                            Edit
+                                                                                        </button>
+                                                                                        <a class="btn btn-danger btn-flex btn-center btn-sm"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#ModalDeletePelatihan">Delete</a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endif
                                                                     </tbody>
+
                                                                 </table>
                                                                 <p class="text-muted text-center">Tabel ini masih
                                                                     dalam pengerjaan.</p>
@@ -2474,11 +2480,11 @@
                                             </div>
                                         </div>
 
-
                                         <div class="modal fade" id="ModalAddPelatihan" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Tambah
@@ -2579,15 +2585,17 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {{-- <div class="modal fade" id="ModalEditPelatihan" tabindex="-1"
+                                        {{-- @if ($pelatihan->isNotEmpty()) --}}
+                                        <!-- Pengecekan apakah ada data pendidikan -->
+                                        <div class="modal fade" id="ModalEditPelatihan" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                            Pelatihan</h5>
+                                                            Pendidikan</h5>
                                                         @if ($errors->any())
                                                             <span class="text-danger" style="font-size: 0.9em;">
                                                                 {{ $errors->first() }}
@@ -2595,91 +2603,124 @@
                                                         @endif
                                                     </div>
                                                     <div class="modal-body">
-                                                        @foreach ($pelatihan as $pel)
+                                                        @foreach ($pendidikan as $edu)
                                                             <form method="POST"
-                                                                action="{{ route('karyawan.update_pelatihan', $pel->id) }}"
+                                                                action="{{ route('karyawan.update_pendidikan', $edu->id) }}"
                                                                 enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PUT')
                                                                 <input type="hidden" name="karyawan_id"
-                                                                    value="{{ $pel->id }}">
+                                                                    value="{{ $edu->id }}">
                                                                 <div class="card-body">
                                                                     <div class="form-body">
                                                                         <div class="row p-t-20">
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label">Nama
-                                                                                        Pelatihan</label>
+                                                                                    <label for="kota_lahir"
+                                                                                        class="control-label">Nama
+                                                                                        Institusi</label>
                                                                                     <input required type="text"
-                                                                                        name="nama_pelatihan"
-                                                                                        class="form-control @error('nama_pelatihan') is-invalid @enderror"
-                                                                                        value="{{ $pel->nama_pelatihan }}">
-                                                                                    @error('nama_pelatihan')
+                                                                                        name="nama_institusi"
+                                                                                        class="form-control @error('nama_institusi') is-invalid @enderror"
+                                                                                        value="{{ $edu->nama_institusi }}">
+                                                                                    @error('nama_institusi')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
-                                                                                            {{ $message }}</div>
+                                                                                            {{ $message }}
+                                                                                        </div>
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
+
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label">Nama
-                                                                                        Penyelenggara</label>
+                                                                                    <label
+                                                                                        class="control-label">Jenjang
+                                                                                        Pendidikan</label>
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        name="jenjang_pendidikan">
+                                                                                        <option value="">
+                                                                                            Pilih Jenjang Pendidikan
+                                                                                        </option>
+                                                                                        <option value="S2"
+                                                                                            {{ $edu->jenjang_pendidikan == 'S2' ? 'selected' : '' }}>
+                                                                                            S2</option>
+                                                                                        <option value="S1"
+                                                                                            {{ $edu->jenjang_pendidikan == 'S1' ? 'selected' : '' }}>
+                                                                                            S1</option>
+                                                                                        <option value="Diploma III"
+                                                                                            {{ $edu->jenjang_pendidikan == 'Diploma III' ? 'selected' : '' }}>
+                                                                                            Diploma III</option>
+                                                                                        <option
+                                                                                            value="SMK/SLTA Kejuruan"
+                                                                                            {{ $edu->jenjang_pendidikan == 'SMK/SLTA Kejuruan' ? 'selected' : '' }}>
+                                                                                            SMK/SLTA Kejuruan
+                                                                                        </option>
+                                                                                    </select>
+                                                                                    @error('jenjang_pendidikan')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Jurusan</label>
                                                                                     <input required type="text"
-                                                                                        name="nama_penyelenggara"
-                                                                                        class="form-control @error('nama_penyelenggara') is-invalid @enderror"
-                                                                                        value="{{ $pel->nama_penyelenggara }}">
-                                                                                    @error('nama_penyelenggara')
+                                                                                        class="form-control @error('jurusan') is-invalid @enderror"
+                                                                                        name="jurusan"
+                                                                                        value="{{ $edu->jurusan }}">
+                                                                                    @error('jurusan')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
-                                                                                            {{ $message }}</div>
+                                                                                            {{ $message }}
+                                                                                        </div>
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
+
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label>Tanggal Mulai</label>
-                                                                                    <input required type="date"
-                                                                                        class="form-control"
-                                                                                        name="tanggal_mulai"
-                                                                                        placeholder="Masukkan tanggal mulai">
-                                                                                    @error('tanggal_mulai')
+                                                                                    <label>Tahun Lulus</label>
+                                                                                    <input required type="number"
+                                                                                        class="form-control @error('tahun_lulus') is-invalid @enderror"
+                                                                                        name="tahun_lulus"
+                                                                                        min="0000"
+                                                                                        max="{{ date('Y') }}"
+                                                                                        placeholder="Masukkan tahun lulus"
+                                                                                        value="{{ $edu->tahun_lulus }}">
+                                                                                    @error('tahun_lulus')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
-                                                                                            {{ $message }}</div>
+                                                                                            {{ $message }}
+                                                                                        </div>
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
+
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
-                                                                                    <label>Tanggal Akhir</label>
-                                                                                    <input required type="date"
-                                                                                        class="form-control"
-                                                                                        name="tanggal_akhir"
-                                                                                        placeholder="Masukkan tanggal akhir">
-                                                                                    @error('tanggal_akhir')
-                                                                                        <div
-                                                                                            class="alert alert-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label>Lampiran Sertifikat</label>
+                                                                                    <label>Lampiran Sk</label>
                                                                                     <input type="file"
-                                                                                        class="form-control"
+                                                                                        class="form-control @error('lampiran_pendukung') is-invalid @enderror"
                                                                                         name="lampiran_pendukung">
                                                                                     @error('lampiran_pendukung')
                                                                                         <div
                                                                                             class="alert alert-danger mt-2">
-                                                                                            {{ $message }}</div>
+                                                                                            {{ $message }}
+                                                                                        </div>
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            </form>
+                                                        @endforeach
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -2687,11 +2728,9 @@
                                                         <button type="submit"
                                                             class="btn btn-primary">Simpan</button>
                                                     </div>
-                                                    </form>
-                                                    @endforeach
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <div class="modal fade" id="ModalDeletePelatihan" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
@@ -2699,7 +2738,8 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Konfirmasi
                                                             Hapus</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
@@ -2725,6 +2765,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- @endif  --}}
 
                                         <div class="tab-pane" id="keterampilan">
                                             <div class="row">
@@ -2775,58 +2816,12 @@
                                                                         <!-- TODO: Data pelatihan berikutnya akan ditambahkan di sini -->
                                                                     </tbody>
                                                                 </table>
-
                                                                 <!-- Keterangan: Tabel ini masih dalam pengerjaan. -->
                                                                 <p class="text-muted text-center">Tabel ini masih
                                                                     dalam
                                                                     pengerjaan.</p>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="tab-pane" id="hobi">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="card ">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">Hobi</h3>
-                                                            <div class="card-tools">
-                                                                <button type="button" class="btn btn-primary"
-                                                                    data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
-                                                                    Tambah Hobby
-                                                                </button>
-                                                            </div>
-                                                            <!-- /.card-tools -->
-                                                        </div>
-                                                        <!-- /.card-header -->
-
-                                                        <div class="card-body p-9">
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table table-hover table-rounded table-striped border gy-7 gs-7">
-                                                                    <thead>
-                                                                        <tr
-                                                                            class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
-                                                                            <th>Nama Hobbyn</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="table-group-divider">
-
-                                                                    </tbody>
-                                                                </table>
-                                                                <p class="text-muted text-center">Tabel ini masih
-                                                                    dalam
-                                                                    pengerjaan.</p>
-                                                            </div>
-                                                        </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -2841,7 +2836,7 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
+                                                                    data-target="#ModalAddPrestasi">
                                                                     Tambah Prestasi
                                                                 </button>
                                                             </div>
@@ -2876,8 +2871,7 @@
                                             </div>
                                         </div>
 
-
-                                        {{--   <div class="modal fade" id="ModalAddPrestasi" tabindex="-1"
+                                        {{--    <div class="modal fade" id="ModalAddPrestasi" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
                                             <div
@@ -2885,7 +2879,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Tambah
-                                                            Keterampilan</h5>
+                                                            Prestasi</h5>
                                                         @if ($errors->any())
                                                             <span class="text-danger" style="font-size: 0.9em;">
                                                                 {{ $errors->first() }}
@@ -2905,13 +2899,13 @@
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Nama
-                                                                                    Keterampilan</label>
+                                                                                    Prestais</label>
                                                                                 <input required type="text"
-                                                                                    name="nama_keterampilan"
+                                                                                    name="nama_event"
                                                                                     class="form-control"
-                                                                                    @error('nama_keterampilan') is-invalid @enderror
-                                                                                    value="{{ old('nama_keterampilan') }}">
-                                                                                @error('nama_keterampilan')
+                                                                                    @error('nama_event') is-invalid @enderror
+                                                                                    value="{{ old('nama_event') }}">
+                                                                                @error('nama_event')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
                                                                                     </div>
@@ -3000,7 +2994,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
+                                         <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -3039,12 +3033,12 @@
                                                 <div class="col-12">
                                                     <div class="card ">
                                                         <div class="card-header">
-                                                            <h3 class="card-title">Talent Review</h3>
+                                                            <h3 class="card-title">Talent Review / Assesment</h3>
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
-                                                                    Tambah Talent
+                                                                    data-target="#ModalAddTalent">
+                                                                    Tambah
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
@@ -3057,23 +3051,252 @@
                                                                     class="table table-hover table-bordered table-striped">
                                                                     <thead>
                                                                         <tr class="text-center">
-                                                                            <th>Tanggal Talent</th>
+                                                                            <th>Tanggal Talent Review / Assesment</th>
+                                                                            <th>Status</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
+                                                                        @if ($talent->isEmpty())
+                                                                            <tr>
+                                                                                <td colspan="6"
+                                                                                    style="text-align: center;">Belum
+                                                                                    ada data talent.</td>
+                                                                            </tr>
+                                                                        @else
+                                                                            @foreach ($talent as $tel)
+                                                                                <tr>
+                                                                                    <td>{{ $tel->tanggal_talent }}
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <span
+                                                                                            class="badge badge-primary">{{ $tel->status }}</span>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <button
+                                                                                            class="btn btn-warning btn-flex btn-center btn-sm edit-btn"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#ModalEditTalent{{ $tel->id }}">
+                                                                                            Edit
+                                                                                        </button>
+                                                                                        <a class="btn btn-danger btn-flex btn-center btn-sm"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#ModalDeleteTalent{{ $tel->id }}">Delete</a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        @endif
                                                                     </tbody>
+
                                                                 </table>
-                                                                <p class="text-muted text-center">Tabel ini masih
-                                                                    dalam
-                                                                    pengerjaan.</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="modal fade" id="ModalAddTalent" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                            Talent</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_talent') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Tanggal
+                                                                                    Talent</label>
+                                                                                <input required type="date"
+                                                                                    name="tanggal_talent"
+                                                                                    class="form-control"
+                                                                                    @error('tanggal_talent') is-invalid @enderror
+                                                                                    value="{{ old('tanggal_talent') }}">
+                                                                                @error('tanggal_talent')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    class="control-label">Status</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="status">
+                                                                                    <option value="">Pilih
+                                                                                        Status</option>
+                                                                                    <option value="LULUS">Lulus
+                                                                                    </option>
+                                                                                    <!-- Menggunakan huruf kecil -->
+                                                                                    <option value="TIDAK LULUS">Tidak
+                                                                                        Lulus</option>
+                                                                                    <!-- Menggunakan huruf kecil -->
+                                                                                </select>
+                                                                                @error('status')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @foreach ($talent as $tel)
+                                            <div class="modal fade" id="ModalDeleteTalent{{ $tel->id }}"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                data-backdrop="static" data-keyboard="false" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Konfirmasi Hapus</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Apakah Anda yakin ingin menghapus data talent ini?</p>
+                                                            <form method="POST"
+                                                                action="{{ route('karyawan.destroy_talent', $tel->id) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit"
+                                                                class="btn btn-danger">Hapus</button>
+                                                        </div>
+                                                        </form> <!-- Make sure this is properly closed -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                        @foreach ($talent as $tel)
+                                            <div class="modal fade" id="ModalEditTalent{{ $tel->id }}"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                data-backdrop="static" data-keyboard="false" aria-hidden="true">
+                                                <div
+                                                    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                                Talent</h5>
+                                                            @if ($errors->any())
+                                                                <span class="text-danger" style="font-size: 0.9em;">
+                                                                    {{ $errors->first() }}
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form method="POST"
+                                                                action="{{ route('karyawan.update_talent', $tel->id) }}"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="karyawan_id"
+                                                                    value="{{ $karyawan->id }}">
+                                                                <div class="card-body">
+                                                                    <div class="form-body">
+                                                                        <div class="row p-t-20">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        class="control-label">Tanggal
+                                                                                        Talent</label>
+                                                                                    <input required type="date"
+                                                                                        name="tanggal_talent"
+                                                                                        class="form-control @error('tanggal_talent') is-invalid @enderror"
+                                                                                        value="{{ $tel->tanggal_talent }}">
+                                                                                    @error('tanggal_talent')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        class="control-label">Status</label>
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        name="status">
+                                                                                        <option value="">Pilih
+                                                                                            Status</option>
+                                                                                        <option value="LULUS"
+                                                                                            {{ $tel->status == 'LULUS' ? 'selected' : '' }}>
+                                                                                            Lulus</option>
+                                                                                        <option value="TIDAK LULUS"
+                                                                                            {{ $tel->status == 'TIDAK LULUS' ? 'selected' : '' }}>
+                                                                                            Tidak Lulus</option>
+                                                                                    </select>
+                                                                                    @error('status')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Tutup</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Simpan</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        @endforeach
+
+
 
                                         <div class="tab-pane" id="catatan">
                                             <div class="row">
@@ -3100,14 +3323,16 @@
                                                                 <span class="username">
                                                                     <a href="#">Jonathan Burke Jr.</a>
                                                                 </span>
-                                                                <span class="description">Shared publicly - 7:45 PM
+                                                                <span class="description">Shared publicly - 7:45
+                                                                    PM
                                                                     today</span>
                                                             </div>
 
                                                             <p>
                                                                 Lorem ipsum represents a long-held tradition for
                                                                 designers,
-                                                                typographers and the like. Some people hate it and argue
+                                                                typographers and the like. Some people hate it and
+                                                                argue
                                                                 for
                                                                 its demise, but others ignore.
                                                             </p>
@@ -3125,20 +3350,23 @@
                                                                 <span class="username">
                                                                     <a href="#">Sarah Ross</a>
                                                                 </span>
-                                                                <span class="description">Sent you a message - 3 days
+                                                                <span class="description">Sent you a message - 3
+                                                                    days
                                                                     ago</span>
                                                             </div>
 
                                                             <p>
                                                                 Lorem ipsum represents a long-held tradition for
                                                                 designers,
-                                                                typographers and the like. Some people hate it and argue
+                                                                typographers and the like. Some people hate it and
+                                                                argue
                                                                 for
                                                                 its demise, but others ignore.
                                                             </p>
                                                             <p>
                                                                 <a href="#" class="link-black text-sm"><i
-                                                                        class="fas fa-link mr-1"></i> Demo File 2</a>
+                                                                        class="fas fa-link mr-1"></i> Demo File
+                                                                    2</a>
                                                             </p>
                                                         </div>
                                                         <div class="post">
@@ -3156,7 +3384,8 @@
                                                             <p>
                                                                 Lorem ipsum represents a long-held tradition for
                                                                 designers,
-                                                                typographers and the like. Some people hate it and argue
+                                                                typographers and the like. Some people hate it and
+                                                                argue
                                                                 for
                                                                 its demise, but others ignore.
                                                             </p>
