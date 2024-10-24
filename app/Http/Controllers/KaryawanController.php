@@ -941,6 +941,7 @@ class KaryawanController extends Controller
         $request->validate([
             'karyawan_id' => 'required|exists:karyawan,id',
             'tanggal_talent' => 'required|string|max:100',
+            'talent' => 'required|in:Talent Review,Assesment',
             'status' => 'required|in:LULUS,TIDAK LULUS', // Memastikan status hanya 'lulus' atau 'tidak'
         ]);
 
@@ -950,6 +951,7 @@ class KaryawanController extends Controller
         // Buat riwayat prestasi baru
         $prestasi = Talent::create([
             'karyawan_id' => $karyawan_id,
+            'talent' => $request->talent,
             'tanggal_talent' => $request->tanggal_talent,
             'status' => $request->status,
         ]);
@@ -964,6 +966,7 @@ class KaryawanController extends Controller
         // Validasi data yang diterima
         $request->validate([
             'tanggal_talent' => 'required|string|max:100',
+            'talent' => 'required|in:Talent Review,Assesment',
             'status' => 'required|in:LULUS,TIDAK LULUS', // Memastikan status hanya 'lulus' atau 'tidak'
         ]);
 
@@ -973,6 +976,7 @@ class KaryawanController extends Controller
         // Update data prestasi
         $prestasi->update([
             'tanggal_talent' => $request->tanggal_talent,
+            'talent' => $request->talent,
             'status' => $request->status,
         ]);
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id(); // Kolom id
             $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Relasi ke tabel karyawan
             $table->date('tanggal_talent'); // Tanggal Mulai Pelatihan
+            $table->string('talent', 50)->nullable();
             $table->string('status', 50)->nullable();
             $table->timestamps(); // Kolom created_at dan updated_at
 

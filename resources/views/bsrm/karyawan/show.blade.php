@@ -365,8 +365,6 @@
                                             alt="User profile picture"
                                             style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
                                     </div>
-
-
                                     <h3 class="profile-username text-center">{{ $karyawan->nama_karyawan }}</h3>
 
                                     <p class="text-muted text-center">{{ $karyawan->jabatan }}</p>
@@ -2783,7 +2781,6 @@
                                                             <!-- /.card-tools -->
                                                         </div>
                                                         <!-- /.card-header -->
-
                                                         <div class="card-body p-9">
                                                             <div class="table-responsive">
                                                                 <table
@@ -2812,8 +2809,6 @@
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach
-                                                                        <!-- Tambahkan baris lain di sini sesuai dengan data yang ada -->
-                                                                        <!-- TODO: Data pelatihan berikutnya akan ditambahkan di sini -->
                                                                     </tbody>
                                                                 </table>
                                                                 <!-- Keterangan: Tabel ini masih dalam pengerjaan. -->
@@ -2827,51 +2822,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane" id="prestasi">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="card ">
-                                                        <div class="card-header">
-                                                            <h3 class="card-title">Prestasi</h3>
-                                                            <div class="card-tools">
-                                                                <button type="button" class="btn btn-primary"
-                                                                    data-toggle="modal"
-                                                                    data-target="#ModalAddPrestasi">
-                                                                    Tambah Prestasi
-                                                                </button>
-                                                            </div>
-                                                            <!-- /.card-tools -->
-                                                        </div>
-                                                        <!-- /.card-header -->
-
-                                                        <div class="card-body p-9">
-                                                            <div class="table-responsive">
-                                                                <table
-                                                                    class="table table-hover table-bordered table-striped">
-                                                                    <thead>
-                                                                        <tr class="text-center">
-                                                                            <th>Nama Event</th>
-                                                                            <th>Nama Penghargaan</th>
-                                                                            <th>Tahun Penghargaan</th>
-                                                                            <th>Lampiran Penghargaan</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
-                                                                    </tbody>
-                                                                </table>
-                                                                <p class="text-muted text-center">Tabel ini masih
-                                                                    dalam
-                                                                    pengerjaan.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {{--    <div class="modal fade" id="ModalAddPrestasi" tabindex="-1"
+                                        <div class="modal fade" id="ModalAddPrestasi" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
                                             data-keyboard="false" aria-hidden="true">
                                             <div
@@ -2929,104 +2880,150 @@
                                             </div>
                                         </div>
 
-                                        <div class="modal fade" id="ModalEditPrestasi" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
-                                            data-keyboard="false" aria-hidden="true">
-                                            <div
-                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                            Keterampilan
-                                                        </h5>
-                                                        @if ($errors->any())
-                                                            <span class="text-danger" style="font-size: 0.9em;">
-                                                                {{ $errors->first() }}
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        @foreach ($keterampilan as $terampil)
-                                                            <form method="POST"
-                                                                action="{{ route('karyawan.update_keterampilan', $terampil->id) }}"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <input type="hidden" name="karyawan_id"
-                                                                    value="{{ $karyawan->id }}">
-                                                                <div class="card-body">
-                                                                    <div class="form-body">
-                                                                        <div class="row p-t-20">
 
-                                                                            <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label">Nama
-                                                                                        Keterampilan</label>
-                                                                                    <input required type="text"
-                                                                                        name="nama_pelatihan"
-                                                                                        class="form-control"
-                                                                                        @error('nama_pelatihan') is-invalid @enderror
-                                                                                        value="{{ $terampil->nama_keterampilan }}">
-                                                                                    @error('nama_keterampilan')
-                                                                                        <div
-                                                                                            class="alert alert-danger mt-2">
-                                                                                            {{ $message }}
-                                                                                        </div>
-                                                                                    @enderror
-                                                                                    <small
-                                                                                        class="form-control-feedback">
-                                                                                    </small>
-                                                                                </div>
+
+                                        {{--   <div class="modal fade" id="ModalEditPrestasi" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                        data-keyboard="false" aria-hidden="true">
+                                        <div
+                                            class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                        Keterampilan
+                                                    </h5>
+                                                    @if ($errors->any())
+                                                        <span class="text-danger" style="font-size: 0.9em;">
+                                                            {{ $errors->first() }}
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                <div class="modal-body">
+                                                    @foreach ($keterampilan as $terampil)
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.update_keterampilan', $terampil->id) }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Nama
+                                                                                    Keterampilan</label>
+                                                                                <input required type="text"
+                                                                                    name="nama_pelatihan"
+                                                                                    class="form-control"
+                                                                                    @error('nama_pelatihan') is-invalid @enderror
+                                                                                    value="{{ $terampil->nama_keterampilan }}">
+                                                                                @error('nama_keterampilan')
+                                                                                    <div
+                                                                                        class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small
+                                                                                    class="form-control-feedback">
+                                                                                </small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Tutup</button>
-                                                        <button type="submit"
-                                                            class="btn btn-primary">Simpan</button>
-                                                    </div>
-                                                    </form>
+                                                            </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Tutup</button>
+                                                    <button type="submit"
+                                                        class="btn btn-primary">Simpan</button>
+                                                </div>
+                                                </form>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                        data-keyboard="false" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
+                                                        Hapus
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
+                                                    @foreach ($pelatihan as $pel)
+                                                        <form id="deleteForm" method="POST"
+                                                            action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
+                                                            @csrf
+                                                            @method('DELETE')
                                                     @endforeach
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
+                                        <div class="tab-pane" id="prestasi">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card ">
+                                                        <div class="card-header">
+                                                            <h3 class="card-title">Prestasi</h3>
+                                                            <div class="card-tools">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ModalAddPrestasi">
+                                                                    Tambah Prestasi
+                                                                </button>
+                                                            </div>
+                                                            <!-- /.card-tools -->
+                                                        </div>
+                                                        <!-- /.card-header -->
+
+                                                        <div class="card-body p-9">
+                                                            <div class="table-responsive">
+                                                                <table
+                                                                    class="table table-hover table-bordered table-striped">
+                                                                    <thead>
+                                                                        <tr class="text-center">
+                                                                            <th>Nama Event</th>
+                                                                            <th>Nama Penghargaan</th>
+                                                                            <th>Tahun Penghargaan</th>
+                                                                            <th>Lampiran Penghargaan</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <!-- Tambahkan lebih banyak baris di sini sesuai kebutuhan -->
+                                                                    </tbody>
+                                                                </table>
+                                                                <p class="text-muted text-center">Tabel ini masih
+                                                                    dalam
+                                                                    pengerjaan.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                         <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
-                                            data-keyboard="false" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
-                                                            Hapus
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
-                                                        @foreach ($pelatihan as $pel)
-                                                            <form id="deleteForm" method="POST"
-                                                                action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                        @endforeach
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Batal</button>
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </div>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div> --}}
 
                                         <div class="tab-pane" id="talent_review">
                                             <div class="row">
@@ -3051,7 +3048,8 @@
                                                                     class="table table-hover table-bordered table-striped">
                                                                     <thead>
                                                                         <tr class="text-center">
-                                                                            <th>Tanggal Talent Review / Assesment</th>
+                                                                            <th>Tanggal</th>
+                                                                            <th>Talent Review / Assesment</th>
                                                                             <th>Status</th>
                                                                             <th>Action</th>
                                                                         </tr>
@@ -3068,10 +3066,21 @@
                                                                                 <tr>
                                                                                     <td>{{ $tel->tanggal_talent }}
                                                                                     </td>
-                                                                                    <td>
-                                                                                        <span
-                                                                                            class="badge badge-primary">{{ $tel->status }}</span>
+                                                                                    <td>Talent Review
                                                                                     </td>
+                                                                                    <td>
+                                                                                        @if ($tel->status == 'LULUS')
+                                                                                            <span
+                                                                                                class="badge badge-primary">{{ $tel->status }}</span>
+                                                                                        @elseif($tel->status == 'TIDAK LULUS')
+                                                                                            <span
+                                                                                                class="badge badge-danger">{{ $tel->status }}</span>
+                                                                                        @else
+                                                                                            <span
+                                                                                                class="badge badge-secondary">{{ $tel->status }}</span>
+                                                                                        @endif
+                                                                                    </td>
+
                                                                                     <td>
                                                                                         <button
                                                                                             class="btn btn-warning btn-flex btn-center btn-sm edit-btn"
@@ -3146,17 +3155,38 @@
                                                                                     class="control-label">Status</label>
                                                                                 <select
                                                                                     class="form-control custom-select"
-                                                                                    name="status">
+                                                                                    name="status" required>
                                                                                     <option value="">Pilih
                                                                                         Status</option>
                                                                                     <option value="LULUS">Lulus
                                                                                     </option>
-                                                                                    <!-- Menggunakan huruf kecil -->
                                                                                     <option value="TIDAK LULUS">Tidak
                                                                                         Lulus</option>
-                                                                                    <!-- Menggunakan huruf kecil -->
                                                                                 </select>
                                                                                 @error('status')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Talent
+                                                                                    Review / Assesment</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="talent" required>
+                                                                                    <option value="">Pilih
+                                                                                        Talent Review / Assesment
+                                                                                    </option>
+                                                                                    <option value="Talent Review">
+                                                                                        Talent Review</option>
+                                                                                    <option value="Assesment">
+                                                                                        Assesment</option>
+                                                                                </select>
+                                                                                @error('talent')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
                                                                                     </div>

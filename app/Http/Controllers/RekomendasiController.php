@@ -219,23 +219,22 @@ class RekomendasiController extends Controller
         $talent = $request->input('talent');
         $lamaTalent = $request->input('lama_talent');
         
-
         // Dapatkan tanggal jabatan terbaru untuk setiap karyawan
         $subQuery = JobHistory::selectRaw('MAX(tgl_jabat) as latest_date, karyawan_id')
             ->groupBy('karyawan_id');
-
+    
         // Ambil data berdasarkan subquery dan muat relasi karyawan dan data kerja karyawan
         $query = JobHistory::with(['karyawan.datakerjakaryawans']) // Menambahkan relasi di sini
             ->joinSub($subQuery, 'latest_job', function ($join) {
                 $join->on('job_histories.tgl_jabat', '=', 'latest_job.latest_date')
                     ->on('job_histories.karyawan_id', '=', 'latest_job.karyawan_id');
             });
-
+    
         // Jika band dipilih, tambahkan ke query
         if ($band) {
             $query->where('job_histories.band', $band);
         }
-
+    
         // Jika lama jabatan dipilih, tambahkan ke query
         if ($lamaJabatan) {
             switch ($lamaJabatan) {
@@ -251,13 +250,39 @@ class RekomendasiController extends Controller
                     break;
             }
         }
-
+    
+        // Menggabungkan tabel talent
+        $query->leftJoin('talent', 'job_histories.karyawan_id', '=', 'talent.karyawan_id');
+    
+        // Jika talent dipilih, tambahkan ke query
+        if ($talent) {
+            $query->where('talent.talent', $talent);
+        }
+    
+        // Jika lama talent dipilih, tambahkan ke query
+        if ($lamaTalent) {
+            switch ($lamaTalent) {
+                case 'Kurang 1 Tahun':
+                    $query->whereDate('talent.tanggal_talent', '>=', now()->subYear());
+                    break;
+                case 'Antara 1-2 Tahun':
+                    $query->whereDate('talent.tanggal_talent', '<', now()->subYear())
+                        ->whereDate('talent.tanggal_talent', '>=', now()->subYears(2));
+                    break;
+                case 'Lebih 2 Tahun':
+                    $query->whereDate('talent.tanggal_talent', '<', now()->subYears(2));
+                    break;
+            }
+        }
+    
         // Ambil data yang telah difilter
         $jobHistories = $query->orderBy('job_histories.tgl_jabat', 'desc')->get();
-
+    
         // Kembalikan view dengan data yang difilter
         return view('bsrm.rekomendasi.show', compact('jobHistories'));
     }
+    
+    
 
 
 
