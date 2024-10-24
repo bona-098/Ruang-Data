@@ -9,7 +9,7 @@ use App\Models\Keterampilan;
 use App\Models\Pendidikan;
 use App\Models\Pelatihan;
 use App\Models\Keluarga;
-use App\Models\datakerjakaryawans;
+use App\Models\Data;
 use App\Models\Jabatan;
 use App\Models\Prestasi;
 use App\Models\Talent;
@@ -344,28 +344,25 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
-        $karyawan = Karyawan::find($id);
+        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga'])->find($id);
 
         if (!$karyawan) {
             return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
         }
 
-        // Ambil riwayat jabatan yang terkait dengan karyawan dan urutkan berdasarkan tanggal terbaru
+        // Ambil riwayat jabatan yang terkait dengan karyawan
         $jobHistories = JobHistory::where('karyawan_id', $id)->orderBy('tgl_jabat', 'desc')->get();
 
-        // Ambil pendidikan yang terkait dengan karyawan dan urutkan berdasarkan tahun lulus terbaru
+        // Ambil pendidikan yang terkait dengan karyawan
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
         $keterampilan = Keterampilan::where('karyawan_id', $id)->get();
         $talent = Talent::where('karyawan_id', $id)->get();
-        $data_keluarga = Karyawan::with('keluarga')
-            ->join('data_keluarga', 'karyawan.id', '=', 'data_keluarga.karyawan_id')
-            ->select('karyawan.*', 'data_keluarga.*')
-            ->firstOrFail(); // Akan menghasilkan error 404 jika data tidak ditemukan
 
-        // Pastikan data ada sebelum dikirim
+        // Pastikan data keluarga ada
+        $data_keluarga = $karyawan->keluarga;
+
         if (!$data_keluarga) {
-            // Menangani kasus ketika data tidak ditemukan, bisa redirect atau tampilkan pesan error
             return redirect()->route('karyawan.index')->with('error', 'Data tidak ditemukan');
         }
 
@@ -378,6 +375,7 @@ class KaryawanController extends Controller
         // Kirim semua variabel ke view
         return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

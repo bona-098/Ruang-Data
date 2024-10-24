@@ -825,106 +825,128 @@
                                                         <!-- /.card-header -->
 
                                                         <div class="card-body p-9">
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Status
-                                                                    Nikah</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-bold fs-6 text-gray-800">{{ $data_keluarga->status_nikah }}</span>
+                                                            @if ($data_keluarga->isEmpty())
+                                                                <div class="row mb-7">
+                                                                    <div class="col-lg-12">
+                                                                        <span class="fw-bold fs-6 text-gray-800">Tidak
+                                                                            ada data keluarga.</span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            @else
+                                                                @foreach ($data_keluarga as $keluarga)
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Status
+                                                                            Nikah</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-bold fs-6 text-gray-800">{{ $keluarga->status_nikah }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Nikah</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_nikah }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
+                                                                            Nikah</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_nikah }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label
-                                                                    class="col-lg-4 fw-semibold text-muted">Tanggungan
-                                                                    Keluarga</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tanggungan_keluarga }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Tanggungan
+                                                                            Keluarga</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tanggungan_keluarga }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nomor
-                                                                    Kartu Keluarga</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nomor_kartu_keluarga }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Nomor
+                                                                            Kartu Keluarga</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nomor_kartu_keluarga }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
-                                                                    Pasangan (Suami/Istri)</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_pasangan }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Nama
+                                                                            Pasangan (Suami/Istri)</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nama_pasangan }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
-                                                                    Anak Pertama</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_pertama }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Nama
+                                                                            Anak Pertama</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nama_anak_pertama }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Lahir Anak Pertama</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_pertama }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
+                                                                            Lahir Anak Pertama</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_pertama }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
-                                                                    Anak Kedua</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_kedua }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Nama
+                                                                            Anak Kedua</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nama_anak_kedua }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Lahir Anak Kedua</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_kedua }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
+                                                                            Lahir Anak Kedua</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_kedua }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nama
-                                                                    Anak Ketiga</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->nama_anak_ketiga }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Nama
+                                                                            Anak Ketiga</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nama_anak_ketiga }}</span>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Lahir Anak Ketiga</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $data_keluarga->tgl_lahir_anak_ketiga }}</span>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row mb-7">
+                                                                        <label
+                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
+                                                                            Lahir Anak Ketiga</label>
+                                                                        <div class="col-lg-8">
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_ketiga }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1196,7 +1218,7 @@
                                         <div class="tab-pane" id="job">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <div class="card ">
+                                                    <div class="card">
                                                         <div class="card-header">
                                                             <h3 class="card-title">Job</h3>
                                                             <div class="card-tools">
@@ -1215,8 +1237,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">NIK
                                                                     TelkomProperty</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-bold fs-6 text-gray-800">{{ $karyawan->nik }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-bold fs-6 text-gray-800">{{ $dataKerja->nik }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data
+                                                                            NIK</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1225,8 +1254,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">NIK
                                                                     TelkomGroup</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->telkomgroup }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->telkomgroup }}</span>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data NIK
+                                                                            TelkomGroup</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1235,54 +1271,67 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Posisi (Jabatan)</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->jabatan }}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Lokasi Kerja -->
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
-                                                                    Kerja
-                                                                    Kerja</label>
-                                                                <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->unit_kerja }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->jabatan }}</span>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data
+                                                                            Jabatan</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
                                                             <!-- Unit Kerja -->
                                                             <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Lokasi
+                                                                <label class="col-lg-4 fw-semibold text-muted">Unit
                                                                     Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">
-                                                                        @if (
-                                                                            $karyawan->unit_kerja == 'General Manager Regional' ||
-                                                                                $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution' ||
-                                                                                $karyawan->unit_kerja == 'Manager Planning & Delivery' ||
-                                                                                $karyawan->unit_kerja == 'Manager Operation & Maintenance' ||
-                                                                                $karyawan->unit_kerja == 'Manager Business Support & Risk Management' ||
-                                                                                $karyawan->unit_kerja == 'Area Kaltimtara')
-                                                                            Balikpapan
-                                                                        @elseif ($karyawan->unit_kerja == 'Area Kalselteng')
-                                                                            Banjarmasin
-                                                                        @elseif ($karyawan->unit_kerja == 'Area Kalbar')
-                                                                            Pontianak
-                                                                        @else
-                                                                            Tidak Diketahui
-                                                                        @endif
-                                                                    </span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->unit_kerja }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Unit
+                                                                            Kerja</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
+                                                            <!-- Lokasi Kerja -->
+                                                            <div class="row mb-7">
+                                                                <label class="col-lg-4 fw-semibold text-muted">Lokasi
+                                                                    Kerja</label>
+                                                                <div class="col-lg-8">
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">
+                                                                                {{ $dataKerja->lokasi_kerja ?? 'Tidak Diketahui' }}
+                                                                            </span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Lokasi
+                                                                            Kerja</span>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
                                                             <!-- Band Position -->
                                                             <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Band
                                                                     Position</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">
-                                                                        {{ $karyawan->band_kelas_posisi }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->band_kelas_posisi }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Band
+                                                                            Position</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1291,8 +1340,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Tanggal
                                                                     Level</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">0000-00-00</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->tanggal_level }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Tanggal
+                                                                            Level</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1301,8 +1357,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Tanggal
                                                                     Mulai Kerja</label>
                                                                 <div class="col-lg-8">
-                                                                    <span class="fw-semibold text-gray-800 fs-6">
-                                                                        {{ $karyawan->tgl_bergabung }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->tgl_bergabung }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Tanggal
+                                                                            Mulai Kerja</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1311,8 +1374,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Status
                                                                     Karyawan</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">TKWT</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->status_karyawan }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Status
+                                                                            Karyawan</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1321,8 +1391,15 @@
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nomor SK
                                                                     Pengangkatan Karyawan Tetap</label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6">{{ $karyawan->nomor_sk }}</span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->nomor_sk }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Nomor
+                                                                            SK</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1340,8 +1417,15 @@
                                                                     </span>
                                                                 </label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->no_kontrak }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data No.
+                                                                            Kontrak</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1359,8 +1443,15 @@
                                                                     </span>
                                                                 </label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->mulai_kontrak }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Mulai
+                                                                            Kontrak</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -1378,18 +1469,27 @@
                                                                     </span>
                                                                 </label>
                                                                 <div class="col-lg-8">
-                                                                    <span
-                                                                        class="fw-semibold text-gray-800 fs-6"></span>
+                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
+                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
+                                                                            <span
+                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->akhir_kontrak }}</span><br>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <span class="text-muted">Tidak ada data Akhir
+                                                                            Kontrak</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
 
 
+                                                        <!-- /.card-body -->
                                                     </div>
+                                                    <!-- /.card -->
                                                 </div>
                                             </div>
-
                                         </div>
+
 
                                         <div class="modal fade" id="ModalEditJob" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" data-backdrop="static"
@@ -2167,7 +2267,8 @@
                                                                                 <label>Tahun Lulus</label>
                                                                                 <input required type="number"
                                                                                     class="form-control"
-                                                                                    name="tahun_lulus" min="1900"
+                                                                                    name="tahun_lulus"
+                                                                                    min="1900"
                                                                                     max="{{ date('Y') }}"
                                                                                     placeholder="Masukkan tahun lulus">
                                                                                 @error('tahun_lulus')
@@ -2882,7 +2983,7 @@
 
 
 
-                                        {{--   <div class="modal fade" id="ModalEditPrestasi" tabindex="-1"
+                                        {{-- <div class="modal fade" id="ModalEditPrestasi" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" data-backdrop="static"
                                         data-keyboard="false" aria-hidden="true">
                                         <div
@@ -2945,7 +3046,7 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                    </div>
+                                        </div>
 
                                     <div class="modal fade" id="ModalDeletePrestasi" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" data-backdrop="static"
@@ -3066,7 +3167,7 @@
                                                                                 <tr>
                                                                                     <td>{{ $tel->tanggal_talent }}
                                                                                     </td>
-                                                                                    <td>Talent Review
+                                                                                    <td>{{ $tel->talent }}
                                                                                     </td>
                                                                                     <td>
                                                                                         @if ($tel->status == 'LULUS')
@@ -3240,9 +3341,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                      
 
-                                        @foreach ($talent as $tel)
+                                        
                                             <div class="modal fade" id="ModalEditTalent{{ $tel->id }}"
                                                 tabindex="-1" aria-labelledby="exampleModalLabel"
                                                 data-backdrop="static" data-keyboard="false" aria-hidden="true">
@@ -3311,6 +3412,32 @@
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label
+                                                                                        class="control-label">Talent
+                                                                                        Review / Assesment</label>
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        name="talent" required>
+                                                                                        <option value="">Pilih
+                                                                                            Talent Review / Assesment
+                                                                                        </option>
+                                                                                        <option value="Talent Review"
+                                                                                            {{ $tel->talent == 'Talent Review' ? 'selected' : '' }}>
+                                                                                            Talent Review</option>
+                                                                                        <option value="Assesment"{{ $tel->talent == 'Assesment' ? 'selected' : '' }}>
+                                                                                            Assesment</option>
+                                                                                    </select>
+                                                                                    @error('talent')
+                                                                                        <div
+                                                                                            class="alert alert-danger mt-2">
+                                                                                            {{ $message }}
+                                                                                        </div>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -3325,8 +3452,6 @@
                                                     </div>
                                                 </div>
                                         @endforeach
-
-
 
                                         <div class="tab-pane" id="catatan">
                                             <div class="row">
