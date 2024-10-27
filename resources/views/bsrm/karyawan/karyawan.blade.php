@@ -114,7 +114,10 @@
                 <!-- /.widget-user -->
             </div>
             <!-- /.col -->
+            
         </div>
+
+       
         <!-- /.row -->
         {{-- Data Tabel mulai baru --}}
         <div class="card">

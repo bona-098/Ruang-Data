@@ -49,6 +49,29 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Talent / Assesment</label>
+                                <select class="form-control select2" name="talent" style="width: 100%;">
+                                    <option value="">Pilih Talent / Assesment</option>
+                                    <option value="Talent Review">Talent Review</option>
+                                    <option value="Assesment">Assesment</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pilih Lama Talent / Assesment</label>
+                                <select class="form-control select2" name="lama_talent" style="width: 100%;">
+                                    <option value="">Pilih lama Talent / Assesment</option>
+                                    <option value="Kurang 1 Tahun">Kurang 1 Tahun</option>
+                                    <option value="Antara 1-2 Tahun">Antara 1-2 Tahun</option>
+                                    <option value="Lebih 2 Tahun">Lebih 2 Tahun</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

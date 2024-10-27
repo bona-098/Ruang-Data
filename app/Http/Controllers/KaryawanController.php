@@ -344,37 +344,39 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
-        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga'])->find($id);
-
+        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga', 'prestasi'])->find($id);
+    
         if (!$karyawan) {
             return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
         }
-
+    
         // Ambil riwayat jabatan yang terkait dengan karyawan
         $jobHistories = JobHistory::where('karyawan_id', $id)->orderBy('tgl_jabat', 'desc')->get();
-
+    
         // Ambil pendidikan yang terkait dengan karyawan
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
         $keterampilan = Keterampilan::where('karyawan_id', $id)->get();
         $talent = Talent::where('karyawan_id', $id)->get();
-
+        $prestasi = $karyawan->prestasi; // Add this line to get prestasi
+    
         // Pastikan data keluarga ada
         $data_keluarga = $karyawan->keluarga;
-
+    
         if (!$data_keluarga) {
             return redirect()->route('karyawan.index')->with('error', 'Data tidak ditemukan');
         }
-
+    
         // Ambil tanggal terbaru untuk riwayat jabatan
         $latestJobHistoryDate = $jobHistories->isNotEmpty() ? $jobHistories->first()->tgl_jabat : null;
-
+    
         // Ambil tahun lulus terbaru dari pendidikan
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
-
+    
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent'));
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent', 'prestasi')); // Include prestasi here
     }
+    
 
 
     /**
@@ -724,31 +726,46 @@ class KaryawanController extends Controller
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
-            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // Ganti nama sesuai input di form
         ]);
-
-        // Temukan job history berdasarkan ID
+    
+        // Temukan pelatihan berdasarkan ID
         $pelatihan = Pelatihan::find($id);
-
-        // Cek apakah job history ditemukan
+    
+        // Cek apakah pelatihan ditemukan
         if (!$pelatihan) {
-            return response()->json(['message' => 'Pendidikan not found'], 404);
+            return response()->json(['message' => 'Pelatihan tidak ditemukan'], 404);
         }
-
-        // Perbarui job history dengan data yang baru
+    
+        // Inisialisasi path lampiran
+        $lampiranPath = $pelatihan->lampiran_pendukung; // Simpan path lama
+    
+        // Periksa apakah ada lampiran baru yang diunggah
+        if ($request->hasFile('lampiran_pendukung')) {
+            // Hapus lampiran lama jika ada
+            if ($lampiranPath) {
+                \Storage::disk('public')->delete($lampiranPath);
+            }
+    
+            // Simpan lampiran baru
+            $lampiran = $request->file('lampiran_pendukung');
+            $filename = $pelatihan->karyawan_id . '_pelatihan_' . time() . '.' . $lampiran->getClientOriginalExtension();
+            $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
+        }
+    
+        // Perbarui pelatihan dengan data yang baru
         $pelatihan->update([
             'nama_pelatihan' => $request->input('nama_pelatihan'),
             'nama_penyelenggara' => $request->input('nama_penyelenggara'),
-            'jurusan' => $request->input('jurusan'),
             'tanggal_mulai' => $request->input('tanggal_mulai'),
             'tanggal_akhir' => $request->input('tanggal_akhir'),
-            'lampiran' => $request->input('lampiran'),
+            'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
             // Tambahkan kolom lainnya sesuai kebutuhan
         ]);
-
-        return redirect()->back()->with('success', 'pelatihan berhasil diubah!');
-        //  return response()->json(['message' => 'Job history updated successfully', 'data' => $pendidikan], 200);
+    
+        return redirect()->back()->with('success', 'Pelatihan berhasil diubah!');
     }
+    
 
     public function destroy_pelatihan($id)
     {
@@ -779,16 +796,16 @@ class KaryawanController extends Controller
             'karyawan_id' => 'required|exists:karyawan,id',
             'nama_keterampilan' => 'required|string|max:100',
         ]);
-
-        // Buat riwayat pekerjaan baru
+        // Buat riwayat keterampilan baru
         $keterampilan = Keterampilan::create([
-            'karyawan_id' => $karyawan_id,
+            'karyawan_id' => $request->karyawan_id, // Corrected line
             'nama_keterampilan' => $request->nama_keterampilan,
         ]);
-
         // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Riwayat keterampilan berhasil ditambahkan!');
     }
+
+
 
     public function update_keterampilan(Request $request, $id)
     {

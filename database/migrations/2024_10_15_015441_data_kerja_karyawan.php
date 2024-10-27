@@ -18,11 +18,11 @@ return new class extends Migration
             $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Relasi ke tabel karyawan
             $table->string('nik', 50)->nullable();
             $table->string('telkomgroup', 50)->nullable();
-            $table->string('band_kelas_posisi', 50)->nullable();
-            $table->string('unit_kerja', 50)->nullable();
-            $table->string('jabatan', 50)->nullable();
+            $table->string('band_kelas_posisi', 100)->nullable();
+            $table->string('unit_kerja', 100)->nullable();
+            $table->string('jabatan', 100)->nullable();
             $table->string('lokasi_kerja', 50)->nullable();
-            $table->string('nomor_sk', 50)->nullable();
+            $table->string('nomor_sk', 50)->nullable(); 
             $table->text('surat_sk')->nullable();
             $table->date('tgl_bergabung')->nullable();
             $table->timestamps(); // Kolom created_at dan updated_at

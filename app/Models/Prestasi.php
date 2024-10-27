@@ -10,7 +10,7 @@ class Prestasi extends Model
     use HasFactory;
 
     // Tentukan nama tabel jika tidak mengikuti konvensi
-    protected $table = 'prestasi';
+    protected $table = 'penghargaan';
 
     // Tentukan kolom yang dapat diisi secara massal
     protected $fillable = [
