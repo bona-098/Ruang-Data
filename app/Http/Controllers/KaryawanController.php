@@ -344,7 +344,7 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
-        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga', 'prestasis'])->find($id);
+        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga', 'prestasi'])->find($id);
     
         if (!$karyawan) {
             return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
