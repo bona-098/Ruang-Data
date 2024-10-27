@@ -80,7 +80,7 @@ class Karyawan extends Model
         return $this->hasMany(Keluarga::class, 'karyawan_id');
     }
 
-    public function prestasi()
+    public function prestasis()
     {
         return $this->hasMany(Prestasi::class, 'karyawan_id');
     }
