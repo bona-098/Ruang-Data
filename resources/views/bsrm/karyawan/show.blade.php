@@ -21,10 +21,10 @@
     <link href="{{ asset('template/') }}/css/style.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+    </script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script> --}}
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> --}}
 
@@ -3167,97 +3167,101 @@
                                                             <div class="card-tools">
                                                                 <button type="button" class="btn btn-primary"
                                                                     data-toggle="modal"
-                                                                    data-target="#ModalTambahKaryawan">
+                                                                    data-target="#ModalAddCatatan">
                                                                     Tambah catatan
                                                                 </button>
                                                             </div>
                                                             <!-- /.card-tools -->
                                                         </div>
                                                         <!-- /.card-header -->
-                                                        <div class="post">
-                                                            <br>
-                                                            <div class="user-block">
-                                                                <img class="img-circle img-bordered-sm"
-                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
-                                                                    alt="user image">
-                                                                <span class="username">
-                                                                    <a href="#">Jonathan Burke Jr.</a>
-                                                                </span>
-                                                                <span class="description">Shared publicly - 7:45
-                                                                    PM
-                                                                    today</span>
-                                                            </div>
+                                                        @foreach ($catatan as $note)
+                                                            <div class="post">
+                                                                <br>
+                                                                <div class="user-block">
+                                                                    <img class="img-circle img-bordered-sm"
+                                                                        src="{{ asset('storage/foto/default.jpg') }}"
+                                                                        alt="user image">
 
-                                                            <p>
-                                                                Lorem ipsum represents a long-held tradition for
-                                                                designers,
-                                                                typographers and the like. Some people hate it and
-                                                                argue
-                                                                for
-                                                                its demise, but others ignore.
-                                                            </p>
-                                                            <p>
-                                                                <a href="#" class="link-black text-sm"><i
-                                                                        class="fas fa-link mr-1"></i> Demo File 1
-                                                                    v2</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="post clearfix">
-                                                            <div class="user-block">
-                                                                <img class="img-circle img-bordered-sm"
-                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
-                                                                    alt="User Image">
-                                                                <span class="username">
-                                                                    <a href="#">Sarah Ross</a>
-                                                                </span>
-                                                                <span class="description">Sent you a message - 3
-                                                                    days
-                                                                    ago</span>
-                                                            </div>
 
-                                                            <p>
-                                                                Lorem ipsum represents a long-held tradition for
-                                                                designers,
-                                                                typographers and the like. Some people hate it and
-                                                                argue
-                                                                for
-                                                                its demise, but others ignore.
-                                                            </p>
-                                                            <p>
-                                                                <a href="#" class="link-black text-sm"><i
-                                                                        class="fas fa-link mr-1"></i> Demo File
-                                                                    2</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="post">
-                                                            <div class="user-block">
-                                                                <img class="img-circle img-bordered-sm"
-                                                                    src="{{ asset('storage/foto/' . ($karyawan->foto ? $karyawan->foto : 'default.jpg')) }}"
-                                                                    alt="user image">
-                                                                <span class="username">
-                                                                    <a href="#">Jonathan Burke Jr.</a>
-                                                                </span>
-                                                                <span class="description">Shared publicly - 5 days
-                                                                    ago</span>
-                                                            </div>
+                                                                    <span class="username">
+                                                                        <a href="#">
+                                                                            {{ $note->user ? $note->user->name : 'Unknown User' }}
+                                                                            <!-- Fallback if user is null -->
+                                                                        </a>
+                                                                    </span>
+                                                                    <span class="description">
+                                                                        {{ $note->user ? $note->user->role : 'Unknown User' }}-
+                                                                        {{ $note->created_at->diffForHumans() }}</span>
+                                                                </div>
 
-                                                            <p>
-                                                                Lorem ipsum represents a long-held tradition for
-                                                                designers,
-                                                                typographers and the like. Some people hate it and
-                                                                argue
-                                                                for
-                                                                its demise, but others ignore.
-                                                            </p>
-                                                            <p>
-                                                                <a href="#" class="link-black text-sm"><i
-                                                                        class="fas fa-link mr-1"></i> Demo File 1
-                                                                    v1</a>
-                                                            </p>
-                                                        </div>
+                                                                <p>
+                                                                    {{ $note->catatan }}
+                                                                    <!-- Ganti 'content' dengan kolom yang sesuai -->
+                                                                </p>
+                                                            </div>
+                                                        @endforeach
+
                                                     </div>
                                                 </div>
 
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="ModalAddCatatan" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" data-backdrop="static"
+                                            data-keyboard="false" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                            Catatan</h5>
+                                                        @if ($errors->any())
+                                                            <span class="text-danger" style="font-size: 0.9em;">
+                                                                {{ $errors->first() }}
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST"
+                                                            action="{{ route('karyawan.add_catatan') }}"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="karyawan_id"
+                                                                value="{{ $karyawan->id }}">
+                                                            <div class="card-body">
+                                                                <div class="form-body">
+                                                                    <div class="row p-t-20">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    class="control-label">Catatan</label>
+                                                                                <input required type="text"
+                                                                                    name="catatan"
+                                                                                    class="form-control"
+                                                                                    @error('catatan') is-invalid @enderror
+                                                                                    value="{{ old('catatan') }}">
+                                                                                @error('catatan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                                <small class="form-control-feedback">
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Tutup</button>
+                                                        <button type="submit"
+                                                            class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -3363,7 +3367,6 @@
         <!-- End footer -->
     </div>
     <!-- End Page wrapper  -->
-    </div>
 
     {{-- @stack('javascript') --}}
     <!-- End Wrapper -->
@@ -3978,6 +3981,86 @@
                     </div>
                 </div>
             </div>
+    @endforeach
+
+    @foreach ($catatan as $note)
+        <div class="modal fade" id="ModalEditCatatan{{ $note->id }}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit
+                            Catatan
+                        </h5>
+                        @if ($errors->any())
+                            <span class="text-danger" style="font-size: 0.9em;">
+                                {{ $errors->first() }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('karyawan.update_catatan', $note->id) }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="karyawan_id" value="{{ $karyawan->id }}">
+                            <div class="card-body">
+                                <div class="form-body">
+                                    <div class="row p-t-20">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Catatan</label>
+                                                <input required type="text" name="catatan" class="form-control"
+                                                    @error('catatan') is-invalid @enderror
+                                                    value="{{ $note->catatan }}">
+                                                @error('catatan')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                                <small class="form-control-feedback">
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="ModalDeleteCatatan{{ $note->id }}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data catatan ini?</p>
+                        <form id="deleteForm{{ $note->id }}" method="POST"
+                            action="{{ route('karyawan.destroy_catatan', $note->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 
 

@@ -28,6 +28,9 @@
                 <li> <a class="" href="{{ route('karyawan.index') }}"aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Karyawan</span></a>
                 </li>
+                <li> <a class="" href="{{ route('pelatihan.index') }}"aria-expanded="false"><i
+                            class="fa fa-users"></i><span class="hide-menu">Pelatihan Karyawan</span></a>
+                </li>
                 <li> <a class="" href="{{ route('rekomendasi.index') }}"aria-expanded="false"><i
                             class="fa fa-users"></i><span class="hide-menu">Rekomendasi Karyawan</span></a>
                 </li>

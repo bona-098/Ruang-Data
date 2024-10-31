@@ -13,7 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('catatan', function (Blueprint $table) {
+            $table->id(); // Kolom id
+            $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Relasi ke tabel karyawan
+            $table->string('user_id'); // Tanggal Mulai Pelatihan
+            $table->string('catatan', 50)->nullable();
+            $table->timestamps(); // Kolom created_at dan updated_at
+
+            // Menambahkan foreign key jika id_unit_kerja berelasi dengan tabel lain
+            // $table->foreign('id_unit_kerja')->references('id')->on('unit_kerja')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('catatan');
     }
 };

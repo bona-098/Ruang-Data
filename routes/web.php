@@ -25,6 +25,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\BpoController;
 use App\Http\Controllers\PersonilController;
@@ -80,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/performance', PerformanceController::class);
 
     Route::resource('/karyawan', KaryawanController::class);
+    
+    Route::resource('/pelatihan', PelatihanController::class);
     // Tambahkan route untuk metode khusus
     Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
     Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga'])->name('karyawan.update_keluarga');
@@ -101,6 +104,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/karyawan/add_talent', [KaryawanController::class, 'add_talent'])->name('karyawan.add_talent');
     Route::put('/karyawan/{id}/update-talent', [KaryawanController::class, 'update_talent'])->name('karyawan.update_talent');
     Route::delete('talent/{id}', [KaryawanController::class, 'destroy_talent'])->name('karyawan.destroy_talent');
+    Route::post('/karyawan/add_catatan', [KaryawanController::class, 'add_catatan'])->name('karyawan.add_catatan');
+    Route::put('/karyawan/{id}/update-catatan', [KaryawanController::class, 'update_catatan'])->name('karyawan.update_catatan');
+    Route::delete('catatan/{id}', [KaryawanController::class, 'destroy_catatan'])->name('karyawan.destroy_catatan');
 
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');

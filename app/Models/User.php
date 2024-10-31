@@ -47,4 +47,8 @@ class User extends Authenticatable
 
     protected static $logAttributes = ['name', 'email'];
 
+    public function catatan()
+    {
+        return $this->hasMany(Catatan::class);
+    }
 }

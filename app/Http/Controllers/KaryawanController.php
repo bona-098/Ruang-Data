@@ -9,6 +9,7 @@ use App\Models\Keterampilan;
 use App\Models\Pendidikan;
 use App\Models\Pelatihan;
 use App\Models\Keluarga;
+use App\Models\Catatan;
 use App\Models\Data;
 use App\Models\Jabatan;
 use App\Models\Prestasi;
@@ -344,39 +345,40 @@ class KaryawanController extends Controller
      */
     public function show($id)
     {
-        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga', 'prestasi'])->find($id);
-    
+        $karyawan = Karyawan::with(['datakerjakaryawans', 'keluarga', 'prestasi', 'catatan'])->find($id);
+
         if (!$karyawan) {
             return redirect()->back()->with('error', 'Karyawan tidak ditemukan.');
         }
-    
-        // Ambil riwayat jabatan yang terkait dengan karyawan
+
+        // Ambil riwayat jabatan, pendidikan, pelatihan, keterampilan, dan talent
         $jobHistories = JobHistory::where('karyawan_id', $id)->orderBy('tgl_jabat', 'desc')->get();
-    
-        // Ambil pendidikan yang terkait dengan karyawan
         $pendidikan = Pendidikan::where('karyawan_id', $id)->orderBy('tahun_lulus', 'desc')->get();
         $pelatihan = Pelatihan::where('karyawan_id', $id)->orderBy('tanggal_akhir', 'desc')->get();
         $keterampilan = Keterampilan::where('karyawan_id', $id)->get();
         $talent = Talent::where('karyawan_id', $id)->get();
-        $prestasi = $karyawan->prestasi; // Add this line to get prestasi
-    
+        $prestasi = $karyawan->prestasi;
+
+        // Ambil catatan terkait karyawan
+        $catatan = Catatan::where('karyawan_id', $id)->get();
+
         // Pastikan data keluarga ada
         $data_keluarga = $karyawan->keluarga;
-    
-        if (!$data_keluarga) {
-            return redirect()->route('karyawan.index')->with('error', 'Data tidak ditemukan');
+
+        if ($data_keluarga->isEmpty()) {
+            return redirect()->route('karyawan.index')->with('error', 'Data keluarga tidak ditemukan.');
         }
-    
-        // Ambil tanggal terbaru untuk riwayat jabatan
+
+        // Ambil tanggal terbaru untuk riwayat jabatan dan tahun lulus terbaru
         $latestJobHistoryDate = $jobHistories->isNotEmpty() ? $jobHistories->first()->tgl_jabat : null;
-    
-        // Ambil tahun lulus terbaru dari pendidikan
         $latestGraduationYear = $pendidikan->isNotEmpty() ? $pendidikan->first()->tahun_lulus : null;
-    
+
         // Kirim semua variabel ke view
-        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent', 'prestasi')); // Include prestasi here
+        return view('bsrm.karyawan.show', compact('karyawan', 'jobHistories', 'latestJobHistoryDate', 'pendidikan', 'latestGraduationYear', 'pelatihan', 'data_keluarga', 'keterampilan', 'talent', 'prestasi', 'catatan'));
     }
-    
+
+
+
 
 
     /**
@@ -728,31 +730,31 @@ class KaryawanController extends Controller
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
             'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // Ganti nama sesuai input di form
         ]);
-    
+
         // Temukan pelatihan berdasarkan ID
         $pelatihan = Pelatihan::find($id);
-    
+
         // Cek apakah pelatihan ditemukan
         if (!$pelatihan) {
             return response()->json(['message' => 'Pelatihan tidak ditemukan'], 404);
         }
-    
+
         // Inisialisasi path lampiran
         $lampiranPath = $pelatihan->lampiran_pendukung; // Simpan path lama
-    
+
         // Periksa apakah ada lampiran baru yang diunggah
         if ($request->hasFile('lampiran_pendukung')) {
             // Hapus lampiran lama jika ada
             if ($lampiranPath) {
                 \Storage::disk('public')->delete($lampiranPath);
             }
-    
+
             // Simpan lampiran baru
             $lampiran = $request->file('lampiran_pendukung');
             $filename = $pelatihan->karyawan_id . '_pelatihan_' . time() . '.' . $lampiran->getClientOriginalExtension();
             $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
         }
-    
+
         // Perbarui pelatihan dengan data yang baru
         $pelatihan->update([
             'nama_pelatihan' => $request->input('nama_pelatihan'),
@@ -762,10 +764,10 @@ class KaryawanController extends Controller
             'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
             // Tambahkan kolom lainnya sesuai kebutuhan
         ]);
-    
+
         return redirect()->back()->with('success', 'Pelatihan berhasil diubah!');
     }
-    
+
 
     public function destroy_pelatihan($id)
     {
@@ -1010,5 +1012,63 @@ class KaryawanController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Prestasi berhasil dihapus!');
+    }
+
+    public function add_catatan(Request $request)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'karyawan_id' => 'required|exists:karyawan,id',
+            'catatan' => 'required',
+        ]);
+
+        // Ambil data dari request
+        $karyawan_id = $request->karyawan_id;
+
+        // Ambil user_id dari pengguna yang sedang login
+        $user_id = auth()->user()->id; // Ambil ID pengguna yang sedang login
+
+        // Buat riwayat prestasi baru
+        $prestasi = Catatan::create([
+            'karyawan_id' => $karyawan_id, // Perbaiki ini
+            'user_id' => $user_id, // Gunakan user_id dari pengguna yang sedang login
+            'catatan' => $request->catatan,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Prestasi berhasil ditambahkan!');
+    }
+
+
+    public function update_catatan(Request $request, $id)
+    {
+        // Validasi data yang diterima
+        $request->validate([
+            'catatan' => 'required',
+        ]);
+
+        // Cari catatan berdasarkan ID
+        $catatan = Catatan::findOrFail($id);
+
+        // Update catatan
+        $catatan->catatan = $request->catatan;
+        $catatan->save();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Catatan berhasil diperbarui!');
+    }
+
+
+
+    public function delete_catatan($id)
+    {
+        // Cari catatan berdasarkan ID
+        $catatan = Catatan::findOrFail($id);
+
+        // Hapus catatan
+        $catatan->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Catatan berhasil dihapus!');
     }
 }
