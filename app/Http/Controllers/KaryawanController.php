@@ -35,7 +35,7 @@ class KaryawanController extends Controller
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
             ->get();
 
-
+            
 
         $jumlahKaryawan = Karyawan::count();
 
