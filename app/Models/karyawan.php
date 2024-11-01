@@ -100,7 +100,7 @@ class Karyawan extends Model
         return $this->hasMany(Talent::class);
     }
 
-    public function catatan()
+    public function catatans()
     {
         return $this->hasMany(Catatan::class);
     }
