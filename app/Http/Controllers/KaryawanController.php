@@ -35,7 +35,7 @@ class KaryawanController extends Controller
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
             ->get();
 
-            
+
 
         $jumlahKaryawan = Karyawan::count();
 
@@ -136,11 +136,6 @@ class KaryawanController extends Controller
             ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
             ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
             ->get();
-
-
-
-
-
 
         // Menghitung jumlah karyawan di Regional 6
         $jumlah_seluruh_karyawan = Karyawan::count();
@@ -687,6 +682,7 @@ class KaryawanController extends Controller
         $request->validate([
             'karyawan_id' => 'required|exists:karyawan,id',
             'nama_pelatihan' => 'required|string|max:100',
+            'kategori_pelatihan' => 'required|string|max:100',
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
@@ -710,6 +706,7 @@ class KaryawanController extends Controller
         $pelatihan = Pelatihan::create([
             'karyawan_id' => $karyawan_id,
             'nama_pelatihan' => $request->nama_pelatihan,
+            'kategori_pelatihan' => $request->kategori_pelatihan,
             'nama_penyelenggara' => $request->nama_penyelenggara,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_akhir' => $request->tanggal_akhir,
@@ -725,6 +722,7 @@ class KaryawanController extends Controller
         // Validasi data yang diterima
         $request->validate([
             'nama_pelatihan' => 'required|string|max:100',
+            'kategori_pelatihan' => 'required|string|max:100',
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
@@ -758,6 +756,7 @@ class KaryawanController extends Controller
         // Perbarui pelatihan dengan data yang baru
         $pelatihan->update([
             'nama_pelatihan' => $request->input('nama_pelatihan'),
+            'kategori_pelatihan' => $request->input('kategori_pelatihan'),
             'nama_penyelenggara' => $request->input('nama_penyelenggara'),
             'tanggal_mulai' => $request->input('tanggal_mulai'),
             'tanggal_akhir' => $request->input('tanggal_akhir'),

@@ -2226,6 +2226,7 @@
                                                                     <thead>
                                                                         <tr class="text-center">
                                                                             <th>Nama Pelatihan</th>
+                                                                            <th>Kategori Pelatihan</th>
                                                                             <th>Tanggal Mulai Pelatihan</th>
                                                                             <th>Tanggal Akhir Pelatihan</th>
                                                                             <th>Nama Penyelenggara</th>
@@ -2243,6 +2244,8 @@
                                                                         @else
                                                                             @foreach ($pelatihan as $pel)
                                                                                 <tr>
+                                                                                    <td>{{ $pel->nama_pelatihan }}
+                                                                                    </td>
                                                                                     <td>{{ $pel->nama_pelatihan }}
                                                                                     </td>
                                                                                     <td>{{ $pel->tanggal_mulai }}</td>
@@ -2329,6 +2332,29 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label class="control-label">Kategori
+                                                                                    Pelatihan</label>
+                                                                                <select
+                                                                                    class="form-control custom-select"
+                                                                                    name="kategori_pelatihan">
+                                                                                    <option value="">Pilih
+                                                                                        Kategori Pelatihan</option>
+                                                                                    <option value="A">A</option>
+                                                                                    <option value="B">B</option>
+                                                                                    <option value="C">C</option>
+                                                                                    <option value="D">D</option>
+                                                                                </select>
+                                                                                @error('kategori_pelatihan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Nama
@@ -3321,6 +3347,27 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Kategori Pelatihan</label>
+                                                <select class="form-control custom-select"
+                                                    name="kategori_pelatihan">
+                                                    <option value="">Pilih
+                                                        Kategori Pelatihan</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="C">C</option>
+                                                    <option value="D">D</option>
+                                                </select>
+                                                @error('kategori_pelatihan')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Nama
