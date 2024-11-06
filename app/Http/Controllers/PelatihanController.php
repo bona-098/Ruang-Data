@@ -12,10 +12,46 @@ class PelatihanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('bsrm.pelatihan.index');
+        // Ambil data pelatihan dengan relasi karyawan dan datakerjakaryawans
+        $pelatihan = Pelatihan::with(['karyawan', 'karyawan.datakerjakaryawans']);
+
+        // Filter berdasarkan nama pelatihan jika ada
+        if ($request->has('nama_pelatihan') && $request->nama_pelatihan != '') {
+            $pelatihan->where('nama_pelatihan', $request->nama_pelatihan);
+        }
+
+        // Filter berdasarkan status pelatihan jika ada
+        if ($request->has('status_pelatihan') && $request->status_pelatihan != '') {
+            $status = $request->status_pelatihan;
+
+            if ($status == 'Berlaku') {
+                // Filter pelatihan yang belum kadaluarsa
+                $pelatihan->where('tanggal_kadaluarsa', '>', now());
+            } elseif ($status == 'Tidak Berlaku') {
+                // Filter pelatihan yang sudah kadaluarsa
+                $pelatihan->where('tanggal_kadaluarsa', '<', now());
+            }
+        }
+
+        // Ambil data setelah difilter
+        $pelatihan = $pelatihan->get();
+
+        // Ambil nama pelatihan yang unik untuk dropdown
+        $uniquePelatihanNames = Pelatihan::pluck('nama_pelatihan')->unique();
+
+        // Kirim data ke view
+        return view('bsrm.pelatihan.index', compact('pelatihan', 'uniquePelatihanNames'));
     }
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

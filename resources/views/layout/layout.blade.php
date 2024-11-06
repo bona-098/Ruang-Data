@@ -21,6 +21,8 @@
     <link href="{{ asset('template/') }}/css/style.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
     <link href="{{ asset('template/') }}/css/modal.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('template/') }}/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('template/') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('template/') }}/css/lib/bootstrap/bootstrap.min.css">
 </head>
 
@@ -295,8 +297,8 @@
     <script src="{{ asset('template/') }}/js/lib/datatables/datatables-init.js"></script>
 
 
-
-    <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.min.js"></script>
+    <!-- Select2 -->
+    {{-- <script src="{{ asset('template/') }}/plugins/select2/js/select2.full.min.js"></script> --}}
     <!-- scripit init-->
     <script src="{{ asset('template/') }}js/lib/sweetalert/sweetalert.init.js"></script>
 
@@ -328,6 +330,18 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('template/') }}/css/modal.css"> --}}
     {{-- D:\GitHub\Projek Telkom\Ruang-Data\public\template\css\modal.css --}}
+    <script>
+        $(function() {
+            // Initialize Select2 Elements
+            $('.select2').select2();
+
+            // Initialize Select2 Elements with Bootstrap 4 theme
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            });
+        });
+    </script>
+
 
 </body>
 {{-- @include('layout.grafik') --}}

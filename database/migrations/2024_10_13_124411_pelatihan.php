@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('karyawan_id')->nullable()->constrained('karyawan')->onDelete('set null'); // Relasi ke tabel karyawan
             $table->string('nama_pelatihan'); // Nama Pelatihan
-            $table->string('kategori_pelatihan');
             $table->date('tanggal_mulai'); // Tanggal Mulai Pelatihan
             $table->date('tanggal_akhir'); // Tanggal Akhir Pelatihan
+            $table->date('tanggal_kadaluarsa'); // Tanggal Akhir Pelatihan
             $table->string('nama_penyelenggara'); // Nama Penyelenggara
             $table->string('lampiran_pendukung')->nullable(); // Lampiran Pendukung
             $table->timestamps(); // Kolom untuk created_at dan updated_at

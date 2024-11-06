@@ -16,23 +16,22 @@
                     </button>
                 </div>
             </div>
-            <form method="GET" action="{{ route('rekomendasi.filter') }}" enctype="multipart/form-data">
+            <form method="GET" action="{{ route('pelatihan.index') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Kategori Pelatihan</label>
-                                <select class="form-control select2" name="kategori_pelatihan" style="width: 100%;">
-                                    <option value="">Pilih Kategori Pelatihan</option>
-                                    <option value="Teknologi Informasi">Teknologi Informasi</option>
-                                    <option value="Manajemen">Manajemen</option>
-                                    <option value="Sumber Daya Manusia">Sumber Daya Manusia</option>
-                                    <option value="Kesehatan">Kesehatan</option>
-                                    <option value="Keuangan">Keuangan</option>
-                                    <option value="Pendidikan">Pendidikan</option>
-                                    <option value="Lingkungan Hidup">Lingkungan Hidup</option>
-                                    <option value="Pengembangan Diri">Pengembangan Diri</option>
+                                <label>Nama Pelatihan</label>
+                                <select class="form-control select2" name="nama_pelatihan" style="width: 100%;">
+                                    <option value="">Semua Pelatihan</option>
+                                    <!-- Loop untuk menampilkan nama pelatihan yang sudah unik -->
+                                    @foreach ($uniquePelatihanNames as $nama_pelatihan)
+                                        <option value="{{ $nama_pelatihan }}"
+                                            @if (request()->get('nama_pelatihan') == $nama_pelatihan) selected @endif>
+                                            {{ $nama_pelatihan }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -42,8 +41,12 @@
                                 <label>Status Pelatihan</label>
                                 <select class="form-control select2" name="status_pelatihan" style="width: 100%;">
                                     <option value="">Pilih Status Pelatihan</option>
-                                    <option value="Berlaku">Berlaku</option>
-                                    <option value="Tidak Berlaku">Tidak Berlaku</option>
+                                    <option value="Berlaku" @if (request()->get('status_pelatihan') == 'Berlaku') selected @endif>
+                                        Berlaku
+                                    </option>
+                                    <option value="Tidak Berlaku" @if (request()->get('status_pelatihan') == 'Tidak Berlaku') selected @endif>
+                                        Tidak Berlaku
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -57,6 +60,13 @@
             </form>
 
 
+
+
+
+
+
+
+
         </div>
         {{-- Data Tabel mulai baru --}}
         <div class="card">
@@ -68,46 +78,52 @@
                 <!-- Button trigger modal -->
 
                 <div class=" table-responsive">
-                    <table text-align: left; id="myTable" class="table table-bordered table-striped">
+                    <table id="myTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th style="text-align: center; vertical-align: middle;">Foto</th>
                                 <th style="text-align: center; vertical-align: middle;">NIK Telpro / Group</th>
-                                {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                 <th style="text-align: center; vertical-align: middle;">Nama Karyawan</th>
-                                {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                <th style="text-align: center; vertical-align: middle;">Unit Kerja</th>
-                                <th style="text-align: center; vertical-align: middle;">Loker</th>
-                                <th style="text-align: center; vertical-align: middle;">Jabatan</th>
+                                <th style="text-align: center; vertical-align: middle;">Pelatihan</th>
                                 <th style="text-align: center; vertical-align: middle;">Band</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td style="text-align: center; vertical-align: middle;">
-                                    <div class="round-img">
-                                        <a href="">
-                                            <img src="{{ asset('storage/foto/default.jpg') }}" alt="">
+                            @foreach ($pelatihan as $item)
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <div class="round-img">
+                                            <a href="#">
+                                                <img src="{{ asset('storage/foto/' . $item->karyawan->foto) }}"
+                                                    alt="Foto Karyawan">
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        @if ($item->karyawan->datakerjakaryawans->isNotEmpty())
+                                            {{ $item->karyawan->datakerjakaryawans[0]->nik }}
+                                        @else
+                                            NIK Tidak Tersedia
+                                        @endif
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <a href="{{ route('karyawan.show', $item->karyawan->id) }}" style="color: black;">
+                                            {{ $item->karyawan->nama_karyawan }}
                                         </a>
-
-
-                                    </div>
-                                </td>
-                                <td style="text-align: center; vertical-align: middle;"> /
-                                </td>
-                                <td style="text-align: center; vertical-align: middle;"><a
-                                        href="{{ route('karyawan.show', 2) }}" style="color: black;"></a></td>
-                                <td style="text-align: center; vertical-align: middle;"></td>
-                                <td style="text-align: center; vertical-align: middle;">
-
-                                </td>
-
-                                <td style="text-align: center; vertical-align: middle;"></td>
-                                <td style="text-align: center; vertical-align: middle;">
-                                </td>
-                            </tr>
-
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <!-- Menampilkan nama pelatihan tanpa pemeriksaan isNotEmpty() -->
+                                        {{ $item->nama_pelatihan ?? 'Pelatihan Tidak Tersedia' }}
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        @if ($item->karyawan->datakerjakaryawans->isNotEmpty())
+                                            {{ $item->karyawan->datakerjakaryawans[0]->band_kelas_posisi }}
+                                        @else
+                                            Band Tidak Tersedia
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -1214,10 +1214,6 @@
                                                 <th style="white-space: nowrap;">Nama Karyawan</th>
                                                 {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
                                                 <th style="white-space: nowrap;">Jabatan</th>
-                                                {{--  <th style="white-space: nowrap;">Unit Kerja</th>
-                                              
-                                               <th>Jabatan</th>
-                                                <th>Band</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1233,21 +1229,6 @@
                                                     <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                                     <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-
-                                                    {{-- <td style="text-align: center; vertical-align: middle;">
-                                                        @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
-                                                            Balikpapan
-                                                        @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                            Banjarmasin
-                                                        @elseif($k->unit_kerja == 'Area Kalbar')
-                                                            Pontianak
-                                                        @else
-                                                            
-                                                            Tidak Diketahui
-                                                        @endif
-                                                    </td>
-                                                      <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td>
-                                                    <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1280,8 +1261,6 @@
                                                 <th style="white-space: nowrap;">Foto</th>
                                                 {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                                 <th style="white-space: nowrap;">Nama Karyawan</th>
-                                                {{-- <th style="white-space: nowrap;">jenis Kelamin</th> --}}
-                                                {{-- <th style="white-space: nowrap;">Unit Kerja</th> --}}
                                                 <th>Jabatan</th>
                                                 {{--  <th>Band</th> --}}
                                             </tr>
@@ -1300,9 +1279,6 @@
                                                     <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                                     <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    {{-- <td style="white-space: nowrap;">{{ $k->unit_kerja }}</td> --}}
-                                                    {{-- <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1357,20 +1333,6 @@
                                                     <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                                     <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    {{-- <td style="text-align: center; vertical-align: middle;">
-                                                        @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
-                                                            Balikpapan
-                                                        @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                            Banjarmasin
-                                                        @elseif($k->unit_kerja == 'Area Kalbar')
-                                                            Pontianak
-                                                        @else
-                                                            
-                                                            Tidak Diketahui
-                                                        @endif
-                                                    </td>
-                                                    <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1423,20 +1385,6 @@
                                                     <td><a href="{{ route('karyawan.show', $k->id) }}"
                                                             style="color: black;">{{ $k->nama_karyawan }}</a></td>
                                                     <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    {{-- <td style="text-align: center; vertical-align: middle;">
-                                                        @if ($k->unit_kerja == 'General Manager Regional' || $k->unit_kerja == 'Manager Marketing, Sales & Solution' || $k->unit_kerja == 'Manager Planning & Delivery' || $k->unit_kerja == 'Manager Operation & Maintenance' || $k->unit_kerja == 'Manager Business Support & Risk Management' || $k->unit_kerja == 'Area Kaltimtara')
-                                                            Balikpapan
-                                                        @elseif($k->unit_kerja == 'Area Kalselteng')
-                                                            Banjarmasin
-                                                        @elseif($k->unit_kerja == 'Area Kalbar')
-                                                            Pontianak
-                                                        @else
-                                                        
-                                                            Tidak Diketahui
-                                                        @endif
-                                                    </td>
-                                                    <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
-                                                    <td style="white-space: nowrap;">{{ $k->band_kelas_posisi }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -1546,18 +1494,9 @@
                                                 </tr>
                                             @endif
                                         </tbody>
-
-
-
                                     </table>
-
-
-
-
-
                                 </div>
                                 @csrf
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -1582,10 +1521,6 @@
                                                 <th style="white-space: nowrap;">Foto</th>
                                                 <th style="white-space: nowrap;">Nama Karyawan</th>
                                                 <th style="white-space: nowrap;">Unit Kerja</th>
-                                                {{-- <th>Jabatan</th> --}}
-                                                {{-- <th style="white-space: nowrap;">Loker</th>
-                                                <th>Jabatan</th>
-                                                <th>Band</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1608,7 +1543,6 @@
                                     </table>
                                 </div>
                                 @csrf
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -1817,7 +1751,7 @@
     <!--Menu sidebar -->
     <script src="{{ asset('template/') }}/js/sidebarmenu.js"></script>
     <!--stickey kit -->
-    <script src="{{ asset('template/') }}/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    {{-- <script src="{{ asset('template/') }}/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script> --}}
 
     <script src="{{ asset('template/') }}/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init-demo.js"></script>
@@ -1861,9 +1795,9 @@
     </script> --}}
 
     <!-- Bootstrap JS -->
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script> --}}
+    </script>
 
     {{-- Gak bisa klik modal dropdown tapi bisa nutup modal --}}
 

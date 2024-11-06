@@ -1053,22 +1053,6 @@
                                                                 </div>
                                                             </div>
 
-                                                            <!-- Tanggal Level -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                    Level</label>
-                                                                <div class="col-lg-8">
-                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
-                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->tanggal_level }}</span><br>
-                                                                        @endforeach
-                                                                    @else
-                                                                        <span class="text-muted">Tidak ada data Tanggal
-                                                                            Level</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div> --}}
 
                                                             <!-- Tanggal Mulai Kerja -->
                                                             <div class="row mb-7">
@@ -1104,103 +1088,6 @@
                                                                     @endif
                                                                 </div>
                                                             </div>
-
-                                                            <!-- Nomor SK Pengangkatan Karyawan Tetap -->
-                                                            {{-- <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Nomor SK
-                                                                    Pengangkatan Karyawan Tetap</label>
-                                                                <div class="col-lg-8">
-                                                                    @foreach ($karyawan->datakerjakaryawans as $dataKerja)
-                                                                        @if (!empty($dataKerja->nomor_sk))
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->nomor_sk }}</span><br>
-                                                                        @else
-                                                                            <span class="text-muted">Tidak ada data
-                                                                                Nomor SK</span>
-                                                                        @endif
-                                                                    @endforeach
-                                                                </div>
-                                                            </div> --}}
-
-
-
-                                                            {{-- <!-- No. Kontrak -->
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">No.
-                                                                    Kontrak
-                                                                    <span class="ms-1" data-bs-toggle="tooltip"
-                                                                        title="No Kontrak Khusus Kontrak">
-                                                                        <i class="ki-duotone ki-information fs-7">
-                                                                            <span class="path1"></span>
-                                                                            <span class="path2"></span>
-                                                                            <span class="path3"></span>
-                                                                        </i>
-                                                                    </span>
-                                                                </label>
-                                                                <div class="col-lg-8">
-                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
-                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->no_kontrak }}</span><br>
-                                                                        @endforeach
-                                                                    @else
-                                                                        <span class="text-muted">Tidak ada data No.
-                                                                            Kontrak</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Mulai Kontrak -->
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Mulai
-                                                                    Kontrak
-                                                                    <span class="ms-1" data-bs-toggle="tooltip"
-                                                                        title="Tanggal Mulai Kontrak">
-                                                                        <i class="ki-duotone ki-information fs-7">
-                                                                            <span class="path1"></span>
-                                                                            <span class="path2"></span>
-                                                                            <span class="path3"></span>
-                                                                        </i>
-                                                                    </span>
-                                                                </label>
-                                                                <div class="col-lg-8">
-                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
-                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->mulai_kontrak }}</span><br>
-                                                                        @endforeach
-                                                                    @else
-                                                                        <span class="text-muted">Tidak ada data Mulai
-                                                                            Kontrak</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- Akhir Kontrak -->
-                                                            <div class="row mb-7">
-                                                                <label class="col-lg-4 fw-semibold text-muted">Akhir
-                                                                    Kontrak
-                                                                    <span class="ms-1" data-bs-toggle="tooltip"
-                                                                        title="Tanggal Akhir Kontrak">
-                                                                        <i class="ki-duotone ki-information fs-7">
-                                                                            <span class="path1"></span>
-                                                                            <span class="path2"></span>
-                                                                            <span class="path3"></span>
-                                                                        </i>
-                                                                    </span>
-                                                                </label>
-                                                                <div class="col-lg-8">
-                                                                    @if ($karyawan->datakerjakaryawans->isNotEmpty())
-                                                                        @foreach ($karyawan->datakerjakaryawans as $dataKerja)
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $dataKerja->akhir_kontrak }}</span><br>
-                                                                        @endforeach
-                                                                    @else
-                                                                        <span class="text-muted">Tidak ada data Akhir
-                                                                            Kontrak</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div> --}}
                                                         </div>
 
 
@@ -2226,10 +2113,10 @@
                                                                     <thead>
                                                                         <tr class="text-center">
                                                                             <th>Nama Pelatihan</th>
-                                                                            <th>Kategori Pelatihan</th>
                                                                             <th>Tanggal Mulai Pelatihan</th>
                                                                             <th>Tanggal Akhir Pelatihan</th>
                                                                             <th>Nama Penyelenggara</th>
+                                                                            <th>Tanggal kadaluarsa</th>
                                                                             <th>Lampiran Pendukung</th>
                                                                             <th>Action</th>
                                                                         </tr>
@@ -2246,12 +2133,23 @@
                                                                                 <tr>
                                                                                     <td>{{ $pel->nama_pelatihan }}
                                                                                     </td>
-                                                                                    <td>{{ $pel->nama_pelatihan }}
+                                                                                    <td>{{ $pel->tanggal_mulai }}
                                                                                     </td>
-                                                                                    <td>{{ $pel->tanggal_mulai }}</td>
                                                                                     <td>{{ $pel->tanggal_akhir }}</td>
                                                                                     <td>{{ $pel->nama_penyelenggara }}
                                                                                     </td>
+                                                                                    <td>
+                                                                                        @if ($pel->tanggal_kadaluarsa < now())
+                                                                                            <!-- Tanggal sudah lewat -->
+                                                                                            <span
+                                                                                                class="badge badge-danger">{{ $pel->tanggal_kadaluarsa }}</span>
+                                                                                        @else
+                                                                                            <!-- Tanggal belum lewat -->
+                                                                                            <span
+                                                                                                class="badge badge-success">{{ $pel->tanggal_kadaluarsa }}</span>
+                                                                                        @endif
+                                                                                    </td>
+
                                                                                     <td>
                                                                                         @if ($pel->lampiran_pendukung)
                                                                                             <a href="{{ asset('storage/' . $pel->lampiran_pendukung) }}"
@@ -2335,28 +2233,6 @@
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label class="control-label">Kategori
-                                                                                    Pelatihan</label>
-                                                                                <select
-                                                                                    class="form-control custom-select"
-                                                                                    name="kategori_pelatihan">
-                                                                                    <option value="">Pilih
-                                                                                        Kategori Pelatihan</option>
-                                                                                    <option value="A">A</option>
-                                                                                    <option value="B">B</option>
-                                                                                    <option value="C">C</option>
-                                                                                    <option value="D">D</option>
-                                                                                </select>
-                                                                                @error('kategori_pelatihan')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
                                                                                 <label class="control-label">Nama
                                                                                     Penyelenggara</label>
                                                                                 <input required type="text"
@@ -2395,6 +2271,21 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
+
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Tanggal Kadaluarsa</label>
+                                                                                <input required type="date"
+                                                                                    class="form-control"
+                                                                                    name="tanggal_kadaluarsa"
+                                                                                    placeholder="Masukkan tanggal kadaluarsa">
+                                                                                @error('tanggal_kadaluarsa')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label>Lampiran Sertifikat</label>
@@ -3348,25 +3239,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Kategori Pelatihan</label>
-                                                <select class="form-control custom-select"
-                                                    name="kategori_pelatihan">
-                                                    <option value="">Pilih
-                                                        Kategori Pelatihan</option>
-                                                    <option value="A">A</option>
-                                                    <option value="B">B</option>
-                                                    <option value="C">C</option>
-                                                    <option value="D">D</option>
-                                                </select>
-                                                @error('kategori_pelatihan')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -3403,6 +3275,20 @@
                                                 @enderror
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tanggal Kadaluarsa</label>
+                                                <input required type="date" class="form-control"
+                                                    name="tanggal_kadaluarsa"
+                                                    value="{{ $pel->tanggal_kadaluarsa }}">
+                                                @error('tanggal_kadaluarsa')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Lampiran Sertifikat</label>

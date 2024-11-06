@@ -66,7 +66,6 @@ class KaryawanController extends Controller
             ->get();
 
 
-
         $karyawan_areakaltimtara = Karyawan::with('datakerjakaryawans') // Eager loading relasi
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
@@ -682,10 +681,10 @@ class KaryawanController extends Controller
         $request->validate([
             'karyawan_id' => 'required|exists:karyawan,id',
             'nama_pelatihan' => 'required|string|max:100',
-            'kategori_pelatihan' => 'required|string|max:100',
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
+            'tanggal_kadaluarsa' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
             'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
@@ -706,10 +705,10 @@ class KaryawanController extends Controller
         $pelatihan = Pelatihan::create([
             'karyawan_id' => $karyawan_id,
             'nama_pelatihan' => $request->nama_pelatihan,
-            'kategori_pelatihan' => $request->kategori_pelatihan,
             'nama_penyelenggara' => $request->nama_penyelenggara,
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_akhir' => $request->tanggal_akhir,
+            'tanggal_kadaluarsa' => $request->tanggal_kadaluarsa,
             'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
         ]);
 
@@ -722,10 +721,10 @@ class KaryawanController extends Controller
         // Validasi data yang diterima
         $request->validate([
             'nama_pelatihan' => 'required|string|max:100',
-            'kategori_pelatihan' => 'required|string|max:100',
             'nama_penyelenggara' => 'required|string|max:100',
             'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
             'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
+            'tanggal_kadaluarsa' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
             'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // Ganti nama sesuai input di form
         ]);
 
@@ -756,10 +755,10 @@ class KaryawanController extends Controller
         // Perbarui pelatihan dengan data yang baru
         $pelatihan->update([
             'nama_pelatihan' => $request->input('nama_pelatihan'),
-            'kategori_pelatihan' => $request->input('kategori_pelatihan'),
             'nama_penyelenggara' => $request->input('nama_penyelenggara'),
             'tanggal_mulai' => $request->input('tanggal_mulai'),
             'tanggal_akhir' => $request->input('tanggal_akhir'),
+            'tanggal_kadaluarsa' => $request->input('tanggal_kadaluarsa'),
             'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
             // Tambahkan kolom lainnya sesuai kebutuhan
         ]);

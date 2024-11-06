@@ -87,7 +87,7 @@ class Karyawan extends Model
 
     public function datakerjakaryawans()
     {
-        return $this->hasMany(DataKerja::class, 'karyawan_id');
+        return $this->hasMany(DataKerja::class, 'karyawan_id', 'id');
     }
 
     public function keterampilan()

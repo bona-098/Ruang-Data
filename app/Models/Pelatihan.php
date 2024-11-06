@@ -16,15 +16,15 @@ class Pelatihan extends Model
     protected $fillable = [
         'karyawan_id',
         'nama_pelatihan',
-        'kategori_pelatihan',
         'tanggal_mulai',
         'tanggal_akhir',
         'nama_penyelenggara',
+        'tanggal_kadaluarsa',
         'lampiran_pendukung',
     ];
 
     public function karyawan()
     {
-        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+        return $this->belongsTo(Karyawan::class, 'karyawan_id', 'id');
     }
 }
