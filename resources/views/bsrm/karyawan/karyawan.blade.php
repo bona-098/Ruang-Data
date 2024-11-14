@@ -320,6 +320,10 @@
                             <!-- Add the bg color to the header using any of the bg-* classes -->
                             <div class="card-header">
                                 <!-- /.widget-user-image -->
+                                @php
+                                    $jumlahKaryawan = $karyawan->count();
+                                @endphp
+
                                 <h3 class="card-title">Karyawan Tetap - {{ $jumlahKaryawan }} Aktif</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -336,13 +340,37 @@
                                                 class="float-right badge bg-primary">1</span>
                                         </a>
                                     </li>
+                                    @php
+                                        // Daftar unit kerja yang ingin dihitung jumlahnya
+                                        $unitKerja = [
+                                            'General Manager Regional',
+                                            'Manager Marketing, Sales & Solution',
+                                            'Marketing, Sales & Solution',
+                                            'Manager Planning & Delivery',
+                                            'Planning & Delivery',
+                                            'Manager Operation & Maintenance',
+                                            'Operation & Maintenance',
+                                            'Manager Business Support & Risk Management',
+                                            'Business Support & Risk Management',
+                                        ];
+
+                                        // Filter karyawan berdasarkan unit kerja dan hitung jumlahnya
+                                        $jumlah_karyawan_regional6 = $karyawan
+                                            ->filter(function ($k) use ($unitKerja) {
+                                                return in_array($k->unit_kerja, $unitKerja);
+                                            })
+                                            ->count();
+                                    @endphp
+
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanRegional6">
-                                            Regional 6 <span data-toggle="modal" data-target="#ModalKaryawanTetap"
+                                            Regional 6
+                                            <span
                                                 class="float-right badge bg-info">{{ $jumlah_karyawan_regional6 }}</span>
                                         </a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanAreaKaltimtara">
@@ -393,8 +421,20 @@
                                     </button>
                                 </div>
                             </div>
+
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
+                                    @php
+                                        // Daftar unit kerja yang ingin dihitung jumlahnya
+                                        $jenjang = ['S2'];
+
+                                        // Filter karyawan berdasarkan unit kerja dan hitung jumlahnya
+                                        $jumlah_karyawan_s2 = $karyawan
+                                            ->filter(function ($k) use ($jenjang) {
+                                                return in_array($k->jenjang_pendidikan, $jenjang);
+                                            })
+                                            ->count();
+                                    @endphp
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanS2">
@@ -402,6 +442,17 @@
                                                 class="float-right badge bg-primary">{{ $jumlah_karyawan_s2 }}</span>
                                         </a>
                                     </li>
+                                    @php
+                                        // Daftar unit kerja yang ingin dihitung jumlahnya
+                                        $jenjang = ['S1'];
+
+                                        // Filter karyawan berdasarkan unit kerja dan hitung jumlahnya
+                                        $jumlah_karyawan_s1 = $karyawan
+                                            ->filter(function ($k) use ($jenjang) {
+                                                return in_array($k->jenjang_pendidikan, $jenjang);
+                                            })
+                                            ->count();
+                                    @endphp
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanS1">
@@ -409,6 +460,17 @@
                                                 class="float-right badge bg-info">{{ $jumlah_karyawan_s1 }}</span>
                                         </a>
                                     </li>
+                                    @php
+                                        // Daftar unit kerja yang ingin dihitung jumlahnya
+                                        $jenjang = ['Diploma III'];
+
+                                        // Filter karyawan berdasarkan unit kerja dan hitung jumlahnya
+                                        $jumlah_karyawan_DIII = $karyawan
+                                            ->filter(function ($k) use ($jenjang) {
+                                                return in_array($k->jenjang_pendidikan, $jenjang);
+                                            })
+                                            ->count();
+                                    @endphp
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanDiplomaIII">
@@ -416,6 +478,17 @@
                                                 class="float-right badge bg-success">{{ $jumlah_karyawan_DIII }}</span>
                                         </a>
                                     </li>
+                                    @php
+                                        // Daftar unit kerja yang ingin dihitung jumlahnya
+                                        $jenjang = ['SMK/SLTA Kejuruan'];
+
+                                        // Filter karyawan berdasarkan unit kerja dan hitung jumlahnya
+                                        $jumlah_karyawan_sekolah = $karyawan
+                                            ->filter(function ($k) use ($jenjang) {
+                                                return in_array($k->jenjang_pendidikan, $jenjang);
+                                            })
+                                            ->count();
+                                    @endphp
                                     <li class="nav-item">
                                         <a href="#" class="nav-link" data-toggle="modal"
                                             data-target="#ModalKaryawanSekolah">
@@ -481,9 +554,17 @@
                                             <td style="text-align: center; vertical-align: middle;">
                                                 {{ $k->nik }} /
                                                 {{ $k->telkomgroup }}</td>
-                                            <td style="text-align: center; vertical-align: middle;"><a
-                                                    href="{{ route('karyawan.show', $k->id) }}"
-                                                    style="color: black;">{{ $k->nama_karyawan }}</a></td>
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                @if ($k->id)
+                                                    <!-- Cek jika id ada -->
+                                                    <a href="{{ route('karyawan.show', $k->id) }}"
+                                                        style="color: black;">
+                                                        {{ $k->nama_karyawan }}
+                                                    </a>
+                                                @else
+                                                    <span>No ID</span> <!-- Tampilkan jika id kosong -->
+                                                @endif
+                                            </td>
                                             <td style="text-align: center; vertical-align: middle;">
                                                 {{ $k->unit_kerja }}</td>
                                             <td style="text-align: center; vertical-align: middle;">
@@ -1165,7 +1246,7 @@
                 <!-- KONTEN MODAL TAMBAH KARYAWAN  -->
 
                 <!-- Modal Delete Mitra -->
-                @foreach ($karyawan as $m)
+                {{-- @foreach ($karyawan as $m)
                     @if (isset($m))
                         <div class="modal fade" id="ModalDeleteKaryawan{{ $m->id }}" tabindex="-1"
                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1194,8 +1275,16 @@
                             </div>
                         </div>
                     @endif
-                @endforeach
+                @endforeach --}}
 
+
+                @php
+                    $units = ['General Manager Regional'];
+
+                    $karyawan_organik = $karyawan->filter(function ($k) use ($units) {
+                        return in_array($k->unit_kerja, $units);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanOrganik" tabindex="-1" aria-labelledby="exampleModalLabel"
                     data-backdrop="static" data-keyboard="false" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -1244,25 +1333,37 @@
                     </div>
                 </div>
 
+                @php
+                    $units = [
+                        'General Manager Regional',
+                        'Marketing, Sales & Solution',
+                        'Planning & Delivery',
+                        'Operation & Maintenance',
+                        'Business Support & Risk Management',
+                    ];
+
+                    $karyawan_regional6 = $karyawan->filter(function ($k) use ($units) {
+                        return in_array($k->unit_kerja, $units);
+                    });
+                @endphp
+
                 <div class="modal fade" id="ModalKaryawanRegional6" tabindex="-1"
                     aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Karyawan Regional VI</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Karyawan Regional 6</h5>
                             </div>
                             <div class="modal-body">
-                                <div class=" table-responsive">
+                                <div class="table-responsive">
                                     <table text-align: left; id="myTable" class="table table-bordered table-striped"
                                         style="font-size: 12px;">
                                         <thead>
                                             <tr>
                                                 <th style="white-space: nowrap;">Foto</th>
-                                                {{-- <th style="white-space: nowrap;">NIK Telkom Group</th> --}}
                                                 <th style="white-space: nowrap;">Nama Karyawan</th>
-                                                <th>Jabatan</th>
-                                                {{--  <th>Band</th> --}}
+                                                <th style="white-space: nowrap;">Jabatan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1275,9 +1376,17 @@
                                                                     alt=""></a>
                                                         </div>
                                                     </td>
-
-                                                    <td><a href="{{ route('karyawan.show', $k->id) }}"
-                                                            style="color: black;">{{ $k->nama_karyawan }}</a></td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        @if ($k->id)
+                                                            <!-- Cek jika id ada -->
+                                                            <a href="{{ route('karyawan.show', $k->id) }}"
+                                                                style="color: black;">
+                                                                {{ $k->nama_karyawan }}
+                                                            </a>
+                                                        @else
+                                                            <span>No ID</span> <!-- Tampilkan jika id kosong -->
+                                                        @endif
+                                                    </td>
                                                     <td style="white-space: nowrap;">{{ $k->jabatan }}</td>
                                                 </tr>
                                             @endforeach
@@ -1285,7 +1394,6 @@
                                     </table>
                                 </div>
                                 @csrf
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -1294,6 +1402,13 @@
                     </div>
                 </div>
 
+                @php
+                    $units = ['Area Kaltimtara'];
+
+                    $karyawan_areakaltimtara = $karyawan->filter(function ($k) use ($units) {
+                        return in_array($k->unit_kerja, $units);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanAreaKaltimtara" tabindex="-1"
                     aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
                     aria-hidden="true">
@@ -1348,6 +1463,13 @@
                     </div>
                 </div>
 
+                @php
+                    $units = ['Area Kalselteng'];
+
+                    $karyawan_areakalselteng = $karyawan->filter(function ($k) use ($units) {
+                        return in_array($k->unit_kerja, $units);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanAreaKalselteng" tabindex="-1"
                     aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
                     aria-hidden="true">
@@ -1400,6 +1522,14 @@
                     </div>
                 </div>
 
+
+                @php
+                    $units = ['Area Kalbar'];
+
+                    $karyawan_areakalbar = $karyawan->filter(function ($k) use ($units) {
+                        return in_array($k->unit_kerja, $units);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanAreaKalbar" tabindex="-1"
                     aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
                     aria-hidden="true">
@@ -1505,6 +1635,13 @@
                     </div>
                 </div>
 
+
+                @php
+                    $jenjang = ['S2'];
+                    $karyawan_s2 = $karyawan->filter(function ($k) use ($jenjang) {
+                        return in_array($k->jenjang_pendidikan, $jenjang);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanS2" tabindex="-1" aria-labelledby="exampleModalLabel"
                     data-backdrop="static" data-keyboard="false" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -1551,6 +1688,12 @@
                     </div>
                 </div>
 
+                @php
+                    $jenjang = ['S1'];
+                    $karyawan_s1 = $karyawan->filter(function ($k) use ($jenjang) {
+                        return in_array($k->jenjang_pendidikan, $jenjang);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanS1" tabindex="-1" aria-labelledby="exampleModalLabel"
                     data-backdrop="static" data-keyboard="false" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -1603,6 +1746,13 @@
                     </div>
                 </div>
 
+
+                @php
+                    $jenjang = ['Diploma III'];
+                    $karyawan_diploma = $karyawan->filter(function ($k) use ($jenjang) {
+                        return in_array($k->jenjang_pendidikan, $jenjang);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanDiplomaIII" tabindex="-1"
                     aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false"
                     aria-hidden="true">
@@ -1654,6 +1804,12 @@
                     </div>
                 </div>
 
+                @php
+                    $jenjang = ['SMK/SLTA Kejuruan'];
+                    $karyawan_sekolah = $karyawan->filter(function ($k) use ($jenjang) {
+                        return in_array($k->jenjang_pendidikan, $jenjang);
+                    });
+                @endphp
                 <div class="modal fade" id="ModalKaryawanSekolah" tabindex="-1" aria-labelledby="exampleModalLabel"
                     data-backdrop="static" data-keyboard="false" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -1663,8 +1819,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class=" table-responsive">
-                                    <table text-align: left; id="myTable"
-                                        class="table table-bordered table-striped" style="font-size: 12px;">
+                                    <table text-align: left; id="myTable" class="table table-bordered table-striped"
+                                        style="font-size: 12px;">
                                         <thead>
                                             <tr>
                                                 <th style="white-space: nowrap;">Foto</th>
@@ -1751,7 +1907,7 @@
     <!--Menu sidebar -->
     <script src="{{ asset('template/') }}/js/sidebarmenu.js"></script>
     <!--stickey kit -->
-    {{-- <script src="{{ asset('template/') }}/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script> --}}
+    <script src="{{ asset('template/') }}/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
     <script src="{{ asset('template/') }}/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="{{ asset('template/') }}/js/lib/chart-js/chartjs-init-demo.js"></script>

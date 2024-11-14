@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nama_institusi'); // Kolom untuk Nama Institusi
             $table->string('jurusan'); // Kolom untuk Jurusan
             $table->year('tahun_lulus'); // Kolom untuk Tahun Lulus
-            $table->string('lampiran_pendukung')->nullable(); // Kolom untuk Lampiran Pendukung
+            $table->string('lampiran_ijazah')->nullable(); // Kolom untuk Lampiran Pendukung
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }

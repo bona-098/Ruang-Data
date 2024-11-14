@@ -19,7 +19,7 @@ class Pendidikan extends Model
         'nama_institusi',
         'jurusan',
         'tahun_lulus',
-        'lampiran_pendukung',
+        'lampiran_ijazah',
     ];
 
     // Relasi dengan model Karyawan

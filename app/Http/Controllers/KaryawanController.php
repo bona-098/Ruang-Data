@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\LogActivities; // Import model MitraActivityLog
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KaryawanController extends Controller
 {
@@ -29,63 +30,83 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
+        // $karyawan = Karyawan::with(['datakerjakaryawans', 'pendidikan']) // Eager load dua relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id')
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*', 'pendidikan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
+        //     ->get();
+
+        $karyawan = Karyawan::with(['datakerjakaryawans', 'pendidikan'])
+            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+            ->leftJoin('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id')
+            ->orderBy('data_kerja_karyawan.band_kelas_posisi')
+            ->select('karyawan.*', 'data_kerja_karyawan.*', 'pendidikan.*')
             ->get();
 
 
 
-        $jumlahKaryawan = Karyawan::count();
+        // dd($karyawan);
+
+        // dd($karyawan);
+        // $karyawan_pendidikan = Karyawan::with('pendidikan') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+        //     // ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
+        //     // ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+        //     ->get();
+
+
+        // $jumlahKaryawan = Karyawan::count();
 
         // Menyaring karyawan berdasarkan unit kerja
-        $karyawan_organik = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
-            ->select('karyawan.*') // Memilih kolom dari tabel karyawan
-            ->get();
+        // $karyawan_organik = Karyawan::with('datakerjakaryawans') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
+        //     ->select('karyawan.*') // Memilih kolom dari tabel karyawan
+        //     ->get();
 
 
 
-        $karyawan_regional6 = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->whereIn('data_kerja_karyawan.unit_kerja', [
-                'General Manager Regional',
-                'Manager Marketing, Sales & Solution',
-                'Marketing, Sales & Solution',
-                'Manager Planning & Delivery',
-                'Planning & Delivery',
-                'Manager Operation & Maintenance',
-                'Operation & Maintenance',
-                'Manager Business Support & Risk Management',
-                'Business Support & Risk Management'
-            ]) // Kondisi unit_kerja
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-            ->get();
+        // $karyawan_regional6 = Karyawan::with('datakerjakaryawans') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->whereIn('data_kerja_karyawan.unit_kerja', [
+        //         'General Manager Regional',
+        //         'Manager Marketing, Sales & Solution',
+        //         'Marketing, Sales & Solution',
+        //         'Manager Planning & Delivery',
+        //         'Planning & Delivery',
+        //         'Manager Operation & Maintenance',
+        //         'Operation & Maintenance',
+        //         'Manager Business Support & Risk Management',
+        //         'Business Support & Risk Management'
+        //     ]) // Kondisi unit_kerja
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+        //     ->get();
 
 
-        $karyawan_areakaltimtara = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-            ->get();
+        // $karyawan_areakaltimtara = Karyawan::with('datakerjakaryawans') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+        //     ->get();
 
-        $karyawan_areakalselteng = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng') // Kondisi unit_kerja
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-            ->get();
+        // $karyawan_areakalselteng = Karyawan::with('datakerjakaryawans') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng') // Kondisi unit_kerja
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+        //     ->get();
 
-        $karyawan_areakalbar = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar') // Kondisi unit_kerja
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-            ->get();
+        // $karyawan_areakalbar = Karyawan::with('datakerjakaryawans') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar') // Kondisi unit_kerja
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
+        //     ->get();
 
 
 
@@ -103,54 +124,54 @@ class KaryawanController extends Controller
         $jumlahJabatan = $jabatanList->count();
 
 
-        // Menyaring karyawan berdasarkan pendidikan
-        $karyawan_s2 = Karyawan::with('pendidikan') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-            ->where('pendidikan.jenjang_pendidikan', 'S2') // Kondisi jenjang pendidikan
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-            ->get();
+        // // Menyaring karyawan berdasarkan pendidikan
+        // $karyawan_s2 = Karyawan::with('pendidikan') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+        //     ->where('pendidikan.jenjang_pendidikan', 'S2') // Kondisi jenjang pendidikan
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+        //     ->get();
 
-        $karyawan_s1 = Karyawan::with('pendidikan') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-            ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-            ->get();
+        // $karyawan_s1 = Karyawan::with('pendidikan') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+        //     ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+        //     ->get();
 
-        $karyawan_diploma = Karyawan::with('pendidikan') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-            ->where('pendidikan.jenjang_pendidikan', 'Diploma III') // Kondisi jenjang pendidikan
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-            ->get();
+        // $karyawan_diploma = Karyawan::with('pendidikan') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+        //     ->where('pendidikan.jenjang_pendidikan', 'Diploma III') // Kondisi jenjang pendidikan
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+        //     ->get();
 
-        $karyawan_sekolah = Karyawan::with('pendidikan') // Eager loading relasi
-            ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-            ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-            ->where('pendidikan.jenjang_pendidikan', 'SMK/SLTA Kejuruan') // Kondisi jenjang pendidikan
-            ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-            ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-            ->get();
+        // $karyawan_sekolah = Karyawan::with('pendidikan') // Eager loading relasi
+        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
+        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
+        //     ->where('pendidikan.jenjang_pendidikan', 'SMK/SLTA Kejuruan') // Kondisi jenjang pendidikan
+        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
+        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
+        //     ->get();
 
         // Menghitung jumlah karyawan di Regional 6
         $jumlah_seluruh_karyawan = Karyawan::count();
-        $jumlah_karyawan_regional6 = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
-            ->whereIn('data_kerja_karyawan.unit_kerja', [
-                'General Manager Regional',
-                'Manager Marketing, Sales & Solution',
-                'Marketing, Sales & Solution',
-                'Manager Planning & Delivery',
-                'Planning & Delivery',
-                'Manager Operation & Maintenance',
-                'Operation & Maintenance',
-                'Manager Business Support & Risk Management',
-                'Business Support & Risk Management'
-            ])
-            ->count();
+        // $jumlah_karyawan_regional6 = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
+        //     ->whereIn('data_kerja_karyawan.unit_kerja', [
+        //         'General Manager Regional',
+        //         'Manager Marketing, Sales & Solution',
+        //         'Marketing, Sales & Solution',
+        //         'Manager Planning & Delivery',
+        //         'Planning & Delivery',
+        //         'Manager Operation & Maintenance',
+        //         'Operation & Maintenance',
+        //         'Manager Business Support & Risk Management',
+        //         'Business Support & Risk Management'
+        //     ])
+        //     ->count();
 
         $jumlah_karyawan_areakaltimtara = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara')
@@ -169,45 +190,46 @@ class KaryawanController extends Controller
         //     'Area Kalbar'
         // ])->count();
 
-        $jumlah_karyawan_s2 = Pendidikan::whereIn('jenjang_pendidikan', [
-            'S2'
-        ])->count();
+        // $jumlah_karyawan_s2 = Pendidikan::whereIn('jenjang_pendidikan', [
+        //     'S2'
+        // ])->count();
 
-        $jumlah_karyawan_s1 = Pendidikan::whereIn('jenjang_pendidikan', [
-            'S1'
-        ])->count();
+        // $jumlah_karyawan_s1 = Pendidikan::whereIn('jenjang_pendidikan', [
+        //     'S1'
+        // ])->count();
 
-        $jumlah_karyawan_DIII = Pendidikan::whereIn('jenjang_pendidikan', [
-            'Diploma III'
-        ])->count();
+        // $jumlah_karyawan_DIII = Pendidikan::whereIn('jenjang_pendidikan', [
+        //     'Diploma III'
+        // ])->count();
 
-        $jumlah_karyawan_sekolah = Pendidikan::whereIn('jenjang_pendidikan', [
-            'SMK/SLTA Kejuruan'
-        ])->count();
+        // $jumlah_karyawan_sekolah = Pendidikan::whereIn('jenjang_pendidikan', [
+        //     'SMK/SLTA Kejuruan'
+        // ])->count();
 
 
 
         return view('bsrm.karyawan.karyawan', compact(
             'karyawan',
-            'jumlahKaryawan',
-            'karyawan_organik',
-            'karyawan_regional6',
-            'karyawan_areakaltimtara',
-            'karyawan_areakalselteng',
-            'karyawan_areakalbar',
-            'karyawan_s2',
-            'karyawan_s1',
-            'karyawan_diploma',
-            'karyawan_sekolah',
-            'jumlah_seluruh_karyawan',
-            'jumlah_karyawan_regional6',
+            // 'karyawan_pendidikan',
+            // 'jumlahKaryawan',
+            // 'karyawan_organik',
+            // 'karyawan_regional6',
+            // 'karyawan_areakaltimtara',
+            // 'karyawan_areakalselteng',
+            // 'karyawan_areakalbar',
+            // 'karyawan_s2',
+            // 'karyawan_s1',
+            // 'karyawan_diploma',
+            // 'karyawan_sekolah',
+            // 'jumlah_seluruh_karyawan',
+            // 'jumlah_karyawan_regional6',
             'jumlah_karyawan_areakaltimtara',
             'jumlah_karyawan_areakalselteng',
             'jumlah_karyawan_areakalbar',
-            'jumlah_karyawan_s2',
-            'jumlah_karyawan_s1',
-            'jumlah_karyawan_DIII',
-            'jumlah_karyawan_sekolah',
+            // 'jumlah_karyawan_s2',
+            // 'jumlah_karyawan_s1',
+            // 'jumlah_karyawan_DIII',
+            // 'jumlah_karyawan_sekolah',
             'jumlahJabatan',
             'jabatanList',
         ));
@@ -580,6 +602,28 @@ class KaryawanController extends Controller
         return response()->json(['message' => 'Job history updated successfully', 'data' => $jobHistory], 200);
     }
 
+    public function destroy_jobhistory($id)
+    {
+        // Temukan pendidikan berdasarkan ID
+        $jobhistory = JobHistory::find($id);
+
+        // Cek apakah pendidikan ditemukan
+        if (!$jobhistory) {
+            return response()->json(['message' => 'Jobhistory not found'], 404);
+        }
+
+        // Hapus lampiran dari storage jika ada
+        if ($jobhistory->lampiran) {
+            Storage::disk('public')->delete($jobhistory->lampiran);
+        }
+
+        // Hapus entri pendidikan dari database
+        $jobhistory->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Riwayat pendidikan berhasil dihapus!');
+    }
+
     public function add_pendidikan(Request $request)
     {
         // Validasi data yang diterima
@@ -589,68 +633,106 @@ class KaryawanController extends Controller
             'nama_institusi' => 'required|string|max:100',
             'jurusan' => 'required|string|max:100',
             'tahun_lulus' => 'required|integer|min:1900|max:' . date('Y'), // Validasi tahun
-            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'lampiran_ijazah' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
         ]);
 
         // Ambil data dari request
         $karyawan_id = $request->karyawan_id;
         $jenjang = $request->jenjang_pendidikan;
 
-        // Simpan lampiran ke folder 'public/lampiran'
+        // Simpan lampiran ke folder 'public/lampiran_ijazah'
         $lampiranPath = null; // Inisialisasi path
-        if ($request->hasFile('lampiran')) {
-            $lampiran = $request->file('lampiran');
-            $filename = $karyawan_id . '_' . $jenjang . '.' . $lampiran->getClientOriginalExtension();
-            $lampiranPath = $lampiran->storeAs('lampiran_pendidikan', $filename, 'public'); // Simpan lampiran dan dapatkan path
+        if ($request->hasFile('lampiran_ijazah')) {
+            $lampiran = $request->file('lampiran_ijazah');
+
+            // Membuat nama file berdasarkan karyawan_id, jenjang, nama institusi, tahun lulus, dan timestamp
+            $filename = $karyawan_id . '_' . $jenjang . '_' . $request->nama_institusi . '_' . $request->tahun_lulus . '_' . time() . '.' . $lampiran->getClientOriginalExtension();
+
+            // Simpan lampiran dan dapatkan path
+            $lampiranPath = $lampiran->storeAs('lampiran_ijazah', $filename, 'public');
         }
 
-        // Buat riwayat pekerjaan baru
-        $jobHistory = Pendidikan::create([
+        // Buat riwayat pendidikan baru
+        $pendidikan = Pendidikan::create([
             'karyawan_id' => $karyawan_id,
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
             'nama_institusi' => $request->nama_institusi,
             'jurusan' => $request->jurusan,
             'tahun_lulus' => $request->tahun_lulus,
-            'lampiran' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
+            'lampiran_ijazah' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->back()->with('success', 'Riwayat pekerjaan berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Riwayat Pendidikan berhasil ditambahkan!');
     }
+
 
     public function update_pendidikan(Request $request, $id)
     {
-        // Validasi data yang diterima
-        $request->validate([
-            'karyawan_id' => 'required|exists:karyawan,id',
-            'jenjang_pendidikan' => 'required|string|max:100',
-            'nama_institusi' => 'required|string|max:100',
-            'jurusan' => 'required|string|max:100',
-            'tahun_lulus' => 'required|integer|min:1900|max:' . date('Y'), // Validasi tahun
-            'lampiran' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        ]);
+        // Debugging: Tampilkan semua data yang diterima dari form
+        // dd($request->all());
+        try {
+            // Validasi data yang diterima
+            $request->validate([
+                'karyawan_id' => 'required|exists:karyawan,id',
+                'jenjang_pendidikan' => 'required|string|max:100',
+                'nama_institusi' => 'required|string|max:100',
+                'jurusan' => 'required|string|max:100',
+                'tahun_lulus' => 'required|integer|min:1900|max:' . date('Y'),
+                'lampiran_ijazah' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            ]);
 
-        // Temukan job history berdasarkan ID
-        $pendidikan = Pendidikan::find($id);
+            // Temukan riwayat pendidikan berdasarkan ID
+            $pendidikan = Pendidikan::find($id);
 
-        // Cek apakah job history ditemukan
-        if (!$pendidikan) {
-            return response()->json(['message' => 'Pendidikan not found'], 404);
+            // Cek apakah riwayat pendidikan ditemukan
+            if (!$pendidikan) {
+                return response()->json(['message' => 'Pendidikan tidak ditemukan'], 404);
+            }
+
+            // Variabel untuk menyimpan path lampiran
+            $lampiranPath = $pendidikan->lampiran_ijazah;
+
+            // Jika ada file lampiran baru
+            if ($request->hasFile('lampiran_ijazah')) {
+                // Hapus lampiran yang lama jika ada
+                if ($lampiranPath && Storage::disk('public')->exists($lampiranPath)) {
+                    Storage::disk('public')->delete($lampiranPath);
+                }
+
+                // Ambil file baru
+                $lampiran = $request->file('lampiran_ijazah');
+                $filename = $pendidikan->karyawan_id . '_' . $pendidikan->jenjang_pendidikan . '_' . time() . '.' . $lampiran->getClientOriginalExtension();
+
+                // Simpan lampiran baru ke folder 'lampiran_ijazah'
+                $lampiranPath = $lampiran->storeAs('lampiran_ijazah', $filename, 'public');
+            }
+
+            // Perbarui riwayat pendidikan dengan data baru
+            $pendidikan->update([
+                'jenjang_pendidikan' => $request->input('jenjang_pendidikan'),
+                'nama_institusi' => $request->input('nama_institusi'),
+                'jurusan' => $request->input('jurusan'),
+                'tahun_lulus' => $request->input('tahun_lulus'),
+                'lampiran_ijazah' => $lampiranPath,
+            ]);
+
+            // Menampilkan toast sukses setelah data diperbarui
+            Alert::toast('Riwayat Pendidikan berhasil diubah!', 'success');
+
+            // Redirect dengan pesan sukses
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Menampilkan toast gagal jika ada kesalahan
+            Alert::toast('Gagal mengubah Riwayat Pendidikan: ' . $e->getMessage(), 'error');
+
+            // Redirect kembali dengan pesan gagal
+            return redirect()->back();
         }
-
-        // Perbarui job history dengan data yang baru
-        $pendidikan->update([
-            'jenjang_pendidikan' => $request->input('jenjang_pendidikan'),
-            'nama_institusi' => $request->input('nama_institusi'),
-            'jurusan' => $request->input('jurusan'),
-            'tahun_lulus' => $request->input('tahun_lulus'),
-            'lampiran' => $request->input('lampiran'),
-            // Tambahkan kolom lainnya sesuai kebutuhan
-        ]);
-
-        return redirect()->back()->with('success', 'Pendidikan berhasil diubah!');
-        //  return response()->json(['message' => 'Job history updated successfully', 'data' => $pendidikan], 200);
     }
+
+
+
 
     public function destroy_pendidikan($id)
     {
@@ -663,8 +745,8 @@ class KaryawanController extends Controller
         }
 
         // Hapus lampiran dari storage jika ada
-        if ($pendidikan->lampiran) {
-            Storage::disk('public')->delete($pendidikan->lampiran);
+        if ($pendidikan->lampiran_ijazah) {
+            Storage::disk('public')->delete($pendidikan->lampiran_ijazah);
         }
 
         // Hapus entri pendidikan dari database
@@ -718,15 +800,70 @@ class KaryawanController extends Controller
 
     public function update_pelatihan(Request $request, $id)
     {
-        // Validasi data yang diterima
-        $request->validate([
-            'nama_pelatihan' => 'required|string|max:100',
-            'nama_penyelenggara' => 'required|string|max:100',
-            'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir', // Pastikan tanggal mulai valid dan sebelum tanggal akhir
-            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
-            'tanggal_kadaluarsa' => 'required|date|after_or_equal:tanggal_mulai', // Pastikan tanggal akhir valid dan setelah tanggal mulai
-            'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // Ganti nama sesuai input di form
-        ]);
+        try {
+            // Validasi data yang diterima
+            $request->validate([
+                'nama_pelatihan' => 'required|string|max:100',
+                'nama_penyelenggara' => 'required|string|max:100',
+                'tanggal_mulai' => 'required|date|before_or_equal:tanggal_akhir',
+                'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
+                'tanggal_kadaluarsa' => 'required|date|after_or_equal:tanggal_mulai',
+                'lampiran_pendukung' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            ]);
+
+            // Temukan pelatihan berdasarkan ID
+            $pelatihan = Pelatihan::find($id);
+
+            // Cek apakah pelatihan ditemukan
+            if (!$pelatihan) {
+                Alert::toast('Pelatihan tidak ditemukan!', 'error');
+                return redirect()->back();
+            }
+
+            // Inisialisasi path lampiran
+            $lampiranPath = $pelatihan->lampiran_pendukung; // Simpan path lama
+
+            // Periksa apakah ada lampiran baru yang diunggah
+            if ($request->hasFile('lampiran_pendukung')) {
+                // Hapus lampiran lama jika ada
+                if ($lampiranPath) {
+                    \Storage::disk('public')->delete($lampiranPath);
+                }
+
+                // Simpan lampiran baru
+                $lampiran = $request->file('lampiran_pendukung');
+                $filename = $pelatihan->karyawan_id . '_pelatihan_' . time() . '.' . $lampiran->getClientOriginalExtension();
+                $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
+            }
+
+            // Perbarui pelatihan dengan data yang baru
+            $pelatihan->update([
+                'nama_pelatihan' => $request->input('nama_pelatihan'),
+                'nama_penyelenggara' => $request->input('nama_penyelenggara'),
+                'tanggal_mulai' => $request->input('tanggal_mulai'),
+                'tanggal_akhir' => $request->input('tanggal_akhir'),
+                'tanggal_kadaluarsa' => $request->input('tanggal_kadaluarsa'),
+                'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
+            ]);
+
+            // Menampilkan toast sukses setelah data diperbarui
+            Alert::toast('Pelatihan berhasil diubah!', 'success');
+
+            // Redirect dengan pesan sukses
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Menampilkan toast gagal jika ada kesalahan
+            Alert::toast('Gagal mengubah pelatihan: ' . $e->getMessage(), 'error');
+
+            // Redirect kembali dengan pesan gagal
+            return redirect()->back();
+        }
+    }
+
+    public function destroy_pelatihan($id)
+    {
+        // Debugging: Pastikan $id diterima dengan benar
+        // dd($id);  // Pastikan ID yang diterima sesuai dengan yang diharapkan
 
         // Temukan pelatihan berdasarkan ID
         $pelatihan = Pelatihan::find($id);
@@ -736,50 +873,9 @@ class KaryawanController extends Controller
             return response()->json(['message' => 'Pelatihan tidak ditemukan'], 404);
         }
 
-        // Inisialisasi path lampiran
-        $lampiranPath = $pelatihan->lampiran_pendukung; // Simpan path lama
-
-        // Periksa apakah ada lampiran baru yang diunggah
-        if ($request->hasFile('lampiran_pendukung')) {
-            // Hapus lampiran lama jika ada
-            if ($lampiranPath) {
-                \Storage::disk('public')->delete($lampiranPath);
-            }
-
-            // Simpan lampiran baru
-            $lampiran = $request->file('lampiran_pendukung');
-            $filename = $pelatihan->karyawan_id . '_pelatihan_' . time() . '.' . $lampiran->getClientOriginalExtension();
-            $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
-        }
-
-        // Perbarui pelatihan dengan data yang baru
-        $pelatihan->update([
-            'nama_pelatihan' => $request->input('nama_pelatihan'),
-            'nama_penyelenggara' => $request->input('nama_penyelenggara'),
-            'tanggal_mulai' => $request->input('tanggal_mulai'),
-            'tanggal_akhir' => $request->input('tanggal_akhir'),
-            'tanggal_kadaluarsa' => $request->input('tanggal_kadaluarsa'),
-            'lampiran_pendukung' => $lampiranPath, // Simpan path lampiran yang sudah disimpan
-            // Tambahkan kolom lainnya sesuai kebutuhan
-        ]);
-
-        return redirect()->back()->with('success', 'Pelatihan berhasil diubah!');
-    }
-
-
-    public function destroy_pelatihan($id)
-    {
-        // Temukan pelatihan berdasarkan ID
-        $pelatihan = Pelatihan::find($id);
-
-        // Cek apakah pelatihan ditemukan
-        if (!$pelatihan) {
-            return response()->json(['message' => 'Pelatihan not found'], 404);
-        }
-
         // Hapus lampiran dari storage jika ada
         if ($pelatihan->lampiran_pendukung) {
-            Storage::disk('public')->delete($pelatihan->lampiran_pendukung);
+            Storage::disk('public')->delete('lampiran_pelatihan/' . $pelatihan->lampiran_pendukung);
         }
 
         // Hapus entri pelatihan dari database
@@ -788,7 +884,6 @@ class KaryawanController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Pelatihan berhasil dihapus!');
     }
-
     public function add_keterampilan(Request $request)
     {
         // Validasi data yang diterima

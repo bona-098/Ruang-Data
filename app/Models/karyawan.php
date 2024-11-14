@@ -21,37 +21,6 @@ class Karyawan extends Model
         'suku',
         'golongan_darah',
         'kontak_darurat',
-        // KELUARGA
-        // 'status_nikah',
-        // 'tgl_nikah',
-        // 'tanggungan_keluarga',
-        // 'jumlah_anak',
-        // 'nomor_kartu_keluarga',
-        // 'nama_pasangan',
-        // 'nama_anak_pertama',
-        // 'tgl_lahir_anak_pertama',
-        // 'nama_anak_kedua',
-        // 'tgl_lahir_anak_kedua',
-        // 'nama_anak_ketiga',
-        // 'tgl_lahir_anak_ketiga',
-        //JOB
-        // 'nik',
-        // 'telkomgroup',
-        // 'unit_kerja',
-        // 'band_kelas_posisi',
-        // 'jabatan',
-        // 'tgl_bergabung',
-        // 'nama_karyawan',
-        // 'nomor_sk',
-        // 'surat_sk',
-        // 'status_kepegawaian',
-        //PENDIDIKAN
-        // 'jenjang_pendidikan',
-        // 'penyelenggara_pendidikan',
-        // 'program_studi',
-        // 'tahun_lulus',
-        // 'ijazah',
-        //Lain lain
         'bpjs_kesehatan',
         'bpjs_ketenagakerjaan',
         'telkomedika',
@@ -70,6 +39,7 @@ class Karyawan extends Model
         return $this->hasMany(Pendidikan::class, 'karyawan_id');
     }
 
+
     public function pelatihan()
     {
         return $this->hasMany(Pelatihan::class, 'karyawan_id');
@@ -87,7 +57,7 @@ class Karyawan extends Model
 
     public function datakerjakaryawans()
     {
-        return $this->hasMany(DataKerja::class, 'karyawan_id', 'id');
+        return $this->hasMany(DataKerja::class, 'karyawan_id'); // Sudah benar jika memang data pekerjaan adalah milik karyawan
     }
 
     public function keterampilan()
