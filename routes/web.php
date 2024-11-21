@@ -89,7 +89,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
     Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
     Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
-    Route::delete('jobhistory/{id}', [KaryawanController::class, 'destroy_jobhistory'])->name('karyawan.destroy_jobhistory');
+    Route::delete('
+    jobhistory/{id}', [KaryawanController::class, 'destroy_jobhistory'])->name('karyawan.destroy_jobhistory');
     Route::post('/karyawan/add_pendidikan', [KaryawanController::class, 'add_pendidikan'])->name('karyawan.add_pendidikan');
     Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan'])->name('karyawan.update_pendidikan');
     Route::delete('pendidikan/{id}', [KaryawanController::class, 'destroy_pendidikan'])->name('karyawan.destroy_pendidikan');

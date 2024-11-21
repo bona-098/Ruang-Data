@@ -777,8 +777,8 @@ class KaryawanController extends Controller
 
         // Simpan lampiran ke folder 'public/lampiran'
         $lampiranPath = null; // Inisialisasi path
-        if ($request->hasFile('lampiran_pendukung')) {
-            $lampiran = $request->file('lampiran_pendukung');
+        if ($request->hasFile('lampiran_pelatihan')) {
+            $lampiran = $request->file('lampiran_pelatihan');
             $filename = $karyawan_id . '_' . $pelatihan . '.' . $lampiran->getClientOriginalExtension();
             $lampiranPath = $lampiran->storeAs('lampiran_pelatihan', $filename, 'public'); // Simpan lampiran dan dapatkan path
         }
