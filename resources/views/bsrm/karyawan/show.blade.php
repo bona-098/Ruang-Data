@@ -559,31 +559,11 @@
 
                                                                     <div class="row mb-7">
                                                                         <label
-                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                            Nikah</label>
-                                                                        <div class="col-lg-8">
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_nikah }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-7">
-                                                                        <label
                                                                             class="col-lg-4 fw-semibold text-muted">Tanggungan
                                                                             Keluarga</label>
                                                                         <div class="col-lg-8">
                                                                             <span
                                                                                 class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tanggungan_keluarga }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-7">
-                                                                        <label
-                                                                            class="col-lg-4 fw-semibold text-muted">Nomor
-                                                                            Kartu Keluarga</label>
-                                                                        <div class="col-lg-8">
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nomor_kartu_keluarga }}</span>
                                                                         </div>
                                                                     </div>
 
@@ -609,16 +589,6 @@
 
                                                                     <div class="row mb-7">
                                                                         <label
-                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                            Lahir Anak Pertama</label>
-                                                                        <div class="col-lg-8">
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_pertama }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-7">
-                                                                        <label
                                                                             class="col-lg-4 fw-semibold text-muted">Nama
                                                                             Anak Kedua</label>
                                                                         <div class="col-lg-8">
@@ -629,31 +599,11 @@
 
                                                                     <div class="row mb-7">
                                                                         <label
-                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                            Lahir Anak Kedua</label>
-                                                                        <div class="col-lg-8">
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_kedua }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-7">
-                                                                        <label
                                                                             class="col-lg-4 fw-semibold text-muted">Nama
                                                                             Anak Ketiga</label>
                                                                         <div class="col-lg-8">
                                                                             <span
                                                                                 class="fw-semibold text-gray-800 fs-6">{{ $keluarga->nama_anak_ketiga }}</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-7">
-                                                                        <label
-                                                                            class="col-lg-4 fw-semibold text-muted">Tanggal
-                                                                            Lahir Anak Ketiga</label>
-                                                                        <div class="col-lg-8">
-                                                                            <span
-                                                                                class="fw-semibold text-gray-800 fs-6">{{ $keluarga->tgl_lahir_anak_ketiga }}</span>
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
@@ -1585,7 +1535,7 @@
                                                                                 <td>
                                                                                     @if ($edu->lampiran_ijazah)
                                                                                         <!-- Jika ada file, tampilkan link untuk mengunduh -->
-                                                                                        <a href="{{ asset('storage/' . $edu->lampiran_ijazah) }}"
+                                                                                        <a href="{{ route('lampiran.ijazah', ['filename' => $edu->lampiran_ijazah]) }}"
                                                                                             target="_blank"
                                                                                             class="badge badge-success">Unduh</a>
                                                                                     @else

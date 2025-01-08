@@ -15,9 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            app(\App\Http\Controllers\KaryawanController::class)->kirimNotifikasiUlangTahun();
+        })->dailyAt('14:56'); // Sesuaikan waktu pengiriman
     }
-
     /**
      * Register the commands for the application.
      *
@@ -25,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

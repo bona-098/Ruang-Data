@@ -20,6 +20,7 @@ use App\Models\LogActivities; // Import model MitraActivityLog
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Mail;
 
 class KaryawanController extends Controller
 {
@@ -30,12 +31,12 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        // $karyawan = Karyawan::with(['datakerjakaryawans', 'pendidikan']) // Eager load dua relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id')
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*', 'pendidikan.*') // Mengambil semua kolom dari tabel karyawan dan semua kolom dari data_kerja_karyawan
-        //     ->get();
+        $today = now()->format('m-d'); // Format hari dan bulan saat ini
+
+        // Ambil data karyawan yang ulang tahun hari ini
+        $karyawan_ulang_tahun = Karyawan::whereRaw('DATE_FORMAT(tgl_lahir, "%m-%d") = ?', [$today])
+            ->select('nama_karyawan', 'foto') // Pilih kolom yang diperlukan saja
+            ->get();
 
         $karyawan = Karyawan::with(['datakerjakaryawans', 'pendidikan'])
             ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
@@ -44,134 +45,10 @@ class KaryawanController extends Controller
             ->select('karyawan.*', 'data_kerja_karyawan.*', 'pendidikan.*')
             ->get();
 
+        $jabatanList = Jabatan::whereNull('karyawan_id')->with('unit')->get();
 
-
-        // dd($karyawan);
-
-        // dd($karyawan);
-        // $karyawan_pendidikan = Karyawan::with('pendidikan') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-        //     // ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
-        //     // ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-        //     ->get();
-
-
-        // $jumlahKaryawan = Karyawan::count();
-
-        // Menyaring karyawan berdasarkan unit kerja
-        // $karyawan_organik = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->where('data_kerja_karyawan.unit_kerja', 'General Manager Regional') // Kondisi unit_kerja
-        //     ->select('karyawan.*') // Memilih kolom dari tabel karyawan
-        //     ->get();
-
-
-
-        // $karyawan_regional6 = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->whereIn('data_kerja_karyawan.unit_kerja', [
-        //         'General Manager Regional',
-        //         'Manager Marketing, Sales & Solution',
-        //         'Marketing, Sales & Solution',
-        //         'Manager Planning & Delivery',
-        //         'Planning & Delivery',
-        //         'Manager Operation & Maintenance',
-        //         'Operation & Maintenance',
-        //         'Manager Business Support & Risk Management',
-        //         'Business Support & Risk Management'
-        //     ]) // Kondisi unit_kerja
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-        //     ->get();
-
-
-        // $karyawan_areakaltimtara = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara') // Kondisi unit_kerja
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-        //     ->get();
-
-        // $karyawan_areakalselteng = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kalselteng') // Kondisi unit_kerja
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-        //     ->get();
-
-        // $karyawan_areakalbar = Karyawan::with('datakerjakaryawans') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar') // Kondisi unit_kerja
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan
-        //     ->get();
-
-
-
-        $jabatanList = Jabatan::whereNull('karyawan_id')
-            ->with('unit') // Mengambil relasi 'unit'
-            ->get();
-
-
-        // Ensure jabatanList is always a collection (even if empty)
-        if ($jabatanList === null) {
-            $jabatanList = collect(); // If null, convert it to an empty collection
-        }
-
-        // You can now safely count it
         $jumlahJabatan = $jabatanList->count();
-
-
-        // // Menyaring karyawan berdasarkan pendidikan
-        // $karyawan_s2 = Karyawan::with('pendidikan') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-        //     ->where('pendidikan.jenjang_pendidikan', 'S2') // Kondisi jenjang pendidikan
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-        //     ->get();
-
-        // $karyawan_s1 = Karyawan::with('pendidikan') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-        //     ->where('pendidikan.jenjang_pendidikan', 'S1') // Kondisi jenjang pendidikan
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-        //     ->get();
-
-        // $karyawan_diploma = Karyawan::with('pendidikan') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-        //     ->where('pendidikan.jenjang_pendidikan', 'Diploma III') // Kondisi jenjang pendidikan
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-        //     ->get();
-
-        // $karyawan_sekolah = Karyawan::with('pendidikan') // Eager loading relasi
-        //     ->join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id') // Join dengan tabel data_kerja_karyawan
-        //     ->join('pendidikan', 'karyawan.id', '=', 'pendidikan.karyawan_id') // Join dengan tabel pendidikan
-        //     ->where('pendidikan.jenjang_pendidikan', 'SMK/SLTA Kejuruan') // Kondisi jenjang pendidikan
-        //     ->orderBy('data_kerja_karyawan.band_kelas_posisi') // Mengurutkan berdasarkan band_kelas_posisi
-        //     ->select('karyawan.*', 'data_kerja_karyawan.*') // Memilih kolom dari tabel karyawan dan data_kerja_karyawan
-        //     ->get();
-
-        // Menghitung jumlah karyawan di Regional 6
         $jumlah_seluruh_karyawan = Karyawan::count();
-        // $jumlah_karyawan_regional6 = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
-        //     ->whereIn('data_kerja_karyawan.unit_kerja', [
-        //         'General Manager Regional',
-        //         'Manager Marketing, Sales & Solution',
-        //         'Marketing, Sales & Solution',
-        //         'Manager Planning & Delivery',
-        //         'Planning & Delivery',
-        //         'Manager Operation & Maintenance',
-        //         'Operation & Maintenance',
-        //         'Manager Business Support & Risk Management',
-        //         'Business Support & Risk Management'
-        //     ])
-        //     ->count();
 
         $jumlah_karyawan_areakaltimtara = Karyawan::join('data_kerja_karyawan', 'karyawan.id', '=', 'data_kerja_karyawan.karyawan_id')
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kaltimtara')
@@ -185,53 +62,15 @@ class KaryawanController extends Controller
             ->where('data_kerja_karyawan.unit_kerja', 'Area Kalbar')
             ->count();
 
-
-        // $jumlah_karyawan_formasi_kosong  'jumlah_formasi_kosong', = Karyawan::whereIn('unit_kerja', [
-        //     'Area Kalbar'
-        // ])->count();
-
-        // $jumlah_karyawan_s2 = Pendidikan::whereIn('jenjang_pendidikan', [
-        //     'S2'
-        // ])->count();
-
-        // $jumlah_karyawan_s1 = Pendidikan::whereIn('jenjang_pendidikan', [
-        //     'S1'
-        // ])->count();
-
-        // $jumlah_karyawan_DIII = Pendidikan::whereIn('jenjang_pendidikan', [
-        //     'Diploma III'
-        // ])->count();
-
-        // $jumlah_karyawan_sekolah = Pendidikan::whereIn('jenjang_pendidikan', [
-        //     'SMK/SLTA Kejuruan'
-        // ])->count();
-
-
-
         return view('bsrm.karyawan.karyawan', compact(
             'karyawan',
-            // 'karyawan_pendidikan',
-            // 'jumlahKaryawan',
-            // 'karyawan_organik',
-            // 'karyawan_regional6',
-            // 'karyawan_areakaltimtara',
-            // 'karyawan_areakalselteng',
-            // 'karyawan_areakalbar',
-            // 'karyawan_s2',
-            // 'karyawan_s1',
-            // 'karyawan_diploma',
-            // 'karyawan_sekolah',
-            // 'jumlah_seluruh_karyawan',
-            // 'jumlah_karyawan_regional6',
+            'karyawan_ulang_tahun',
             'jumlah_karyawan_areakaltimtara',
             'jumlah_karyawan_areakalselteng',
             'jumlah_karyawan_areakalbar',
-            // 'jumlah_karyawan_s2',
-            // 'jumlah_karyawan_s1',
-            // 'jumlah_karyawan_DIII',
-            // 'jumlah_karyawan_sekolah',
             'jumlahJabatan',
             'jabatanList',
+
         ));
     }
 
@@ -510,16 +349,10 @@ class KaryawanController extends Controller
         $karyawan = Keluarga::find($id);
         $karyawan->update([
             'status_nikah' => $request->status_nikah,
-            'tgl_nikah' => $request->tgl_nikah,
-            'jumlah_anak' => $request->jumlah_anak,
-            'nomor_kartu_keluarga' => $request->nomor_kartu_keluarga,
             'nama_pasangan' => $request->nama_pasangan,
             'nama_anak_pertama' => $request->nama_anak_pertama,
-            'tgl_lahir_anak_pertama' => $request->tgl_lahir_anak_pertama,
             'nama_anak_kedua' => $request->nama_anak_kedua,
-            'tgl_lahir_anak_kedua' => $request->tgl_lahir_anak_kedua,
             'nama_anak_ketiga' => $request->nama_anak_ketiga,
-            'tgl_lahir_anak_ketiga' => $request->tgl_lahir_anak_ketiga,
         ]);
         // Catat aktivitas tambah data mitra ke dalam log
         // Redirect atau berikan respon sesuai kebutuhan
@@ -666,7 +499,6 @@ class KaryawanController extends Controller
         return redirect()->back()->with('success', 'Riwayat Pendidikan berhasil ditambahkan!');
     }
 
-
     public function update_pendidikan(Request $request, $id)
     {
         // Debugging: Tampilkan semua data yang diterima dari form
@@ -730,9 +562,6 @@ class KaryawanController extends Controller
             return redirect()->back();
         }
     }
-
-
-
 
     public function destroy_pendidikan($id)
     {
@@ -1163,5 +992,32 @@ class KaryawanController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Catatan berhasil dihapus!');
+    }
+
+    public function kirimNotifikasiUlangTahun()
+    {
+        // Ambil tanggal hari ini (format bulan-hari)
+        $today = now()->format('m-d');
+
+        // Cari karyawan yang berulang tahun hari ini
+        $karyawan_ulang_tahun = Karyawan::whereRaw('DATE_FORMAT(tgl_lahir, "%m-%d") = ?', [$today])->get();
+
+        if ($karyawan_ulang_tahun->isEmpty()) {
+            return response()->json(['message' => 'Tidak ada karyawan yang berulang tahun hari ini.']);
+        }
+
+        // Kirim email pemberitahuan ke admin
+        $email_admin = 'fajriansyah573@gmail.com'; // Ganti dengan email Anda
+        $subject = 'Notifikasi Ulang Tahun Karyawan';
+
+        $karyawan_nama_list = $karyawan_ulang_tahun->pluck('nama_karyawan')->toArray();
+        $isi_email = 'Hari ini ada karyawan yang berulang tahun: UUYYYY ' . implode(', ', $karyawan_nama_list) . '.';
+
+        Mail::raw($isi_email, function ($message) use ($email_admin, $subject) {
+            $message->to($email_admin)
+                ->subject($subject);
+        });
+
+        return response()->json(['message' => 'Notifikasi ulang tahun berhasil dikirim.']);
     }
 }

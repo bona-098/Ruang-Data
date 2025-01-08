@@ -63,11 +63,16 @@
                     <ul class="navbar-nav my-lg-0">
                         <!-- Comment -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
-                                    class="fa fa-bell"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span>
-                                </div>
+                            <a class="nav-link dropdown-toggle text-muted text-muted" href="#"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <!-- Tampilkan div notify jika ada karyawan yang ulang tahun -->
+                                @if (isset($karyawan_ulang_tahun) && $karyawan_ulang_tahun->isNotEmpty())
+                                    <div class="notify">
+                                        <span class="heartbit"></span>
+                                        <span class="point"></span>
+                                    </div>
+                                @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
@@ -76,64 +81,49 @@
                                     </li>
                                     <li>
                                         <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i>
-                                                </div>
-                                                <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new
-                                                        admin!</span> <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-success btn-circle m-r-10"><i
-                                                        class="ti-calendar"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just a
-                                                        reminder that you have event</span> <span class="time">9:10
-                                                        AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i>
-                                                </div>
-                                                <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">You can customize
-                                                        this template as you want</span> <span class="time">9:08
-                                                        AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-primary btn-circle m-r-10"><i class="ti-user"></i>
-                                                </div>
-                                                <div class="mail-contnet">
-                                                    <h5>This is another title</h5> <span class="mail-desc">Just see the
-                                                        my admin!</span> <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
+                                            <!-- Cek apakah ada karyawan ulang tahun -->
+                                            @if (isset($karyawan_ulang_tahun) && $karyawan_ulang_tahun->isNotEmpty())
+                                                @foreach ($karyawan_ulang_tahun as $karyawan_ultah)
+                                                    <!-- Notifikasi ulang tahun -->
+                                                    <a href="#">
+                                                        <div class="btn btn-success btn-circle m-r-10">
+                                                            <i class="ti-gift"></i>
+                                                        </div>
+                                                        <div class="mail-contnet">
+                                                            <h5>{{ $karyawan_ultah->nama_karyawan }}</h5>
+                                                            <span class="mail-desc">Hari ini adalah ulang
+                                                                tahunnya!</span>
+                                                            <span class="time">{{ now()->format('H:i A') }}</span>
+                                                        </div>
+                                                    </a>
+                                                @endforeach
+                                            @else
+                                                <!-- Notifikasi jika tidak ada ulang tahun -->
+                                                <a href="#">
+                                                    <div class="btn btn-info btn-circle m-r-10">
+                                                        <i class="ti-alert"></i>
+                                                    </div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Tidak ada yang berulang tahun</h5>
+                                                    </div>
+                                                </a>
+                                            @endif
                                         </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all
-                                                notifications</strong> <i class="fa fa-angle-right"></i> </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+
                         <!-- End Comment -->
                         <!-- Messages -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" id="2"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                     class="fa fa-envelope"></i>
                                 <div class="notify"> <span class="heartbit"></span> <span class="point"></span>
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn"
-                                aria-labelledby="2">
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
                                 <ul>
                                     <li>
                                         <div class="drop-title">You have 4 new messages</div>
@@ -188,7 +178,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
@@ -1867,8 +1857,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                     </div>
@@ -1900,7 +1889,7 @@
     {{-- <script src="{{ asset('template/') }}/dist/js/demo.js"></script> --}}
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('template/') }}/js/lib/bootstrap/js/popper.min.js"></script>
-    {{-- <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script> --}}
+    <script src="{{ asset('template/') }}/js/lib/bootstrap/js/bootstrap.min.js"></script>
     {{-- Bisa Klik Modal Tapi tidak bisa nutup modal --}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{ asset('template/') }}/js/jquery.slimscroll.js"></script>
@@ -1954,6 +1943,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    {{-- ini yang bikin notif diklik 2 kali --}}
 
     {{-- Gak bisa klik modal dropdown tapi bisa nutup modal --}}
 

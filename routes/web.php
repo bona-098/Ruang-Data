@@ -42,6 +42,8 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\MonitoringController;
 use App\Models\Rekomendasi;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -199,7 +201,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/detail_chart_nilai', [ProjectController::class, 'detailchartnilai']);
     Route::get('/detail_chart_projek', [ProjectController::class, 'detailchartprojek']);
     Route::get('/detail_chart_sales', [SalesController::class, 'detailchartsales']);
-}); 
+    Route::get('/notifikasi-ulang-tahun', [KaryawanController::class, 'kirimNotifikasiUlangTahun']);
+});
+
+Route::middleware('auth')->get('/lampiran_ijazah/{filename}', function ($filename) {
+    // Tentukan path file di disk 'private'
+    $path = $filename; // Tidak perlu menambahkan 'lampiran_ijazah/' lagi
+
+    // Cek apakah file ada di storage
+    if (Storage::disk('private')->exists($path)) {
+        // Mengirimkan file ke browser untuk diunduh
+        return response()->file(storage_path('app/private/lampiran_ijazah' . $path));
+    }
+
+    // Jika file tidak ditemukan
+    abort(404); // File tidak ditemukan
+})->name('lampiran.ijazah');
+
+
     // // Rute untuk pendaftaran pengguna baru
 // Route::get('/register', [RegisteredUserController::class, 'create'])
 //     ->middleware('guest')

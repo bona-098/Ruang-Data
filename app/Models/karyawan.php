@@ -13,6 +13,7 @@ class Karyawan extends Model
 
     protected $fillable = [
         // PRIBADI
+        'nama_karyawan',
         'tgl_lahir',
         'kota_lahir',
         'jenis_kelamin',
@@ -38,7 +39,6 @@ class Karyawan extends Model
     {
         return $this->hasMany(Pendidikan::class, 'karyawan_id');
     }
-
 
     public function pelatihan()
     {
