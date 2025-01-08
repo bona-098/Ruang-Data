@@ -1535,7 +1535,7 @@
                                                                                 <td>
                                                                                     @if ($edu->lampiran_ijazah)
                                                                                         <!-- Jika ada file, tampilkan link untuk mengunduh -->
-                                                                                        <a href="{{ route('lampiran.ijazah', ['filename' => $edu->lampiran_ijazah]) }}"
+                                                                                        <a href="{{ asset('storage/' . $edu->lampiran_ijazah) }}"
                                                                                             target="_blank"
                                                                                             class="badge badge-success">Unduh</a>
                                                                                     @else
