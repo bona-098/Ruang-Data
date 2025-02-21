@@ -132,11 +132,7 @@
                                     <ul class="list-group list-group-unbordered mb-3">
                                         <li class="list-group-item">
                                             <b>Band Kelas</b> <a class="float-right">
-                                                @forelse($jobHistories->sortByDesc('tgl_jabat') as $history)
-                                                    {{ $history->band }}
-                                                @empty
-                                                    No job histories available
-                                                @endforelse
+                                                {{ $jobHistories->first()->band ?? 'No job history available' }}
                                             </a>
                                         </li>
 
@@ -417,19 +413,19 @@
                                                                                     <option value="Islam"
                                                                                         {{ old('agama') == 'Islam' || $karyawan->agama == 'Islam' ? 'selected' : '' }}>
                                                                                         Islam</option>
-                                                                                    <option value="katolik"
+                                                                                    <option value="Katolik"
                                                                                         {{ old('agama') == 'Katolik' || $karyawan->agama == 'Katolik' ? 'selected' : '' }}>
                                                                                         Kristen Katolik</option>
-                                                                                    <option value="kristen protestan"
+                                                                                    <option value="Kristen Protestan"
                                                                                         {{ old('agama') == 'Kristen protestan' || $karyawan->agama == 'Kristen protestan' ? 'selected' : '' }}>
                                                                                         Kristen Protestan</option>
-                                                                                    <option value="hindu"
+                                                                                    <option value="Hindu"
                                                                                         {{ old('agama') == 'Hindu' || $karyawan->agama == 'Hindu' ? 'selected' : '' }}>
                                                                                         Hindu</option>
-                                                                                    <option value="budha"
+                                                                                    <option value="Budha"
                                                                                         {{ old('agama') == 'Budha' || $karyawan->agama == 'Budha' ? 'selected' : '' }}>
                                                                                         Budha</option>
-                                                                                    <option value="kong hucuh"
+                                                                                    <option value="Kong Hucuh"
                                                                                         {{ old('agama') == 'Kong hucuh' || $karyawan->agama == 'Kong Hucuh' ? 'selected' : '' }}>
                                                                                         Kong Hucu</option>
                                                                                 </select>
@@ -536,7 +532,6 @@
                                                             <!-- /.card-tools -->
                                                         </div>
                                                         <!-- /.card-header -->
-
                                                         <div class="card-body p-9">
                                                             @if ($data_keluarga->isEmpty())
                                                                 <div class="row mb-7">
@@ -645,19 +640,22 @@
                                                                                 <label for="status_nikah"
                                                                                     class="control-label">Status
                                                                                     Menikah</label>
-                                                                                <select
-                                                                                    class="form-control custom-select"
-                                                                                    id="status_nikah"
-                                                                                    name="status_nikah">
-                                                                                    <option value="">Pilih Status
-                                                                                        Menikah</option>
-                                                                                    <option value="Menikah"
-                                                                                        {{ $karyawan->status_nikah == 'Menikah' ? 'selected' : '' }}>
-                                                                                        Menikah</option>
-                                                                                    <option value="Belum Menikah"
-                                                                                        {{ $karyawan->status_nikah == 'Belum Menikah' ? 'selected' : '' }}>
-                                                                                        Belum Menikah</option>
-                                                                                </select>
+                                                                                @foreach ($data_keluarga as $keluarga)
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        id="status_nikah"
+                                                                                        name="status_nikah" required>
+                                                                                        <option value="">Pilih
+                                                                                            Status
+                                                                                            Menikah</option>
+                                                                                        <option value="Menikah"
+                                                                                            {{ $keluarga->status_nikah == 'Menikah' ? 'selected' : '' }}>
+                                                                                            Menikah</option>
+                                                                                        <option value="Belum Menikah"
+                                                                                            {{ $keluarga->status_nikah == 'Belum Menikah' ? 'selected' : '' }}>
+                                                                                            Belum Menikah</option>
+                                                                                    </select>
+                                                                                @endforeach
                                                                                 @error('status_nikah')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
@@ -666,54 +664,32 @@
                                                                             </div>
                                                                         </div>
 
-
-
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="tgl_lahir"
-                                                                                    class="control-label">Tanggal
-                                                                                    Nikah</label>
-                                                                                <input type="date" id="tgl_nikah"
-                                                                                    value="{{ $karyawan->tgl_nikah }}"
-                                                                                    name="tgl_nikah"
-                                                                                    class="form-control"
-                                                                                    placeholder="dd/mm/yyyy"
-                                                                                    @error('tgl_nikah') is-invalid @enderror
-                                                                                    value="{{ old('tgl_nikah') }}">
-                                                                                @error('tgl_nikah')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="jumlah_anak">Jumlah
-                                                                                    Anak</label>
-                                                                                <input type="number" min="0"
-                                                                                    class="form-control"
-                                                                                    id="jumlah_anak"
-                                                                                    name="jumlah_anak">
-                                                                                @error('jumlah_anak')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6 ">
-                                                                            <div class="form-group">
-                                                                                <label for="alamat">Nomor Kartu
-                                                                                    keluarga</label>
-                                                                                <input type="text"
-                                                                                    value="{{ $karyawan->nomor_kartu_keluarga }}"
-                                                                                    class="form-control"
-                                                                                    name="nomor_kartu_keluarga"@error('nomor_kartu_keluarga') is-invalid @enderror
-                                                                                    value="{{ old('nomor_kartu_keluarga') }}">
-                                                                                @error('nomor_kartu_keluarga')
+                                                                                <label class="control-label">Tanggungan
+                                                                                    Keluarga</label>
+                                                                                @foreach ($data_keluarga as $keluarga)
+                                                                                    <select
+                                                                                        class="form-control custom-select"
+                                                                                        name="tanggungan_keluarga"
+                                                                                        required>
+                                                                                        <option value="">Pilih
+                                                                                            Tanggungan Keluarga</option>
+                                                                                        <option value="TK/0"
+                                                                                            {{ $keluarga->tanggungan_keluarga == 'TK/0' ? 'selected' : '' }}>
+                                                                                            TK/0</option>
+                                                                                        <option value="K/1"
+                                                                                            {{ $keluarga->tanggungan_keluarga == 'K/1' ? 'selected' : '' }}>
+                                                                                            K/1</option>
+                                                                                        <option value="K/2"
+                                                                                            {{ $keluarga->tanggungan_keluarga == 'K/2' ? 'selected' : '' }}>
+                                                                                            K/2</option>
+                                                                                        <option value="K/3"
+                                                                                            {{ $keluarga->tanggungan_keluarga == 'K/3' ? 'selected' : '' }}>
+                                                                                            K/3</option>
+                                                                                    </select>
+                                                                                @endforeach
+                                                                                @error('tanggungan_keluarga')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
                                                                                     </div>
@@ -726,6 +702,7 @@
                                                                                 <label for="nama_pasangan">Nama
                                                                                     Pasangan</label>
                                                                                 <input type="text"
+                                                                                    value="{{ $keluarga->nama_pasangan }}"
                                                                                     class="form-control"
                                                                                     id="nama_pasangan"
                                                                                     name="nama_pasangan">
@@ -737,14 +714,29 @@
                                                                             </div>
                                                                         </div>
 
-
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="nama_pasangan">Nama
+                                                                                    Pasangan</label>
+                                                                                <input type="text"
+                                                                                    value="{{ $keluarga->nama_pasangan }}"
+                                                                                    class="form-control"
+                                                                                    id="nama_pasangan"
+                                                                                    name="nama_pasangan">
+                                                                                @error('nama_pasangan')
+                                                                                    <div class="alert alert-danger mt-2">
+                                                                                        {{ $message }}
+                                                                                    </div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Nama Anak
                                                                                     Pertama</label>
                                                                                 <input type="text"
-                                                                                    value="{{ $karyawan->nama_anak_pertama }}"
+                                                                                    value="{{ $keluarga->nama_anak_pertama }}"
                                                                                     name="nama_anak_pertama"
                                                                                     class="form-control"
                                                                                     @error('nama_anak_pertama') is-invalid @enderror
@@ -757,35 +749,12 @@
                                                                             </div>
                                                                         </div>
 
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="tgl_lahir"
-                                                                                    class="control-label">Tanggal Lahir
-                                                                                    Anak
-                                                                                    Pertama</label>
-                                                                                <input type="date"
-                                                                                    id="tgl_lahir_anak_pertama"
-                                                                                    value="{{ $karyawan->tgl_lahir_anak_pertama }}"
-                                                                                    name="tgl_lahir_anak_pertama"
-                                                                                    class="form-control"
-                                                                                    placeholder="dd/mm/yyyy"
-                                                                                    @error('tgl_lahir_anak_pertama') is-invalid @enderror
-                                                                                    value="{{ old('tgl_lahir_anak_pertama') }}">
-                                                                                @error('tgl_lahir_anak_pertama')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Nama Anak
                                                                                     Kedua</label>
                                                                                 <input type="text"
-                                                                                    value="{{ $karyawan->nama_anak_kedua }}"
+                                                                                    value="{{ $keluarga->nama_anak_kedua }}"
                                                                                     name="nama_anak_kedua"
                                                                                     class="form-control"
                                                                                     @error('nama_anak_kedua') is-invalid @enderror
@@ -798,35 +767,12 @@
                                                                             </div>
                                                                         </div>
 
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="tgl_lahir"
-                                                                                    class="control-label">Tanggal Lahir
-                                                                                    Anak
-                                                                                    Kedua</label>
-                                                                                <input type="date"
-                                                                                    id="tgl_lahir_anak_kedua"
-                                                                                    value="{{ $karyawan->tgl_lahir_anak_kedua }}"
-                                                                                    name="tgl_lahir_anak_kedua"
-                                                                                    class="form-control"
-                                                                                    placeholder="dd/mm/yyyy"
-                                                                                    @error('tgl_lahir_anak_kedua') is-invalid @enderror
-                                                                                    value="{{ old('tgl_lahir_anak_kedua') }}">
-                                                                                @error('tgl_lahir_anak_kedua')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label class="control-label">Nama Anak
                                                                                     Ketiga</label>
                                                                                 <input type="text"
-                                                                                    value="{{ $karyawan->nama_anak_ketiga }}"
+                                                                                    value="{{ $keluarga->nama_anak_ketiga }}"
                                                                                     name="nama_anak_ketiga"
                                                                                     class="form-control"
                                                                                     @error('nama_anak_ketiga') is-invalid @enderror
@@ -838,31 +784,6 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
-
-
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="tgl_lahir"
-                                                                                    class="control-label">Tanggal Lahir
-                                                                                    Anak
-                                                                                    Ketiga</label>
-                                                                                <input type="date"
-                                                                                    id="tgl_lahir_anak_ketiga"
-                                                                                    value="{{ $karyawan->tgl_lahir_anak_ketiga }}"
-                                                                                    name="tgl_lahir_anak_ketiga"
-                                                                                    class="form-control"
-                                                                                    placeholder="dd/mm/yyyy"
-                                                                                    @error('tgl_lahir_anak_ketiga') is-invalid @enderror
-                                                                                    value="{{ old('tgl_lahir_anak_ketiga') }}">
-                                                                                @error('tgl_lahir_anak_ketiga')
-                                                                                    <div class="alert alert-danger mt-2">
-                                                                                        {{ $message }}
-                                                                                    </div>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-
-
 
                                                                     </div>
                                                                 </div>
@@ -1050,8 +971,7 @@
                                                 class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Job
-                                                            History</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Job</h5>
                                                         @if ($errors->any())
                                                             <span class="text-danger" style="font-size: 0.9em;">
                                                                 {{ $errors->first() }}
@@ -1060,9 +980,9 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form method="POST"
-                                                            action="{{ route('karyawan.add_job_history') }}"
-                                                            enctype="multipart/form-data">
+                                                            action="{{ route('karyawan.update_job', $karyawan->id) }}">
                                                             @csrf
+                                                            @method('PUT')
                                                             <input type="hidden" name="karyawan_id"
                                                                 value="{{ $karyawan->id }}">
                                                             <div class="card-body">
@@ -1074,9 +994,9 @@
                                                                                     Telpro</label>
                                                                                 <input type="number" name="nik"
                                                                                     min="0"
-                                                                                    class="form-control"
-                                                                                    @error('nik') is-invalid @enderror
-                                                                                    value="{{ $karyawan->nik }}">
+                                                                                    class="form-control @error('nik') is-invalid @enderror"
+                                                                                    value="{{ $karyawan->datakerjakaryawans->first()->nik ?? '' }}">
+                                                                                <!-- Menampilkan pesan error jika validasi gagal -->
                                                                                 @error('nik')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
@@ -1084,6 +1004,7 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
+
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
@@ -1094,7 +1015,7 @@
                                                                                     name="nik_telpro"
                                                                                     class="form-control"
                                                                                     @error('nik_telpro') is-invalid @enderror
-                                                                                    value="{{ $karyawan->telkomgroup }}">
+                                                                                    value="{{ $karyawan->datakerjakaryawans->first()->telkomgroup ?? '' }}">
                                                                                 @error('nik_telpro')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
@@ -1113,7 +1034,7 @@
                                                                                     class="form-control"
                                                                                     id="jabatan"
                                                                                     name="jabatan"@error('jabatan') is-invalid @enderror
-                                                                                    value="{{ $karyawan->jabatan }}">
+                                                                                    value="{{ $karyawan->datakerjakaryawans->first()->jabatan ?? '' }}">
                                                                                 @error('jabatan')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
@@ -1121,7 +1042,6 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
-
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="unit_kerja"
@@ -1129,52 +1049,58 @@
                                                                                     Kerja</label>
                                                                                 <select
                                                                                     class="form-control custom-select @error('unit_kerja') is-invalid @enderror"
-                                                                                    id="unit_kerja" name="unit_kerja">
+                                                                                    id="unit_kerja" name="unit_kerja"
+                                                                                    required>
                                                                                     <option value="">Pilih Unit
                                                                                         Kerja</option>
                                                                                     <option
                                                                                         value="General Manager Regional"
-                                                                                        {{ old('unit_kerja') == 'General Manager Regional' || (isset($karyawan) && $karyawan->unit_kerja == 'General Manager Regional') ? 'selected' : '' }}>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'General Manager Regional' ? 'selected' : '' }}>
                                                                                         General Manager Regional
                                                                                     </option>
                                                                                     <option
                                                                                         value="Manager Marketing, Sales & Solution"
-                                                                                        {{ old('unit_kerja') == 'Manager Marketing, Sales & Solution' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Marketing, Sales & Solution') ? 'selected' : '' }}>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Manager Marketing, Sales & Solution' ? 'selected' : '' }}>
                                                                                         Manager Marketing, Sales &
-                                                                                        Solution</option>
+                                                                                        Solution
+                                                                                    </option>
                                                                                     <option
                                                                                         value="Manager Planning & Delivery"
-                                                                                        {{ old('unit_kerja') == 'Manager Planning & Delivery' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Planning & Delivery') ? 'selected' : '' }}>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Manager Planning & Delivery' ? 'selected' : '' }}>
                                                                                         Manager Planning & Delivery
                                                                                     </option>
                                                                                     <option
                                                                                         value="Manager Operation & Maintenance"
-                                                                                        {{ old('unit_kerja') == 'Manager Operation & Maintenance' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Operation & Maintenance') ? 'selected' : '' }}>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Manager Operation & Maintenance' ? 'selected' : '' }}>
                                                                                         Manager Operation & Maintenance
                                                                                     </option>
                                                                                     <option
                                                                                         value="Manager Business Support & Risk Management"
-                                                                                        {{ old('unit_kerja') == 'Manager Business Support & Risk Management' || (isset($karyawan) && $karyawan->unit_kerja == 'Manager Business Support & Risk Management') ? 'selected' : '' }}>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Manager Business Support & Risk Management' ? 'selected' : '' }}>
                                                                                         Manager Business Support & Risk
-                                                                                        Management</option>
+                                                                                        Management
+                                                                                    </option>
                                                                                     <option value="Area Kaltimtara"
-                                                                                        {{ old('unit_kerja') == 'Area Kaltimtara' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kaltimtara') ? 'selected' : '' }}>
-                                                                                        Area Kaltimtara</option>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Area Kaltimtara' ? 'selected' : '' }}>
+                                                                                        Area Kaltimtara
+                                                                                    </option>
                                                                                     <option value="Area Kalselteng"
-                                                                                        {{ old('unit_kerja') == 'Area Kalselteng' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalselteng') ? 'selected' : '' }}>
-                                                                                        Area Kalselteng</option>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Area Kalselteng' ? 'selected' : '' }}>
+                                                                                        Area Kalselteng
+                                                                                    </option>
                                                                                     <option value="Area Kalbar"
-                                                                                        {{ old('unit_kerja') == 'Area Kalbar' || (isset($karyawan) && $karyawan->unit_kerja == 'Area Kalbar') ? 'selected' : '' }}>
-                                                                                        Area Kalbar</option>
+                                                                                        {{ old('unit_kerja', $karyawan->datakerjakaryawans->first()->unit_kerja ?? '') == 'Area Kalbar' ? 'selected' : '' }}>
+                                                                                        Area Kalbar
+                                                                                    </option>
                                                                                 </select>
                                                                                 @error('unit_kerja')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
                                                                                     </div>
                                                                                 @enderror
-
                                                                             </div>
                                                                         </div>
+
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
@@ -1186,25 +1112,25 @@
                                                                                     <option value="">Pilih Kelas
                                                                                         Band Posisi</option>
                                                                                     <option value="I"
-                                                                                        {{ old('band_kelas_posisi') == 'I' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'I') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'I' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'I') ? 'selected' : '' }}>
                                                                                         I</option>
                                                                                     <option value="II"
-                                                                                        {{ old('band_kelas_posisi') == 'II' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'II') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'II' ? 'selected' : '' }}>
                                                                                         II</option>
                                                                                     <option value="III"
-                                                                                        {{ old('band_kelas_posisi') == 'III' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'III') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'III' ? 'selected' : '' }}>
                                                                                         III</option>
                                                                                     <option value="IV"
-                                                                                        {{ old('band_kelas_posisi') == 'IV' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'IV') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'IV' ? 'selected' : '' }}>
                                                                                         IV</option>
                                                                                     <option value="V"
-                                                                                        {{ old('band_kelas_posisi') == 'V' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'V') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'V' ? 'selected' : '' }}>
                                                                                         V</option>
                                                                                     <option value="VI"
-                                                                                        {{ old('band_kelas_posisi') == 'VI' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VI') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'VI' ? 'selected' : '' }}>
                                                                                         VI</option>
                                                                                     <option value="VII"
-                                                                                        {{ old('band_kelas_posisi') == 'VII' || (isset($karyawan) && $karyawan->band_kelas_posisi == 'VII') ? 'selected' : '' }}>
+                                                                                        {{ old('band_kelas_posisi', $karyawan->datakerjakaryawans->first()->band_kelas_posisi ?? '') == 'VII' ? 'selected' : '' }}>
                                                                                         VII</option>
                                                                                 </select>
                                                                                 @error('band_kelas_posisi')
@@ -1218,11 +1144,12 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label
-                                                                                    for="tgl_bergabung">tgl_bergabung</label>
+                                                                                    for="tgl_bergabung">tgl_bergabung
+                                                                                    {{ $karyawan->datakerjakaryawans->first()->tgl_bergabung }}</label>
                                                                                 <input type="date"
                                                                                     class="form-control"
                                                                                     id="tgl_bergabung"
-                                                                                    value="{{ $karyawan->tgl_bergabung }}"
+                                                                                    value="{{ $karyawan->datakerjakaryawans->first()->tgl_bergabung }}"
                                                                                     name="tgl_bergabung">
                                                                                 @error('tgl_bergabung')
                                                                                     <div class="alert alert-danger mt-2">
@@ -1234,14 +1161,12 @@
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
-                                                                                <label for="nomor_sk">Nomor Surat
-                                                                                    Keputusan</label>
+                                                                                <label>Lokasi Kerja</label>
                                                                                 <input type="text"
                                                                                     class="form-control"
-                                                                                    id="suku"
-                                                                                    value="{{ $karyawan->nomor_sk }}"
-                                                                                    name="nomor_sk">
-                                                                                @error('nomor_sk')
+                                                                                    value="{{ $karyawan->datakerjakaryawans->first()->lokasi_kerja }}"
+                                                                                    name="lokasi_kerja">
+                                                                                @error('lokasi_kerja')
                                                                                     <div class="alert alert-danger mt-2">
                                                                                         {{ $message }}
                                                                                     </div>
@@ -1301,11 +1226,25 @@
                                                                                 <td>{{ $history->tgl_jabat }}</td>
                                                                                 <td>{{ $history->lokasi }}</td>
                                                                                 <td>{{ $history->band }}</td>
+
+                                                                                {{-- <td>
+                                                                                    @if ($pel->lampiran_pendukung)
+                                                                                        <a href="{{ asset('storage/' . $pel->lampiran_pendukung) }}"
+                                                                                            class="badge badge-success"
+                                                                                            target="_blank">Lihat
+                                                                                            File</a>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge badge-warning">Belum
+                                                                                            ada file</span>
+                                                                                    @endif
+                                                                                </td> --}}
                                                                                 <td>
                                                                                     @if ($history->lampiran)
                                                                                         <a href="{{ asset('storage/' . $history->lampiran) }}"
-                                                                                            class="btn btn-secondary btn-sm"
-                                                                                            download>Download</a>
+                                                                                            class="badge badge-success"
+                                                                                            target="_blank">Lihat
+                                                                                            File</a>
                                                                                     @else
                                                                                         <span
                                                                                             class="badge bg-warning text-dark">Belum
@@ -1537,7 +1476,8 @@
                                                                                         <!-- Jika ada file, tampilkan link untuk mengunduh -->
                                                                                         <a href="{{ asset('storage/' . $edu->lampiran_ijazah) }}"
                                                                                             target="_blank"
-                                                                                            class="badge badge-success">Unduh</a>
+                                                                                            class="badge badge-success">Lihat
+                                                                                            File</a>
                                                                                     @else
                                                                                         <!-- Jika tidak ada file, tampilkan pesan -->
                                                                                         <span
@@ -2989,6 +2929,7 @@
             </div>
         </div>
     @endforeach
+
     @foreach ($pendidikan as $edu)
         <!-- Modal Edit Pendidikan -->
         <div class="modal fade" id="ModalEditPendidikan{{ $edu->id }}" tabindex="-1"
@@ -3252,7 +3193,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Apakah Anda {{ $pel->id }} yakin ingin menghapus data pelatihan
+                        <p>Apakah Anda yakin ingin menghapus data pelatihan
                             {{ $pel->nama_pelatihan }} ini?</p>
                         <form method="POST" action="{{ route('karyawan.destroy_pelatihan', $pel->id) }}">
                             @csrf
@@ -3262,7 +3203,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-danger">Hapus</button>
                     </div>
-                    </form> <!-- Make sure this is properly closed -->
+                    </form> <!-- Pastikan ini tertutup dengan benar -->
                 </div>
             </div>
         </div>

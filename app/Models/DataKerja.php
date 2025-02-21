@@ -16,7 +16,7 @@ class DataKerja extends Model
         'nik',
         'telkomgroup',
         'band_kelas_posisi',
-        'nama_unit',
+        'unit_kerja',
         'jabatan',
         'lokasi_kerja',
         'nomor_sk',

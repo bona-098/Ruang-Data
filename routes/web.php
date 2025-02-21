@@ -86,38 +86,55 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/pelatihan', PelatihanController::class);
     // Tambahkan route untuk metode khusus
+
     Route::put('/karyawan/{id}/update-pribadi', [KaryawanController::class, 'update_pribadi'])->name('karyawan.update_pribadi');
     Route::put('/karyawan/{id}/update-keluarga', [KaryawanController::class, 'update_keluarga'])->name('karyawan.update_keluarga');
-    Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job']);
+    Route::put('/karyawan/{id}/update-job', [KaryawanController::class, 'update_job'])->name('karyawan.update_job');
+
+    /* JOB HISTORY  */
     Route::post('/karyawan/add_jobhistory', [KaryawanController::class, 'add_jobhistory'])->name('karyawan.add_job_history');
+    Route::delete('jobhistory/{id}', [KaryawanController::class, 'destroy_jobhistory'])->name('karyawan.destroy_jobhistory');
     Route::put('/karyawan/{id}/update-jobhistory', [KaryawanController::class, 'update_jobhistory'])->name('karyawan.update_jobhistory');
-    Route::delete('
-    jobhistory/{id}', [KaryawanController::class, 'destroy_jobhistory'])->name('karyawan.destroy_jobhistory');
+
+    /* PENDIDIKAN   */
     Route::post('/karyawan/add_pendidikan', [KaryawanController::class, 'add_pendidikan'])->name('karyawan.add_pendidikan');
     Route::put('/karyawan/{id}/update-pendidikan', [KaryawanController::class, 'update_pendidikan'])->name('karyawan.update_pendidikan');
     Route::delete('pendidikan/{id}', [KaryawanController::class, 'destroy_pendidikan'])->name('karyawan.destroy_pendidikan');
+
+    /* PELATIHAN  */
     Route::post('/karyawan/add_pelatihan', [KaryawanController::class, 'add_pelatihan'])->name('karyawan.add_pelatihan');
     Route::put('/karyawan/{id}/update-pelatihan', [KaryawanController::class, 'update_pelatihan'])->name('karyawan.update_pelatihan');
-    Route::delete('pelatihan/{id}', [KaryawanController::class, 'destroy_pelatihan'])->name('karyawan.destroy_pelatihan');
+    Route::delete('/karyawan/pelatihan/{id}', [KaryawanController::class, 'destroy_pelatihan'])
+        ->name('karyawan.destroy_pelatihan');
+
+
+    /* KETERAMPILAN  */
     Route::post('/karyawan/add_keterampilan', [KaryawanController::class, 'add_keterampilan'])->name('karyawan.add_keterampilan');
     Route::put('/karyawan/{id}/update-keterampilan', [KaryawanController::class, 'update_keterampilan'])->name('karyawan.update_keterampilan');
     Route::delete('keterampilan/{id}', [KaryawanController::class, 'destroy_keterampilan'])->name('karyawan.destroy_keterampilan');
+
+    /* PRESTASI */
     Route::post('/karyawan/add_prestasi', [KaryawanController::class, 'add_prestasi'])->name('karyawan.add_prestasi');
     Route::put('/karyawan/{id}/update-prestasi', [KaryawanController::class, 'update_prestasi'])->name('karyawan.update_prestasi');
     Route::delete('prestasi/{id}', [KaryawanController::class, 'destroy_prestasi'])->name('karyawan.destroy_prestasi');
+
+    /* TALENT */
     Route::post('/karyawan/add_talent', [KaryawanController::class, 'add_talent'])->name('karyawan.add_talent');
     Route::put('/karyawan/{id}/update-talent', [KaryawanController::class, 'update_talent'])->name('karyawan.update_talent');
     Route::delete('talent/{id}', [KaryawanController::class, 'destroy_talent'])->name('karyawan.destroy_talent');
+
+    /* CATATAN */
     Route::post('/karyawan/add_catatan', [KaryawanController::class, 'add_catatan'])->name('karyawan.add_catatan');
     Route::put('/karyawan/{id}/update-catatan', [KaryawanController::class, 'update_catatan'])->name('karyawan.update_catatan');
     Route::delete('catatan/{id}', [KaryawanController::class, 'destroy_catatan'])->name('karyawan.destroy_catatan');
 
+    /* REKOMENDASI */
     Route::get('/rekomendasi', [RekomendasiController::class, 'index'])->name('rekomendasi.index');
     Route::get('/rekomendasi/filter', [RekomendasiController::class, 'filter'])->name('rekomendasi.filter');
     Route::get('rekomendasi/{rekomendasi}', [RekomendasiController::class, 'show'])->name('rekomendasi.show');
     Route::get('/rekomendasi/promosi', [RekomendasiController::class, 'rekomendasiPromosi'])->name('rekomendasi.promosi');
 
-
+    /* MITRA */
     Route::resource('/mitra', MitraController::class);
     //dapat dilihat oleh semua role tetapi crud hanya bisa dilakukan oleh role marshal
     Route::resource('/sales', SalesController::class);

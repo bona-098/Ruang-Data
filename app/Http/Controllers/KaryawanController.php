@@ -11,6 +11,7 @@ use App\Models\Pelatihan;
 use App\Models\Keluarga;
 use App\Models\Catatan;
 use App\Models\Data;
+use App\Models\DataKerja;
 use App\Models\Jabatan;
 use App\Models\Prestasi;
 use App\Models\Talent;
@@ -218,7 +219,7 @@ class KaryawanController extends Controller
         $catatan = Catatan::where('karyawan_id', $id)->get();
 
         // Pastikan data keluarga ada
-        $data_keluarga = $karyawan->keluarga;
+        $data_keluarga = Keluarga::where('karyawan_id', $id)->get();
 
         if ($data_keluarga->isEmpty()) {
             return redirect()->route('karyawan.index')->with('error', 'Data keluarga tidak ditemukan.');
@@ -345,23 +346,99 @@ class KaryawanController extends Controller
 
     public function update_keluarga(Request $request, $id)
     {
-        $karya = $request->all();
-        $karyawan = Keluarga::find($id);
-        $karyawan->update([
-            'status_nikah' => $request->status_nikah,
-            'nama_pasangan' => $request->nama_pasangan,
-            'nama_anak_pertama' => $request->nama_anak_pertama,
-            'nama_anak_kedua' => $request->nama_anak_kedua,
-            'nama_anak_ketiga' => $request->nama_anak_ketiga,
-        ]);
-        // Catat aktivitas tambah data mitra ke dalam log
-        // Redirect atau berikan respon sesuai kebutuhan
-        return redirect()->back();
+        try {
+            // Validasi data yang diterima
+            $request->validate([
+                'status_nikah' => 'required|string|max:50',
+                'nama_pasangan' => 'nullable|string|max:100',
+                'tanggungan_keluarga' => 'nullable|string|max:100',
+                'nama_anak_pertama' => 'nullable|string|max:100',
+                'nama_anak_kedua' => 'nullable|string|max:100',
+                'nama_anak_ketiga' => 'nullable|string|max:100',
+            ]);
+
+            // Temukan data keluarga berdasarkan ID
+            $karyawan = Keluarga::find($id);
+
+            // Cek apakah data keluarga ditemukan
+            if (!$karyawan) {
+                return response()->json(['message' => 'Data keluarga tidak ditemukan'], 404);
+            }
+
+            // Siapkan data yang akan diupdate
+            $updateData = [
+                'status_nikah' => $request->status_nikah,
+                'tanggungan_keluarga' => $request->tanggungan_keluarga,
+                'nama_pasangan' => !empty($request->nama_pasangan) ? $request->nama_pasangan : null,
+                'nama_anak_pertama' => !empty($request->nama_anak_pertama) ? $request->nama_anak_pertama : null,
+                'nama_anak_kedua' => !empty($request->nama_anak_kedua) ? $request->nama_anak_kedua : null,
+                'nama_anak_ketiga' => !empty($request->nama_anak_ketiga) ? $request->nama_anak_ketiga : null,
+            ];
+
+            // Perbarui data keluarga
+            $karyawan->update($updateData);
+
+            // Menampilkan toast sukses setelah data diperbarui
+            Alert::toast('Data keluarga berhasil diubah!', 'success');
+
+            // Redirect dengan pesan sukses
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Menampilkan toast gagal jika ada kesalahan
+            Alert::toast('Gagal mengubah data keluarga: ' . $e->getMessage(), 'error');
+
+            // Redirect kembali dengan pesan gagal
+            return redirect()->back();
+        }
     }
+
+
 
     public function update_job(Request $request, $id)
     {
-        // Logika untuk memperbarui data pekerjaan karyawan
+        // Validasi data yang diterima
+        $request->validate([
+            'nik' => 'nullable|string|max:50',
+            'nik_telpro' => 'nullable|string|max:50',
+            'jabatan' => 'nullable|string|max:50',
+            'unit_kerja' => 'nullable|string|max:50',
+            'band_kelas_posisi' => 'nullable|string|max:50',
+            'tgl_bergabung' => 'nullable|date|max:50',
+            'lokasi' => 'nullable|string|max:50',
+            // Tambahkan validasi lainnya sesuai kebutuhan
+        ]);
+
+        // Temukan job history berdasarkan ID
+        $job = DataKerja::find($id);
+
+        // Cek apakah job history ditemukan
+        if (!$job) {
+            return response()->json(['message' => 'Jobnot found'], 404);
+        }
+        try {
+            // Perbarui job history dengan data yang baru
+            $job->update([
+                'nik' => $request->input('nik'),
+                'telkomgroup' => $request->input('nik_telpro'),
+                'jabatan' => $request->input('jabatan'),
+                'unit_kerja' => $request->input('unit_kerja'),
+                'band_kelas_posisi' => $request->input('band_kelas_posisi'),
+                'tgl_bergabung' => $request->input('tgl_bergabung'),
+                'lokasi_kerja' => $request->input('lokasi_kerja'),
+                // Include other fields as necessary
+            ]);
+            // Menampilkan toast sukses setelah data diperbarui
+            Alert::toast('Data pekerjaan berhasil diubah!', 'success');
+
+            // Redirect dengan pesan sukses
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Menampilkan toast gagal jika ada kesalahan
+            Alert::toast('Gagal mengubah data pekerjaan: ' . $e->getMessage(), 'error');
+
+            // Redirect kembali dengan pesan gagal
+            return redirect()->back();
+        }
     }
 
     public function add_jobhistory(Request $request)
@@ -405,35 +482,51 @@ class KaryawanController extends Controller
     public function update_jobhistory(Request $request, $id)
     {
         // Validasi data yang diterima
-        $request->validate([
+        $validatedData = $request->validate([
             'nama' => 'required|string|max:50',
             'tgl_jabat' => 'required|date',
             'lokasi' => 'nullable|string|max:50',
             'band' => 'nullable|string|max:50',
-            'lampiran' => 'nullable|string|max:50',
-            // Tambahkan validasi lainnya sesuai kebutuhan
+            'lampiran' => 'nullable|file|mimes:pdf,jpg,png|max:5048',
         ]);
 
         // Temukan job history berdasarkan ID
         $jobHistory = JobHistory::find($id);
 
-        // Cek apakah job history ditemukan
         if (!$jobHistory) {
-            return response()->json(['message' => 'Job history not found'], 404);
+            return redirect()->back()->withErrors(['message' => 'Job history not found'])->withInput();
         }
 
-        // Perbarui job history dengan data yang baru
-        $jobHistory->update([
-            'nama' => $request->input('nama'),
-            'tgl_jabat' => $request->input('tgl_jabat'),
-            'lokasi' => $request->input('lokasi'),
-            'band' => $request->input('band'),
-            'lampiran' => $request->input('lampiran'),
-            // Tambahkan kolom lainnya sesuai kebutuhan
-        ]);
+        $lampiranPath = $jobHistory->lampiran;
 
-        return response()->json(['message' => 'Job history updated successfully', 'data' => $jobHistory], 200);
+        try {
+            if ($request->hasFile('lampiran')) {
+                if ($lampiranPath && Storage::disk('public')->exists($lampiranPath)) {
+                    Storage::disk('public')->delete($lampiranPath);
+                }
+
+                $lampiran = $request->file('lampiran');
+                $filename = $jobHistory->karyawan_id . '_' . $jobHistory->tgl_jabat . '_' . time() . '.' . $lampiran->getClientOriginalExtension();
+                $lampiranPath = $lampiran->storeAs('lampiran_jobhistory', $filename, 'public');
+            }
+
+            $jobHistory->update([
+                'nama' => $request->input('nama'),
+                'tgl_jabat' => $request->input('tgl_jabat'),
+                'lokasi' => $request->input('lokasi'),
+                'band' => $request->input('band'),
+                'lampiran' => $lampiranPath,
+            ]);
+
+            Alert::toast('Data pekerjaan berhasil diubah!', 'success');
+            return redirect()->back()->with('success', 'Data pekerjaan berhasil diubah!');
+        } catch (\Throwable $e) {
+            Alert::toast('Gagal mengubah data pekerjaan: ' . $e->getMessage(), 'error');
+            return redirect()->back()->withErrors(['error' => 'Gagal mengubah data pekerjaan.'])->withInput();
+        }
     }
+
+
 
     public function destroy_jobhistory($id)
     {
@@ -585,7 +678,6 @@ class KaryawanController extends Controller
         return redirect()->back()->with('success', 'Riwayat pendidikan berhasil dihapus!');
     }
 
-
     public function add_pelatihan(Request $request)
     {
         // Validasi data yang diterima
@@ -692,19 +784,19 @@ class KaryawanController extends Controller
     public function destroy_pelatihan($id)
     {
         // Debugging: Pastikan $id diterima dengan benar
-        // dd($id);  // Pastikan ID yang diterima sesuai dengan yang diharapkan
+        // dd($id);  // Uncomment untuk debug jika diperlukan
 
         // Temukan pelatihan berdasarkan ID
         $pelatihan = Pelatihan::find($id);
 
         // Cek apakah pelatihan ditemukan
         if (!$pelatihan) {
-            return response()->json(['message' => 'Pelatihan tidak ditemukan'], 404);
+            return redirect()->back()->with('error', 'Pelatihan tidak ditemukan!');
         }
 
         // Hapus lampiran dari storage jika ada
         if ($pelatihan->lampiran_pendukung) {
-            Storage::disk('public')->delete('lampiran_pelatihan/' . $pelatihan->lampiran_pendukung);
+            Storage::disk('public')->delete($pelatihan->lampiran_pendukung);
         }
 
         // Hapus entri pelatihan dari database
@@ -713,6 +805,7 @@ class KaryawanController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Pelatihan berhasil dihapus!');
     }
+
     public function add_keterampilan(Request $request)
     {
         // Validasi data yang diterima
@@ -728,8 +821,6 @@ class KaryawanController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Riwayat keterampilan berhasil ditambahkan!');
     }
-
-
 
     public function update_keterampilan(Request $request, $id)
     {

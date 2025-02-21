@@ -16,17 +16,17 @@ class Keluarga extends Model
     protected $fillable = [
         'karyawan_id',
         'status_nikah',
-        'tgl_nikah',
+        // 'tgl_nikah',
         'tanggungan_keluarga',
-        'jumlah_anak',
-        'nomor_kartu_keluarga',
+        // 'jumlah_anak',
+        // 'nomor_kartu_keluarga',
         'nama_pasangan',
         'nama_anak_pertama',
-        'tgl_lahir_anak_pertama',
+        // 'tgl_lahir_anak_pertama',
         'nama_anak_kedua',
-        'tgl_lahir_anak_kedua',
+        // 'tgl_lahir_anak_kedua',
         'nama_anak_ketiga',
-        'tgl_lahir_anak_ketiga',
+        // 'tgl_lahir_anak_ketiga',
     ];
 
     // Relasi dengan model Karyawan
