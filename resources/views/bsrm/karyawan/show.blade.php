@@ -1400,7 +1400,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-6">
+                                                                        {{-- <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label
                                                                                     for="file_rekening_bank">Lampiran
@@ -1414,7 +1414,7 @@
                                                                                     </div>
                                                                                 @enderror
                                                                             </div>
-                                                                        </div>
+                                                                        </div> --}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2517,7 +2517,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row mb-7">
+                                                            {{-- <div class="row mb-7">
                                                                 <label class="col-lg-4 fw-semibold text-muted">Nama
                                                                     Bank</label>
                                                                 <div class="col-lg-8">
@@ -2534,7 +2534,7 @@
                                                                     <span
                                                                         class="fw-semibold text-gray-800 fs-6">{{ $karyawan->rekening_bank }}</span>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
 
                                                     </div>

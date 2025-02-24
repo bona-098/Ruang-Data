@@ -124,7 +124,7 @@ class KaryawanController extends Controller
             'nomor_bpjs_ketenagakerjaan' => 'required|string|max:100',
             'nomor_telkomedika' => 'required|string|max:100',
             'nomor_npwp' => 'required|string|max:100',
-            'nomor_rekening_bank' => 'required|string|max:100',
+            // 'nomor_rekening_bank' => 'required|string|max:100',
 
             // Tambahkan validasi untuk field lainnya sesuai kebutuhan
         ]);
@@ -173,7 +173,7 @@ class KaryawanController extends Controller
                 'bpjs_ketenagakerjaan' => $request->nomor_bpjs_ketenagakerjaan,
                 'telkomedika' => $request->nomor_telkomedika,
                 'npwp' => $request->nomor_npwp,
-                'rekening_bank' => $request->nomor_rekening_bank,
+                // 'rekening_bank' => $request->nomor_rekening_bank,
                 'foto' => $filename,
             ]);
 
@@ -291,7 +291,7 @@ class KaryawanController extends Controller
             'bpjs_ketenagakerjaan' => $request->bpjs_ketenagakerjaan,
             'telkomedika' => $request->telkomedika,
             'npwp' => $request->npwp,
-            'rekening_bank' => $request->rekening_bank,
+            // 'rekening_bank' => $request->rekening_bank,
         ]);
         // Catat aktivitas tambah data mitra ke dalam log
         LogActivities::create([
